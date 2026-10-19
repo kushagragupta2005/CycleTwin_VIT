@@ -1,6 +1,7 @@
 from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from datetime import datetime, timedelta
 from xml.etree.ElementTree import Element, SubElement, ElementTree
 from src.generator import generate
 
@@ -18,6 +19,14 @@ for day in range(35):
     for typ, unit, value in records:
         SubElement(root, "Record", {"type":typ, "unit":unit, "value":f"{value:.3f}",
             "startDate":date+" 23:00:00 +0530", "endDate":date+" 23:59:00 +0530"})
+    sleep_start=datetime.strptime(date+" 22:30:00 +0530","%Y-%m-%d %H:%M:%S %z")
+    for stage,hours in (("Core",3.4),("Deep",1.1),("REM",1.5),("Awake",.4)):
+        sleep_end=sleep_start+timedelta(hours=hours)
+        SubElement(root,"Record",{"type":"HKCategoryTypeIdentifierSleepAnalysis",
+            "value":"HKCategoryValueSleepAnalysis"+("Awake" if stage=="Awake" else "Asleep"+stage),
+            "startDate":sleep_start.strftime("%Y-%m-%d %H:%M:%S %z"),
+            "endDate":sleep_end.strftime("%Y-%m-%d %H:%M:%S %z")})
+        sleep_start=sleep_end
     if day == 0:
         rec = SubElement(root, "Record", {"type":"HKCategoryTypeIdentifierMenstrualFlow", "value":"2",
             "startDate":date+" 08:00:00 +0530", "endDate":date+" 08:01:00 +0530"})

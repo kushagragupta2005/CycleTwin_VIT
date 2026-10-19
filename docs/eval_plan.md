@@ -18,7 +18,7 @@ Compare calendar history, period-log-only, temperature-only, and a combined wear
 
 ## Uncertainty and interpretation
 
-For each metric, compute patient-cluster bootstrap 95% intervals with 1,000 resamples within each held-out seed, then report seed-specific estimates and their aggregate. Bootstrap resampling unit is patient, retaining all sampled patient cycles. Abstention, adaptive conformal coverage, and risk-coverage curves are not implemented in this phase and must be marked not evaluated. No threshold will be tuned against test outcomes.
+For each reported G1 metric, compute patient-cluster bootstrap 95% intervals with 1,000 resamples within each held-out seed. Bootstrap resampling unit is patient, retaining all sampled patient cycles. Abstention, conformal coverage, adaptive conformal coverage, and risk-coverage curves are not included in the G1 results and must be marked not evaluated. No threshold will be tuned against test outcomes.
 
 ## Thresholds and limitations
 
@@ -27,3 +27,7 @@ The alert score threshold is fixed at 0.50 for the demo. The one-alert limit is 
 ## Protocol amendment before final evaluation
 
 An early evaluation run using seeds 17, 29, and 43 revealed that the original ovulation-day distribution made nearly all generated cycles positive for E1. That run informed a generator-unit correction, so those patients are development data and their scores are not reported as held-out results. Before the final evaluation, the generator and score settings were frozen and unused generator seeds 97, 101, and 103 were reserved. Only those fresh seeds are used for the reported test metrics. This amendment is committed before the fresh test run.
+
+## G1 reporting deviations
+
+The frozen plan requested additional calendar, coverline, logistic and boosted-tree baselines; G1 implements only the fixed tier 0/1/2 scores. The G1 results also do not include sensor-dropout sweeps, conformal coverage, subgroup coverage, decision-curve analysis, or lead-time-versus-false-alarm curves. These are not evaluated and are not represented as results. The G2 dashboard's risk-coverage diagnostic runs on a separate small synthetic display cohort and is not part of held-out evaluation. Any expanded evaluation requires a new plan and untouched patient seeds.

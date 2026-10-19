@@ -26,6 +26,18 @@ def parse_export(path):
                 meta = {x.attrib.get("key"): x.attrib.get("value") for x in el.findall("MetadataEntry")}
                 if meta.get("HKMetadataKeyMenstrualCycleStart", "false").lower() == "true":
                     starts.append(date)
+            elif typ == "HKCategoryTypeIdentifierSleepAnalysis" and date:
+                stage=el.attrib.get("value","")
+                stage_map={"HKCategoryValueSleepAnalysisAsleepCore":"core",
+                           "HKCategoryValueSleepAnalysisAsleepDeep":"deep",
+                           "HKCategoryValueSleepAnalysisAsleepREM":"rem",
+                           "HKCategoryValueSleepAnalysisAwake":"awake",
+                           "HKCategoryValueSleepAnalysisAsleep":"asleep"}
+                key=stage_map.get(stage)
+                if key:
+                    start=datetime.strptime(el.attrib["startDate"],"%Y-%m-%d %H:%M:%S %z")
+                    end=datetime.strptime(el.attrib["endDate"],"%Y-%m-%d %H:%M:%S %z")
+                    daily.setdefault(date,{})[f"sleep_{key}_hours"] = daily.setdefault(date,{}).get(f"sleep_{key}_hours",0.0)+(end-start).total_seconds()/3600
             el.clear()
         elif el.tag == "Workout":
             el.clear()

@@ -72,21 +72,4 @@ for seed in SEEDS:
             seed_result["metrics"][key]=out
     results["seeds"][str(seed)]=seed_result
 Path("results.json").write_text(json.dumps(results,indent=2)+"\n")
-lines=["| Forecast day | Tier | AUROC (95% patient-cluster CI) | AUPRC (95% patient-cluster CI) | Ovulation-day MAE | Brier | False alerts/100 cycles |",
-       "|---|---:|---:|---:|---:|---:|---:|"]
-for seed, sr in results["seeds"].items():
-    if seed != str(SEEDS[0]): continue
-    for day in DAYS:
-        for tier in TIERS:
-            m=sr["metrics"][f"day_{day}_tier_{tier}"]
-            fmt=lambda x: "n/a" if x is None else f"{x:.3f}"
-            ci=lambda name: "n/a" if m[name] is None else f"{m[name]:.3f} ({m[name+'_cluster_bootstrap_95ci'][0]:.3f}–{m[name+'_cluster_bootstrap_95ci'][1]:.3f})"
-            ovci=m['ovulation_day_mae_cluster_bootstrap_95ci']
-            ovtxt="n/a" if m['ovulation_day_mae'] is None else f"{m['ovulation_day_mae']:.2f} ({ovci[0]:.2f}–{ovci[1]:.2f})"
-            lines.append(f"| {day} | {tier} | {ci('auroc')} | {ci('auprc')} | {ovtxt} | {fmt(m['brier'])} | {fmt(m['false_alerts_per_100_cycles'])} |")
-table="\n".join(lines)+f"\n\nValues shown for seed {SEEDS[0]}; all three seeds and patient-cluster intervals are in `results.json`. Lead time and sensitivity at the alert cutoff are also in `results.json`."
-readme=Path("README.md").read_text()
-start=readme.index("<!-- RESULTS:START -->")+len("<!-- RESULTS:START -->")
-end=readme.index("<!-- RESULTS:END -->")
-Path("README.md").write_text(readme[:start]+"\n\n"+table+"\n"+readme[end:])
 print("Wrote results.json (synthetic held-out patients; 1,000 patient-cluster resamples/metric).")
