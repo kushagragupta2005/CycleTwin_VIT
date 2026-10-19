@@ -3,4 +3,5 @@ __pycache__/
 *.py[cod]
 export*.xml
 apple_health_export/
+.ppt_build/
 *.csv

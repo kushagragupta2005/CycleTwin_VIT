@@ -6,7 +6,7 @@ This plan is committed before running evaluation on the held-out test patients. 
 
 ## Data and splits
 
-Generate 1,200 synthetic patients with six cycles each from each of three fixed generator seeds: 17, 29, and 43. Split patients, never cycles: 70% train, 15% validation, 15% held-out test, using a deterministic patient hash per seed. Keep every cycle for a patient in one partition. The test partition is evaluated once after development settings are frozen.
+Generate 1,200 synthetic patients with six cycles each from each of three fixed generator seeds: 97, 101, and 103. Split patients, never cycles: 70% train, 15% validation, 15% held-out test, using a deterministic patient index per seed. Keep every cycle for a patient in one partition. The test partition is evaluated once after development settings are frozen.
 
 ## Primary target and metrics
 
@@ -23,3 +23,7 @@ For each metric, compute patient-cluster bootstrap 95% intervals with 1,000 resa
 ## Thresholds and limitations
 
 The alert score threshold is fixed at 0.50 for the demo. The one-alert limit is a design constraint. These are not clinical thresholds. Any failure list, subgroup summary, or synthetic result must be labelled as such. The simulator's labels and features share assumptions, so apparent performance can overstate real-world usefulness.
+
+## Protocol amendment before final evaluation
+
+An early evaluation run using seeds 17, 29, and 43 revealed that the original ovulation-day distribution made nearly all generated cycles positive for E1. That run informed a generator-unit correction, so those patients are development data and their scores are not reported as held-out results. Before the final evaluation, the generator and score settings were frozen and unused generator seeds 97, 101, and 103 were reserved. Only those fresh seeds are used for the reported test metrics. This amendment is committed before the fresh test run.
