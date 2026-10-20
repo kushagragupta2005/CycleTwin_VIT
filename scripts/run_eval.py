@@ -12,7 +12,7 @@ from src.generator import generate
 from src.model import estimate_ovulation_day
 from src.splits import patient_partition
 
-SEEDS, DAYS, TIERS = (97, 101, 103), (10, 14, 18), (0, 1, 2)
+SEEDS, DAYS, TIERS = (97, 101, 103), (10, 14, 18), (0, 1, 2, 3)
 
 
 def auc(y, s):

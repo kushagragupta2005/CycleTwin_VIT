@@ -11,6 +11,9 @@ def generate(seed: int, patients: int = 1200, cycles: int = 6):
         phenotype = PHENOTYPES[p % len(PHENOTYPES)]
         ir = float(np.clip(rng.normal(0.0, 1.0), -2.5, 2.5))
         androgen = float(rng.normal(0.65 if phenotype.startswith("PMOS") else 0.0, .7))
+        age = int(rng.integers(18, 43))
+        bmi = float(np.clip(rng.normal(25.5 + 1.8 * max(ir, 0), 4.2), 17.0, 42.0))
+        family_history = int(rng.random() < (0.18 + 0.12 * max(ir, 0)))
         base = 16 if phenotype in ("healthy_regular", "PMOS_C", "contraception", "early_menarche") else 22 if phenotype == "healthy_variable" else 26
         for c in range(cycles):
             stress = rng.normal(0, 1)
@@ -38,6 +41,7 @@ def generate(seed: int, patients: int = 1200, cycles: int = 6):
             out.append(dict(patient=f"s{seed}-p{p:04d}", cycle=c, phenotype=phenotype,
                             day0=str(start), cycle_length=length, ovulation_day=ovday,
                             event=int(anov or ovday > 21), ir=ir, androgen=androgen,
+                            age=age, bmi=bmi, family_history=family_history,
                             temperature=temp, rhr=rhr, hrv=hrv, steps=steps, sleep=sleep,
                             period_start=true_start, seed=seed))
     return out

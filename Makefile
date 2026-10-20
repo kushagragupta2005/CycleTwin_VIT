@@ -1,5 +1,6 @@
 .PHONY: all demo-apple test
 all:
+	python3 scripts/write_ehr_lite.py
 	python3 scripts/run_eval.py
 	python3 scripts/update_readme_results.py
 	python3 scripts/generate_figures.py

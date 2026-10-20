@@ -5,8 +5,8 @@ from pathlib import Path
 
 data=json.loads(Path("results.json").read_text())
 seeds=data["seeds"]
-days=(10,14,18); tiers=(0,1,2)
-colors={0:"#64748b",1:"#0f766e",2:"#d97706"}
+days=(10,14,18); tiers=(0,1,2,3)
+colors={0:"#64748b",1:"#0f766e",2:"#d97706",3:"#9f5b86"}
 Path("assets").mkdir(exist_ok=True)
 
 def svg_start(title,subtitle,ymin,ymax,ylabel):
@@ -44,7 +44,7 @@ def render_auc():
             parts.append(f'<line x1="{x:.1f}" y1="{yh:.1f}" x2="{x:.1f}" y2="{yl:.1f}" stroke="{colors[tier]}" stroke-width="2"/>')
             parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5" fill="{colors[tier]}"/>')
         parts.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x,y in zip(xs,ys))}" fill="none" stroke="{colors[tier]}" stroke-width="3"/>')
-        parts.append(f'<line x1="{640+tier*70}" y1="{115}" x2="{662+tier*70}" y2="{115}" stroke="{colors[tier]}" stroke-width="3"/><text x="{667+tier*70}" y="120" font-family="Arial" font-size="14" fill="#172b3a">Tier {tier}</text>')
+        parts.append(f'<line x1="{570+tier*65}" y1="{115}" x2="{592+tier*65}" y2="{115}" stroke="{colors[tier]}" stroke-width="3"/><text x="{597+tier*65}" y="120" font-family="Arial" font-size="14" fill="#172b3a">Tier {tier}</text>')
     parts.append('</svg>')
     Path("assets/auroc_by_tier.svg").write_text("\n".join(parts))
 
@@ -62,7 +62,7 @@ def render_false_alerts():
             xs.append(x); ys.append(y)
             parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5" fill="{colors[tier]}"/>')
         parts.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x,y in zip(xs,ys))}" fill="none" stroke="{colors[tier]}" stroke-width="3"/>')
-        parts.append(f'<line x1="{640+tier*70}" y1="{115}" x2="{662+tier*70}" y2="{115}" stroke="{colors[tier]}" stroke-width="3"/><text x="{667+tier*70}" y="120" font-family="Arial" font-size="14" fill="#172b3a">Tier {tier}</text>')
+        parts.append(f'<line x1="{570+tier*65}" y1="{115}" x2="{592+tier*65}" y2="{115}" stroke="{colors[tier]}" stroke-width="3"/><text x="{597+tier*65}" y="120" font-family="Arial" font-size="14" fill="#172b3a">Tier {tier}</text>')
     parts.append('</svg>')
     Path("assets/false_alerts_by_tier.svg").write_text("\n".join(parts))
 

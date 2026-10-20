@@ -4,7 +4,8 @@ from __future__ import annotations
 import numpy as np
 
 
-TIER_NAMES = {0: "calendar", 1: "calendar + wearables", 2: "calendar + wearables + temperature"}
+TIER_NAMES = {0: "calendar", 1: "calendar + wearables", 2: "calendar + wearables + temperature",
+              3: "calendar + wearables + temperature + EHR-lite (oracle-adjacent)"}
 
 
 def _prior_cycle_lengths(rows):
@@ -24,6 +25,8 @@ def feature_names(tier: int) -> list[str]:
         names += ["mean_rhr_offset", "mean_hrv_offset", "mean_steps", "mean_sleep_hours"]
     if tier >= 2:
         names += ["temperature_change", "temperature_observation_fraction"]
+    if tier >= 3:
+        names += ["simulator_ir_latent", "simulator_androgen_load", "synthetic_age", "synthetic_bmi", "synthetic_family_history"]
     return names
 
 
@@ -41,5 +44,8 @@ def build_feature_matrix(rows, day: int, tier: int) -> np.ndarray:
             observed = temps[np.isfinite(temps)]
             values += [float(np.mean(observed[-4:]) - np.mean(observed[:min(5, len(observed))])) if len(observed) >= 6 else np.nan,
                        float(np.isfinite(temps).mean())]
+        if tier >= 3:
+            values += [float(row["ir"]), float(row["androgen"]), float(row["age"]),
+                       float(row["bmi"]), float(row["family_history"])]
         records.append(values)
     return np.asarray(records, dtype=float)

@@ -5,3 +5,4 @@ export*.xml
 apple_health_export/
 .ppt_build/
 *.csv
+!data/ehr.csv

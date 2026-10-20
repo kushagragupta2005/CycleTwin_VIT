@@ -14,7 +14,7 @@ E1 is a synthetic current-cycle event: no ovulation or ovulation after cycle day
 
 ## Baselines and tiers
 
-Fit one sklearn logistic-regression model for every seed, forecast day and tier on train patients. Fit Platt calibration on validation patients only. Select the alert threshold by validation-set F1 only, then evaluate held-out patients once. Report each result by data tier: tier 0 calendar history from preceding logged cycle lengths; tier 1 adds resting heart rate, HRV, steps and sleep; tier 2 adds nightly temperature. No CGM or EHR model is claimed in this initial evaluation.
+Fit one sklearn logistic-regression model for every seed, forecast day and tier on train patients. Fit Platt calibration on validation patients only. Select the alert threshold by validation-set F1 only, then evaluate held-out patients once. Report each result by data tier: tier 0 calendar history from preceding logged cycle lengths; tier 1 adds resting heart rate, HRV, steps and sleep; tier 2 adds nightly temperature; tier 3 adds EHR-lite. Tier 3 contains simulator values that help set the label, so it is reported only as an oracle-adjacent, simulator-internal check. No CGM forecast is claimed.
 
 ## Uncertainty and interpretation
 
