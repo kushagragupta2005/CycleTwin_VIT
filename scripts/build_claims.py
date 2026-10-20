@@ -43,7 +43,8 @@ def build(write=True):
     claims['configuration']={'days':sorted({int(k.split('_')[1]) for k in keys}),
                              'tiers':sorted({int(k.rsplit('_',1)[1]) for k in keys}),
                              'event_cutoff_day':21,'confidence_level':0.95,'short_video_minutes':3,
-                             'inference_seed':97,'display_seed':223,'classification_tolerance':1e-12}
+                             'inference_seed':97,'display_seed':223,'classification_tolerance':1e-12,
+                             'limitations_minutes':3,'guardrail_observed_nights':8,'guardrail_window_nights':14}
     all_rows=[r for seed in results['seeds'] for r in generate(int(seed))]
     example=next(iter(results['seeds'].values()))['patients']
     claims['dataset']={'people':len({r['patient'] for r in all_rows}),'cycles':len(all_rows),
@@ -52,6 +53,8 @@ def build(write=True):
                        'per_seed_test_people':example['test']}
     claims['runtime_requirements']=[line.strip() for line in (ROOT/'requirements.txt').read_text().splitlines() if line.strip() and not line.startswith('#')]
     claims['models']=json.loads((ROOT/'models/model_card.json').read_text())['models']
+    submission=ROOT/'docs/submission_status.json'
+    claims['submission']=json.loads(submission.read_text()) if submission.exists() else None
     claims['deliverables']=compose(claims)
     if write:
         (ROOT / "docs/claims.json").write_text(json.dumps(claims, indent=2) + "\n")

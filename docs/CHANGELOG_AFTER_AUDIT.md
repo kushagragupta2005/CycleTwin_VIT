@@ -40,3 +40,10 @@ All performance claims below refer to synthetic data. The immutable pre-change c
 - The new editable architecture shows implemented EHR-lite and one persisted classifier path, with the illustrative twin separate. Current presentation files replace stale versions in deliverables; Git and the historical audit retain earlier evidence. Old seeds are explicitly development evidence.
 - CI rebuilds claims and checks exact README/script text, every expected PPTX/PDF slide text and metric token, plus rejection of unknown/stale metric strings and unexpected old deliverable files. PDF verification is a separately pinned development dependency.
 - Classification metrics are unchanged. All 29 unit/AppTest tests passed. Native package/layout checks passed, every native slide was visually inspected, and final PDF architecture/table/body pages were rendered and inspected. PDF text checks cover every page. No PowerPoint application compatibility test is claimed.
+
+## A6 — official-rule compliance and human recording handoff
+
+- Checked the official challenge page and mapped phase-one rules to actual files and public reachability in SUBMISSION_CHECKLIST.md. The repository root already matches the user-supplied CycleTwin_VIT team/college naming. Anonymous HTTP checks returned 200 for README, licence, model card and every final PDF/PPTX.
+- Generated a minute-by-minute recording runbook from claims, using Kushi as the narrative spine and reserving the final limitation segment. Existing short/long scripts and the new runbook are source-checked by CI.
+- All technical checklist items pass. Human-only items remain explicit: the user deferred video recording/upload/link; eligibility/registered roster confirmation and the leader's private contact fields/final Unstop submission require the human. No recording, upload, registration verification or platform submission is claimed.
+- All 31 unit/AppTest tests passed. A5's published CI passed; its receipt is saved. Classification metrics are unchanged.

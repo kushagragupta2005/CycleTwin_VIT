@@ -174,4 +174,31 @@ Code uses the [MIT License](LICENSE). All project datasets are synthetic. Publis
     for duration in (team['minimum_video_minutes'], cfg['short_video_minutes']):
         chosen=deck if duration==team['minimum_video_minutes'] else [deck[i] for i in (0,2,7,12)]
         videos[str(duration)]=f"# CycleTwin {duration}-minute script\n\n"+FOOTER+'\n\nHuman recording deferred. All project numbers below come from docs/claims.json.\n\n'+'\n\n'.join('## '+s['title']+'\n'+s['subtitle']+'\n'+'\n'.join(s['body']) for s in chosen)+ '\n\nEnd on limitations. This is a synthetic engineering experiment, not evidence of reliable forecasting in people.\n'
-    return {'deck':deck,'architecture':architecture,'readme':readme,'video_scripts':videos}
+    actions=[
+        ('Purpose','Open Overview, read the synthetic badge and purpose, then enter Meet Kushi.'),
+        ('Meet Kushi','Read the fictional-persona banner and profile. Explain that the story is not performance evidence.'),
+        ('Past history','Show every generated past length, including the outlier outside the fictional usual range. Open the selection-rule expander.'),
+        ('India context','Show the cited population context. Explain that criteria-specific prevalence is not a CycleTwin prediction result.'),
+        ('Static stream','Open Her two data streams. Show demographics and simulator internals. Say oracle-adjacent explicitly.'),
+        ('Temperature stream','Show the temperature prefix and missing nights. Change the snapshot slider without implying measured hormones.'),
+        ('Other wearable streams','Show RHR and HRV offsets, sleep and steps, including their displayed units.'),
+        (f"Snapshot day {days[0]}",'Open Her twin wakes up. Read the computed probability, validation threshold and any calendar fallback.'),
+        (f"Snapshot day {days[1]}",'Inspect the current synthetic decision and conditional interval. Read the class set without turning it into a personal guarantee.'),
+        (f"Snapshot day {days[-1]}",'Compare the later snapshot. Keep the retained feature tier visible.'),
+        ('Exact evidence','Show imputed and standardized values and additive logit contributions. Explain that association is not causation.'),
+        ('Feature-tier comparison','Switch the input tier. Identify calendar fallback and the oracle-adjacent EHR tier without choosing a flattering example.'),
+        ('Clinician research view','Open What her doctor sees. Point out probability, uncertainty, data quality and safety status. Read confirmatory-assessment prompts as clinician discussion only.'),
+        ('Contraception guardrail','Open Guardrails live, enable hormonal contraception, and show that all personal forecast outputs disappear. Reset the toggle.'),
+        ('Missingness guardrail',f"Enable the watch-worn toggle for {cfg['guardrail_observed_nights']}/{cfg['guardrail_window_nights']} nights. Show withholding and reset it."),
+        ('Thyroid guardrail','Enable the thyroid flag. Read the exact reason and show that no personal score or evidence leaks.'),
+        ('Scenarios and evidence','Open Where it fails and show every declared scenario unchanged. Open The evidence and distinguish development from frozen evidence.'),
+        ('Limitations: data','Explain that all training inputs and labels are generated. The generator inserts the relationships. EHR-lite contains an internal label-generating latent.'),
+        ('Limitations: evaluation','Explain old-seed reuse, current unmeasured clinical validity, and the status of coverage, robustness and sequential-alert evaluation. Report missing work honestly.'),
+        ('Limitations: use and next steps','State the diagnosis/contraception/conception-planning restriction. Explain that real-world accuracy, hormone inference and treatment benefit are unproven. End on the evidence links.')]
+    if len(actions)!=team['minimum_video_minutes']:
+        raise ValueError('Runbook length must match the official minimum and preserve the limitation section')
+    runbook=f"# CycleTwin recording runbook: {team['minimum_video_minutes']} minutes\n\n"+FOOTER+'\n\nHuman recording and upload are deferred. This file is a script, not a recorded video. Every published number comes from docs/claims.json; read interactive values from the fitted inference UI.\n\n'
+    runbook+='| Recording time | Chapter / focus | On-screen action and narration |\n|---|---|---|\n'
+    runbook+='\n'.join(f'| {i:02d}:00-{i+1:02d}:00 | {title} | {action} |' for i,(title,action) in enumerate(actions))
+    runbook+=f"\n\nReserve the final {cfg['limitations_minutes']} minutes for limitations. Do not speed through them.\n\n## Human-only completion\n\nRecord a continuous demonstration, confirm its duration meets the official minimum, upload an accessible recording (for example, an unlisted video), provide its URL, and submit the public repository link on Unstop. The session has not recorded, uploaded or submitted anything. Do not invent a URL.\n"
+    return {'deck':deck,'architecture':architecture,'readme':readme,'video_scripts':videos,'runbook':runbook}

@@ -1,0 +1,12 @@
+{
+  "item": "A6",
+  "unit_and_AppTest_tests_passed": 31,
+  "technical_checklist_failures": [],
+  "human_only_actions": [
+    "record/upload/provide video link (deferred by user)",
+    "confirm eligibility and registered roster",
+    "enter leader contact details and submit on Unstop"
+  ],
+  "public_access": "anonymous HTTP 200 for README, licence, model card and all four final deliverables",
+  "scope": "synthetic-only"
+}

@@ -62,6 +62,7 @@ def main():
     if (ROOT/'README.md').read_text()!=c['deliverables']['readme']: raise AssertionError('README differs from generated claims')
     for minutes,text in c['deliverables']['video_scripts'].items():
         if (ROOT/f'docs/video_script_{minutes}min.md').read_text()!=text: raise AssertionError('Video script differs from claims')
+    if (ROOT/'docs/video_runbook_20min.md').read_text()!=c['deliverables']['runbook']: raise AssertionError('Runbook differs from claims')
     print('PASS: README, scripts, native PPTX and PDF claim strings match generated claims')
 
 

@@ -6,9 +6,15 @@
     "recruited": 9824,
     "enrolled": 8993,
     "nih_percent": 7.2,
-    "nih_cluster_adjusted_95ci": [4.8, 10.8],
+    "nih_cluster_adjusted_95ci": [
+      4.8,
+      10.8
+    ],
     "rotterdam_percent": 19.6,
-    "rotterdam_cluster_adjusted_95ci": [12.7, 29.2],
+    "rotterdam_cluster_adjusted_95ci": [
+      12.7,
+      29.2
+    ],
     "scope": "Published population context only; not CycleTwin data, model performance or simulator prevalence. Estimates depend on diagnostic criteria."
   },
   "ovulation_confirmation": {
@@ -24,6 +30,10 @@
     "team": "CycleTwin",
     "college": "VIT",
     "video_url": null,
-    "video_status": "Human recording/upload deferred by user; not completed"
+    "video_status": "Human recording/upload deferred by user; not completed",
+    "permitted_team_size": [
+      1,
+      4
+    ]
   }
 }

@@ -1,0 +1,114 @@
+{
+  "source": "https://api.unstop.com/hackathons/digital-twin-challenge-2026-happiest-health-1757873",
+  "deadline_ist": "2026-10-20T19:00:00+05:30",
+  "rules": [
+    {
+      "rule": "Public source repository",
+      "status": "PASS",
+      "evidence": "docs/public_access_check.json: anonymous HTTP checks",
+      "human_only": false
+    },
+    {
+      "rule": "Team and college identified",
+      "status": "PASS",
+      "evidence": "README; names supplied by the user",
+      "human_only": false
+    },
+    {
+      "rule": "Project title",
+      "status": "PASS",
+      "evidence": "README title",
+      "human_only": false
+    },
+    {
+      "rule": "Problem and healthcare use case",
+      "status": "PASS",
+      "evidence": "README; generated late/absent event, no diagnosis claim",
+      "human_only": false
+    },
+    {
+      "rule": "Technical stack and model",
+      "status": "PASS",
+      "evidence": "README, requirements, model cards, src/inference.py",
+      "human_only": false
+    },
+    {
+      "rule": "Synthetic or open data only",
+      "status": "PASS",
+      "evidence": "Repository generator and EHR-lite; published references are context, not training data",
+      "human_only": false
+    },
+    {
+      "rule": "Static and dynamic stream fusion",
+      "status": "PASS",
+      "evidence": "src/features.py and persisted EHR-lite pipelines; oracle-adjacent disclosure",
+      "human_only": false
+    },
+    {
+      "rule": "Working model and conceptual doctor UI",
+      "status": "PASS",
+      "evidence": "Persisted inference and Meet Kushi clinician view; covered by unit/AppTest checks",
+      "human_only": false
+    },
+    {
+      "rule": "Open-source licence",
+      "status": "PASS",
+      "evidence": "MIT LICENSE and README",
+      "human_only": false
+    },
+    {
+      "rule": "Architecture PDF",
+      "status": "PASS",
+      "evidence": "deliverables/CycleTwin_architecture.pdf; generated from claims and text-validated",
+      "human_only": false
+    },
+    {
+      "rule": "Architecture PPTX",
+      "status": "PASS",
+      "evidence": "deliverables/CycleTwin_architecture.pptx; generated from claims and text-validated",
+      "human_only": false
+    },
+    {
+      "rule": "Pitch Deck PDF",
+      "status": "PASS",
+      "evidence": "deliverables/CycleTwin_pitch_deck.pdf; generated from claims and text-validated",
+      "human_only": false
+    },
+    {
+      "rule": "Pitch Deck PPTX",
+      "status": "PASS",
+      "evidence": "deliverables/CycleTwin_pitch_deck.pptx; generated from claims and text-validated",
+      "human_only": false
+    },
+    {
+      "rule": "Required folder naming",
+      "status": "PASS",
+      "evidence": "Repository root CycleTwin_VIT; expected CycleTwin_VIT",
+      "human_only": false
+    },
+    {
+      "rule": "README link to minimum 20-minute video demonstration",
+      "status": "HUMAN ACTION",
+      "evidence": "Deferred by user. Human must record, upload, then supply the URL; do not invent one.",
+      "human_only": true
+    },
+    {
+      "rule": "Full-time-student eligibility, team-size range and locked registered roster confirmed",
+      "status": "HUMAN ACTION",
+      "evidence": "Human leader must verify full-time eligibility, 1-4 members, confirmed details and no post-registration roster changes on Unstop. No registrar verification is available in this session.",
+      "human_only": true
+    },
+    {
+      "rule": "Leader contact fields and final platform submission",
+      "status": "HUMAN ACTION",
+      "evidence": "Human leader enters their name, phone, email and public repository URL on Unstop before the deadline. Contact details are not published here.",
+      "human_only": true
+    }
+  ],
+  "technical_failures": [],
+  "human_actions": [
+    "README link to minimum 20-minute video demonstration",
+    "Full-time-student eligibility, team-size range and locked registered roster confirmed",
+    "Leader contact fields and final platform submission"
+  ]
+}

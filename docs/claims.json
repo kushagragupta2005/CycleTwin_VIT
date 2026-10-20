@@ -4960,13 +4960,17 @@
       "team": "CycleTwin",
       "college": "VIT",
       "video_url": null,
-      "video_status": "Human recording/upload deferred by user; not completed"
+      "video_status": "Human recording/upload deferred by user; not completed",
+      "permitted_team_size": [
+        1,
+        4
+      ]
     }
   },
   "source_sha256": {
     "results.json": "521f08b9d713bbde02407e607bca9b39730a0ded4e936bbed7125f33434e7b04",
     "models/model_card.json": "09c237336aa97f43388389ddade37437dd65f88215b4b45a47aab1921efc6a58",
-    "docs/context_sources.json": "e69327a0bbeda207569c5f8571381a721906f8bfdb0e1949a435e048da461391"
+    "docs/context_sources.json": "af82cc100a1900372a8e1f24fb5f7f59b3d51a6736f748263239982e4c505331"
   },
   "frozen": null,
   "configuration": {
@@ -4986,7 +4990,10 @@
     "short_video_minutes": 3,
     "inference_seed": 97,
     "display_seed": 223,
-    "classification_tolerance": 1e-12
+    "classification_tolerance": 1e-12,
+    "limitations_minutes": 3,
+    "guardrail_observed_nights": 8,
+    "guardrail_window_nights": 14
   },
   "dataset": {
     "people": 3600,
@@ -11101,6 +11108,120 @@
       }
     }
   },
+  "submission": {
+    "source": "https://api.unstop.com/hackathons/digital-twin-challenge-2026-happiest-health-1757873",
+    "deadline_ist": "2026-10-20T19:00:00+05:30",
+    "rules": [
+      {
+        "rule": "Public source repository",
+        "status": "PASS",
+        "evidence": "docs/public_access_check.json: anonymous HTTP checks",
+        "human_only": false
+      },
+      {
+        "rule": "Team and college identified",
+        "status": "PASS",
+        "evidence": "README; names supplied by the user",
+        "human_only": false
+      },
+      {
+        "rule": "Project title",
+        "status": "PASS",
+        "evidence": "README title",
+        "human_only": false
+      },
+      {
+        "rule": "Problem and healthcare use case",
+        "status": "PASS",
+        "evidence": "README; generated late/absent event, no diagnosis claim",
+        "human_only": false
+      },
+      {
+        "rule": "Technical stack and model",
+        "status": "PASS",
+        "evidence": "README, requirements, model cards, src/inference.py",
+        "human_only": false
+      },
+      {
+        "rule": "Synthetic or open data only",
+        "status": "PASS",
+        "evidence": "Repository generator and EHR-lite; published references are context, not training data",
+        "human_only": false
+      },
+      {
+        "rule": "Static and dynamic stream fusion",
+        "status": "PASS",
+        "evidence": "src/features.py and persisted EHR-lite pipelines; oracle-adjacent disclosure",
+        "human_only": false
+      },
+      {
+        "rule": "Working model and conceptual doctor UI",
+        "status": "PASS",
+        "evidence": "Persisted inference and Meet Kushi clinician view; covered by unit/AppTest checks",
+        "human_only": false
+      },
+      {
+        "rule": "Open-source licence",
+        "status": "PASS",
+        "evidence": "MIT LICENSE and README",
+        "human_only": false
+      },
+      {
+        "rule": "Architecture PDF",
+        "status": "PASS",
+        "evidence": "deliverables/CycleTwin_architecture.pdf; generated from claims and text-validated",
+        "human_only": false
+      },
+      {
+        "rule": "Architecture PPTX",
+        "status": "PASS",
+        "evidence": "deliverables/CycleTwin_architecture.pptx; generated from claims and text-validated",
+        "human_only": false
+      },
+      {
+        "rule": "Pitch Deck PDF",
+        "status": "PASS",
+        "evidence": "deliverables/CycleTwin_pitch_deck.pdf; generated from claims and text-validated",
+        "human_only": false
+      },
+      {
+        "rule": "Pitch Deck PPTX",
+        "status": "PASS",
+        "evidence": "deliverables/CycleTwin_pitch_deck.pptx; generated from claims and text-validated",
+        "human_only": false
+      },
+      {
+        "rule": "Required folder naming",
+        "status": "PASS",
+        "evidence": "Repository root CycleTwin_VIT; expected CycleTwin_VIT",
+        "human_only": false
+      },
+      {
+        "rule": "README link to minimum 20-minute video demonstration",
+        "status": "HUMAN ACTION",
+        "evidence": "Deferred by user. Human must record, upload, then supply the URL; do not invent one.",
+        "human_only": true
+      },
+      {
+        "rule": "Full-time-student eligibility, team-size range and locked registered roster confirmed",
+        "status": "HUMAN ACTION",
+        "evidence": "Human leader must verify full-time eligibility, 1-4 members, confirmed details and no post-registration roster changes on Unstop. No registrar verification is available in this session.",
+        "human_only": true
+      },
+      {
+        "rule": "Leader contact fields and final platform submission",
+        "status": "HUMAN ACTION",
+        "evidence": "Human leader enters their name, phone, email and public repository URL on Unstop before the deadline. Contact details are not published here.",
+        "human_only": true
+      }
+    ],
+    "technical_failures": [],
+    "human_actions": [
+      "README link to minimum 20-minute video demonstration",
+      "Full-time-student eligibility, team-size range and locked registered roster confirmed",
+      "Leader contact fields and final platform submission"
+    ]
+  },
   "deliverables": {
     "deck": [
       {
@@ -11432,6 +11553,7 @@
     "video_scripts": {
       "20": "# CycleTwin 20-minute script\n\nSynthetic research prototype. Not for diagnosis, contraception or conception planning.\n\nHuman recording deferred. All project numbers below come from docs/claims.json.\n\n## CycleTwin\nCycle-by-cycle late or absent ovulation research\nTeam CycleTwin / VIT\nA fitted synthetic forecasting workflow with explicit safety gates\nMeet Kushi: fictional persona, never performance evidence\n\n## The research problem\nMonitoring irregular cycles without claiming a PMOS diagnosis\nTarget: generated ovulation after the configured cutoff, or generated absence\nIndia context: 7.2% by NIH criteria and 19.6% by Rotterdam criteria\nPublished prevalence depends on definition. It is not the simulator mixture or model accuracy.\n\n## Meet Kushi\nFictional synthetic persona - not a real patient - not performance evidence.\n21 years, year 3 B.Tech\nHostel life, exam-season sleep debt, mother with type 2 diabetes, smartwatch wearer.\nActual generated past lengths: 41, 38, 41, 38, 44, 51 days\nSelection uses generator truth and a declared seed, never predicted risk\n\n## Static and dynamic input streams\nEHR-lite is implemented and explicitly oracle-adjacent\nStatic: generated IR latent, androgen, age, BMI and family history\nDynamic: calendar history, RHR, HRV, steps, sleep and temperature\nNo measured hormone values. The XML parser demonstrates input shape only.\n\n## One fitted prediction path\nThe dashboard loads the same persisted pipeline used by the benchmark\n\n\n## Training and selection\nEvery explicit operating choice uses train or validation data\nPatient counts per development seed: train 840, validation 180, test 180\nTraining medians and scaling, logistic regression, validation Platt calibration\nValidation Brier-gain rule selects richer features or calendar fallback\nValidation F1 chooses the threshold. Test outcomes never choose that threshold.\n\n## Synthetic development evidence: day 10\nSeed means describe the current generator, not clinical forecasting\n\n\n## Synthetic development evidence: day 14\nSeed means describe the current generator, not clinical forecasting\n\n\n## Synthetic development evidence: day 18\nSeed means describe the current generator, not clinical forecasting\n\n\n## Evidence at the latest sensor snapshot\nPredeclared temperature sensor tier, descriptive seed means\nSynthetic day 18, Tier 2: AUROC 0.906, Brier 0.119\n3,240 synthetic test cycles across 3 development seeds\nOld seeds informed development. A frozen evaluation is pending.\nCurrent AUPRC is custom and tie-sensitive. Standard average precision is a reporting follow-up.\n\n## What the clinician view shows\nDecision-support research display\nFitted probability beside its own validation threshold and held-out model evidence\nExact additive feature contributions and explicit imputation\nHeuristic day estimate and conditional, illustrative day band\nData-quality ribbon and the reason for any withholding\n\n## Guardrails live\nMissing safety information causes abstention\nContraception, thyroid and prolactin flags, age and pregnancy-related states\nEarly post-menarche, perimenopause and insufficient observed temperature\nWithholding removes personal scores, intervals, explanations, sandbox outputs and alerts\nThe workflow is synthetic and its safety effectiveness has not been clinically evaluated\n\n## The twin and assumption sandbox\nClear boundaries around simulated physiology\nReproductive and metabolic equations generate an illustrative state trajectory\nThe twin does not affect the logistic score or its reported performance\nThe sandbox edits invented model inputs. It does not predict a treatment effect\nGlucose threshold crossings are simulated counts, not an evaluated glucose forecast\n\n## Where it fails\nAll declared Kushi scenarios remain visible\nDisplay the fixed scenario seeds with misses, false alarms or withholding unchanged\nDifferent snapshots can fall back to calendar even when sensors are available\nA class set containing both outcomes does not identify one result\nRobustness, state-estimator and conformal coverage evidence remain separate work\n\n## Validity limits\nSynthetic recovery is not prospective evidence in women\nLabels and sensor changes share generator assumptions\nEHR-lite includes a label-generating internal latent\nOld test seeds were reused during development\nThe current benchmark does not evaluate the complete sequential alert policy\n\n## Reproducible demonstration\nPublic source, inspectable artifacts and explicit next work\nREADME, model cards and the audit link every claim to evidence\nPersisted inference reproduces the benchmark and exposes exact feature calculations\nThe required video remains a human recording and upload task\nClinical validation, clinician feedback and sim-to-real evaluation remain outstanding\n\nEnd on limitations. This is a synthetic engineering experiment, not evidence of reliable forecasting in people.\n",
       "3": "# CycleTwin 3-minute script\n\nSynthetic research prototype. Not for diagnosis, contraception or conception planning.\n\nHuman recording deferred. All project numbers below come from docs/claims.json.\n\n## CycleTwin\nCycle-by-cycle late or absent ovulation research\nTeam CycleTwin / VIT\nA fitted synthetic forecasting workflow with explicit safety gates\nMeet Kushi: fictional persona, never performance evidence\n\n## Meet Kushi\nFictional synthetic persona - not a real patient - not performance evidence.\n21 years, year 3 B.Tech\nHostel life, exam-season sleep debt, mother with type 2 diabetes, smartwatch wearer.\nActual generated past lengths: 41, 38, 41, 38, 44, 51 days\nSelection uses generator truth and a declared seed, never predicted risk\n\n## Synthetic development evidence: day 14\nSeed means describe the current generator, not clinical forecasting\n\n\n## The twin and assumption sandbox\nClear boundaries around simulated physiology\nReproductive and metabolic equations generate an illustrative state trajectory\nThe twin does not affect the logistic score or its reported performance\nThe sandbox edits invented model inputs. It does not predict a treatment effect\nGlucose threshold crossings are simulated counts, not an evaluated glucose forecast\n\nEnd on limitations. This is a synthetic engineering experiment, not evidence of reliable forecasting in people.\n"
-    }
+    },
+    "runbook": "# CycleTwin recording runbook: 20 minutes\n\nSynthetic research prototype. Not for diagnosis, contraception or conception planning.\n\nHuman recording and upload are deferred. This file is a script, not a recorded video. Every published number comes from docs/claims.json; read interactive values from the fitted inference UI.\n\n| Recording time | Chapter / focus | On-screen action and narration |\n|---|---|---|\n| 00:00-01:00 | Purpose | Open Overview, read the synthetic badge and purpose, then enter Meet Kushi. |\n| 01:00-02:00 | Meet Kushi | Read the fictional-persona banner and profile. Explain that the story is not performance evidence. |\n| 02:00-03:00 | Past history | Show every generated past length, including the outlier outside the fictional usual range. Open the selection-rule expander. |\n| 03:00-04:00 | India context | Show the cited population context. Explain that criteria-specific prevalence is not a CycleTwin prediction result. |\n| 04:00-05:00 | Static stream | Open Her two data streams. Show demographics and simulator internals. Say oracle-adjacent explicitly. |\n| 05:00-06:00 | Temperature stream | Show the temperature prefix and missing nights. Change the snapshot slider without implying measured hormones. |\n| 06:00-07:00 | Other wearable streams | Show RHR and HRV offsets, sleep and steps, including their displayed units. |\n| 07:00-08:00 | Snapshot day 10 | Open Her twin wakes up. Read the computed probability, validation threshold and any calendar fallback. |\n| 08:00-09:00 | Snapshot day 14 | Inspect the current synthetic decision and conditional interval. Read the class set without turning it into a personal guarantee. |\n| 09:00-10:00 | Snapshot day 18 | Compare the later snapshot. Keep the retained feature tier visible. |\n| 10:00-11:00 | Exact evidence | Show imputed and standardized values and additive logit contributions. Explain that association is not causation. |\n| 11:00-12:00 | Feature-tier comparison | Switch the input tier. Identify calendar fallback and the oracle-adjacent EHR tier without choosing a flattering example. |\n| 12:00-13:00 | Clinician research view | Open What her doctor sees. Point out probability, uncertainty, data quality and safety status. Read confirmatory-assessment prompts as clinician discussion only. |\n| 13:00-14:00 | Contraception guardrail | Open Guardrails live, enable hormonal contraception, and show that all personal forecast outputs disappear. Reset the toggle. |\n| 14:00-15:00 | Missingness guardrail | Enable the watch-worn toggle for 8/14 nights. Show withholding and reset it. |\n| 15:00-16:00 | Thyroid guardrail | Enable the thyroid flag. Read the exact reason and show that no personal score or evidence leaks. |\n| 16:00-17:00 | Scenarios and evidence | Open Where it fails and show every declared scenario unchanged. Open The evidence and distinguish development from frozen evidence. |\n| 17:00-18:00 | Limitations: data | Explain that all training inputs and labels are generated. The generator inserts the relationships. EHR-lite contains an internal label-generating latent. |\n| 18:00-19:00 | Limitations: evaluation | Explain old-seed reuse, current unmeasured clinical validity, and the status of coverage, robustness and sequential-alert evaluation. Report missing work honestly. |\n| 19:00-20:00 | Limitations: use and next steps | State the diagnosis/contraception/conception-planning restriction. Explain that real-world accuracy, hormone inference and treatment benefit are unproven. End on the evidence links. |\n\nReserve the final 3 minutes for limitations. Do not speed through them.\n\n## Human-only completion\n\nRecord a continuous demonstration, confirm its duration meets the official minimum, upload an accessible recording (for example, an unlisted video), provide its URL, and submit the public repository link on Unstop. The session has not recorded, uploaded or submitted anything. Do not invent a URL.\n"
   }
 }

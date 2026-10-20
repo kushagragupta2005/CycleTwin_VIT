@@ -1,0 +1,63 @@
+{
+  "checked_at_utc": "2026-10-20T08:32:05.172262+00:00",
+  "authentication": "none",
+  "all_pass": true,
+  "checks": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/kushagragupta2005/CycleTwin_VIT/main/README.md",
+      "http_status": "200",
+      "process_returncode": 0,
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/kushagragupta2005/CycleTwin_VIT/main/LICENSE",
+      "http_status": "200",
+      "process_returncode": 0,
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "models/model_card.json",
+      "url": "https://raw.githubusercontent.com/kushagragupta2005/CycleTwin_VIT/main/models/model_card.json",
+      "http_status": "200",
+      "process_returncode": 0,
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "deliverables/CycleTwin_architecture.pdf",
+      "url": "https://raw.githubusercontent.com/kushagragupta2005/CycleTwin_VIT/main/deliverables/CycleTwin_architecture.pdf",
+      "http_status": "200",
+      "process_returncode": 0,
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "deliverables/CycleTwin_architecture.pptx",
+      "url": "https://raw.githubusercontent.com/kushagragupta2005/CycleTwin_VIT/main/deliverables/CycleTwin_architecture.pptx",
+      "http_status": "200",
+      "process_returncode": 0,
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "deliverables/CycleTwin_pitch_deck.pdf",
+      "url": "https://raw.githubusercontent.com/kushagragupta2005/CycleTwin_VIT/main/deliverables/CycleTwin_pitch_deck.pdf",
+      "http_status": "200",
+      "process_returncode": 0,
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "deliverables/CycleTwin_pitch_deck.pptx",
+      "url": "https://raw.githubusercontent.com/kushagragupta2005/CycleTwin_VIT/main/deliverables/CycleTwin_pitch_deck.pptx",
+      "http_status": "200",
+      "process_returncode": 0,
+      "pass": true,
+      "error": ""
+    }
+  ]
+}
