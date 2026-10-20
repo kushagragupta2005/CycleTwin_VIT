@@ -36,7 +36,7 @@ def _forecast_panel(record: dict, day: int, tier: int, flags: dict, claims: dict
     interval = uncertainty(record, day, tier, output)
     score, range_card, status = st.columns(3)
     with score:
-        st.metric("Fitted synthetic forecast score", f"{output['prob']:.0%}", help="Score for the generated late-or-absent-ovulation label; not a diagnosis probability.")
+        st.metric("Predicted chance of a late or absent ovulation cycle", f"{output['prob']:.0%}", help="Score for the generated late-or-absent-ovulation label; not a diagnosis probability.")
     with range_card:
         st.metric("Illustrative day range", f"{interval['interval'][0]}–{interval['interval'][1]}", help="A synthetic calibration illustration, not an individual guarantee.")
     with status:
@@ -44,6 +44,10 @@ def _forecast_panel(record: dict, day: int, tier: int, flags: dict, claims: dict
         style = "flagged" if output["flag"] else "neutral"
         st.markdown(f'<span class="ct-status ct-status-{style}">{label}</span>', unsafe_allow_html=True)
         st.caption(f"Validation threshold: {output['threshold']:.3f}")
+    st.markdown(
+        f"**Prediction:** the fitted research model assigns this generated cycle a **{output['prob']:.0%}** score for its late-or-absent-ovulation label by day {day}. "
+        f"It is {'above' if output['flag'] else 'below'} the validation alert threshold, so this synthetic scenario is **{'flagged for review' if output['flag'] else 'not flagged'}**."
+    )
     target = 1 - float(claims["conformal"]["protocol"]["alpha"])
     st.caption(
         f"Tier {tier} · forecast day {day} · generated scenario only. The day range did not meet its {target:.0%} frozen coverage target and must not be used as a timing guarantee."
