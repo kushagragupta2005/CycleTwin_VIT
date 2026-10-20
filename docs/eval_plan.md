@@ -18,7 +18,7 @@ Fit one sklearn logistic-regression model for every seed, forecast day and tier 
 
 ## Uncertainty and interpretation
 
-For each reported G1 metric, compute patient-cluster bootstrap 95% intervals with 1,000 resamples within each held-out seed. Bootstrap resampling unit is patient, retaining all sampled patient cycles. Abstention, conformal coverage, adaptive conformal coverage, and risk-coverage curves are not included in the G1 results and must be marked not evaluated. No threshold is selected against test outcomes in the explicit current pipeline; repeated development use of the older seeds still limits holdout claims.
+For each reported G1 metric, compute patient-cluster bootstrap 95% intervals with 1,000 resamples within each held-out seed. Bootstrap resampling unit is patient, retaining all sampled patient cycles. These development results do not themselves establish abstention, conformal, or risk-coverage performance. No threshold is selected against test outcomes in the explicit current pipeline; repeated development use of the older seeds still limits holdout claims.
 
 ## Thresholds and limitations
 
@@ -30,4 +30,8 @@ An early evaluation run using seeds 17, 29, and 43 revealed that the original ov
 
 ## G1 reporting deviations
 
-The frozen plan requested additional coverline and boosted-tree baselines; the current benchmark implements fitted calendar and logistic sensor-tier models only. The results include PPV, per-archetype false-alarm rates at the validation-selected threshold, and an exploratory held-out lead-time-versus-false-alarm threshold sweep. They do not include sensor-dropout sweeps, conformal coverage, subgroup coverage, or decision-curve analysis. The G2 dashboard's risk-coverage diagnostic runs on a separate small synthetic display cohort and is not part of held-out evaluation. Any expanded evaluation requires a new plan and untouched patient seeds.
+The frozen plan requested additional coverline and boosted-tree baselines; the current benchmark implements fitted calendar and logistic sensor-tier models only. The results include PPV, per-archetype false-alarm rates at the validation-selected threshold, and an exploratory held-out lead-time-versus-false-alarm threshold sweep. The G2 dashboard's risk-coverage diagnostic runs on a separate small synthetic display cohort and is not part of held-out evaluation.
+
+## Completed frozen follow-ups
+
+`frozen-v1` records the subsequent one-time reserved-seed run. Stored predictions support standard average precision, reliability/ECE/calibration diagnostics, decision curves, all requested subgroups, a causal sequential alert policy, robustness sweeps, local operations measurement and a train-only timing-posterior check. Separate independent calibration patients were used to measure conformal coverage: the classification set is near its synthetic target, while the heuristic ovulation-day band fails coverage and must remain illustrative. All follow-ups remain synthetic and do not change the saved frozen prediction file, threshold, or clinical limitations.

@@ -36,7 +36,10 @@ def run():
         for row in test:
             key=(row['patient'],row['cycle']);prob=posterior(model,row)['event_probability'];label=int(row['event']);base=logistic[key]
             twin.append(prob);log.append(base);y.append(label);delta_by.setdefault(row['patient'],[]).append((label-prob)**2-(label-base)**2)
-        delta=float(np.mean(np.asarray(twin)-np.asarray(y))**2) if False else float(np.mean((np.asarray(y)-np.asarray(twin))**2)-np.mean((np.asarray(y)-np.asarray(log))**2))
+        delta=float(
+            np.mean((np.asarray(y) - np.asarray(twin)) ** 2)
+            - np.mean((np.asarray(y) - np.asarray(log)) ** 2)
+        )
         ci=cluster_delta_ci(delta_by,1000,seed+DAY)
         result['seeds'][str(seed)]={'n_cycles':len(test),'twin_brier':float(np.mean((np.asarray(y)-np.asarray(twin))**2)),
                                     'logistic_brier':float(np.mean((np.asarray(y)-np.asarray(log))**2)),

@@ -15,7 +15,7 @@ CycleTwin studies whether calendar and wearable-style signals can flag a generat
 - One persisted fitted prediction path for the benchmark, cohort, patient and Kushi views. src/inference.py returns the probability, validation threshold, fallback and exact additive feature evidence.
 - Static EHR-lite and dynamic observations share a feature builder. EHR-lite is **oracle-adjacent, simulator-internal evidence**, because it includes a label-generating latent. No actual hormone assay is used.
 - Explicit safety inputs fail closed. An abstaining view suppresses personal scores, intervals, explanations, sandbox outputs and alerts.
-- Ovulation day uses a separate calendar/temperature heuristic. Its interval is conditional on an ovulatory cycle and remains an illustration without measured frozen coverage.
+- Ovulation day uses a separate calendar/temperature heuristic. Its conditional timing band failed the frozen synthetic coverage check and remains an illustration.
 - A separate reproductive/metabolic simulator illustrates assumed dynamics. It does not affect the fitted score. The input-editing sandbox does not estimate causal treatment effects.
 - Apple Health-shaped XML parsing is implemented. Imported XML does not become a scored patient. Upload temporary files are deleted after parsing.
 - Meet Kushi is a fictional story selected by generator truth and declared seeds, never model output. Later scenario seeds are independent replays, not real longitudinal measurements.
@@ -91,7 +91,7 @@ The predeclared temperature tier at day 18 has mean synthetic AUROC 0.905584 and
 | 103 | 18 | 3 / 3 | 0.906 [0.882, 0.927] | 0.875 [0.837, 0.910] | 0.118 [0.103, 0.134] | 5.161 [4.876, 5.454] | 0.460962 | 0.879 | 0.808 |
 <!-- RESULTS:END -->
 
-Saved intervals use patient-cluster resampling. Standard average precision now groups score ties correctly. The earlier custom AUPRC and its interval are retained as legacy fields; the raw frozen result stays immutable. Day MAE excludes absent-ovulation cycles. Forecast-day distance to the reporting cutoff is not actual event lead time. The main benchmark does not evaluate sequential alert-policy effectiveness or safety-gate coverage. Full exact values remain in results.json and model cards.
+Saved intervals use patient-cluster resampling. Standard average precision now groups score ties correctly. The earlier custom AUPRC and its interval are retained as legacy fields; the raw frozen result stays immutable. Day MAE excludes absent-ovulation cycles. Forecast-day distance to the reporting cutoff is not actual event lead time. The frozen follow-up evaluates the sequential alert policy and reports safety-gate-passing subsets; neither is clinical evidence. Full exact values remain in results.json and model cards.
 
 ## Frozen synthetic evaluation
 
@@ -190,7 +190,7 @@ For the preregistered independent calibration sets, day-18 Tier-2 mean classific
 - Synthetic labels and signals share assumptions. No clinical, external or prospective real-person validation exists.
 - Old generator start dates can overlap; logged-start error is not fully propagated through real-time feature alignment.
 - No validated treatment model, hormone inference, contraception guidance or conception-planning support exists.
-- Frozen evaluation is complete. Robustness, ops measurements and a Bayesian state estimator remain separate follow-up gates until their evidence is generated.
+- Frozen synthetic evaluation, robustness, local operations, a timing-posterior check and conformal coverage are reported. External validation, clinically measured inputs, clinician review and prospective evaluation remain outstanding.
 
 ## Deliverables
 

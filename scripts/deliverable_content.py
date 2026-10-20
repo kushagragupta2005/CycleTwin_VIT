@@ -126,7 +126,7 @@ def compose(c):
           ['Display the fixed scenario seeds with misses, false alarms or withholding unchanged',
            'Different snapshots can fall back to calendar even when sensors are available',
            'A class set containing both outcomes does not identify one result',
-           'Robustness, state-estimator and conformal coverage evidence remain separate work'])
+           'Robustness, timing-posterior and conformal evidence are reported; the heuristic day band fails its frozen coverage check'])
     slide('Validity limits','Synthetic recovery is not prospective evidence in women',
           ['Labels and sensor changes share generator assumptions',
            'EHR-lite includes a label-generating internal latent',
@@ -163,7 +163,7 @@ CycleTwin studies whether calendar and wearable-style signals can flag a generat
 - One persisted fitted prediction path for the benchmark, cohort, patient and Kushi views. src/inference.py returns the probability, validation threshold, fallback and exact additive feature evidence.
 - Static EHR-lite and dynamic observations share a feature builder. EHR-lite is **oracle-adjacent, simulator-internal evidence**, because it includes a label-generating latent. No actual hormone assay is used.
 - Explicit safety inputs fail closed. An abstaining view suppresses personal scores, intervals, explanations, sandbox outputs and alerts.
-- Ovulation day uses a separate calendar/temperature heuristic. Its interval is conditional on an ovulatory cycle and remains an illustration without measured frozen coverage.
+- Ovulation day uses a separate calendar/temperature heuristic. Its conditional timing band failed the frozen synthetic coverage check and remains an illustration.
 - A separate reproductive/metabolic simulator illustrates assumed dynamics. It does not affect the fitted score. The input-editing sandbox does not estimate causal treatment effects.
 - Apple Health-shaped XML parsing is implemented. Imported XML does not become a scored patient. Upload temporary files are deleted after parsing.
 - Meet Kushi is a fictional story selected by generator truth and declared seeds, never model output. Later scenario seeds are independent replays, not real longitudinal measurements.
@@ -195,7 +195,7 @@ The predeclared temperature tier at day {overview['Forecast day']} has mean synt
 {table}
 <!-- RESULTS:END -->
 
-Saved intervals use patient-cluster resampling. The custom AUPRC is tie-sensitive and differs from standard average precision. Day MAE excludes absent-ovulation cycles. Forecast-day distance to the reporting cutoff is not actual event lead time. The main benchmark does not evaluate sequential alert-policy effectiveness or safety-gate coverage. Full exact values remain in results.json and model cards.
+Saved intervals use patient-cluster resampling. The custom AUPRC is tie-sensitive and differs from standard average precision. Day MAE excludes absent-ovulation cycles. Forecast-day distance to the reporting cutoff is not actual event lead time. The frozen follow-up evaluates the sequential alert policy and reports safety-gate-passing subsets; neither is clinical evidence. Full exact values remain in results.json and model cards.
 
 ## Evidence and limitations
 
@@ -205,7 +205,7 @@ Saved intervals use patient-cluster resampling. The custom AUPRC is tie-sensitiv
 - Synthetic labels and signals share assumptions. No clinical, external or prospective real-person validation exists.
 - Old generator start dates can overlap; logged-start error is not fully propagated through real-time feature alignment.
 - No validated treatment model, hormone inference, contraception guidance or conception-planning support exists.
-- Frozen evaluation, robustness, ops measurements and a fitted Bayesian state estimator are separate follow-up gates and must not be implied complete.
+- Frozen synthetic evaluation, robustness, local operations, a timing-posterior check and conformal coverage are reported. External validation, clinically measured inputs, clinician review and prospective evaluation remain outstanding.
 
 ## Deliverables
 

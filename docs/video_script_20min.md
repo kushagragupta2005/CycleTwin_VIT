@@ -139,7 +139,7 @@ All declared Kushi scenarios remain visible
 Display the fixed scenario seeds with misses, false alarms or withholding unchanged
 Different snapshots can fall back to calendar even when sensors are available
 A class set containing both outcomes does not identify one result
-Robustness, state-estimator and conformal coverage evidence remain separate work
+Robustness, timing-posterior and conformal evidence are reported; the heuristic day band fails its frozen coverage check
 
 ## Validity limits
 Synthetic recovery is not prospective evidence in women
