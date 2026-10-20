@@ -15,6 +15,7 @@ def generate(seed: int, patients: int = 1200, cycles: int = 6):
         bmi = float(np.clip(rng.normal(25.5 + 1.8 * max(ir, 0), 4.2), 17.0, 42.0))
         family_history = int(rng.random() < (0.18 + 0.12 * max(ir, 0)))
         base = 16 if phenotype in ("healthy_regular", "PMOS_C", "contraception", "early_menarche") else 22 if phenotype == "healthy_variable" else 26
+        true_start = np.datetime64("2025-01-01") + np.timedelta64(p*400, "D")
         for c in range(cycles):
             stress = rng.normal(0, 1)
             late = phenotype in ("PMOS_A", "PMOS_B", "PMOS_D", "thyroid_mimic", "healthy_variable")
@@ -24,7 +25,6 @@ def generate(seed: int, patients: int = 1200, cycles: int = 6):
             length = int(rng.integers(24, 42)) if anov else int(np.clip(ovday + rng.normal(13, 1.8), 22, 55))
             # A minority of logged starts are shifted or represent withdrawal/spotting noise.
             log_shift = int(rng.choice([-2, 0, 0, 0, 1, 3]))
-            true_start = np.datetime64("2025-01-01") + np.timedelta64(c*38 + p*400, "D")
             start = true_start + np.timedelta64(log_shift, "D")
             temp = rng.normal(0, .035, 55)
             if ovday > 0:
@@ -44,5 +44,7 @@ def generate(seed: int, patients: int = 1200, cycles: int = 6):
                             age=age, bmi=bmi, family_history=family_history,
                             temperature=temp, rhr=rhr, hrv=hrv, steps=steps, sleep=sleep,
                             period_start=true_start, seed=seed))
+            # Timestamp correction only: no RNG draw or classifier input changes.
+            true_start = true_start + np.timedelta64(length, "D")
     return out
 

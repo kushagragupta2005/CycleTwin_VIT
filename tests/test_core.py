@@ -1,4 +1,5 @@
 import unittest
+import numpy as np
 from src.generator import generate
 from src.adapters.apple_health import parse_export
 from src.model import forecast
@@ -24,5 +25,9 @@ class CoreTests(unittest.TestCase):
     def test_patient_cycles_stay_in_one_partition(self):
         for pid in ("s17-p0000","s17-p0001","s17-p0017"):
             self.assertEqual({patient_partition(pid) for _ in range(6)}, {patient_partition(pid)})
+    def test_period_dates_chain_by_generated_cycle_length(self):
+        rows=generate(5,patients=1,cycles=4)
+        for earlier,later in zip(rows,rows[1:]):
+            self.assertEqual(later['period_start'],earlier['period_start']+np.timedelta64(earlier['cycle_length'],'D'))
 
 if __name__ == '__main__': unittest.main()
