@@ -23,30 +23,44 @@ DISCLAIMER="Not for diagnosis, contraception or conception planning. Synthetic d
 st.set_page_config(page_title="CycleTwin synthetic demo", layout="wide", initial_sidebar_state="auto")
 st.markdown("""
 <style>
-:root { --ink:#18313d; --muted:#5f717b; --teal:#0e766e; --teal-soft:#e8f4f1; --amber:#b7791f; --amber-soft:#fff7e6; --rose:#9a5d63; --rose-soft:#faeeee; --line:#d7e2e1; }
-.stApp { background: #f7faf9; color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
-h1, h2, h3 { color: var(--ink); letter-spacing: -0.02em; }
-[data-testid="stMetric"] { background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px; }
+:root { --ink:#17242b; --muted:#65757b; --teal:#0e766e; --teal-soft:#e8f4f1; --amber:#a66c13; --amber-soft:#fff7e6; --line:#e3e9e7; }
+.stApp { background:#fafaf8; color:#17242b; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.55; }
+.block-container { max-width:1440px; padding:2.5rem 3rem 6rem; }
+h1, h2, h3 { color:#17242b; letter-spacing:-0.025em; }
+h1 { font-size:2.45rem; line-height:1.15; font-weight:500; margin:0 0 1.5rem; }
+h2 { font-size:1.65rem; line-height:1.3; font-weight:500; margin:2.5rem 0 1rem; }
+h3 { font-size:1.2rem; line-height:1.4; font-weight:500; }
+[data-testid="stSidebar"] > div:first-child { padding:1.5rem 1.1rem; }
+[data-testid="stHorizontalBlock"] { gap:2rem; }
+[data-testid="stMetric"], [data-testid="stVerticalBlockBorderWrapper"] { background:#fff; border:1px solid #e8ecea; border-radius:16px; padding:1.25rem; box-shadow:0 4px 18px rgba(23,36,43,.035); }
 [data-testid="stMetric"] label, [data-testid="stMetric"] [data-testid="stMetricValue"], [data-testid="stMetric"] [data-testid="stMetricDelta"] { color:var(--ink) !important; }
 .cycletwin-note { color:var(--muted); font-size:0.86rem; }
 .cycletwin-neutral { color:var(--muted); font-size:0.86rem; }
 input[type="range"] { accent-color: var(--teal); }
-.abstain-card { border:1px solid var(--amber); background:var(--amber-soft); border-radius:12px; padding:12px 14px; color:var(--ink); }
+.abstain-card { border:1px solid #eadbb9; background:#fffaf0; border-radius:16px; padding:1.1rem 1.25rem; color:var(--ink); box-shadow:0 4px 18px rgba(23,36,43,.035); }
 .status-pill { display:inline-block; border-radius:999px; padding:3px 9px; font-size:.82rem; white-space:nowrap; }
 .status-neutral { background:#edf1f2; color:#52616a; }
 .status-review { background:#fff0cf; color:#77500a; }
 .status-flagged { background:#e5f3f0; color:#175d56; }
 .demo-footer { position:fixed; z-index:999; left:0; right:0; bottom:0; padding:8px 1rem; background:#18313d; color:#fff; text-align:center; font-size:.82rem; }
-.block-container { padding-bottom:3.5rem; }
+.block-container { padding-bottom:6rem; }
+button, [data-testid^="stBaseButton-"] { min-height:2.65rem; border-radius:10px; border-color:#dce3e1; box-shadow:none; transition:background-color .15s ease,border-color .15s ease,color .15s ease; }
+button:hover, [data-testid^="stBaseButton-"]:hover { border-color:var(--teal); color:var(--teal); }
+button:focus-visible, input:focus-visible, [role="combobox"]:focus-visible { outline:2px solid var(--teal); outline-offset:2px; }
+[data-testid="stSelectbox"] [data-baseweb="select"] > div { min-height:2.65rem; border-radius:10px; }
+.chart-summary { margin:.35rem 0 1.5rem; padding:.25rem 0 .25rem .9rem; border-left:2px solid #d9e6e2; color:#36464d; font-size:.92rem; line-height:1.5; }
+.chart-summary-label { display:block; margin-top:.2rem; color:var(--muted); font-size:.75rem; }
 @media (max-width: 520px) {
   .stApp { font-size: 15px; }
+  .block-container { padding:1.4rem 1rem 5rem; }
+  h1 { font-size:2rem; }
+  h2 { font-size:1.4rem; margin-top:2rem; }
   [data-testid="stMetric"] { padding:10px; }
   [data-testid="stHorizontalBlock"] { flex-direction:column; gap:1rem; }
   [data-testid="stHorizontalBlock"] > [data-testid="column"] { width:100% !important; flex:1 1 100% !important; }
 }
 </style>
 """, unsafe_allow_html=True)
-st.title("CycleTwin · synthetic cycle monitor")
 st.markdown(f'<div class="demo-footer">{escape(DISCLAIMER)} · Decision-support research prototype. This screen does not validate a clinical forecast.</div>',unsafe_allow_html=True)
 
 @st.cache_data
@@ -132,6 +146,10 @@ item=next(r for r in eligible if r["patient"]==selected_id)
 record=item["record"]
 ix=int(item["patient"].split("p")[-1])
 twin_repro=simulate_reproductive_axis(record["ir"],record["androgen"],seed=4000+ix)
+page_title={"Cohort list":"Synthetic cohort", "Patient view":f"Patient {selected_id}",
+            "Model & methodology":"Model & methodology"}[page]
+st.title(page_title)
+st.caption(f"Tier {display_tier} · Synthetic demonstration")
 
 if page == "Cohort list":
     st.subheader("Risk-ranked synthetic cohort")
@@ -181,7 +199,7 @@ if page == "Cohort list":
     st.stop()
 
 if page == "Model & methodology":
-    st.subheader("Model & methodology")
+    st.subheader("Evaluation results")
     with st.popover("ⓘ Benchmark caveat"):
         st.caption("Synthetic held-out data only. Patient-cluster bootstrap confidence intervals; not clinical performance or a confidence guarantee for this record.")
     st.markdown("The dashboard's fixed synthetic demo score is a heuristic. The separately fitted benchmark is evaluated on held-out synthetic cycles; it is not a clinical model.")
@@ -211,7 +229,7 @@ with st.expander(f"Model card · fitted benchmark Tier {display_tier}"):
                        for seed,metric in zip(benchmark["seeds"].keys(),model_rows)]),hide_index=True,use_container_width=True)
     st.caption("Synthetic held-out data only. Patient-cluster bootstrap confidence intervals; not clinical performance or a confidence guarantee for this record.")
 
-st.subheader("Patient view")
+st.subheader("Cycle overview")
 with st.popover("ⓘ Patient caveats"):
     st.caption("These figures belong to the separately fitted benchmark model, not the dashboard’s fixed synthetic demo score. Synthetic held-out data only. Patient-cluster bootstrap confidence intervals; not clinical performance or a confidence guarantee for this record.")
 left,right=st.columns([1.2,1])
@@ -239,10 +257,10 @@ with left:
     band=alt.Chart(ovulation_band).mark_rect(color="#0e766e",opacity=.10).encode(x="start:Q",x2="end:Q",y=alt.value(0),y2=alt.value(270))
     trace=alt.Chart(temp.dropna()).mark_line(color="#0e766e",strokeWidth=2.5).encode(x=alt.X("day:Q",title="Cycle day"),y=alt.Y("temperature_offset:Q",title="Temperature offset (°C)",scale=scale))
     dots=alt.Chart(temp.dropna()).mark_circle(color="#0e766e",size=28).encode(x="day:Q",y=alt.Y("temperature_offset:Q",scale=scale))
-    missing_marks=alt.Chart(missing).mark_point(shape="cross",color="#9a5d63",size=110).encode(x="day:Q",y=alt.Y("marker:Q",scale=scale))
+    missing_marks=alt.Chart(missing).mark_point(shape="cross",color="#65757b",size=110).encode(x="day:Q",y=alt.Y("marker:Q",scale=scale))
     period_mark=alt.Chart(period).mark_rule(color="#b7791f",strokeDash=[4,3],strokeWidth=2).encode(x="day:Q")
     st.altair_chart((band+trace+dots+missing_marks+period_mark).properties(height=285),use_container_width=True)
-    st.markdown('<div style="display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:#5f717b"><span>🟩 Teal band · predicted ovulation interval</span><span>🟠 Amber dashed · logged period start</span><span>✕ Muted red · missing temperature</span></div>',unsafe_allow_html=True)
+    st.markdown('<div style="display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:#65757b"><span>🟩 Teal band · predicted ovulation interval</span><span>🟠 Amber dashed · logged period start</span><span>✕ Gray cross · missing temperature</span></div>',unsafe_allow_html=True)
     st.caption("Missing nightly temperatures are not interpolated.")
     st.subheader("Simplified twin state · not used in G1 score")
     twin_day=twin_repro["ovulation_day"]
