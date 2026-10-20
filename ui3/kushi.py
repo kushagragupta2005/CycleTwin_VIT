@@ -32,6 +32,11 @@ def _forecast_panel(record: dict, day: int, tier: int, flags: dict, claims: dict
             unsafe_allow_html=True,
         )
         st.markdown("**In plain words:** A guardrail removes the score, interval, feature evidence, sandbox, and alert when this fictional scenario is unsuitable for the display.")
+        if "wear-time completeness below threshold" in output["reasons"]:
+            st.caption(
+                f"This scenario has {float(flags['wear_completeness']):.0%} generated temperature completeness through day {day}. "
+                "The safety rule runs before every tier, so changing the tier cannot produce a score until the guardrail passes."
+            )
         return
     interval = uncertainty(record, day, tier, output)
     score, range_card, status = st.columns(3)
@@ -48,6 +53,13 @@ def _forecast_panel(record: dict, day: int, tier: int, flags: dict, claims: dict
         f"**Prediction:** the fitted research model assigns this generated cycle a **{output['prob']:.0%}** score for its late-or-absent-ovulation label by day {day}. "
         f"It is {'above' if output['flag'] else 'below'} the validation alert threshold, so this synthetic scenario is **{'flagged for review' if output['flag'] else 'not flagged'}**."
     )
+    selected = int(output["selected_tier"])
+    requested = int(output["requested_tier"])
+    if output["fallback_used"]:
+        st.caption(f"Requested Tier {requested}; validation retained Tier {selected} for this day because the added generated inputs did not improve the validation rule.")
+    else:
+        used_features = ", ".join(item["feature"].replace("_", " ") for item in output["contributions"])
+        st.caption(f"Requested Tier {requested}; this fitted forecast uses Tier {selected} inputs: {used_features}.")
     target = 1 - float(claims["conformal"]["protocol"]["alpha"])
     st.caption(
         f"Tier {tier} · forecast day {day} · generated scenario only. The day range did not meet its {target:.0%} frozen coverage target and must not be used as a timing guarantee."
