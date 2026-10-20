@@ -78,6 +78,8 @@ All three fresh generator seeds are shown. Models are fitted on train patients, 
 
 ![Mean false alerts per 100 patient-cycles by sensor tier and forecast day](assets/false_alerts_by_tier.svg)
 
+![Day-14 lead-time versus false-alert trade-off by tier](assets/lead_time_false_alarm_tradeoff.svg)
+
 These figures aggregate the three fresh synthetic seeds; error bars span the lowest to highest seed-specific patient-cluster 95% interval. They are internal simulator checks, not clinical performance estimates.
 
 ## Data and privacy

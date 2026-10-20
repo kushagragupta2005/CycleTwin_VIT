@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470">
+<rect width="900" height="470" fill="#ffffff"/>
+<text x="70" y="42" font-family="Arial" font-size="25" font-weight="700" fill="#172b3a">Synthetic day-14 alert trade-off</text>
+<text x="70" y="68" font-family="Arial" font-size="14" fill="#596b76">Held-out mean across seeds; varying thresholds are descriptive only and were not used to choose the validation threshold</text>
+<line x1="90" y1="390.0" x2="830" y2="390.0" stroke="#e2e8f0"/>
+<text x="55" y="395.0" font-family="Arial" font-size="13" fill="#596b76">0.00</text>
+<line x1="90" y1="333.0" x2="830" y2="333.0" stroke="#e2e8f0"/>
+<text x="55" y="338.0" font-family="Arial" font-size="13" fill="#596b76">20.00</text>
+<line x1="90" y1="276.0" x2="830" y2="276.0" stroke="#e2e8f0"/>
+<text x="55" y="281.0" font-family="Arial" font-size="13" fill="#596b76">40.00</text>
+<line x1="90" y1="219.0" x2="830" y2="219.0" stroke="#e2e8f0"/>
+<text x="55" y="224.0" font-family="Arial" font-size="13" fill="#596b76">60.00</text>
+<line x1="90" y1="162.0" x2="830" y2="162.0" stroke="#e2e8f0"/>
+<text x="55" y="167.0" font-family="Arial" font-size="13" fill="#596b76">80.00</text>
+<line x1="90" y1="105.0" x2="830" y2="105.0" stroke="#e2e8f0"/>
+<text x="55" y="110.0" font-family="Arial" font-size="13" fill="#596b76">100.00</text>
+<line x1="90" y1="105" x2="90" y2="390" stroke="#596b76"/>
+<line x1="90" y1="390" x2="830" y2="390" stroke="#596b76"/>
+<text x="20" y="245" transform="rotate(-90 20 245)" font-family="Arial" font-size="14" fill="#172b3a">False alerts per 100 cycles</text>
+<text x="78.0" y="415" font-family="Arial" font-size="14" fill="#596b76">10</text>
+<text x="448.0" y="415" font-family="Arial" font-size="14" fill="#596b76">14</text>
+<text x="818.0" y="415" font-family="Arial" font-size="14" fill="#596b76">18</text>
+<text x="420" y="443" font-family="Arial" font-size="14" fill="#172b3a">Forecast cycle day</text>
+<polyline points="534.0,258.5 534.0,292.4 534.0,318.5 534.0,333.2 534.0,342.4 534.0,363.2 534.0,374.6 534.0,377.7 534.0,381.0 534.0,384.8 534.0,388.3" fill="none" stroke="#64748b" stroke-width="3"/>
+<text x="620" y="120" font-family="Arial" font-size="14" fill="#64748b">Tier 0</text>
+<polyline points="534.0,258.0 534.0,292.4 534.0,318.9 534.0,333.6 534.0,341.6 534.0,365.7 534.0,374.3 534.0,377.8 534.0,380.9 534.0,384.8 534.0,388.4" fill="none" stroke="#0f766e" stroke-width="3"/>
+<text x="670" y="120" font-family="Arial" font-size="14" fill="#0f766e">Tier 1</text>
+<polyline points="534.0,266.2 534.0,298.6 534.0,325.5 534.0,341.5 534.0,352.3 534.0,362.4 534.0,370.8 534.0,377.1 534.0,380.5 534.0,384.0 534.0,388.6" fill="none" stroke="#d97706" stroke-width="3"/>
+<text x="720" y="120" font-family="Arial" font-size="14" fill="#d97706">Tier 2</text>
+<polyline points="534.0,266.2 534.0,297.9 534.0,324.8 534.0,340.3 534.0,352.5 534.0,362.6 534.0,370.9 534.0,377.2 534.0,381.2 534.0,384.9 534.0,388.5" fill="none" stroke="#9f5b86" stroke-width="3"/>
+<text x="770" y="120" font-family="Arial" font-size="14" fill="#9f5b86">Tier 3</text>
+<text x="365" y="443" font-family="Arial" font-size="14" fill="#172b3a">Median lead days versus day 35</text>
+</svg>

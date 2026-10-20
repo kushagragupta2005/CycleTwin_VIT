@@ -67,3 +67,24 @@ def render_false_alerts():
     Path("assets/false_alerts_by_tier.svg").write_text("\n".join(parts))
 
 render_auc(); render_false_alerts()
+
+def render_tradeoff():
+    parts,box=svg_start("Synthetic day-14 alert trade-off","Held-out mean across seeds; varying thresholds are descriptive only and were not used to choose the validation threshold",0,100,"False alerts per 100 cycles")
+    x0,y0,x1,y1=box
+    for tier in tiers:
+        by_index=[]
+        for seed in seeds.values():
+            by_index.append(seed["metrics"][f"day_14_tier_{tier}"]["alert_tradeoff_curve"])
+        points=[]
+        for i in range(len(by_index[0])):
+            false=sum(curve[i]["false_alerts_per_100_cycles"] for curve in by_index)/len(by_index)
+            lead_values=[curve[i]["median_lead_days_vs_day_35"] for curve in by_index if curve[i]["median_lead_days_vs_day_35"] is not None]
+            lead=sum(lead_values)/len(lead_values) if lead_values else 0
+            x=x0+(x1-x0)*min(lead,35)/35; y=y1-false/100*(y1-y0); points.append((x,y))
+        parts.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x,y in points)}" fill="none" stroke="{colors[tier]}" stroke-width="3"/>')
+        parts.append(f'<text x="{620+tier*50}" y="120" font-family="Arial" font-size="14" fill="{colors[tier]}">Tier {tier}</text>')
+    parts.append(f'<text x="365" y="443" font-family="Arial" font-size="14" fill="#172b3a">Median lead days versus day 35</text>')
+    parts.append('</svg>')
+    Path("assets/lead_time_false_alarm_tradeoff.svg").write_text("\n".join(parts))
+
+render_tradeoff()

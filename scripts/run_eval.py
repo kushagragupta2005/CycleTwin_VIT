@@ -44,6 +44,25 @@ def threshold_metrics(records, threshold):
             "median_lead_days_vs_day_35": float(np.median([35 - r["day"] for r, flag in zip(records, flagged) if flag and r["y"] == 1])) if tp else None}
 
 
+def per_archetype_false_alarm_rates(records, threshold):
+    output = {}
+    for archetype in sorted({r["phenotype"] for r in records}):
+        rows = [r for r in records if r["phenotype"] == archetype and r["y"] == 0]
+        output[archetype] = float(np.mean([r["score"] >= threshold for r in rows])) if rows else None
+    return output
+
+
+def alert_tradeoff_curve(records):
+    """Exploratory held-out threshold sweep; never used to choose the deployed threshold."""
+    points = []
+    for threshold in np.linspace(0.05, 0.95, 11):
+        metrics = threshold_metrics(records, float(threshold))
+        points.append({"threshold": float(threshold), "false_alerts_per_100_cycles": metrics["false_alerts_per_100_cycles"],
+                       "sensitivity": metrics["sensitivity"], "ppv": metrics["ppv"],
+                       "median_lead_days_vs_day_35": metrics["median_lead_days_vs_day_35"]})
+    return points
+
+
 def cluster_ci(records, metric, reps=1000, seed=808):
     ids = np.unique([r["patient"] for r in records])
     by_patient = {identifier: [r for r in records if r["patient"] == identifier] for identifier in ids}
@@ -84,6 +103,8 @@ for seed in SEEDS:
                       "ovulation_day_mae": float(np.mean([abs(r["ov"] - r["ov_est"]) for r in ovulation])),
                       "ovulation_day_mae_cluster_bootstrap_95ci": cluster_ci(ovulation, lambda z: float(np.mean([abs(r["ov"] - r["ov_est"]) for r in z])), seed=seed + day + tier + 1),
                       **threshold_metrics(records, threshold)}
+            output["per_archetype_false_alarm_rate"] = per_archetype_false_alarm_rates(records, threshold)
+            output["alert_tradeoff_curve"] = alert_tradeoff_curve(records)
             for name, method in methods.items():
                 output[name] = method(records)
                 output[f"{name}_cluster_bootstrap_95ci"] = cluster_ci(records, method, seed=seed + day + tier)
