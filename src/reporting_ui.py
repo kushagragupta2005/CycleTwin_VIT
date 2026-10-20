@@ -39,7 +39,7 @@ def render_alert_policy(claims):
     summary=claims.get('alert_policy_summary')
     if not summary: return
     st.subheader('Frozen synthetic sequential alert policy')
-    st.caption('In plain words: each cycle can alert once, at the first safe threshold crossing on day 10, 14 or 18. These are simulator outcomes, not clinical alert rates.')
+    st.caption('In plain words: each cycle can alert once, at the earliest safe threshold crossing on day 10, 14 or 18. These are simulator outcomes, not clinical alert rates.')
     rows=[]
     for tier,metrics in summary.items():
         rows.append({'Tier':int(tier),'Synthetic cycles':metrics['n_cycles'],'Alerts':metrics['alerts'],

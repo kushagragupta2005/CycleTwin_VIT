@@ -31,7 +31,7 @@ PMOS status is an assigned simulator archetype, not the model's prediction targe
 
 There are no measured LH, FSH, estradiol, progesterone, testosterone or fasting insulin inputs. The glossary mentions HOMA-IR, but the code does not calculate HOMA-IR. The insulin-resistance latent and androgen load are generated internal variables, not hormone test results. Predicting synthetic labels without hormone measurements is possible because the generator creates the signal–label relationships. That does not establish clinical forecasting without hormones.
 
-Evidence: [src/generator.py:5–46](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/generator.py:5>), [src/features.py:22–49](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/features.py:22>), [scripts/run_eval.py:15](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/scripts/run_eval.py:15>) and [app.py:251–282](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/app.py:251>).
+Evidence: [src/generator.py:5–46](../../src/generator.py#L5), [src/features.py:22–49](../../src/features.py#L22), [scripts/run_eval.py:15](../../scripts/run_eval.py#L15) and [app.py:251–282](../../app.py#L251).
 
 For medical context only, ASRM describes basal-body-temperature patterns as an often unreliable indicator of ovarian function and discusses appropriately timed progesterone testing and urinary LH as separate tools. That does not validate CycleTwin or make a simulated wrist-temperature series equivalent to hormonal confirmation. [ASRM committee opinion](https://www.asrm.org/practice-guidance/practice-committee-documents/fertility-evaluation-of-infertile-women-a-committee-opinion-2021/).
 
@@ -86,7 +86,7 @@ These are observed ranges in the current benchmark, not safe clinical operating 
 - stress is a temporary standard-normal draw used to generate timing for selected archetypes. It is not saved in the record, sensed, user-entered, or used as a model feature.
 - Current-cycle cycle_length is a generated outcome-like value. It enters only the history of later cycle indices in the classifier feature builder. See the temporal-consistency limitation below.
 
-Evidence: [src/generator.py:7–46](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/generator.py:7>) and [src/features.py:11–49](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/features.py:11>).
+Evidence: [src/generator.py:7–46](../../src/generator.py#L7) and [src/features.py:11–49](../../src/features.py#L11).
 
 ### Apple Health-shaped input: supported fields, units and processing
 
@@ -106,7 +106,7 @@ The parser does not provide a general daily aggregation/normalization pipeline s
 
 read_generic_csv() supports date,temp,rhr,hrv,steps,period_start columns. Blank numerical cells become None, and period_start accepts 1/true/yes. There is no CSV upload widget or prediction connection. The reader uses temp, whereas the XML reader uses temperature; no canonical adapter-to-model bridge reconciles them.
 
-Evidence: [src/adapters/apple_health.py:6–58](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/adapters/apple_health.py:6>); [scripts/make_synthetic_apple_export.py:9–38](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/scripts/make_synthetic_apple_export.py:9>); [app.py:186–199](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/app.py:186>).
+Evidence: [src/adapters/apple_health.py:6–58](../../src/adapters/apple_health.py#L6); [scripts/make_synthetic_apple_export.py:9–38](../../scripts/make_synthetic_apple_export.py#L9); [app.py:186–199](../../app.py#L186).
 
 ### Safety inputs and UI controls
 
@@ -116,7 +116,7 @@ The UI assigns safety age 17 to early_menarche and 29 to all other archetypes, i
 
 Human controls are navigation, tier, sort order, generated patient selection, scenario, mock-consent checkbox, XML upload and action buttons. None is a clinical questionnaire. The checkbox changes its receipt text; it does not gate access or file processing.
 
-Evidence: [src/safety.py:3–15](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/safety.py:3>) and [app.py:201–235](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/app.py:201>).
+Evidence: [src/safety.py:3–15](../../src/safety.py#L3) and [app.py:201–235](../../app.py#L201).
 
 ## 3. Dataset inventory and exact denominators
 
@@ -218,7 +218,7 @@ These exact equations explain how prediction without measured hormones works in 
 
 The Overview and Method pages summarize saved fitted results. The Cohort and Patient pages calculate heuristic scores. The workflow card's “fitted model → safe alert” is a design-level overview; a fitted model has not been connected to the patient alert path.
 
-Evidence: [scripts/run_eval.py:93–146](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/scripts/run_eval.py:93>); [src/fitted.py:9–21](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/fitted.py:9>); [app.py:118–160](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/app.py:118>), 219–244, 395–522.
+Evidence: [scripts/run_eval.py:93–146](../../scripts/run_eval.py#L93); [src/fitted.py:9–21](../../src/fitted.py#L9); [app.py:118–160](../../app.py#L118), 219–244, 395–522.
 
 ## 5. Exact prediction targets, day estimates and intervals
 
@@ -260,7 +260,7 @@ With n=240 and alpha=0.10, the classification rank is 217. With n=203 ovulatory 
 
 Nominal coverage is 90% under the relevant exchangeability assumptions, not a measured current coverage rate. The calibrated model/population differs from selected Tier 0/1 scores and from the second-cycle display cohort. Day calibration excludes absent-ovulation cycles. These ranges do not provide a 90% personal guarantee or an interval for “no ovulation.”
 
-Evidence: [src/model.py:4–39](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/model.py:4>); [src/conformal.py:5–27](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/conformal.py:5>); [app.py:142–160](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/app.py:142>), 230–235 and 406–411.
+Evidence: [src/model.py:4–39](../../src/model.py#L4); [src/conformal.py:5–27](../../src/conformal.py#L5); [app.py:142–160](../../app.py#L142), 230–235 and 406–411.
 
 ## 6. Model architecture, hyperparameters, size and other algorithms
 
@@ -302,7 +302,7 @@ What-ifs multiply the current heuristic score by hand-set factors: sleep 0.80…
 
 explain_state() ranks the absolute values of supplied raw temperature/RHR summaries and inserts their names into a sentence. They are not fitted coefficient contributions or SHAP values. The same temperature/RHR explanation is used even when the selected score ignores those inputs. Chart summaries separately report actual array means, ranges, counts and peak days, using deterministic templates. No LLM is called.
 
-Evidence: [src/fitted.py:9–35](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/fitted.py:9>); [src/twin.py:5–69](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/twin.py:5>); [src/metabolic.py:4–24](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/metabolic.py:4>); [src/explanations.py:3–12](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/explanations.py:3>); [app.py:438–522](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/app.py:438>).
+Evidence: [src/fitted.py:9–35](../../src/fitted.py#L9); [src/twin.py:5–69](../../src/twin.py#L5); [src/metabolic.py:4–24](../../src/metabolic.py#L4); [src/explanations.py:3–12](../../src/explanations.py#L3); [app.py:438–522](../../app.py#L438).
 
 ## 7. Every available result, with exact denominators
 
@@ -634,7 +634,7 @@ apply_alert_budget() groups by patient/cycle, excludes abstaining rows, retains 
 
 The main evaluation does not call the abstention guard or apply_alert_budget(). Its metrics are per snapshot, including all test archetypes. They do not establish the end-to-end safety/one-alert policy's performance.
 
-Evidence: [src/safety.py:3–15](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/safety.py:3>); [src/alerts.py:3–15](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/src/alerts.py:3>); [app.py:219–235](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/app.py:219>), 290–318, 395–411 and 491–522; [scripts/run_eval.py:50–75](</Users/kushagragupta/Documents/New project/CycleTwin_VIT/scripts/run_eval.py:50>), 121–141.
+Evidence: [src/safety.py:3–15](../../src/safety.py#L3); [src/alerts.py:3–15](../../src/alerts.py#L3); [app.py:219–235](../../app.py#L219), 290–318, 395–411 and 491–522; [scripts/run_eval.py:50–75](../../scripts/run_eval.py#L50), 121–141.
 
 ## 9. Implementation status: working versus illustrative versus absent
 

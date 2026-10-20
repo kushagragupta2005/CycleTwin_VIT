@@ -43,6 +43,7 @@ Python, NumPy, scikit-learn, pandas, Streamlit and Altair. The classifier uses m
 - scipy==1.13.1
 - joblib==1.5.3
 - threadpoolctl==3.7.0
+- pypdf==6.10.0
 
 ## Synthetic development results
 

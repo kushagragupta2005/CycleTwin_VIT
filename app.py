@@ -520,7 +520,7 @@ with st.container(border=True):
     st.subheader("Synthetic alert log")
     plain_words("Add an eligible generated alert and inspect the per-cycle budget. Repeated additions do not create duplicate entries.")
     with st.popover("ⓘ Alert-log caveat"):
-        st.caption("The first eligible day 10/14/18 threshold crossing is retained; later scores cannot replace it. At most one alert per synthetic patient-cycle. Explanations are templated from state and feature contributions; no LLM is used in the loop.")
+        st.caption("The earliest eligible day 10/14/18 threshold crossing is retained; later scores cannot replace it. At most one alert per synthetic patient-cycle. Explanations are templated from state and feature contributions; no LLM is used in the loop.")
     predictions=[]
     for r in rows:
         if r["abstain"]:
