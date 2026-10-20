@@ -183,7 +183,7 @@ Full per-day/tier/archetype AUROC and recall intervals, reliability bins, ECE, d
 
 ## Frozen sequential alert policy
 
-The frozen policy evaluates the earliest safe threshold crossing at days 10, 14 and 18, with at most one alert per cycle; it uses saved frozen scores without retraining or retuning. Tier 2 produced 1,634 alerts across 3,240 generated cycles: precision 0.730110; missed generated events 484/1,677 (0.288611); false alerts 1.483785 per synthetic patient-year. Median generated-event lead time was 17.000000 days among 790 true-positive cycles with a generated ovulation day. These are simulator outcomes, not clinical alert rates. Full rows are in results/alert_policy_frozen_rows.csv.
+The frozen policy retains the earliest safe threshold crossing at days 10, 14 and 18, with at most one alert per cycle; it uses saved frozen scores without retraining or retuning. Tier 2 produced 1,634 alerts across 3,240 generated cycles: precision 0.730110; missed generated events 484/1,677 (0.288611); false alerts 1.483785 per synthetic patient-year. Median generated-event lead time was 17.000000 days among 790 true-positive cycles with a generated ovulation day. These are simulator outcomes, not clinical alert rates. Full rows are in results/alert_policy_frozen_rows.csv.
 
 ## Frozen synthetic robustness extension
 

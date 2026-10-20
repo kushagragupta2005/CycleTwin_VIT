@@ -23,12 +23,12 @@ function text(slide,value,x,y,w,h,size=30,color='#17242b',bold=false){
 }
 function diagram(slide){
   const a=claims.deliverables.architecture;
-  const coords=[[65,235,330,105],[65,385,330,105],[470,300,330,120],[875,300,330,120],
-                [875,495,330,105],[470,495,330,105],[65,545,330,80]];
+  const coords=[[65,230,330,105],[65,365,330,105],[470,285,330,120],[875,285,330,120],
+                [875,470,330,100],[470,470,330,100],[65,535,330,70],[470,580,330,75]];
   const shapes=a.nodes.map((label,i)=>{
     const [x,y,w,h]=coords[i];
-    const s=slide.shapes.add({geometry:'rect',position:{left:x,top:y,width:w,height:h},fill:i===6?'#f1f2ef':'#e8f4f1',line:{fill:'#c8dcd5',width:1}});
-    s.text=label;s.text.style={typeface:font,fontSize:i===6?22:24,color:'#17242b'};return s;
+    const s=slide.shapes.add({geometry:'rect',position:{left:x,top:y,width:w,height:h},fill:i>=6?'#f1f2ef':'#e8f4f1',line:{fill:'#c8dcd5',width:1}});
+    s.text=label;s.text.style={typeface:font,fontSize:i===7?14:i>=6?18:24,color:'#17242b'};return s;
   });
   for(const [from,to,fromSide,toSide] of [[0,2,'right','left'],[1,2,'right','left'],[2,3,'right','left'],[3,4,'bottom','top'],[4,5,'left','right']])
     slide.shapes.connect(shapes[from],shapes[to],{kind:'elbow',fromSide,toSide,line:{fill:'#0e766e',width:2},tail:{type:'arrow'}});

@@ -41,7 +41,7 @@ Validation Brier-gain rule selects richer features or calendar fallback
 Validation F1 chooses the threshold. Test outcomes never choose that threshold.
 
 ## Synthetic development evidence: day 10
-Seed means describe the current generator, not clinical forecasting
+Validation retained the calendar fallback for every tier; sensors add no validated gain before the temperature shift appears.
 
 
 ## Synthetic development evidence: day 14
@@ -53,7 +53,7 @@ Seed means describe the current generator, not clinical forecasting
 
 
 ## Frozen synthetic evidence: day 10
-Reserved seeds, unchanged train/validation choices, one guarded run
+Validation retained the calendar fallback for every tier; sensors add no validated gain before the temperature shift appears.
 
 
 ## Frozen synthetic evidence: day 14

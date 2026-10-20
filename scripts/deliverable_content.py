@@ -47,16 +47,17 @@ def compose(c):
            'Training medians and scaling, logistic regression, validation Platt calibration',
            'Validation Brier-gain rule selects richer features or calendar fallback',
            'Validation F1 chooses the threshold. Test outcomes never choose that threshold.'])
+    day10_subtitle='Validation retained the calendar fallback for every tier; sensors add no validated gain before the temperature shift appears.'
     for day in days:
         slide(f'Synthetic development evidence: day {day}',
-              'Seed means describe the current generator, not clinical forecasting',
+              day10_subtitle if day == 10 else 'Seed means describe the current generator, not clinical forecasting',
               table=comparison[:1]+[row for row in comparison[1:] if int(row[0])==day])
     if c['frozen'] is not None:
         for day in days:
             values=[['Day','Tier','Mean AUROC','Mean Brier','Mean day MAE']]+[
                 [str(r['Forecast day']),str(r['Tier']),metric(r['Mean AUROC']),metric(r['Mean Brier']),metric(r['Mean day MAE'])]
                 for r in c['frozen_summary'] if r['Forecast day']==day]
-            slide(f'Frozen synthetic evidence: day {day}','Reserved seeds, unchanged train/validation choices, one guarded run',table=values)
+            slide(f'Frozen synthetic evidence: day {day}',day10_subtitle if day == 10 else 'Reserved seeds, unchanged train/validation choices, one guarded run',table=values)
     last=mean(max(days),max(t for t in tiers if t<max(tiers)))
     if c['frozen'] is not None:
         last=next(r for r in c['frozen_summary'] if r['Forecast day']==max(days) and r['Tier']==max(t for t in tiers if t<max(tiers)))
@@ -96,7 +97,7 @@ def compose(c):
     if c.get('operations'):
         ops=c['operations'];warm=ops['warm_latency_ms']
         slide('Local operations measurement','One persisted frozen Tier-2 model on the build host',
-              [f"Cold new-process first prediction: {ops['cold_subprocess_ms']:.3f} ms",
+              [f"Cold new-process initial prediction: {ops['cold_subprocess_ms']:.3f} ms",
                f"Warm inference: mean {warm['mean']:.3f} ms, p95 {warm['p95']:.3f} ms across {ops['warm_repeats']:,} calls",
                f"Local process peak RSS: {ops['process_peak_rss_kib']:.0f} KiB",
                'Host-specific engineering measurement, not a production-service SLA.'])
@@ -142,7 +143,8 @@ def compose(c):
                   'nodes':['Synthetic static EHR-lite\nOracle-adjacent internals','Synthetic nightly data\nCalendar and wearables',
                            'Shared feature builder\nTraining median and scaling','Persisted logistic model\nValidation calibration and threshold',
                            'Fail-closed safety gate\nWithhold personal outputs','Doctor / Kushi dashboard\nProbability and exact contributions',
-                           'Separate illustrative twin\nNo contribution to fitted score'],
+                           'Separate illustrative twin\nNo contribution to fitted score',
+                           f"Bayesian timing posterior\nEvaluated separately; not used in score or alerts\nBrier {metric(c['bayesian_twin']['mean_across_seeds']['twin_brier'])} vs logistic {metric(c['bayesian_twin']['mean_across_seeds']['logistic_brier'])}"],
                   'footer':FOOTER,'notes':'Source: docs/claims.json. EHR-lite is implemented. XML parsing is a separate adapter demonstration and is not connected to scoring.'}
     pkg='\n'.join('- '+v for v in c['runtime_requirements'])
     overview=mean(max(days),max(t for t in tiers if t<max(tiers)))
@@ -241,7 +243,7 @@ Code uses the [MIT License](LICENSE). All project datasets are synthetic. Publis
         readme=readme.replace('## Evidence and limitations','## Calibration and subgroup reporting\n\n'+ '\n'.join(report_rows)+'\n\nFull per-day/tier/archetype AUROC and recall intervals, reliability bins, ECE, diagnostic calibration slope/intercept and decision curves are in results_reporting.json. Diagnostic calibration regressions never feed predictions. Synthetic decision curves assume threshold odds and do not establish clinical utility.\n\n![Synthetic reliability](docs/figures/reliability.svg)\n\n![Synthetic decision curves](docs/figures/decision_curve.svg)\n\n## Evidence and limitations')
     if c.get('alert_policy_summary'):
         policy=c['alert_policy_summary']['2']
-        sequential='## Frozen sequential alert policy\n\nThe frozen policy evaluates the first safe threshold crossing at days 10, 14 and 18, with at most one alert per cycle; it uses saved frozen scores without retraining or retuning. Tier 2 produced {alerts:,} alerts across {cycles:,} generated cycles: precision {precision:.6f}; missed generated events {missed:,}/{events:,} ({missed_rate:.6f}); false alerts {false_rate:.6f} per synthetic patient-year. Median generated-event lead time was {lead:.6f} days among {lead_n:,} true-positive cycles with a generated ovulation day. These are simulator outcomes, not clinical alert rates. Full rows are in results/alert_policy_frozen_rows.csv.\n\n'.format(alerts=policy['alerts'],cycles=policy['n_cycles'],precision=policy['alert_precision'],missed=policy['missed_events'],events=policy['event_cycles'],missed_rate=policy['missed_event_rate'],false_rate=policy['false_alerts_per_synthetic_patient_year'],lead=policy['lead_time_days_median'],lead_n=policy['lead_time_n'])
+        sequential='## Frozen sequential alert policy\n\nThe frozen policy retains the earliest safe threshold crossing at days 10, 14 and 18, with at most one alert per cycle; it uses saved frozen scores without retraining or retuning. Tier 2 produced {alerts:,} alerts across {cycles:,} generated cycles: precision {precision:.6f}; missed generated events {missed:,}/{events:,} ({missed_rate:.6f}); false alerts {false_rate:.6f} per synthetic patient-year. Median generated-event lead time was {lead:.6f} days among {lead_n:,} true-positive cycles with a generated ovulation day. These are simulator outcomes, not clinical alert rates. Full rows are in results/alert_policy_frozen_rows.csv.\n\n'.format(alerts=policy['alerts'],cycles=policy['n_cycles'],precision=policy['alert_precision'],missed=policy['missed_events'],events=policy['event_cycles'],missed_rate=policy['missed_event_rate'],false_rate=policy['false_alerts_per_synthetic_patient_year'],lead=policy['lead_time_days_median'],lead_n=policy['lead_time_n'])
         readme=readme.replace('## Evidence and limitations',sequential+'## Evidence and limitations')
     if c.get('robustness'):
         conditions=c['robustness']['conditions'];missing=conditions['additional_missing_fraction=0.6'];drift=conditions['device_drift_c_per_day=0.01'];shift=conditions['ovulation_base_shift_days=4']
@@ -257,7 +259,7 @@ Code uses the [MIT License](LICENSE). All project datasets are synthetic. Publis
         readme=readme.replace('## Evidence and limitations',section+'## Evidence and limitations')
     if c.get('operations'):
         ops=c['operations'];warm=ops['warm_latency_ms']
-        section='## Local operations measurement\n\nOn the build host, a cold new-process first prediction took {cold:.6f} ms. Across {n:,} warm in-process calls, mean latency was {mean:.6f} ms and p95 {p95:.6f} ms; process peak RSS was {rss:.0f} KiB. This is host-specific local evidence, not a production-service SLA. See results_ops.json and docs/operations_methods.md.\n\n'.format(cold=ops['cold_subprocess_ms'],n=ops['warm_repeats'],mean=warm['mean'],p95=warm['p95'],rss=ops['process_peak_rss_kib'])
+        section='## Local operations measurement\n\nOn the build host, a cold new-process initial prediction took {cold:.6f} ms. Across {n:,} warm in-process calls, mean latency was {mean:.6f} ms and p95 {p95:.6f} ms; process peak RSS was {rss:.0f} KiB. This is host-specific local evidence, not a production-service SLA. See results_ops.json and docs/operations_methods.md.\n\n'.format(cold=ops['cold_subprocess_ms'],n=ops['warm_repeats'],mean=warm['mean'],p95=warm['p95'],rss=ops['process_peak_rss_kib'])
         readme=readme.replace('## Evidence and limitations',section+'## Evidence and limitations')
     if c.get('conformal_summary'):
         conformal=c['conformal_summary']
