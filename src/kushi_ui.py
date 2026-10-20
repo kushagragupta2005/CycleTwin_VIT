@@ -9,6 +9,7 @@ from src.inference import safe_predict
 from src.personas import make_kushi
 from src.safety import synthetic_safety_record
 from src.uncertainty import uncertainty
+from src.reporting_ui import render_reporting
 
 CHAPTERS = ("Meet Kushi", "Her two data streams", "Her twin wakes up", "What her doctor sees",
             "Guardrails live", "Where it fails", "The evidence")
@@ -144,5 +145,6 @@ def render_kushi():
             st.dataframe(pd.DataFrame(claims['frozen_summary']),hide_index=True,use_container_width=True)
         with st.expander('Development results: older seeds'):
             st.dataframe(pd.DataFrame(claims['summary']),hide_index=True,use_container_width=True)
+        render_reporting(claims,tier)
         st.markdown('[Implementation audit](https://github.com/kushagragupta2005/CycleTwin_VIT/blob/main/docs/audit_2026-10-20/CycleTwin_full_audit.md) · [Generated claims](https://github.com/kushagragupta2005/CycleTwin_VIT/blob/main/docs/claims.json)')
         st.write("Sim-to-real statement: recovering labels from this generator is not evidence of reliable forecasts in women. Independent measurements and prospective validation remain necessary.")

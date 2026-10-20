@@ -8,7 +8,7 @@ def compose(c):
     summary=c['summary']; days=cfg['days']; tiers=cfg['tiers']; persona=c['kushi']
     def mean(day,tier): return next(r for r in summary if r['Forecast day']==day and r['Tier']==tier)
     def metric(value): return f'{value:.3f}'
-    lines=['| Synthetic seed | Day | Requested / retained tier | AUROC [patient CI] | Custom AUPRC [patient CI] | Brier [patient CI] | Day MAE [patient CI] | Validation threshold | Sensitivity | PPV |',
+    lines=['| Synthetic seed | Day | Requested / retained tier | AUROC [patient CI] | Standard AP [patient CI] | Brier [patient CI] | Day MAE [patient CI] | Validation threshold | Sensitivity | PPV |',
            '|---|---|---|---|---|---|---|---|---|---|']
     for seed,sr in c['development']['seeds'].items():
         for key,m in sr['metrics'].items():
@@ -64,7 +64,7 @@ def compose(c):
           [f"Synthetic day {last['Forecast day']}, Tier {last['Tier']}: AUROC {metric(last['Mean AUROC'])}, Brier {metric(last['Mean Brier'])}",
            f"{last['Held-out cycles']:,} synthetic test cycles across {len((c['frozen'] or c['development'])['seeds'])} "+('frozen seeds' if c['frozen'] else 'development seeds'),
            'Old seeds informed development. A frozen evaluation is pending.' if c['frozen'] is None else 'A separate frozen evaluation artifact is available.',
-           'Current AUPRC is custom and tie-sensitive. Standard average precision is a reporting follow-up.'])
+           'Standard average precision and calibration diagnostics are available from stored predictions.' if c.get('reporting') else 'Current AUPRC is custom and tie-sensitive. Standard average precision is a reporting follow-up.'])
     slide('What the clinician view shows','Decision-support research display',
           ['Fitted probability beside its own validation threshold and held-out model evidence',
            'Exact additive feature contributions and explicit imputation',
@@ -186,6 +186,17 @@ Code uses the [MIT License](LICENSE). All project datasets are synthetic. Publis
         frozen_text='## Frozen synthetic evaluation\n\nThe frozen-v1 tag records the executable protocol before the reserved seeds were generated. The once-only runner saved model artifacts, held-out predictions and a result hash. Follow-up reporting does not retune its thresholds.\n\n'+'\n'.join(rows)+'\n\n'
         readme=readme.replace('## Evidence and limitations',frozen_text+'## Evidence and limitations')
         readme=readme.replace('Frozen evaluation, robustness, ops measurements and a fitted Bayesian state estimator are separate follow-up gates and must not be implied complete.','Frozen evaluation is complete. Robustness, ops measurements and a Bayesian state estimator remain separate follow-up gates until their evidence is generated.')
+    if c.get('reporting'):
+        readme=readme.replace('The custom AUPRC is tie-sensitive and differs from standard average precision.','Standard average precision now groups score ties correctly. The earlier custom AUPRC and its interval are retained as legacy fields; the raw frozen result stays immutable.')
+        report_rows=['| Frozen synthetic seed | Day | Tier | Subset | n | AUROC | Standard AP | ECE | Recall [patient CI] |',
+                     '|---|---|---|---|---|---|---|---|---|']
+        for seed,sr in c['reporting']['frozen'].items():
+            for key,subsets in sr.items():
+                if int(key.split('_')[1])!=max(days) or int(key.rsplit('_',1)[1])!=max(t for t in tiers if t<max(tiers)): continue
+                for subset in ('all','PMOS-only','safety-gate-passing'):
+                    m=subsets[subset];ci=m['intervals']['recall']['95ci']
+                    report_rows.append(f"| {seed} | {max(days)} | {int(key.rsplit('_',1)[1])} | {subset} | {m['n']} | {m['auroc']:.6f} | {m['average_precision']:.6f} | {m['ece']:.6f} | {m['recall']:.6f} [{ci[0]:.6f}, {ci[1]:.6f}] |")
+        readme=readme.replace('## Evidence and limitations','## Calibration and subgroup reporting\n\n'+ '\n'.join(report_rows)+'\n\nFull per-day/tier/archetype AUROC and recall intervals, reliability bins, ECE, diagnostic calibration slope/intercept and decision curves are in results_reporting.json. Diagnostic calibration regressions never feed predictions. Synthetic decision curves assume threshold odds and do not establish clinical utility.\n\n![Synthetic reliability](docs/figures/reliability.svg)\n\n![Synthetic decision curves](docs/figures/decision_curve.svg)\n\n## Evidence and limitations')
     videos={}
     for duration in (team['minimum_video_minutes'], cfg['short_video_minutes']):
         short_titles=('CycleTwin','Meet Kushi','Evidence at the latest sensor snapshot','Validity limits')

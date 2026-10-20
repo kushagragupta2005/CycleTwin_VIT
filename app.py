@@ -12,6 +12,7 @@ import streamlit as st
 from src.generator import generate
 from src.claims import load_claims
 from src.kushi_ui import render_kushi
+from src.reporting_ui import render_reporting
 from src.model import estimate_ovulation_day
 from src.inference import predict, safe_predict
 from src.features import attach_prior_cycle_lengths
@@ -352,6 +353,7 @@ if page == "Method":
     st.caption("These synthetic benchmark figures describe fitted models. They do not establish clinical validity or confidence for an individual record.")
     st.caption("Synthetic held-out data only. Patient-cluster bootstrap confidence intervals; not clinical performance or a confidence guarantee for this record.")
     st.markdown("**Method:** synthetic generator → tiered fitted benchmark → held-out evaluation. The dashboard uses the fitted classifier; the simplified twin remains a separate illustration; the twin state is not used in the benchmark score.")
+    render_reporting(claims,display_tier)
     st.subheader("Honest limitations")
     plain_words("The software learns patterns created by its own simulator. It has not established reliable forecasting for people with PMOS without measured hormone levels.")
     st.markdown("- Synthetic data only; no clinical or external validation.\n- Patient panels use persisted fitted models; the generated display cohort is separate from training.\n- EHR-lite is oracle-adjacent because internal variables also influence generated labels.\n- Conformal and abstention coverage, and CGM forecasts, are not evaluated benchmark endpoints.\n- Twin dynamics are illustrative and unused by the fitted score; the input-editing sandbox is not an intervention model.\n- The displayed timeline includes later generated nights; prospective benchmark features are truncated at the forecast day.")

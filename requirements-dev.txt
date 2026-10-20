@@ -1,3 +1,4 @@
 -r requirements.txt
 # PDF text verification only; not a prediction dependency.
 pypdf==6.10.0
+matplotlib==3.9.4

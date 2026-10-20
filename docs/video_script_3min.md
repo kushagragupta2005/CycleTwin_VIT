@@ -22,7 +22,7 @@ Predeclared temperature sensor tier, descriptive seed means
 Synthetic day 18, Tier 2: AUROC 0.907, Brier 0.117
 3,240 synthetic test cycles across 3 frozen seeds
 A separate frozen evaluation artifact is available.
-Current AUPRC is custom and tie-sensitive. Standard average precision is a reporting follow-up.
+Standard average precision and calibration diagnostics are available from stored predictions.
 
 ## Validity limits
 Synthetic recovery is not prospective evidence in women

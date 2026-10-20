@@ -125,16 +125,22 @@
             0.8132978986313895,
             0.8711719790763468
           ],
-          "auprc": 0.8579562492762459,
+          "auprc": 0.8483171738899342,
           "auprc_cluster_bootstrap_95ci": [
-            0.8180306527054729,
-            0.8928405038707941
+            0.8078688136568494,
+            0.8845117261167761
           ],
           "brier": 0.16063805584997093,
           "brier_cluster_bootstrap_95ci": [
             0.14505214180067164,
             0.17623155093475273
-          ]
+          ],
+          "legacy_custom_auprc": 0.8579562492762459,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.8180306527054729,
+            0.8928405038707941
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_10_tier_1": {
           "n_cycles": 1080,
@@ -254,16 +260,22 @@
             0.8123837110084995,
             0.870457480042607
           ],
-          "auprc": 0.8579562492762459,
+          "auprc": 0.8483171738899342,
           "auprc_cluster_bootstrap_95ci": [
-            0.8161639477659786,
-            0.8949126510758127
+            0.8062606825650979,
+            0.884720042425462
           ],
           "brier": 0.16063805584997093,
           "brier_cluster_bootstrap_95ci": [
             0.14493281337811745,
             0.1763836755609201
-          ]
+          ],
+          "legacy_custom_auprc": 0.8579562492762459,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.8161639477659786,
+            0.8949126510758127
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_10_tier_2": {
           "n_cycles": 1080,
@@ -383,16 +395,22 @@
             0.8154741389536827,
             0.8683798135514207
           ],
-          "auprc": 0.8579562492762459,
+          "auprc": 0.8483171738899342,
           "auprc_cluster_bootstrap_95ci": [
-            0.8181483813245983,
-            0.8914759867970561
+            0.8083820861148244,
+            0.8826471103958144
           ],
           "brier": 0.16063805584997093,
           "brier_cluster_bootstrap_95ci": [
             0.14641810288569726,
             0.17522097698268793
-          ]
+          ],
+          "legacy_custom_auprc": 0.8579562492762459,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.8181483813245983,
+            0.8914759867970561
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_10_tier_3": {
           "n_cycles": 1080,
@@ -512,16 +530,22 @@
             0.8119511278741668,
             0.869286331818738
           ],
-          "auprc": 0.8579562492762459,
+          "auprc": 0.8483171738899342,
           "auprc_cluster_bootstrap_95ci": [
-            0.8164156094806839,
-            0.8913613878935661
+            0.8069372511693355,
+            0.8819102598957094
           ],
           "brier": 0.16063805584997093,
           "brier_cluster_bootstrap_95ci": [
             0.1457403562510417,
             0.17642426362694683
-          ]
+          ],
+          "legacy_custom_auprc": 0.8579562492762459,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.8164156094806839,
+            0.8913613878935661
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_14_tier_0": {
           "n_cycles": 1080,
@@ -638,16 +662,22 @@
             0.815635844456804,
             0.8700161306528139
           ],
-          "auprc": 0.8579562492762459,
+          "auprc": 0.8483171738899342,
           "auprc_cluster_bootstrap_95ci": [
-            0.8211463297049297,
-            0.8937079727198277
+            0.8113301295880361,
+            0.8843284744933628
           ],
           "brier": 0.16063805584997093,
           "brier_cluster_bootstrap_95ci": [
             0.14551086904621066,
             0.17533387881959936
-          ]
+          ],
+          "legacy_custom_auprc": 0.8579562492762459,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.8211463297049297,
+            0.8937079727198277
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_14_tier_1": {
           "n_cycles": 1080,
@@ -767,16 +797,22 @@
             0.8126850353917866,
             0.8719537490126719
           ],
-          "auprc": 0.8579562492762459,
+          "auprc": 0.8483171738899342,
           "auprc_cluster_bootstrap_95ci": [
-            0.814749888318067,
-            0.8910491941335478
+            0.8045016620610566,
+            0.8819371365286962
           ],
           "brier": 0.16063805584997093,
           "brier_cluster_bootstrap_95ci": [
             0.14486836891625374,
             0.17636587373742083
-          ]
+          ],
+          "legacy_custom_auprc": 0.8579562492762459,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.814749888318067,
+            0.8910491941335478
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_14_tier_2": {
           "n_cycles": 1080,
@@ -902,16 +938,22 @@
             0.8328565349331672,
             0.8861272539018201
           ],
-          "auprc": 0.8633178922522238,
+          "auprc": 0.8633178922522239,
           "auprc_cluster_bootstrap_95ci": [
-            0.8184993578194175,
-            0.8964290013099168
+            0.8188375036905116,
+            0.8965922818040885
           ],
           "brier": 0.15046987744496398,
           "brier_cluster_bootstrap_95ci": [
             0.13649807601452613,
             0.1664348220837626
-          ]
+          ],
+          "legacy_custom_auprc": 0.8633178922522238,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.8184993578194175,
+            0.8964290013099168
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_14_tier_3": {
           "n_cycles": 1080,
@@ -1031,16 +1073,22 @@
             0.8147197335713798,
             0.8713475432088565
           ],
-          "auprc": 0.8579562492762459,
+          "auprc": 0.8483171738899342,
           "auprc_cluster_bootstrap_95ci": [
-            0.8211717069410013,
-            0.8917016882238751
+            0.8101574608435808,
+            0.882873190684865
           ],
           "brier": 0.16063805584997093,
           "brier_cluster_bootstrap_95ci": [
             0.14469455692127095,
             0.17522242918642916
-          ]
+          ],
+          "legacy_custom_auprc": 0.8579562492762459,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.8211717069410013,
+            0.8917016882238751
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_18_tier_0": {
           "n_cycles": 1080,
@@ -1157,16 +1205,22 @@
             0.8135304151279713,
             0.8713677210180867
           ],
-          "auprc": 0.8579562492762459,
+          "auprc": 0.8483171738899342,
           "auprc_cluster_bootstrap_95ci": [
-            0.8161976130216838,
-            0.891640599978466
+            0.8047011151302247,
+            0.8828041223742038
           ],
           "brier": 0.16063805584997093,
           "brier_cluster_bootstrap_95ci": [
             0.14477582428239147,
             0.17598382690373057
-          ]
+          ],
+          "legacy_custom_auprc": 0.8579562492762459,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.8161976130216838,
+            0.891640599978466
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_18_tier_1": {
           "n_cycles": 1080,
@@ -1286,16 +1340,22 @@
             0.8120527840685627,
             0.8714328397384575
           ],
-          "auprc": 0.8579562492762459,
+          "auprc": 0.8483171738899342,
           "auprc_cluster_bootstrap_95ci": [
-            0.8186340828375308,
-            0.8934083099024958
+            0.8077521768134439,
+            0.8840415399439959
           ],
           "brier": 0.16063805584997093,
           "brier_cluster_bootstrap_95ci": [
             0.14474941751883527,
             0.17609803656627177
-          ]
+          ],
+          "legacy_custom_auprc": 0.8579562492762459,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.8186340828375308,
+            0.8934083099024958
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_18_tier_2": {
           "n_cycles": 1080,
@@ -1421,16 +1481,22 @@
             0.8864679931063524,
             0.9290191211006342
           ],
-          "auprc": 0.8883241965927711,
+          "auprc": 0.8883241965927712,
           "auprc_cluster_bootstrap_95ci": [
-            0.850734188339719,
-            0.9205875495605287
+            0.8512879288472699,
+            0.920750413921484
           ],
           "brier": 0.11570009278056827,
           "brier_cluster_bootstrap_95ci": [
             0.10310655450511864,
             0.1297744491215726
-          ]
+          ],
+          "legacy_custom_auprc": 0.8883241965927711,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.850734188339719,
+            0.9205875495605287
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_18_tier_3": {
           "n_cycles": 1080,
@@ -1561,16 +1627,22 @@
             0.8854928004774709,
             0.9303307163022108
           ],
-          "auprc": 0.8886506559248354,
+          "auprc": 0.8886506559248355,
           "auprc_cluster_bootstrap_95ci": [
-            0.847829539872645,
-            0.9234481610405776
+            0.8481603765918777,
+            0.9235689820189437
           ],
           "brier": 0.11573020885143721,
           "brier_cluster_bootstrap_95ci": [
             0.10128136661251887,
             0.13026693657376742
-          ]
+          ],
+          "legacy_custom_auprc": 0.8886506559248354,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.847829539872645,
+            0.9234481610405776
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         }
       }
     },
@@ -1696,16 +1768,22 @@
             0.8045132446522241,
             0.8668128842258652
           ],
-          "auprc": 0.829774600268579,
+          "auprc": 0.8197558372613133,
           "auprc_cluster_bootstrap_95ci": [
-            0.7813628601149629,
-            0.8706864182117675
+            0.771407006948343,
+            0.8613508042572892
           ],
           "brier": 0.16428639510752058,
           "brier_cluster_bootstrap_95ci": [
             0.14861498085179162,
             0.1797966533067524
-          ]
+          ],
+          "legacy_custom_auprc": 0.829774600268579,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7813628601149629,
+            0.8706864182117675
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_10_tier_1": {
           "n_cycles": 1080,
@@ -1825,16 +1903,22 @@
             0.8041856799315721,
             0.8650204680309326
           ],
-          "auprc": 0.829774600268579,
+          "auprc": 0.8197558372613133,
           "auprc_cluster_bootstrap_95ci": [
-            0.7801567669714137,
-            0.8659119570193008
+            0.7703492573107555,
+            0.8571151128828598
           ],
           "brier": 0.16428639510752058,
           "brier_cluster_bootstrap_95ci": [
             0.14951002983596715,
             0.18019791180752587
-          ]
+          ],
+          "legacy_custom_auprc": 0.829774600268579,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7801567669714137,
+            0.8659119570193008
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_10_tier_2": {
           "n_cycles": 1080,
@@ -1954,16 +2038,22 @@
             0.8054150067580343,
             0.8639607907086346
           ],
-          "auprc": 0.829774600268579,
+          "auprc": 0.8197558372613133,
           "auprc_cluster_bootstrap_95ci": [
-            0.780467350314056,
-            0.8684149157178639
+            0.7702468072315731,
+            0.8597435598805203
           ],
           "brier": 0.16428639510752058,
           "brier_cluster_bootstrap_95ci": [
             0.14925793899239728,
             0.17915414598099158
-          ]
+          ],
+          "legacy_custom_auprc": 0.829774600268579,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.780467350314056,
+            0.8684149157178639
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_10_tier_3": {
           "n_cycles": 1080,
@@ -2083,16 +2173,22 @@
             0.8048972759351996,
             0.8661340492804162
           ],
-          "auprc": 0.829774600268579,
+          "auprc": 0.8197558372613133,
           "auprc_cluster_bootstrap_95ci": [
-            0.7840756531233962,
-            0.8703840548407847
+            0.77458325595694,
+            0.8624326995956073
           ],
           "brier": 0.16428639510752058,
           "brier_cluster_bootstrap_95ci": [
             0.14852071535394537,
             0.1799087711779883
-          ]
+          ],
+          "legacy_custom_auprc": 0.829774600268579,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7840756531233962,
+            0.8703840548407847
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_14_tier_0": {
           "n_cycles": 1080,
@@ -2209,16 +2305,22 @@
             0.8053595492327076,
             0.8653729316240617
           ],
-          "auprc": 0.829774600268579,
+          "auprc": 0.8197558372613133,
           "auprc_cluster_bootstrap_95ci": [
-            0.7807594635668365,
-            0.870606800057831
+            0.771042689308049,
+            0.8610780279149318
           ],
           "brier": 0.16428639510752058,
           "brier_cluster_bootstrap_95ci": [
             0.14905355870573647,
             0.17904623393066635
-          ]
+          ],
+          "legacy_custom_auprc": 0.829774600268579,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7807594635668365,
+            0.870606800057831
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_14_tier_1": {
           "n_cycles": 1080,
@@ -2338,16 +2440,22 @@
             0.8060544683077517,
             0.8641563807048478
           ],
-          "auprc": 0.829774600268579,
+          "auprc": 0.8197558372613133,
           "auprc_cluster_bootstrap_95ci": [
-            0.7797206924760055,
-            0.8683309894461098
+            0.7709210479233849,
+            0.8589917807359305
           ],
           "brier": 0.16428639510752058,
           "brier_cluster_bootstrap_95ci": [
             0.14952228866634898,
             0.17902967417828974
-          ]
+          ],
+          "legacy_custom_auprc": 0.829774600268579,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7797206924760055,
+            0.8683309894461098
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_14_tier_2": {
           "n_cycles": 1080,
@@ -2467,16 +2575,22 @@
             0.8063374772019697,
             0.8654433966742765
           ],
-          "auprc": 0.829774600268579,
+          "auprc": 0.8197558372613133,
           "auprc_cluster_bootstrap_95ci": [
-            0.7825455776679346,
-            0.868646249024802
+            0.7732601769655737,
+            0.8594098375444164
           ],
           "brier": 0.16428639510752058,
           "brier_cluster_bootstrap_95ci": [
             0.14961536264017786,
             0.17900232050963777
-          ]
+          ],
+          "legacy_custom_auprc": 0.829774600268579,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7825455776679346,
+            0.868646249024802
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_14_tier_3": {
           "n_cycles": 1080,
@@ -2596,16 +2710,22 @@
             0.8030216247097166,
             0.8660281078346069
           ],
-          "auprc": 0.829774600268579,
+          "auprc": 0.8197558372613133,
           "auprc_cluster_bootstrap_95ci": [
-            0.7804239878830549,
-            0.8697041621886772
+            0.771651507429144,
+            0.860926433448553
           ],
           "brier": 0.16428639510752058,
           "brier_cluster_bootstrap_95ci": [
             0.14846654068838186,
             0.18052539478946864
-          ]
+          ],
+          "legacy_custom_auprc": 0.829774600268579,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7804239878830549,
+            0.8697041621886772
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_18_tier_0": {
           "n_cycles": 1080,
@@ -2722,16 +2842,22 @@
             0.8052997576819002,
             0.8637904933458298
           ],
-          "auprc": 0.829774600268579,
+          "auprc": 0.8197558372613133,
           "auprc_cluster_bootstrap_95ci": [
-            0.7845214175426969,
-            0.8699261438695405
+            0.7758250703058539,
+            0.8615637233850219
           ],
           "brier": 0.16428639510752058,
           "brier_cluster_bootstrap_95ci": [
             0.14944972531720846,
             0.1796302229803224
-          ]
+          ],
+          "legacy_custom_auprc": 0.829774600268579,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7845214175426969,
+            0.8699261438695405
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_18_tier_1": {
           "n_cycles": 1080,
@@ -2857,14 +2983,20 @@
           ],
           "auprc": 0.8317522873049641,
           "auprc_cluster_bootstrap_95ci": [
-            0.787569081697247,
-            0.868243740525834
+            0.7880280788655005,
+            0.8684372551028742
           ],
           "brier": 0.1631232821004016,
           "brier_cluster_bootstrap_95ci": [
             0.1487946267275934,
             0.177922634727909
-          ]
+          ],
+          "legacy_custom_auprc": 0.8317522873049641,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.787569081697247,
+            0.868243740525834
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_18_tier_2": {
           "n_cycles": 1080,
@@ -2992,14 +3124,20 @@
           ],
           "auprc": 0.8779053367130706,
           "auprc_cluster_bootstrap_95ci": [
-            0.8420617248903424,
-            0.9112254394244104
+            0.8423543790013411,
+            0.9113867736127643
           ],
           "brier": 0.1239556989278957,
           "brier_cluster_bootstrap_95ci": [
             0.11007170357444863,
             0.13831391303670132
-          ]
+          ],
+          "legacy_custom_auprc": 0.8779053367130706,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.8420617248903424,
+            0.9112254394244104
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_18_tier_3": {
           "n_cycles": 1080,
@@ -3130,16 +3268,22 @@
             0.8830061720225771,
             0.9252384869731589
           ],
-          "auprc": 0.8875598137906201,
+          "auprc": 0.88755981379062,
           "auprc_cluster_bootstrap_95ci": [
-            0.8518688399899953,
-            0.9181866250651599
+            0.8522639723323486,
+            0.9183658954704917
           ],
           "brier": 0.12260823140565633,
           "brier_cluster_bootstrap_95ci": [
             0.10799001826854476,
             0.13598883883538232
-          ]
+          ],
+          "legacy_custom_auprc": 0.8875598137906201,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.8518688399899953,
+            0.9181866250651599
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         }
       }
     },
@@ -3265,16 +3409,22 @@
             0.8005352042757172,
             0.8623530368000482
           ],
-          "auprc": 0.8183485327641334,
+          "auprc": 0.8088978037989553,
           "auprc_cluster_bootstrap_95ci": [
-            0.7670306777318067,
-            0.8579863542136086
+            0.7596203539372955,
+            0.8509201504093944
           ],
           "brier": 0.16443106007628275,
           "brier_cluster_bootstrap_95ci": [
             0.14829490965249717,
             0.18118842576589214
-          ]
+          ],
+          "legacy_custom_auprc": 0.8183485327641334,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7670306777318067,
+            0.8579863542136086
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_10_tier_1": {
           "n_cycles": 1080,
@@ -3394,16 +3544,22 @@
             0.8024097504511833,
             0.8605361910734206
           ],
-          "auprc": 0.8183485327641334,
+          "auprc": 0.8088978037989553,
           "auprc_cluster_bootstrap_95ci": [
-            0.7714291271595216,
-            0.8579850444327296
+            0.7630455898942465,
+            0.8510630153732148
           ],
           "brier": 0.16443106007628275,
           "brier_cluster_bootstrap_95ci": [
             0.1496349176461072,
             0.17974028703090877
-          ]
+          ],
+          "legacy_custom_auprc": 0.8183485327641334,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7714291271595216,
+            0.8579850444327296
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_10_tier_2": {
           "n_cycles": 1080,
@@ -3523,16 +3679,22 @@
             0.7986575172587858,
             0.8627598405438027
           ],
-          "auprc": 0.8183485327641334,
+          "auprc": 0.8088978037989553,
           "auprc_cluster_bootstrap_95ci": [
-            0.7695127861095039,
-            0.8565976353750909
+            0.7615262776692704,
+            0.8499413479616267
           ],
           "brier": 0.16443106007628275,
           "brier_cluster_bootstrap_95ci": [
             0.1478664524856588,
             0.1814625475622176
-          ]
+          ],
+          "legacy_custom_auprc": 0.8183485327641334,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7695127861095039,
+            0.8565976353750909
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_10_tier_3": {
           "n_cycles": 1080,
@@ -3652,16 +3814,22 @@
             0.7998486227654729,
             0.8637242272343115
           ],
-          "auprc": 0.8183485327641334,
+          "auprc": 0.8088978037989553,
           "auprc_cluster_bootstrap_95ci": [
-            0.7736308277709278,
-            0.8587957837967211
+            0.7654400143447762,
+            0.8503350658367533
           ],
           "brier": 0.16443106007628275,
           "brier_cluster_bootstrap_95ci": [
             0.14795137676962675,
             0.18126753575730664
-          ]
+          ],
+          "legacy_custom_auprc": 0.8183485327641334,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7736308277709278,
+            0.8587957837967211
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_14_tier_0": {
           "n_cycles": 1080,
@@ -3778,16 +3946,22 @@
             0.8001819962463049,
             0.8609686829998524
           ],
-          "auprc": 0.8183485327641334,
+          "auprc": 0.8088978037989553,
           "auprc_cluster_bootstrap_95ci": [
-            0.7742572607219742,
-            0.8567500502769771
+            0.7655808455310892,
+            0.8486294187891419
           ],
           "brier": 0.16443106007628275,
           "brier_cluster_bootstrap_95ci": [
             0.14924832337528424,
             0.1810391940449994
-          ]
+          ],
+          "legacy_custom_auprc": 0.8183485327641334,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7742572607219742,
+            0.8567500502769771
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_14_tier_1": {
           "n_cycles": 1080,
@@ -3907,16 +4081,22 @@
             0.8013276238903652,
             0.8621023589004699
           ],
-          "auprc": 0.8183485327641334,
+          "auprc": 0.8088978037989553,
           "auprc_cluster_bootstrap_95ci": [
-            0.7697920132966806,
-            0.8579415981274114
+            0.7628148022869377,
+            0.8505678091029388
           ],
           "brier": 0.16443106007628275,
           "brier_cluster_bootstrap_95ci": [
             0.1487122237100806,
             0.18033071945381893
-          ]
+          ],
+          "legacy_custom_auprc": 0.8183485327641334,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7697920132966806,
+            0.8579415981274114
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_14_tier_2": {
           "n_cycles": 1080,
@@ -4044,14 +4224,20 @@
           ],
           "auprc": 0.8295663197025093,
           "auprc_cluster_bootstrap_95ci": [
-            0.7879813583527779,
-            0.8695534501759452
+            0.7891021037175296,
+            0.8702688313144654
           ],
           "brier": 0.15567103851203873,
           "brier_cluster_bootstrap_95ci": [
             0.14031121571880592,
             0.1721839280721015
-          ]
+          ],
+          "legacy_custom_auprc": 0.8295663197025093,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7879813583527779,
+            0.8695534501759452
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_14_tier_3": {
           "n_cycles": 1080,
@@ -4182,16 +4368,22 @@
             0.8198865795723862,
             0.876847330636035
           ],
-          "auprc": 0.8291854309665887,
+          "auprc": 0.8291854309665885,
           "auprc_cluster_bootstrap_95ci": [
-            0.7852038419661208,
-            0.8678828463510223
+            0.7859092043501833,
+            0.8680990957454685
           ],
           "brier": 0.15748775414543414,
           "brier_cluster_bootstrap_95ci": [
             0.1415503109647078,
             0.17371600763669548
-          ]
+          ],
+          "legacy_custom_auprc": 0.8291854309665887,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7852038419661208,
+            0.8678828463510223
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_18_tier_0": {
           "n_cycles": 1080,
@@ -4308,16 +4500,22 @@
             0.8017923054971059,
             0.8625599384711061
           ],
-          "auprc": 0.8183485327641334,
+          "auprc": 0.8088978037989553,
           "auprc_cluster_bootstrap_95ci": [
-            0.7731359423331771,
-            0.8555128113758115
+            0.7650721835945017,
+            0.847621211492879
           ],
           "brier": 0.16443106007628275,
           "brier_cluster_bootstrap_95ci": [
             0.1479261286035091,
             0.1803194826071625
-          ]
+          ],
+          "legacy_custom_auprc": 0.8183485327641334,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7731359423331771,
+            0.8555128113758115
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_18_tier_1": {
           "n_cycles": 1080,
@@ -4437,16 +4635,22 @@
             0.8001130576635344,
             0.8620616215301475
           ],
-          "auprc": 0.8183485327641334,
+          "auprc": 0.8088978037989553,
           "auprc_cluster_bootstrap_95ci": [
-            0.7698074931735905,
-            0.8592915393665245
+            0.761077753958308,
+            0.852433378375091
           ],
           "brier": 0.16443106007628275,
           "brier_cluster_bootstrap_95ci": [
             0.14833684977440725,
             0.18056084038034845
-          ]
+          ],
+          "legacy_custom_auprc": 0.8183485327641334,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.7698074931735905,
+            0.8592915393665245
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_18_tier_2": {
           "n_cycles": 1080,
@@ -4574,14 +4778,20 @@
           ],
           "auprc": 0.8740072654533065,
           "auprc_cluster_bootstrap_95ci": [
-            0.8345408648111243,
-            0.907686831441005
+            0.8354317299452669,
+            0.9081997832943208
           ],
           "brier": 0.11761664898688869,
           "brier_cluster_bootstrap_95ci": [
             0.1042852955066493,
             0.132034663329018
-          ]
+          ],
+          "legacy_custom_auprc": 0.8740072654533065,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.8345408648111243,
+            0.907686831441005
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         },
         "day_18_tier_3": {
           "n_cycles": 1080,
@@ -4712,16 +4922,22 @@
             0.8820831730100651,
             0.926945616596309
           ],
-          "auprc": 0.8747332788439369,
+          "auprc": 0.8747332788439368,
           "auprc_cluster_bootstrap_95ci": [
-            0.8366861994797372,
-            0.910277613807725
+            0.8372113362050535,
+            0.9104132721390329
           ],
           "brier": 0.11827832086707947,
           "brier_cluster_bootstrap_95ci": [
             0.1032399078339581,
             0.1335886966311926
-          ]
+          ],
+          "legacy_custom_auprc": 0.8747332788439369,
+          "legacy_custom_auprc_cluster_bootstrap_95ci": [
+            0.8366861994797372,
+            0.910277613807725
+          ],
+          "auprc_definition": "sklearn average_precision_score; threshold-grouped ties"
         }
       }
     }

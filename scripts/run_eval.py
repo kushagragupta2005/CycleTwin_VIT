@@ -5,6 +5,7 @@ import json
 import subprocess
 import joblib
 import sklearn
+from sklearn.metrics import average_precision_score
 from pathlib import Path
 import sys
 
@@ -30,10 +31,14 @@ def auc(y, s):
     return float((np.sum(ranks * positives) - n1 * (n1 + 1) / 2) / (n1 * n0))
 
 
-def auprc(y, s):
+def legacy_auprc(y, s):
     y = np.asarray(y)[np.argsort(-np.asarray(s))]
     tp, fp = np.cumsum(y), np.cumsum(1 - y)
     return float(np.sum((tp / np.maximum(tp + fp, 1)) * y) / tp[-1]) if tp[-1] else None
+
+
+def auprc(y,s):
+    return float(average_precision_score(y,s)) if np.sum(y) else None
 
 
 def brier(y, s): return float(np.mean((np.asarray(y) - np.asarray(s)) ** 2))
@@ -150,6 +155,7 @@ def main(seeds=SEEDS, output_path="results.json", artifact_dir="models", predict
                            for row, score in zip(partitions["test"], fitted.predict_proba(x_test))]
                 methods = {"auroc": lambda z: auc([r["y"] for r in z], [r["score"] for r in z]),
                            "auprc": lambda z: auprc([r["y"] for r in z], [r["score"] for r in z]),
+                           "legacy_custom_auprc": lambda z: legacy_auprc([r["y"] for r in z], [r["score"] for r in z]),
                            "brier": lambda z: brier([r["y"] for r in z], [r["score"] for r in z])}
                 ovulation = [r for r in records if r["ov"] > 0]
                 output = {"n_cycles": len(records), "event_rate": float(np.mean([r["y"] for r in records])),

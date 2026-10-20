@@ -69,6 +69,19 @@ def build(write=True):
         claims['models'].update(json.loads(frozen_card.read_text())['models'])
         claims['source_sha256']['models/frozen/model_card.json']=hashlib.sha256(frozen_card.read_bytes()).hexdigest()
         claims['source_sha256']['results_final_frozen.json']=hashlib.sha256(frozen.read_bytes()).hexdigest()
+    reporting=ROOT/'results_reporting.json'
+    claims['reporting']=json.loads(reporting.read_text()) if reporting.exists() else None
+    if reporting.exists():
+        claims['source_sha256']['results_reporting.json']=hashlib.sha256(reporting.read_bytes()).hexdigest()
+        for meta in claims['models'].values():
+            dataset='frozen' if str(meta['seed']) in claims['reporting']['frozen'] else 'development'
+            key=f"day_{meta['day']}_tier_{meta['requested_tier']}"
+            point=claims['reporting'][dataset][str(meta['seed'])][key]['all']
+            meta['metrics']['auprc']=point['average_precision']
+            meta['metrics']['auprc_cluster_bootstrap_95ci']=point['intervals']['average_precision']['95ci']
+            meta['metrics']['auprc_definition']='Standard sklearn average precision; raw legacy value retained separately'
+            meta['metrics']['ece']=point['ece']
+            meta['metrics']['calibration_diagnostic']=point['calibration_diagnostic']
     submission=ROOT/'docs/submission_status.json'
     claims['submission']=json.loads(submission.read_text()) if submission.exists() else None
     claims['deliverables']=compose(claims)
