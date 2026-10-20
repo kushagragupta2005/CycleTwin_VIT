@@ -27,6 +27,12 @@
 - Made the timing-range failure explicit with a warning icon, `Failed` label, and red card. Detailed mode reveals the associated technical metric and tier/day under every finding.
 - Added `Evidence`: frozen tier results, synthetic uncertainty and one-alert-policy checks, optional diagnostics, local operations details, and visible research limitations.
 
+## Stage 5 — Meet Kushi fictional scenario
+
+- Added an isolated, explicitly fictional Kushi page with the declared no-score selection rule, generated history, selectable scenarios, sensor tiers, and forecast snapshots.
+- Kept static simulator internals inside an advanced disclosure, labelled oracle-adjacent and separate from hormone measurements or real EHR data.
+- Added live fictional guardrails that reuse the existing fail-closed safety path; a hormonal-contraception check was verified to withhold the score.
+
 ## Run and rollback
 
 ```sh

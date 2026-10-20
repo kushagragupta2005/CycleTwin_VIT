@@ -8,6 +8,7 @@ import streamlit as st
 from src.claims import load_claims
 from ui3.evidence import render_evidence
 from ui3.home import render_home
+from ui3.kushi import render_kushi
 from ui3.navigation import render_top_navigation
 from ui3.patient import render_patient
 from ui3.patients import render_patients
@@ -33,6 +34,8 @@ elif page == "One patient":
     render_patient(language=language, claims=claims)
 elif page == "Evidence":
     render_evidence(claims=claims, language=language)
+elif page == "Meet Kushi":
+    render_kushi(claims=claims, language=language)
 else:
     st.markdown(f"# {page}")
     st.markdown(
