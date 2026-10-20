@@ -1,0 +1,188 @@
+test_calendar_day_helper_receives_only_completed_history (test_audit_fixes.AuditFixTests) ... ok
+test_missing_or_invalid_safety_information_fails_closed (test_audit_fixes.AuditFixTests) ... ok
+test_uploaded_xml_temporary_file_is_deleted_even_on_failure (test_audit_fixes.AuditFixTests) ... ok
+test_all_deliverable_metric_strings_match_claims (test_claims.ClaimsTests) ... ok
+test_claims_are_rebuilt_from_artifacts (test_claims.ClaimsTests) ... ok
+test_unknown_or_stale_metric_is_rejected (test_claims.ClaimsTests) ... ok
+test_apple_roundtrip_shape (test_core.CoreTests) ... ok
+test_forecast_bounded (test_core.CoreTests) ... ok
+test_generator_determinism (test_core.CoreTests) ... ok
+test_patient_cycles_stay_in_one_partition (test_core.CoreTests) ... ok
+test_abstention_hides_all_personal_prediction_outputs (test_dashboard.DashboardTests) ... 2026-10-20 14:10:42.291 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-20 14:10:42.674 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:42.894 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:43.055 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+ok
+test_dashboard_uses_fitted_inference_exactly (test_dashboard.DashboardTests) ... 2026-10-20 14:10:43.158 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-20 14:10:43.285 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:43.328 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+ok
+test_tier0_day_estimate_uses_calendar_history (test_dashboard.DashboardTests) ... 2026-10-20 14:10:43.435 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-20 14:10:43.537 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:43.580 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:43.731 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:43.900 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:44.047 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:44.090 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+ok
+test_views_and_guided_steps_render (test_dashboard.DashboardTests) ... 2026-10-20 14:10:44.165 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-20 14:10:44.373 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:44.418 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:44.576 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:44.577 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:44.682 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:44.726 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:44.883 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:44.955 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:44.999 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+ok
+test_calendar_feature_has_no_current_or_future_cycle_value (test_fitted_pipeline.FittedPipelineTests) ... ok
+test_platt_model_outputs_probabilities_and_validation_threshold (test_fitted_pipeline.FittedPipelineTests) ... ok
+test_frozen_run_lock_cannot_be_acquired_twice (test_frozen_guard.FrozenGuardTests) ... ok
+test_all_chapters_scenarios_and_guardrails_render (test_kushi.KushiTests) ... 2026-10-20 14:10:45.083 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-20 14:10:45.567 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:45.621 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:45.674 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:45.779 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:45.914 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:46.021 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:46.125 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:46.177 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 14:10:46.228 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+ok
+test_persona_selection_never_uses_predictions (test_kushi.KushiTests) ... ok
+test_all_saved_models_and_heldout_predictions_exist (test_persisted_inference.PersistedInferenceTests) ... ok
+test_classification_regression_to_audited_results (test_persisted_inference.PersistedInferenceTests) ... ok
+test_inference_does_not_require_current_cycle_truth (test_persisted_inference.PersistedInferenceTests) ... ok
+test_persisted_pipeline_matches_independent_benchmark_refit (test_persisted_inference.PersistedInferenceTests) ... ok
+test_alert_budget_and_abstention (test_safety_and_conformal.SafetyTests) ... ok
+test_all_abstention_rules_are_explicit (test_safety_and_conformal.SafetyTests) ... ok
+test_cgm_is_deterministic_and_uses_postmeal_window (test_safety_and_conformal.SafetyTests) ... ok
+test_conformal_helpers_are_bounded (test_safety_and_conformal.SafetyTests) ... ok
+test_recording_runbook_has_full_duration_and_limitations (test_submission.SubmissionTests) ... ok
+test_technical_checklist_passes_and_human_work_is_not_claimed (test_submission.SubmissionTests) ... ok
+test_metabolic_units_sanity_and_reverse_coupling (test_twin.TwinTests) ... ok
+test_reproductive_state_units_and_positivity (test_twin.TwinTests) ... ok
+test_shared_latent_monotonic_growth_and_sweep (test_twin.TwinTests) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 6.734s
+
+OK
+PASS: README, scripts, native PPTX and PDF claim strings match generated claims

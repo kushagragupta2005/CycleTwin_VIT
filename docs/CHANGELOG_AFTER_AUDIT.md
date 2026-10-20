@@ -47,3 +47,9 @@ All performance claims below refer to synthetic data. The immutable pre-change c
 - Generated a minute-by-minute recording runbook from claims, using Kushi as the narrative spine and reserving the final limitation segment. Existing short/long scripts and the new runbook are source-checked by CI.
 - All technical checklist items pass. Human-only items remain explicit: the user deferred video recording/upload/link; eligibility/registered roster confirmation and the leader's private contact fields/final Unstop submission require the human. No recording, upload, registration verification or platform submission is claimed.
 - All 31 unit/AppTest tests passed. A5's published CI passed; its receipt is saved. Classification metrics are unchanged.
+
+## B1 preparation — protocol freeze before any new-seed results
+
+- Predeclared seeds, existing logistic pipeline and follow-up reporting/robustness/state-estimator criteria in docs/frozen_protocol.json before generating any reserved-seed data. This includes the state-estimator non-inferiority margin and calibration/robustness settings, preventing their choice from reserved-test outcomes.
+- Added a separate once-only runner that requires the exact clean frozen-v1 tag and refuses an existing result or execution lock. Development artifacts are untouched.
+- All 32 unit/AppTest preflight tests passed. A preparation commit and tag precede the results commit so the executable code is truly frozen before execution.

@@ -95,9 +95,9 @@ def cluster_ci(records, metric, reps=1000, seed=808):
 def y_values(rows): return np.asarray([row["event"] for row in rows], dtype=int)
 
 
-def persist_selected(fitted, seed, day, tier, selected_tier, threshold, metrics, cards):
-    path = Path("models") / f"seed_{seed}_day_{day}_tier_{tier}.joblib"
-    path.parent.mkdir(exist_ok=True)
+def persist_selected(fitted, seed, day, tier, selected_tier, threshold, metrics, cards, artifact_dir="models"):
+    path = Path(artifact_dir) / f"seed_{seed}_day_{day}_tier_{tier}.joblib"
+    path.parent.mkdir(exist_ok=True, parents=True)
     joblib.dump(fitted, path, compress=3)
     lr = fitted.base.named_steps["lr"]
     cards[f"seed_{seed}_day_{day}_tier_{tier}"] = {
@@ -113,11 +113,11 @@ def persist_selected(fitted, seed, day, tier, selected_tier, threshold, metrics,
     }
 
 
-def main():
+def main(seeds=SEEDS, output_path="results.json", artifact_dir="models", prediction_path="results/predictions_heldout.csv", scope="synthetic development"):
     cards, heldout = {}, []
     results = {"scope": "synthetic internal held-out simulation only; not clinical performance", "plan": "docs/eval_plan.md",
                "model": "sklearn LogisticRegression fitted on train; tier fallback selected by validation Brier, Platt calibration and F1 threshold selection on validation only", "seeds": {}}
-    for seed in SEEDS:
+    for seed in seeds:
         partitions = {"train": [], "validation": [], "test": []}
         for row in attach_prior_cycle_lengths(generate(seed)): partitions[patient_partition(row["patient"])].append(row)
         seed_result = {"patients": {name: len({r["patient"] for r in rows}) for name, rows in partitions.items()}, "metrics": {}}
@@ -165,7 +165,7 @@ def main():
                     output[name] = method(records)
                     output[f"{name}_cluster_bootstrap_95ci"] = cluster_ci(records, method, seed=seed + day + tier)
                 seed_result["metrics"][f"day_{day}_tier_{tier}"] = output
-                persist_selected(fitted, seed, day, tier, selected_tier, threshold, output, cards)
+                persist_selected(fitted, seed, day, tier, selected_tier, threshold, output, cards, artifact_dir)
                 heldout.extend({"seed": seed, "day": day, "tier": tier, "selected_tier": selected_tier,
                                 "patient": r["patient"], "cycle": r["cycle"], "archetype": r["phenotype"],
                                 "event": r["y"], "probability": r["score"], "threshold": threshold,
@@ -174,19 +174,21 @@ def main():
                 print(f"Saved synthetic seed={seed}, day={day}, tier={tier}, selected={selected_tier}", flush=True)
         results["seeds"][str(seed)] = seed_result
 
-    Path("results.json").write_text(json.dumps(results, indent=2) + "\n")
+    results["evaluation_status"]=scope
+    Path(output_path).write_text(json.dumps(results, indent=2) + "\n")
     sources = [Path("scripts/run_eval.py"), *Path("src").glob("*.py")]
     card = {"scope": "synthetic-only; not clinical performance", "sklearn_version": sklearn.__version__,
             "git_hash": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
             "source_sha256": {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},
             "training_partitions": "train fit; validation calibration/fallback/threshold; test reporting only",
             "models": cards}
-    Path("models/model_card.json").write_text(json.dumps(card, indent=2) + "\n")
-    Path("results").mkdir(exist_ok=True)
-    with Path("results/predictions_heldout.csv").open("w", newline="") as handle:
+    card["evaluation_status"]=scope
+    (Path(artifact_dir)/"model_card.json").write_text(json.dumps(card, indent=2) + "\n")
+    Path(prediction_path).parent.mkdir(exist_ok=True,parents=True)
+    with Path(prediction_path).open("w", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(heldout[0]))
         writer.writeheader(); writer.writerows(heldout)
-    print("Wrote results.json: fitted on train, calibrated and threshold-selected on validation, evaluated once on held-out patients.")
+    print(f"Wrote {output_path}: synthetic train/validation choices precede test reporting; status={scope}.")
 
 
 if __name__ == "__main__":
