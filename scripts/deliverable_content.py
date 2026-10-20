@@ -79,6 +79,13 @@ def compose(c):
                f"At +0.01°C/day drift: AUROC {metric(drift['mean_auroc'])}, Brier {metric(drift['mean_brier'])}",
                f"At a +4-day generated timing shift on independent synthetic cohorts: AUROC {metric(shift['mean_auroc'])}, Brier {metric(shift['mean_brier'])}",
                'These are simulator sensitivity tests, not device robustness or clinical validation.'])
+    if c.get('bayesian_twin'):
+        twin=c['bayesian_twin'];means=twin['mean_across_seeds'];ci=twin['pooled_patient_cluster_95ci']
+        slide('Timing-posterior check','Train-only calendar/static prior plus temperature, RHR and HRV likelihoods',
+              [f"Synthetic Bayesian-posterior Brier {metric(means['twin_brier'])}; fitted logistic Brier {metric(means['logistic_brier'])}",
+               f"Twin minus logistic Brier {metric(means['twin_minus_logistic_brier'])}, patient-cluster 95% CI [{metric(ci[0])}, {metric(ci[1])}]",
+               twin['status'],
+               'Separate from the logistic score, threshold, safety gate and alert policy.'])
     slide('What the clinician view shows','Decision-support research display',
           ['Fitted probability beside its own validation threshold and held-out model evidence',
            'Exact additive feature contributions and explicit imputation',
@@ -219,6 +226,10 @@ Code uses the [MIT License](LICENSE). All project datasets are synthetic. Publis
         conditions=c['robustness']['conditions'];missing=conditions['additional_missing_fraction=0.6'];drift=conditions['device_drift_c_per_day=0.01'];shift=conditions['ovulation_base_shift_days=4']
         robustness='## Frozen synthetic robustness extension\n\nThe fixed day-18 Tier-2 models and thresholds were tested under the predeclared synthetic sweeps. With 60% additional forced missing temperature readings, mean AUROC was {ma:.6f}, Brier {mb:.6f}, and safety withholding {mw:.6f}. At +0.01°C/day device drift, mean AUROC was {da:.6f} and Brier {db:.6f}. A +4-day generated timing shift on independent synthetic cohorts gave mean AUROC {sa:.6f} and Brier {sb:.6f}. These are simulator sensitivity analyses, not validation of a wearable device or clinical workflow. Full values: results_robustness_frozen.json and results/robustness_frozen.csv.\n\n![Frozen synthetic robustness](docs/figures/robustness.svg)\n\n'.format(ma=missing['mean_auroc'],mb=missing['mean_brier'],mw=missing['mean_safety_withhold_rate'],da=drift['mean_auroc'],db=drift['mean_brier'],sa=shift['mean_auroc'],sb=shift['mean_brier'])
         readme=readme.replace('## Evidence and limitations',robustness+'## Evidence and limitations')
+    if c.get('bayesian_twin'):
+        twin=c['bayesian_twin'];means=twin['mean_across_seeds'];ci=twin['pooled_patient_cluster_95ci']
+        section='## Frozen synthetic timing-posterior check\n\nA train-only discrete Bayesian posterior used a calendar/static prior and pre/post-event temperature, RHR and HRV likelihoods to estimate generated timing or absence. Its mean synthetic Brier was {tb:.6f}, versus {lb:.6f} for the frozen fitted logistic score; difference {d:.6f}, patient-cluster 95% CI [{lo:.6f}, {hi:.6f}]. Status: {status}. It remains a separately reported interpretation layer and does not replace the score, threshold, safety gate or alert policy. Full artifact: results_bayesian_twin_frozen.json and models/twin/.\n\n'.format(tb=means['twin_brier'],lb=means['logistic_brier'],d=means['twin_minus_logistic_brier'],lo=ci[0],hi=ci[1],status=twin['status'])
+        readme=readme.replace('## Evidence and limitations',section+'## Evidence and limitations')
     videos={}
     for duration in (team['minimum_video_minutes'], cfg['short_video_minutes']):
         short_titles=('CycleTwin','Meet Kushi','Evidence at the latest sensor snapshot','Validity limits')

@@ -85,6 +85,13 @@ At +0.01°C/day drift: AUROC 0.906, Brier 0.300
 At a +4-day generated timing shift on independent synthetic cohorts: AUROC 0.863, Brier 0.145
 These are simulator sensitivity tests, not device robustness or clinical validation.
 
+## Timing-posterior check
+Train-only calendar/static prior plus temperature, RHR and HRV likelihoods
+Synthetic Bayesian-posterior Brier 0.098; fitted logistic Brier 0.117
+Twin minus logistic Brier -0.018, patient-cluster 95% CI [-0.022, -0.014]
+noninferior synthetic check; still separate interpretation layer
+Separate from the logistic score, threshold, safety gate and alert policy.
+
 ## What the clinician view shows
 Decision-support research display
 Fitted probability beside its own validation threshold and held-out model evidence

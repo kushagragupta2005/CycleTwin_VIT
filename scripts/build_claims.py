@@ -104,6 +104,10 @@ def build(write=True):
     claims['robustness']=json.loads(robustness.read_text()) if robustness.exists() else None
     if robustness.exists():
         claims['source_sha256']['results_robustness_frozen.json']=hashlib.sha256(robustness.read_bytes()).hexdigest()
+    bayesian=ROOT/'results_bayesian_twin_frozen.json'
+    claims['bayesian_twin']=json.loads(bayesian.read_text()) if bayesian.exists() else None
+    if bayesian.exists():
+        claims['source_sha256']['results_bayesian_twin_frozen.json']=hashlib.sha256(bayesian.read_bytes()).hexdigest()
     submission=ROOT/'docs/submission_status.json'
     claims['submission']=json.loads(submission.read_text()) if submission.exists() else None
     claims['deliverables']=compose(claims)

@@ -1,0 +1,56 @@
+{
+  "scope": "Synthetic train-only Bayesian timing posterior compared with frozen logistic score; it does not change deployed inference.",
+  "protocol": {
+    "hypotheses": "Ovulation day 1..45 or absent, using the generator's event-day convention.",
+    "prior": "Train-fitted calendar/static prior for timing and absence, no dynamic test labels.",
+    "likelihood": "Train-only pre/post-event Gaussian temperature, RHR and HRV parameters. Skip missing observations. Fixed likelihood temperature of one.",
+    "credible_mass": 0.8,
+    "noninferiority_brier_margin": 0.01,
+    "primary_comparison": "Day-18 Tier-2, patient-cluster CI for twin Brier minus logistic Brier. Promote only if the upper 95% bound is at most the predeclared margin. Otherwise retain the twin as an interpretation layer."
+  },
+  "day": 18,
+  "tier": 2,
+  "seeds": {
+    "7001": {
+      "n_cycles": 1080,
+      "twin_brier": 0.1012058937241601,
+      "logistic_brier": 0.11768153721363649,
+      "twin_minus_logistic_brier": -0.016475643489476388,
+      "patient_cluster_95ci": [
+        -0.02248915856143749,
+        -0.00985017738882347
+      ]
+    },
+    "7003": {
+      "n_cycles": 1080,
+      "twin_brier": 0.10251478619137978,
+      "logistic_brier": 0.11514195344661929,
+      "twin_minus_logistic_brier": -0.012627167255239505,
+      "patient_cluster_95ci": [
+        -0.02027154805374541,
+        -0.00510618793954755
+      ]
+    },
+    "7007": {
+      "n_cycles": 1080,
+      "twin_brier": 0.09173797659594943,
+      "logistic_brier": 0.11777622284188599,
+      "twin_minus_logistic_brier": -0.026038246245936564,
+      "patient_cluster_95ci": [
+        -0.03283100168654065,
+        -0.01936766656585495
+      ]
+    }
+  },
+  "mean_across_seeds": {
+    "twin_brier": 0.09848621883716309,
+    "logistic_brier": 0.11686657116738058,
+    "twin_minus_logistic_brier": -0.018380352330217484
+  },
+  "pooled_patient_cluster_95ci": [
+    -0.022494492837941076,
+    -0.014069698252772838
+  ],
+  "promotion": "integrate only if pooled upper patient-cluster bound is <= margin; this implementation remains a separate interpretation layer.",
+  "status": "noninferior synthetic check; still separate interpretation layer"
+}

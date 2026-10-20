@@ -59,3 +59,15 @@ def render_robustness(claims):
     path=Path('docs/figures/robustness.svg')
     if path.exists(): st.image(str(path),caption='AUROC and Brier across the predeclared synthetic sweeps. Safety-withhold rate is in the generated JSON and CSV.')
     st.caption('Added missing readings, added noise, bias, drift and generated timing shifts are sensitivity tests. They do not validate any real device or clinical workflow.')
+
+
+def render_bayesian_twin(claims):
+    result=claims.get('bayesian_twin')
+    if not result: return
+    means=result['mean_across_seeds'];ci=result['pooled_patient_cluster_95ci']
+    st.subheader('Frozen synthetic timing-posterior check')
+    st.caption('In plain words: a train-only calendar/static prior plus temperature, RHR and HRV likelihoods estimates a distribution over generated ovulation days or absence.')
+    st.dataframe(pd.DataFrame([{'Twin Brier':means['twin_brier'],'Logistic Brier':means['logistic_brier'],
+                                'Twin minus logistic Brier':means['twin_minus_logistic_brier'],'Patient-cluster 95% CI':ci,
+                                'Status':result['status']}]),hide_index=True,use_container_width=True)
+    st.caption('This synthetic timing posterior is reported separately. It does not replace the fitted logistic score, threshold, safety gate or alert policy.')

@@ -166,6 +166,10 @@ The fixed day-18 Tier-2 models and thresholds were tested under the predeclared 
 
 ![Frozen synthetic robustness](docs/figures/robustness.svg)
 
+## Frozen synthetic timing-posterior check
+
+A train-only discrete Bayesian posterior used a calendar/static prior and pre/post-event temperature, RHR and HRV likelihoods to estimate generated timing or absence. Its mean synthetic Brier was 0.098486, versus 0.116867 for the frozen fitted logistic score; difference -0.018380, patient-cluster 95% CI [-0.022494, -0.014070]. Status: noninferior synthetic check; still separate interpretation layer. It remains a separately reported interpretation layer and does not replace the score, threshold, safety gate or alert policy. Full artifact: results_bayesian_twin_frozen.json and models/twin/.
+
 ## Evidence and limitations
 
 - [Complete implementation audit](docs/audit_2026-10-20/CycleTwin_full_audit.md), a historical snapshot before the corrections.
