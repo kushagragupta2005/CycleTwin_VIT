@@ -46,7 +46,7 @@ def render_home(*, claims: dict, frozen_summary: list[dict], go_to, language: st
         "CycleTwin tests whether cycle history and wearable-style signals can produce an early warning from information available so far. "
         "Everything shown here is computer-generated: there are no real people, no hormone tests, and no diagnosis."
     )
-    tour, evidence = st.columns(2)
+    tour, evidence, _ = st.columns([1, 1, 2])
     tour.button("Start the 60-second tour", type="primary", on_click=go_to, args=("One patient",))
     evidence.button("Explore the evidence", on_click=go_to, args=("Evidence",))
 
@@ -126,6 +126,7 @@ def render_home(*, claims: dict, frozen_summary: list[dict], go_to, language: st
         '<article class="ct-card"><h3>A fictional scenario</h3><p>Follow a fictional student’s generated scenario to see the interface in context. '
         'Kushi is not a real person and her story is not performance evidence.</p></article>', unsafe_allow_html=True,
     )
+    st.markdown('<div class="ct-action-gap"></div>', unsafe_allow_html=True)
     st.button("Meet Kushi", on_click=go_to, args=("Meet Kushi",))
 
     st.markdown("## Limits in plain words")

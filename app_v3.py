@@ -8,6 +8,7 @@ import streamlit as st
 from src.claims import load_claims
 from ui3.home import render_home
 from ui3.navigation import render_top_navigation
+from ui3.patients import render_patients
 
 
 st.set_page_config(page_title="CycleTwin", layout="wide", initial_sidebar_state="collapsed")
@@ -24,6 +25,8 @@ def go_to(page: str) -> None:
 page, language = render_top_navigation()
 if page == "Home":
     render_home(claims=claims, frozen_summary=frozen_summary, go_to=go_to, language=language)
+elif page == "Synthetic patients":
+    render_patients(language=language, go_to=go_to)
 else:
     st.markdown(f"# {page}")
     st.markdown(
