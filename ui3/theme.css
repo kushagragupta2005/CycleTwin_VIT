@@ -87,6 +87,9 @@ p { max-width: 70ch; }
 .ct-table tr:last-child td { border-bottom:0; }
 .ct-progress { background:#e6edeb; border-radius:999px; display:inline-block; height:.45rem; overflow:hidden; vertical-align:middle; width:4.2rem; }
 .ct-progress > span { background:var(--ct-teal); display:block; height:100%; }
+.ct-abstain { background:var(--ct-withheld-soft); border:1px solid #8197a3; border-radius:var(--ct-radius); color:var(--ct-ink); margin:1.5rem 0; padding:1.15rem 1.25rem; }
+.ct-chart-note { border-left:3px solid var(--ct-teal); color:var(--ct-muted); font-size:.94rem; line-height:1.55; margin:.9rem 0; padding-left:.85rem; }
+.ct-inline-legend { color:var(--ct-muted); display:flex; flex-wrap:wrap; font-size:.83rem; gap:.75rem 1.1rem; margin:.65rem 0; }
 
 button, input, [role="combobox"] { border-color:var(--ct-control-border) !important; }
 button:focus-visible, input:focus-visible, [role="combobox"]:focus-visible, [role="radio"]:focus-visible { outline:3px solid var(--ct-teal) !important; outline-offset:2px !important; }

@@ -14,6 +14,13 @@
 - Each row uses an icon and text for its status: not flagged, flagged for review, or score withheld. The tier-specific scores and withheld states are generated through the existing inference and safety paths.
 - Preserved the selected generated patient in the existing session state so the following patient-view stage can open it. No model, data, score, threshold, or safety-rule logic changed.
 
+## Stage 3 — individual generated-record view
+
+- Added `One patient`, which uses the selected generated record and the existing persisted Tier model, explicit safety gate, uncertainty helper, twin simulator, CGM illustration, sandbox, and one-alert policy.
+- Preserved the withheld-score path: it shows the fired rule and observed temperature trace while withholding the score, interval, feature evidence, sandbox, and alerts.
+- Made the failed synthetic ovulation-day band visible beside the temperature trace, including its inability to meet its 90% coverage target.
+- Added data-derived chart summaries, an optional fitted-feature table, and narrow-screen layout verification. No model, data, score, threshold, safety-rule, or simulator logic changed.
+
 ## Run and rollback
 
 ```sh

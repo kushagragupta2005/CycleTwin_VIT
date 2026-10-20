@@ -8,6 +8,7 @@ import streamlit as st
 from src.claims import load_claims
 from ui3.home import render_home
 from ui3.navigation import render_top_navigation
+from ui3.patient import render_patient
 from ui3.patients import render_patients
 
 
@@ -27,6 +28,8 @@ if page == "Home":
     render_home(claims=claims, frozen_summary=frozen_summary, go_to=go_to, language=language)
 elif page == "Synthetic patients":
     render_patients(language=language, go_to=go_to)
+elif page == "One patient":
+    render_patient(language=language, claims=claims)
 else:
     st.markdown(f"# {page}")
     st.markdown(
