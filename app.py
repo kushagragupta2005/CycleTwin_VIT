@@ -57,7 +57,15 @@ benchmark = benchmark_metrics()
 
 @st.cache_data
 def demo_cohort():
-    cohort=generate(223,patients=36,cycles=1)
+    generated=generate(223,patients=36,cycles=2)
+    history={}
+    cohort=[]
+    for record in generated:
+        prior=history.setdefault(record["patient"],[])
+        if record["cycle"]>0:
+            record["prior_cycle_lengths"]=prior[-3:]
+            cohort.append(record)
+        prior.append(record["cycle_length"])
     calibration=generate(211,patients=240,cycles=1)
     probs=[forecast(r,14,2) for r in calibration]
     labels=[r["event"] for r in calibration]

@@ -8,8 +8,13 @@ def forecast(cycle, day: int, tier: int):
     t = temps[np.isfinite(temps)]
     thermal = (float(np.mean(t[-4:])) - float(np.mean(t[:min(5, len(t))]))) if len(t) >= 6 else 0.0
     if tier == 0:
-        # A neutral period-log-only score until prior-cycle history is available.
-        score = -0.04
+        # Calendar-only heuristic from prior logged cycle lengths; no current-cycle target leakage.
+        history = np.asarray(cycle.get("prior_cycle_lengths", []), dtype=float)
+        if history.size:
+            prior_length = float(np.mean(history[-3:]))
+            score = 0.12 * (prior_length - 34.5) + 0.15
+        else:
+            score = -0.04
     elif tier == 1:
         score = .20 * float(np.nanmean(cycle["rhr"][:day]))
     else:
@@ -17,8 +22,11 @@ def forecast(cycle, day: int, tier: int):
     return float(sigmoid(score - .15))
 
 def estimate_ovulation_day(cycle, day: int, tier: int):
-    """Simple temperature coverline estimate; fixed fallback is an assumption."""
+    """Estimate from the prior-cycle calendar baseline or a temperature coverline."""
     if tier < 2:
+        history = np.asarray(cycle.get("prior_cycle_lengths", []), dtype=float)
+        if history.size:
+            return max(1, int(round(float(np.mean(history[-3:])) - 14)))
         return day + 10
     temps = cycle["temperature"][:day]
     baseline = temps[:min(5, len(temps))]
