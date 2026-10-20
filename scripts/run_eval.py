@@ -34,6 +34,19 @@ def auprc(y, s):
 def brier(y, s): return float(np.mean((np.asarray(y) - np.asarray(s)) ** 2))
 
 
+def brier_gain_ci(y, candidate, baseline, patient_ids, seed, reps=500):
+    """Patient-cluster CI for baseline Brier minus candidate Brier on validation."""
+    y = np.asarray(y, dtype=float)
+    gain = (y - np.asarray(baseline)) ** 2 - (y - np.asarray(candidate)) ** 2
+    ids = np.asarray(patient_ids)
+    unique = np.unique(ids)
+    grouped = {patient: gain[ids == patient] for patient in unique}
+    rng = np.random.default_rng(seed)
+    draws = [float(np.mean(np.concatenate([grouped[p] for p in rng.choice(unique, len(unique), replace=True)])))
+             for _ in range(reps)]
+    return [float(np.quantile(draws, .025)), float(np.quantile(draws, .975))]
+
+
 def threshold_metrics(records, threshold):
     y = np.asarray([r["y"] for r in records], dtype=int)
     flagged = np.asarray([r["score"] >= threshold for r in records])
@@ -78,7 +91,7 @@ def y_values(rows): return np.asarray([row["event"] for row in rows], dtype=int)
 
 
 results = {"scope": "synthetic internal held-out simulation only; not clinical performance", "plan": "docs/eval_plan.md",
-           "model": "sklearn LogisticRegression fitted on train; Platt calibration and F1 threshold selection on validation only", "seeds": {}}
+           "model": "sklearn LogisticRegression fitted on train; tier fallback selected by validation Brier, Platt calibration and F1 threshold selection on validation only", "seeds": {}}
 for seed in SEEDS:
     partitions = {"train": [], "validation": [], "test": []}
     for row in generate(seed): partitions[patient_partition(row["patient"])].append(row)
@@ -89,6 +102,22 @@ for seed in SEEDS:
             x_val = build_feature_matrix(partitions["validation"], day, tier)
             x_test = build_feature_matrix(partitions["test"], day, tier)
             fitted = PlattModel().fit(x_train, y_values(partitions["train"]), x_val, y_values(partitions["validation"]))
+            selected_tier = tier
+            if tier > 0:
+                baseline = PlattModel().fit(
+                    build_feature_matrix(partitions["train"], day, 0), y_values(partitions["train"]),
+                    build_feature_matrix(partitions["validation"], day, 0), y_values(partitions["validation"]))
+                y_val = y_values(partitions["validation"])
+                candidate_val_probability = fitted.predict_proba(x_val)
+                baseline_x_val = build_feature_matrix(partitions["validation"], day, 0)
+                baseline_val_probability = baseline.predict_proba(baseline_x_val)
+                gain_ci = brier_gain_ci(y_val, candidate_val_probability, baseline_val_probability,
+                                        [r["patient"] for r in partitions["validation"]], seed + day + tier)
+                if gain_ci[0] <= 0:
+                    fitted = baseline
+                    x_val = baseline_x_val
+                    x_test = build_feature_matrix(partitions["test"], day, 0)
+                    selected_tier = 0
             threshold = choose_f1_threshold(y_values(partitions["validation"]), fitted.predict_proba(x_val))
             records = [{"patient": row["patient"], "cycle": row["cycle"], "day": day, "phenotype": row["phenotype"],
                         "y": row["event"], "score": float(score), "ov": row["ovulation_day"],
@@ -99,7 +128,9 @@ for seed in SEEDS:
                        "brier": lambda z: brier([r["y"] for r in z], [r["score"] for r in z])}
             ovulation = [r for r in records if r["ov"] > 0]
             output = {"n_cycles": len(records), "event_rate": float(np.mean([r["y"] for r in records])),
-                      "tier_name": TIER_NAMES[tier], "features": feature_names(tier), "validation_selected_threshold": threshold,
+                      "tier_name": TIER_NAMES[tier], "features": feature_names(selected_tier),
+                      "validation_selected_feature_tier": selected_tier, "validation_brier_gain_ci": gain_ci if tier else None,
+                      "validation_selected_threshold": threshold,
                       "ovulation_day_mae": float(np.mean([abs(r["ov"] - r["ov_est"]) for r in ovulation])),
                       "ovulation_day_mae_cluster_bootstrap_95ci": cluster_ci(ovulation, lambda z: float(np.mean([abs(r["ov"] - r["ov_est"]) for r in z])), seed=seed + day + tier + 1),
                       **threshold_metrics(records, threshold)}

@@ -14,7 +14,7 @@ def _prior_cycle_lengths(rows):
     values = {}
     for row in sorted(rows, key=lambda x: (x["patient"], x["cycle"])):
         prior = history.get(row["patient"], [])
-        values[(row["patient"], row["cycle"])] = float(np.mean(prior)) if prior else np.nan
+        values[(row["patient"], row["cycle"])] = float(np.mean(prior[-3:])) if prior else np.nan
         history.setdefault(row["patient"], []).append(float(row["cycle_length"]))
     return values
 
