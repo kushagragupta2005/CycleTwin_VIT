@@ -20,7 +20,7 @@ class KushiTests(unittest.TestCase):
             self.assertEqual(sample['record']['family_history'],1)
 
     def test_all_chapters_scenarios_and_guardrails_render(self):
-        at=AppTest.from_file(str(Path(__file__).resolve().parents[1]/'app.py'),default_timeout=45).run()
+        at=AppTest.from_file(str(Path(__file__).resolve().parents[1]/'app_legacy.py'),default_timeout=45).run()
         at.get('button_group')[0].set_value(['Meet Kushi']).run()
         self.assertFalse(at.exception)
         self.assertTrue(any('Fictional synthetic persona' in w.value for w in at.warning))

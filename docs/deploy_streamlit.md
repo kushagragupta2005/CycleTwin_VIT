@@ -1,6 +1,8 @@
 # Deploy on Streamlit Community Cloud
 
-The main file is `app.py`. Dependencies are pinned in `requirements.txt`.
+The main file is `app.py`, which loads the reviewed v3 interface. The preserved
+pre-v3 dashboard is available locally as `app_legacy.py`. Dependencies are pinned
+in `requirements.txt`.
 
 1. Push the repository to GitHub.
 2. In Streamlit Community Cloud, create an app from the repository and select `app.py` as the main file.

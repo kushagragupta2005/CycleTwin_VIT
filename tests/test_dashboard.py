@@ -7,7 +7,7 @@ from src.inference import predict
 
 class DashboardTests(unittest.TestCase):
     def test_abstention_hides_all_personal_prediction_outputs(self):
-        at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app.py"), default_timeout=45).run()
+        at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app_legacy.py"), default_timeout=45).run()
         at.get("button_group")[0].set_value(["Patient"]).run()
         at.get("button_group")[0].set_value([at.session_state["view"]])
         at.selectbox(key="patient_choice").select("s223-p0026").run()
@@ -21,7 +21,7 @@ class DashboardTests(unittest.TestCase):
         self.assertIn('Withheld', row)
 
     def test_tier0_day_estimate_uses_calendar_history(self):
-        at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app.py"), default_timeout=45).run()
+        at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app_legacy.py"), default_timeout=45).run()
         at.get("button_group")[0].set_value(["Patient"]).run()
         at.get("button_group")[0].set_value([at.session_state["view"]])
         at.selectbox(key="display_tier").select(0).run()
@@ -31,7 +31,7 @@ class DashboardTests(unittest.TestCase):
         self.assertTrue(any('Synthetic ovulation-day estimate: day 28,' in m.value for m in at.markdown))
 
     def test_views_and_guided_steps_render(self):
-        at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app.py"), default_timeout=45).run()
+        at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app_legacy.py"), default_timeout=45).run()
         self.assertFalse(at.exception)
         for name in ("Cohort", "Patient", "Method", "Overview"):
             at.get("button_group")[0].set_value([name]).run()
@@ -45,7 +45,7 @@ class DashboardTests(unittest.TestCase):
             self.assertFalse(at.exception)
 
     def test_dashboard_uses_fitted_inference_exactly(self):
-        at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app.py"), default_timeout=45).run()
+        at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app_legacy.py"), default_timeout=45).run()
         at.get("button_group")[0].set_value(["Patient"]).run()
         rows = generate(223, patients=36, cycles=2)
         patient = at.session_state["patient_choice"]

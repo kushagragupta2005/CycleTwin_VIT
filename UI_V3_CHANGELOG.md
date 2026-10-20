@@ -47,11 +47,11 @@
 ## Run and rollback
 
 ```sh
-# Preview v3
-streamlit run app_v3.py
-
-# Return to the unchanged current application
+# Preview the deployed v3 interface
 streamlit run app.py
+
+# Review the preserved pre-v3 dashboard
+streamlit run app_legacy.py
 
 # Discard the isolated redesign branch
 git switch main
