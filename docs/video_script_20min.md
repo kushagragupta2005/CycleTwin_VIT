@@ -92,6 +92,13 @@ Twin minus logistic Brier -0.018, patient-cluster 95% CI [-0.022, -0.014]
 noninferior synthetic check; still separate interpretation layer
 Separate from the logistic score, threshold, safety gate and alert policy.
 
+## Simulated assay-like extension
+Post-freeze, noisy simulator proxies; neither clinical labs nor measured hormones
+Tier 2 plus simulated assay-like indices: AUROC 0.907, standard AP 0.885, Brier 0.118
+Original Tier-3 oracle-adjacent internal reference: AUROC 0.907, Brier 0.117
+The proxy uses positive exp(latent) values and independent 15% CV assay noise.
+It retains simulator-internal leakage risk and is not a clinical EHR-fusion claim.
+
 ## What the clinician view shows
 Decision-support research display
 Fitted probability beside its own validation threshold and held-out model evidence

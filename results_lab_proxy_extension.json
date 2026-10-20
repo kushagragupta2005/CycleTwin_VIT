@@ -1,0 +1,476 @@
+{
+  "scope": "Post-freeze synthetic extension. Assay-like indices are simulated from label-generating internal latents and are neither hormone measurements nor clinical EHR.",
+  "day": 18,
+  "assay_cv": 0.15,
+  "features": [
+    "Tier-2 wearable features",
+    "simulated_ir_assay_like_index",
+    "simulated_androgen_assay_like_index"
+  ],
+  "seeds": {
+    "7001": {
+      "n_cycles": 1080,
+      "positive_cycles": 569,
+      "auroc": 0.9042230850979678,
+      "average_precision": 0.8919511538062956,
+      "brier": 0.11785309307495195,
+      "validation_f1_threshold": 0.34514868364164364,
+      "sensitivity": 0.9595782073813708,
+      "ppv": 0.7936046511627907
+    },
+    "7003": {
+      "n_cycles": 1080,
+      "positive_cycles": 554,
+      "auroc": 0.907437783970021,
+      "average_precision": 0.8816276257614735,
+      "brier": 0.11774865493708746,
+      "validation_f1_threshold": 0.5070442635194827,
+      "sensitivity": 0.8772563176895307,
+      "ppv": 0.8140703517587939
+    },
+    "7007": {
+      "n_cycles": 1080,
+      "positive_cycles": 554,
+      "auroc": 0.9083746276646852,
+      "average_precision": 0.880059928493891,
+      "brier": 0.11745066474269503,
+      "validation_f1_threshold": 0.47620238116490926,
+      "sensitivity": 0.8898916967509025,
+      "ppv": 0.82996632996633
+    }
+  },
+  "original_tier3_upper_bound_reference": {
+    "7001": {
+      "n_cycles": 1080,
+      "event_rate": 0.5268518518518519,
+      "tier_name": "calendar + wearables + temperature + EHR-lite (oracle-adjacent)",
+      "features": [
+        "prior_logged_cycle_length",
+        "mean_rhr_offset",
+        "mean_hrv_offset",
+        "mean_steps",
+        "mean_sleep_hours",
+        "temperature_change",
+        "temperature_observation_fraction",
+        "simulator_ir_latent",
+        "simulator_androgen_load",
+        "synthetic_age",
+        "synthetic_bmi",
+        "synthetic_family_history"
+      ],
+      "validation_selected_feature_tier": 3,
+      "validation_brier_gain_ci": [
+        0.0355371228782377,
+        0.05327927623591365
+      ],
+      "validation_selected_threshold": 0.3982511652936791,
+      "ovulation_day_mae": 5.4707865168539325,
+      "ovulation_day_mae_cluster_bootstrap_95ci": [
+        5.135727778119049,
+        5.824750775567663
+      ],
+      "sensitivity": 0.9314586994727593,
+      "ppv": 0.8042488619119879,
+      "false_alerts_per_100_cycles": 11.944444444444445,
+      "alert_rate": 0.6101851851851852,
+      "median_lead_days_vs_day_35": 17.0,
+      "per_archetype_false_alarm_rate": {
+        "PMOS_A": 0.9230769230769231,
+        "PMOS_B": 0.5714285714285714,
+        "PMOS_C": 0.1981981981981982,
+        "PMOS_D": 0.7692307692307693,
+        "contraception": 0.1792452830188679,
+        "early_menarche": 0.14678899082568808,
+        "healthy_regular": 0.1875,
+        "healthy_variable": 0.5862068965517241,
+        "thyroid_mimic": 0.7272727272727273
+      },
+      "alert_tradeoff_curve": [
+        {
+          "threshold": 0.05,
+          "false_alerts_per_100_cycles": 28.61111111111111,
+          "sensitivity": 1.0,
+          "ppv": 0.6480637813211845,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.14,
+          "false_alerts_per_100_cycles": 21.296296296296298,
+          "sensitivity": 0.9947275922671354,
+          "ppv": 0.7110552763819096,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.22999999999999998,
+          "false_alerts_per_100_cycles": 17.59259259259259,
+          "sensitivity": 0.9753954305799648,
+          "ppv": 0.7449664429530202,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.32,
+          "false_alerts_per_100_cycles": 13.981481481481481,
+          "sensitivity": 0.961335676625659,
+          "ppv": 0.7836676217765043,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.41,
+          "false_alerts_per_100_cycles": 11.75925925925926,
+          "sensitivity": 0.9279437609841827,
+          "ppv": 0.8061068702290076,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.49999999999999994,
+          "false_alerts_per_100_cycles": 10.277777777777779,
+          "sensitivity": 0.8822495606326889,
+          "ppv": 0.8189233278955954,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.5900000000000001,
+          "false_alerts_per_100_cycles": 8.055555555555555,
+          "sensitivity": 0.8031634446397188,
+          "ppv": 0.8400735294117647,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.68,
+          "false_alerts_per_100_cycles": 5.833333333333333,
+          "sensitivity": 0.6889279437609842,
+          "ppv": 0.8615384615384616,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.77,
+          "false_alerts_per_100_cycles": 3.9814814814814814,
+          "sensitivity": 0.562390158172232,
+          "ppv": 0.8815426997245179,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.86,
+          "false_alerts_per_100_cycles": 2.2222222222222223,
+          "sensitivity": 0.4130052724077329,
+          "ppv": 0.9073359073359073,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.95,
+          "false_alerts_per_100_cycles": 0.5555555555555556,
+          "sensitivity": 0.18804920913884007,
+          "ppv": 0.9469026548672567,
+          "median_lead_days_vs_day_35": 17.0
+        }
+      ],
+      "auroc": 0.9033701450342035,
+      "auroc_cluster_bootstrap_95ci": [
+        0.8786924462277805,
+        0.9249799194390549
+      ],
+      "auprc": 0.8897975440637029,
+      "auprc_cluster_bootstrap_95ci": [
+        0.8559092801305892,
+        0.9190444391518569
+      ],
+      "brier": 0.1186109474303021,
+      "brier_cluster_bootstrap_95ci": [
+        0.105643180389654,
+        0.13279641753378985
+      ]
+    },
+    "7003": {
+      "n_cycles": 1080,
+      "event_rate": 0.512962962962963,
+      "tier_name": "calendar + wearables + temperature + EHR-lite (oracle-adjacent)",
+      "features": [
+        "prior_logged_cycle_length",
+        "mean_rhr_offset",
+        "mean_hrv_offset",
+        "mean_steps",
+        "mean_sleep_hours",
+        "temperature_change",
+        "temperature_observation_fraction",
+        "simulator_ir_latent",
+        "simulator_androgen_load",
+        "synthetic_age",
+        "synthetic_bmi",
+        "synthetic_family_history"
+      ],
+      "validation_selected_feature_tier": 3,
+      "validation_brier_gain_ci": [
+        0.03526498735515947,
+        0.054562121543437654
+      ],
+      "validation_selected_threshold": 0.46355198118577007,
+      "ovulation_day_mae": 5.4621380846325165,
+      "ovulation_day_mae_cluster_bootstrap_95ci": [
+        5.127980803571429,
+        5.80900064414371
+      ],
+      "sensitivity": 0.9025270758122743,
+      "ppv": 0.8051529790660226,
+      "false_alerts_per_100_cycles": 11.203703703703704,
+      "alert_rate": 0.575,
+      "median_lead_days_vs_day_35": 17.0,
+      "per_archetype_false_alarm_rate": {
+        "PMOS_A": 0.6666666666666666,
+        "PMOS_B": 0.625,
+        "PMOS_C": 0.205607476635514,
+        "PMOS_D": 0.6666666666666666,
+        "contraception": 0.1559633027522936,
+        "early_menarche": 0.1651376146788991,
+        "healthy_regular": 0.06837606837606838,
+        "healthy_variable": 0.6052631578947368,
+        "thyroid_mimic": 0.8571428571428571
+      },
+      "alert_tradeoff_curve": [
+        {
+          "threshold": 0.05,
+          "false_alerts_per_100_cycles": 27.5,
+          "sensitivity": 1.0,
+          "ppv": 0.6509988249118684,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.14,
+          "false_alerts_per_100_cycles": 21.01851851851852,
+          "sensitivity": 0.9945848375451264,
+          "ppv": 0.7082262210796915,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.22999999999999998,
+          "false_alerts_per_100_cycles": 18.51851851851852,
+          "sensitivity": 0.9819494584837545,
+          "ppv": 0.7311827956989247,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.32,
+          "false_alerts_per_100_cycles": 15.833333333333334,
+          "sensitivity": 0.9476534296028881,
+          "ppv": 0.7543103448275862,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.41,
+          "false_alerts_per_100_cycles": 13.425925925925926,
+          "sensitivity": 0.9187725631768953,
+          "ppv": 0.7782874617737003,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.49999999999999994,
+          "false_alerts_per_100_cycles": 10.092592592592593,
+          "sensitivity": 0.8862815884476535,
+          "ppv": 0.8183333333333334,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.5900000000000001,
+          "false_alerts_per_100_cycles": 8.425925925925926,
+          "sensitivity": 0.8176895306859205,
+          "ppv": 0.8327205882352942,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.68,
+          "false_alerts_per_100_cycles": 6.018518518518518,
+          "sensitivity": 0.7382671480144405,
+          "ppv": 0.8628691983122363,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.77,
+          "false_alerts_per_100_cycles": 3.7037037037037037,
+          "sensitivity": 0.6407942238267148,
+          "ppv": 0.8987341772151899,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.86,
+          "false_alerts_per_100_cycles": 2.4074074074074074,
+          "sensitivity": 0.48736462093862815,
+          "ppv": 0.9121621621621622,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.95,
+          "false_alerts_per_100_cycles": 1.0185185185185186,
+          "sensitivity": 0.21299638989169675,
+          "ppv": 0.9147286821705426,
+          "median_lead_days_vs_day_35": 17.0
+        }
+      ],
+      "auroc": 0.9094761911298404,
+      "auroc_cluster_bootstrap_95ci": [
+        0.8852509211410684,
+        0.9293270483060329
+      ],
+      "auprc": 0.8843500664413634,
+      "auprc_cluster_bootstrap_95ci": [
+        0.8474921452358738,
+        0.9162216553477072
+      ],
+      "brier": 0.11665169219174244,
+      "brier_cluster_bootstrap_95ci": [
+        0.1019303896550751,
+        0.13221942138663645
+      ]
+    },
+    "7007": {
+      "n_cycles": 1080,
+      "event_rate": 0.512962962962963,
+      "tier_name": "calendar + wearables + temperature + EHR-lite (oracle-adjacent)",
+      "features": [
+        "prior_logged_cycle_length",
+        "mean_rhr_offset",
+        "mean_hrv_offset",
+        "mean_steps",
+        "mean_sleep_hours",
+        "temperature_change",
+        "temperature_observation_fraction",
+        "simulator_ir_latent",
+        "simulator_androgen_load",
+        "synthetic_age",
+        "synthetic_bmi",
+        "synthetic_family_history"
+      ],
+      "validation_selected_feature_tier": 3,
+      "validation_brier_gain_ci": [
+        0.03478716145216878,
+        0.052932144381708214
+      ],
+      "validation_selected_threshold": 0.4697697539766642,
+      "ovulation_day_mae": 5.414660831509847,
+      "ovulation_day_mae_cluster_bootstrap_95ci": [
+        5.080130289208075,
+        5.743702081051478
+      ],
+      "sensitivity": 0.8880866425992779,
+      "ppv": 0.825503355704698,
+      "false_alerts_per_100_cycles": 9.62962962962963,
+      "alert_rate": 0.5518518518518518,
+      "median_lead_days_vs_day_35": 17.0,
+      "per_archetype_false_alarm_rate": {
+        "PMOS_A": 0.7058823529411765,
+        "PMOS_B": 0.7142857142857143,
+        "PMOS_C": 0.1559633027522936,
+        "PMOS_D": 0.75,
+        "contraception": 0.08411214953271028,
+        "early_menarche": 0.06896551724137931,
+        "healthy_regular": 0.14678899082568808,
+        "healthy_variable": 0.4857142857142857,
+        "thyroid_mimic": 0.8571428571428571
+      },
+      "alert_tradeoff_curve": [
+        {
+          "threshold": 0.05,
+          "false_alerts_per_100_cycles": 29.35185185185185,
+          "sensitivity": 1.0,
+          "ppv": 0.6360505166475315,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.14,
+          "false_alerts_per_100_cycles": 22.5,
+          "sensitivity": 0.9981949458483754,
+          "ppv": 0.6947236180904522,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.22999999999999998,
+          "false_alerts_per_100_cycles": 18.24074074074074,
+          "sensitivity": 0.983754512635379,
+          "ppv": 0.7345013477088949,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.32,
+          "false_alerts_per_100_cycles": 14.814814814814815,
+          "sensitivity": 0.9638989169675091,
+          "ppv": 0.7694524495677233,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.41,
+          "false_alerts_per_100_cycles": 11.481481481481481,
+          "sensitivity": 0.927797833935018,
+          "ppv": 0.8056426332288401,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.49999999999999994,
+          "false_alerts_per_100_cycles": 9.166666666666666,
+          "sensitivity": 0.8664259927797834,
+          "ppv": 0.8290155440414507,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.5900000000000001,
+          "false_alerts_per_100_cycles": 7.222222222222222,
+          "sensitivity": 0.7689530685920578,
+          "ppv": 0.8452380952380952,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.68,
+          "false_alerts_per_100_cycles": 5.37037037037037,
+          "sensitivity": 0.6732851985559567,
+          "ppv": 0.8654292343387471,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.77,
+          "false_alerts_per_100_cycles": 3.240740740740741,
+          "sensitivity": 0.5379061371841155,
+          "ppv": 0.8948948948948949,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.86,
+          "false_alerts_per_100_cycles": 1.8518518518518519,
+          "sensitivity": 0.3862815884476534,
+          "ppv": 0.9145299145299145,
+          "median_lead_days_vs_day_35": 17.0
+        },
+        {
+          "threshold": 0.95,
+          "false_alerts_per_100_cycles": 0.7407407407407407,
+          "sensitivity": 0.1299638989169675,
+          "ppv": 0.9,
+          "median_lead_days_vs_day_35": 17.0
+        }
+      ],
+      "auroc": 0.9092050898409082,
+      "auroc_cluster_bootstrap_95ci": [
+        0.885123752576653,
+        0.930114419411847
+      ],
+      "auprc": 0.8794710536612258,
+      "auprc_cluster_bootstrap_95ci": [
+        0.8435185823816332,
+        0.9140398524797972
+      ],
+      "brier": 0.11704172994065669,
+      "brier_cluster_bootstrap_95ci": [
+        0.10394917750261275,
+        0.13070038179027776
+      ]
+    }
+  },
+  "means": {
+    "auroc": 0.9066784989108913,
+    "average_precision": 0.8845462360205533,
+    "brier": 0.11768413758491147,
+    "sensitivity": 0.9089087406072679,
+    "ppv": 0.8125471109626382
+  },
+  "original_tier3_upper_bound_means": {
+    "auroc": 0.907350475334984,
+    "auprc": 0.8845395547220973,
+    "brier": 0.11743478985423374
+  }
+}

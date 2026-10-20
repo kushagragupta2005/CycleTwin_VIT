@@ -86,6 +86,13 @@ def compose(c):
                f"Twin minus logistic Brier {metric(means['twin_minus_logistic_brier'])}, patient-cluster 95% CI [{metric(ci[0])}, {metric(ci[1])}]",
                twin['status'],
                'Separate from the logistic score, threshold, safety gate and alert policy.'])
+    if c.get('lab_proxy'):
+        lab=c['lab_proxy'];means=lab['means'];upper=lab['original_tier3_upper_bound_means']
+        slide('Simulated assay-like extension','Post-freeze, noisy simulator proxies; neither clinical labs nor measured hormones',
+              [f"Tier 2 plus simulated assay-like indices: AUROC {metric(means['auroc'])}, standard AP {metric(means['average_precision'])}, Brier {metric(means['brier'])}",
+               f"Original Tier-3 oracle-adjacent internal reference: AUROC {metric(upper['auroc'])}, Brier {metric(upper['brier'])}",
+               'The proxy uses positive exp(latent) values and independent 15% CV assay noise.',
+               'It retains simulator-internal leakage risk and is not a clinical EHR-fusion claim.'])
     slide('What the clinician view shows','Decision-support research display',
           ['Fitted probability beside its own validation threshold and held-out model evidence',
            'Exact additive feature contributions and explicit imputation',
@@ -229,6 +236,10 @@ Code uses the [MIT License](LICENSE). All project datasets are synthetic. Publis
     if c.get('bayesian_twin'):
         twin=c['bayesian_twin'];means=twin['mean_across_seeds'];ci=twin['pooled_patient_cluster_95ci']
         section='## Frozen synthetic timing-posterior check\n\nA train-only discrete Bayesian posterior used a calendar/static prior and pre/post-event temperature, RHR and HRV likelihoods to estimate generated timing or absence. Its mean synthetic Brier was {tb:.6f}, versus {lb:.6f} for the frozen fitted logistic score; difference {d:.6f}, patient-cluster 95% CI [{lo:.6f}, {hi:.6f}]. Status: {status}. It remains a separately reported interpretation layer and does not replace the score, threshold, safety gate or alert policy. Full artifact: results_bayesian_twin_frozen.json and models/twin/.\n\n'.format(tb=means['twin_brier'],lb=means['logistic_brier'],d=means['twin_minus_logistic_brier'],lo=ci[0],hi=ci[1],status=twin['status'])
+        readme=readme.replace('## Evidence and limitations',section+'## Evidence and limitations')
+    if c.get('lab_proxy'):
+        lab=c['lab_proxy'];means=lab['means'];upper=lab['original_tier3_upper_bound_means']
+        section='## Simulated assay-like extension\n\nThis post-freeze Tier-2-plus-proxy analysis transforms simulator IR and androgen latents to positive `exp(latent)` values with independent 15% CV noise. It obtained mean synthetic AUROC {a:.6f}, standard AP {ap:.6f}, and Brier {b:.6f}; original Tier-3 oracle-adjacent internal-reference means were AUROC {ua:.6f} and Brier {ub:.6f}. These are not measured hormone values, do not have clinical units, and retain simulator-internal leakage risk. Full artifact: results_lab_proxy_extension.json.\n\n'.format(a=means['auroc'],ap=means['average_precision'],b=means['brier'],ua=upper['auroc'],ub=upper['brier'])
         readme=readme.replace('## Evidence and limitations',section+'## Evidence and limitations')
     videos={}
     for duration in (team['minimum_video_minutes'], cfg['short_video_minutes']):

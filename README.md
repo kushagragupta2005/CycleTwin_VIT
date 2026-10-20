@@ -170,6 +170,10 @@ The fixed day-18 Tier-2 models and thresholds were tested under the predeclared 
 
 A train-only discrete Bayesian posterior used a calendar/static prior and pre/post-event temperature, RHR and HRV likelihoods to estimate generated timing or absence. Its mean synthetic Brier was 0.098486, versus 0.116867 for the frozen fitted logistic score; difference -0.018380, patient-cluster 95% CI [-0.022494, -0.014070]. Status: noninferior synthetic check; still separate interpretation layer. It remains a separately reported interpretation layer and does not replace the score, threshold, safety gate or alert policy. Full artifact: results_bayesian_twin_frozen.json and models/twin/.
 
+## Simulated assay-like extension
+
+This post-freeze Tier-2-plus-proxy analysis transforms simulator IR and androgen latents to positive `exp(latent)` values with independent 15% CV noise. It obtained mean synthetic AUROC 0.906678, standard AP 0.884546, and Brier 0.117684; original Tier-3 oracle-adjacent internal-reference means were AUROC 0.907350 and Brier 0.117435. These are not measured hormone values, do not have clinical units, and retain simulator-internal leakage risk. Full artifact: results_lab_proxy_extension.json.
+
 ## Evidence and limitations
 
 - [Complete implementation audit](docs/audit_2026-10-20/CycleTwin_full_audit.md), a historical snapshot before the corrections.

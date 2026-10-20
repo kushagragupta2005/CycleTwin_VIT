@@ -108,6 +108,10 @@ def build(write=True):
     claims['bayesian_twin']=json.loads(bayesian.read_text()) if bayesian.exists() else None
     if bayesian.exists():
         claims['source_sha256']['results_bayesian_twin_frozen.json']=hashlib.sha256(bayesian.read_bytes()).hexdigest()
+    lab_proxy=ROOT/'results_lab_proxy_extension.json'
+    claims['lab_proxy']=json.loads(lab_proxy.read_text()) if lab_proxy.exists() else None
+    if lab_proxy.exists():
+        claims['source_sha256']['results_lab_proxy_extension.json']=hashlib.sha256(lab_proxy.read_bytes()).hexdigest()
     submission=ROOT/'docs/submission_status.json'
     claims['submission']=json.loads(submission.read_text()) if submission.exists() else None
     claims['deliverables']=compose(claims)

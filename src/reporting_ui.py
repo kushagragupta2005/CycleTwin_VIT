@@ -71,3 +71,14 @@ def render_bayesian_twin(claims):
                                 'Twin minus logistic Brier':means['twin_minus_logistic_brier'],'Patient-cluster 95% CI':ci,
                                 'Status':result['status']}]),hide_index=True,use_container_width=True)
     st.caption('This synthetic timing posterior is reported separately. It does not replace the fitted logistic score, threshold, safety gate or alert policy.')
+
+
+def render_lab_proxy(claims):
+    result=claims.get('lab_proxy')
+    if not result: return
+    st.subheader('Simulated assay-like extension')
+    st.caption('In plain words: noisy positive simulator indices were added to Tier 2. They are not hormone measurements and are kept separate from the frozen primary endpoint.')
+    means=result['means'];upper=result['original_tier3_upper_bound_means']
+    st.dataframe(pd.DataFrame([{'Post-freeze synthetic lab-like AUROC':means['auroc'],'Standard AP':means['average_precision'],'Brier':means['brier'],
+                                'Original Tier-3 internal-reference AUROC':upper['auroc'],'Original Tier-3 internal-reference Brier':upper['brier']}]),hide_index=True,use_container_width=True)
+    st.caption('The indices derive from label-generating simulator latents, with 15% assay noise. They have no clinical units and retain simulator-internal leakage risk.')

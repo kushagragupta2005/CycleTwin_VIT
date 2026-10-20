@@ -1,6 +1,7 @@
 import unittest
 import numpy as np
 from src.twin import simulate_reproductive_axis, simulate_metabolic_axis, coupling_sweep
+from src.lab_proxy import assay_like_features
 
 class TwinTests(unittest.TestCase):
     def test_reproductive_state_units_and_positivity(self):
@@ -23,5 +24,9 @@ class TwinTests(unittest.TestCase):
         self.assertTrue(np.all((coupled['glucose_mg_dl']>=40)&(coupled['glucose_mg_dl']<=300)))
         self.assertGreaterEqual(coupled['glucose_mg_dl'][15*96:].mean(),uncoupled['glucose_mg_dl'][15*96:].mean())
         with self.assertRaises(ValueError): simulate_metabolic_axis(0,14,step_minutes=7)
+    def test_assay_proxy_is_positive_and_deterministic(self):
+        row={'patient':'synthetic-p0001','ir':.2,'androgen':-.1}
+        self.assertTrue(np.all(assay_like_features(row,7)>0))
+        self.assertTrue(np.array_equal(assay_like_features(row,7),assay_like_features(row,7)))
 
 if __name__=='__main__': unittest.main()
