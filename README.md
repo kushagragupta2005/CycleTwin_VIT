@@ -2,7 +2,7 @@
 
 **Team: CycleTwin**  
 **College: VIT**  
-Team leader: Kushagra Gupta. Registration and contact details are submitted by the human leader on Unstop.
+Team leader: Kushagra Gupta
 
 > Synthetic research prototype. Not for diagnosis, contraception or conception planning. No clinical validity, hormone inference or real-world accuracy is claimed.
 
