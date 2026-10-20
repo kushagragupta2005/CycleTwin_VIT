@@ -20,7 +20,7 @@ from src.twin import simulate_reproductive_axis, simulate_metabolic_axis, coupli
 from src.adapters.apple_health import parse_export
 
 DISCLAIMER="Not for diagnosis, contraception or conception planning. Synthetic demonstration only."
-st.set_page_config(page_title="CycleTwin synthetic demo", layout="wide")
+st.set_page_config(page_title="CycleTwin synthetic demo", layout="wide", initial_sidebar_state="auto")
 st.markdown("""
 <style>
 :root { --ink:#18313d; --muted:#5f717b; --teal:#0e766e; --teal-soft:#e8f4f1; --amber:#b7791f; --amber-soft:#fff7e6; --rose:#9a5d63; --rose-soft:#faeeee; --line:#d7e2e1; }
