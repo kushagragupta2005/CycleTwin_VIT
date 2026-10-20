@@ -14,7 +14,7 @@ E1 is a synthetic current-cycle event: no ovulation or ovulation after cycle day
 
 ## Baselines and tiers
 
-Compare calendar history, period-log-only, temperature-only, and a combined wearable score. Report each result by data tier: tier 0 period logs; tier 1 adds resting heart rate, HRV, steps and sleep; tier 2 adds nightly temperature. No CGM or EHR model is claimed in this initial evaluation.
+Fit one sklearn logistic-regression model for every seed, forecast day and tier on train patients. Fit Platt calibration on validation patients only. Select the alert threshold by validation-set F1 only, then evaluate held-out patients once. Report each result by data tier: tier 0 calendar history from preceding logged cycle lengths; tier 1 adds resting heart rate, HRV, steps and sleep; tier 2 adds nightly temperature. No CGM or EHR model is claimed in this initial evaluation.
 
 ## Uncertainty and interpretation
 
@@ -22,7 +22,7 @@ For each reported G1 metric, compute patient-cluster bootstrap 95% intervals wit
 
 ## Thresholds and limitations
 
-The alert score threshold is fixed at 0.50 for the demo. The one-alert limit is a design constraint. These are not clinical thresholds. Any failure list, subgroup summary, or synthetic result must be labelled as such. The simulator's labels and features share assumptions, so apparent performance can overstate real-world usefulness.
+Each fitted tier/day gets a threshold selected on its validation set only. The one-alert limit is a design constraint. These are not clinical thresholds. Any failure list, subgroup summary, or synthetic result must be labelled as such. The simulator's labels and features share assumptions, so apparent performance can overstate real-world usefulness.
 
 ## Protocol amendment before final evaluation
 
@@ -30,4 +30,4 @@ An early evaluation run using seeds 17, 29, and 43 revealed that the original ov
 
 ## G1 reporting deviations
 
-The frozen plan requested additional calendar, coverline, logistic and boosted-tree baselines; G1 implements only the fixed tier 0/1/2 scores. The G1 results also do not include sensor-dropout sweeps, conformal coverage, subgroup coverage, decision-curve analysis, or lead-time-versus-false-alarm curves. These are not evaluated and are not represented as results. The G2 dashboard's risk-coverage diagnostic runs on a separate small synthetic display cohort and is not part of held-out evaluation. Any expanded evaluation requires a new plan and untouched patient seeds.
+The frozen plan requested additional coverline and boosted-tree baselines; the current benchmark implements fitted calendar and logistic sensor-tier models only. The results do not include sensor-dropout sweeps, conformal coverage, subgroup coverage, decision-curve analysis, or lead-time-versus-false-alarm curves. These are not evaluated and are not represented as results. The G2 dashboard's risk-coverage diagnostic runs on a separate small synthetic display cohort and is not part of held-out evaluation. Any expanded evaluation requires a new plan and untouched patient seeds.

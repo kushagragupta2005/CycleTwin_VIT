@@ -1,6 +1,7 @@
 {
   "scope": "synthetic internal held-out simulation only; not clinical performance",
   "plan": "docs/eval_plan.md",
+  "model": "sklearn LogisticRegression fitted on train; Platt calibration and F1 threshold selection on validation only",
   "seeds": {
     "97": {
       "patients": {
@@ -12,244 +13,337 @@
         "day_10_tier_0": {
           "n_cycles": 1080,
           "event_rate": 0.5055555555555555,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar",
+          "features": [
+            "prior_logged_cycle_length"
+          ],
+          "validation_selected_threshold": 0.42488886720565827,
           "ovulation_day_mae": 5.900968783638321,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             5.512961268653971,
             6.302451907915484
           ],
-          "auroc": 0.5,
+          "sensitivity": 0.8882783882783882,
+          "ppv": 0.7195845697329377,
+          "false_alerts_per_100_cycles": 17.5,
+          "alert_rate": 0.6240740740740741,
+          "median_lead_days_vs_day_35": 25.0,
+          "auroc": 0.8408925656116667,
           "auroc_cluster_bootstrap_95ci": [
-            0.5,
-            0.5
+            0.8131670323045661,
+            0.8667721923393366
           ],
-          "auprc": 0.4694860740183443,
+          "auprc": 0.8280249887446327,
           "auprc_cluster_bootstrap_95ci": [
-            0.4310904136065399,
-            0.6000663107768887
+            0.786501236315364,
+            0.8661442888931501
           ],
-          "brier": 0.25276893975333214,
+          "brier": 0.16142501946205406,
           "brier_cluster_bootstrap_95ci": [
-            0.247153992528126,
-            0.2585614780465748
+            0.1467852168941143,
+            0.17531297425864237
           ]
         },
         "day_10_tier_1": {
           "n_cycles": 1080,
           "event_rate": 0.5055555555555555,
-          "sensitivity_alert_cutoff_0_50": 0.007326007326007326,
-          "false_alerts_per_100_cycles": 0.5555555555555556,
-          "median_lead_days_vs_day_35": 25.0,
+          "tier_name": "calendar + wearables",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours"
+          ],
+          "validation_selected_threshold": 0.4251968124198479,
           "ovulation_day_mae": 5.900968783638321,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             5.511565254928902,
             6.329719661472433
           ],
-          "auroc": 0.49448491583323045,
+          "sensitivity": 0.8882783882783882,
+          "ppv": 0.7195845697329377,
+          "false_alerts_per_100_cycles": 17.5,
+          "alert_rate": 0.6240740740740741,
+          "median_lead_days_vs_day_35": 25.0,
+          "auroc": 0.8407347957909755,
           "auroc_cluster_bootstrap_95ci": [
-            0.45911301531284227,
-            0.5289099167280177
+            0.8108287521466908,
+            0.8676120577905646
           ],
-          "auprc": 0.5034095679501263,
+          "auprc": 0.8282808318110889,
           "auprc_cluster_bootstrap_95ci": [
-            0.438287174783139,
-            0.5724710917470041
+            0.78105313207093,
+            0.866535727857455
           ],
-          "brier": 0.2520460976936139,
+          "brier": 0.16151466027638714,
           "brier_cluster_bootstrap_95ci": [
-            0.24744128480081298,
-            0.25659799629157587
+            0.14654865666601605,
+            0.17709431909151377
           ]
         },
         "day_10_tier_2": {
           "n_cycles": 1080,
           "event_rate": 0.5055555555555555,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar + wearables + temperature",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours",
+            "temperature_change",
+            "temperature_observation_fraction"
+          ],
+          "validation_selected_threshold": 0.4556342097186902,
           "ovulation_day_mae": 5.900968783638321,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             5.534077645745997,
             6.326402012174795
           ],
-          "auroc": 0.5139969269182753,
+          "sensitivity": 0.8827838827838828,
+          "ppv": 0.7280966767371602,
+          "false_alerts_per_100_cycles": 16.666666666666668,
+          "alert_rate": 0.6129629629629629,
+          "median_lead_days_vs_day_35": 25.0,
+          "auroc": 0.8421410050623533,
           "auroc_cluster_bootstrap_95ci": [
-            0.47826281222286365,
-            0.5471708406533894
+            0.8135980124834775,
+            0.8663876958319959
           ],
-          "auprc": 0.5193547312679143,
+          "auprc": 0.8290909659823337,
           "auprc_cluster_bootstrap_95ci": [
-            0.4594155167546515,
-            0.5903046460904705
+            0.7860565289857642,
+            0.8665134947077775
           ],
-          "brier": 0.31092790314856683,
+          "brier": 0.16162683934858643,
           "brier_cluster_bootstrap_95ci": [
-            0.28554951620711244,
-            0.3410196261663593
+            0.14765419072669464,
+            0.1762067580849072
           ]
         },
         "day_14_tier_0": {
           "n_cycles": 1080,
           "event_rate": 0.5055555555555555,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar",
+          "features": [
+            "prior_logged_cycle_length"
+          ],
+          "validation_selected_threshold": 0.42488886720565827,
           "ovulation_day_mae": 6.693218514531755,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             6.308181990709779,
             7.081274974550648
           ],
-          "auroc": 0.5,
+          "sensitivity": 0.8882783882783882,
+          "ppv": 0.7195845697329377,
+          "false_alerts_per_100_cycles": 17.5,
+          "alert_rate": 0.6240740740740741,
+          "median_lead_days_vs_day_35": 21.0,
+          "auroc": 0.8408925656116667,
           "auroc_cluster_bootstrap_95ci": [
-            0.5,
-            0.5
+            0.813041683921235,
+            0.8671294315433851
           ],
-          "auprc": 0.4694860740183443,
+          "auprc": 0.8280249887446327,
           "auprc_cluster_bootstrap_95ci": [
-            0.42615398606937827,
-            0.600117112415452
+            0.7863912204492188,
+            0.8672097586533163
           ],
-          "brier": 0.25276893975333214,
+          "brier": 0.16142501946205406,
           "brier_cluster_bootstrap_95ci": [
-            0.24715618501044745,
-            0.2582939952033592
+            0.1464642223451312,
+            0.1757458203900307
           ]
         },
         "day_14_tier_1": {
           "n_cycles": 1080,
           "event_rate": 0.5055555555555555,
-          "sensitivity_alert_cutoff_0_50": 0.0018315018315018315,
-          "false_alerts_per_100_cycles": 0.0925925925925926,
-          "median_lead_days_vs_day_35": 21.0,
+          "tier_name": "calendar + wearables",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours"
+          ],
+          "validation_selected_threshold": 0.41268564216605674,
           "ovulation_day_mae": 6.693218514531755,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             6.290318971853517,
             7.088420893442019
           ],
-          "auroc": 0.4767735385712914,
+          "sensitivity": 0.8882783882783882,
+          "ppv": 0.7185185185185186,
+          "false_alerts_per_100_cycles": 17.59259259259259,
+          "alert_rate": 0.625,
+          "median_lead_days_vs_day_35": 21.0,
+          "auroc": 0.8419626565693982,
           "auroc_cluster_bootstrap_95ci": [
-            0.44253651989746484,
-            0.5098803999158661
+            0.8117028581890188,
+            0.8681898704172619
           ],
-          "auprc": 0.49346768442848693,
+          "auprc": 0.8290212505934529,
           "auprc_cluster_bootstrap_95ci": [
-            0.430195383744496,
-            0.5583733859380128
+            0.781084315387777,
+            0.8669131802616886
           ],
-          "brier": 0.2524933065097346,
+          "brier": 0.16140011364841955,
           "brier_cluster_bootstrap_95ci": [
-            0.24804699752326764,
-            0.2567926822020122
+            0.14699944950269023,
+            0.1770383343356809
           ]
         },
         "day_14_tier_2": {
           "n_cycles": 1080,
           "event_rate": 0.5055555555555555,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar + wearables + temperature",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours",
+            "temperature_change",
+            "temperature_observation_fraction"
+          ],
+          "validation_selected_threshold": 0.411931124128472,
           "ovulation_day_mae": 6.693218514531755,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             6.286747759282971,
             7.079833406324913
           ],
-          "auroc": 0.6370539572786764,
+          "sensitivity": 0.8571428571428571,
+          "ppv": 0.7289719626168224,
+          "false_alerts_per_100_cycles": 16.11111111111111,
+          "alert_rate": 0.5944444444444444,
+          "median_lead_days_vs_day_35": 21.0,
+          "auroc": 0.8539600224993483,
           "auroc_cluster_bootstrap_95ci": [
-            0.6025679954585412,
-            0.6710955122330176
+            0.8246858885139167,
+            0.8794799571456173
           ],
-          "auprc": 0.5982225161665489,
+          "auprc": 0.8363466145977806,
           "auprc_cluster_bootstrap_95ci": [
-            0.532003467008423,
-            0.6586032671699463
+            0.7898015602471422,
+            0.8738820365018314
           ],
-          "brier": 0.3064423183732384,
+          "brier": 0.15494616225788274,
           "brier_cluster_bootstrap_95ci": [
-            0.277796907685944,
-            0.3344066961009874
+            0.14080142640796098,
+            0.1700176656976421
           ]
         },
         "day_18_tier_0": {
           "n_cycles": 1080,
           "event_rate": 0.5055555555555555,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar",
+          "features": [
+            "prior_logged_cycle_length"
+          ],
+          "validation_selected_threshold": 0.42488886720565827,
           "ovulation_day_mae": 8.684607104413347,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             8.057961225922952,
             9.26661830494142
           ],
-          "auroc": 0.5,
+          "sensitivity": 0.8882783882783882,
+          "ppv": 0.7195845697329377,
+          "false_alerts_per_100_cycles": 17.5,
+          "alert_rate": 0.6240740740740741,
+          "median_lead_days_vs_day_35": 17.0,
+          "auroc": 0.8408925656116667,
           "auroc_cluster_bootstrap_95ci": [
-            0.5,
-            0.5
+            0.8116590190493863,
+            0.867176585530399
           ],
-          "auprc": 0.4694860740183443,
+          "auprc": 0.8280249887446327,
           "auprc_cluster_bootstrap_95ci": [
-            0.4248769260498645,
-            0.594016123913395
+            0.7868940353822392,
+            0.8656381827741451
           ],
-          "brier": 0.25276893975333214,
+          "brier": 0.16142501946205406,
           "brier_cluster_bootstrap_95ci": [
-            0.246540097478123,
-            0.25873249166764706
+            0.14670211540895053,
+            0.17552424248454448
           ]
         },
         "day_18_tier_1": {
           "n_cycles": 1080,
           "event_rate": 0.5055555555555555,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.1851851851851852,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar + wearables",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours"
+          ],
+          "validation_selected_threshold": 0.3832788506812344,
           "ovulation_day_mae": 8.684607104413347,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             8.093242888402626,
             9.265822824912517
           ],
-          "auroc": 0.41521930005076074,
+          "sensitivity": 0.9029304029304029,
+          "ppv": 0.7155297532656023,
+          "false_alerts_per_100_cycles": 18.14814814814815,
+          "alert_rate": 0.637962962962963,
+          "median_lead_days_vs_day_35": 17.0,
+          "auroc": 0.8467780658791895,
           "auroc_cluster_bootstrap_95ci": [
-            0.3807515030119415,
-            0.4492644773037246
+            0.8180580785635679,
+            0.8725150819614141
           ],
-          "auprc": 0.4450527864755856,
+          "auprc": 0.8325119998707043,
           "auprc_cluster_bootstrap_95ci": [
-            0.3790720146406154,
-            0.5170636006906845
+            0.7921075157830202,
+            0.8711345903602645
           ],
-          "brier": 0.25364052859845926,
+          "brier": 0.15906296054828448,
           "brier_cluster_bootstrap_95ci": [
-            0.24942342358665354,
-            0.2581272965769132
+            0.1447696891974944,
+            0.1732107950224171
           ]
         },
         "day_18_tier_2": {
           "n_cycles": 1080,
           "event_rate": 0.5055555555555555,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar + wearables + temperature",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours",
+            "temperature_change",
+            "temperature_observation_fraction"
+          ],
+          "validation_selected_threshold": 0.3853135114905375,
           "ovulation_day_mae": 5.273412271259419,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             4.948548860829632,
             5.602157682277713
           ],
-          "auroc": 0.815018315018315,
+          "sensitivity": 0.9340659340659341,
+          "ppv": 0.7786259541984732,
+          "false_alerts_per_100_cycles": 13.425925925925926,
+          "alert_rate": 0.6064814814814815,
+          "median_lead_days_vs_day_35": 17.0,
+          "auroc": 0.8981595807438504,
           "auroc_cluster_bootstrap_95ci": [
-            0.7841688013527784,
-            0.8457887303314894
+            0.8727258377372729,
+            0.9223643532774807
           ],
-          "auprc": 0.7383358193009275,
+          "auprc": 0.8674429000463176,
           "auprc_cluster_bootstrap_95ci": [
-            0.6842520935375859,
-            0.7957665401520236
+            0.8272427661552199,
+            0.9038782689635978
           ],
-          "brier": 0.2964357177139251,
+          "brier": 0.12156585578489991,
           "brier_cluster_bootstrap_95ci": [
-            0.2661096268018149,
-            0.3263349195196487
+            0.10589373196783317,
+            0.13616717678318718
           ]
         }
       }
@@ -264,244 +358,337 @@
         "day_10_tier_0": {
           "n_cycles": 1080,
           "event_rate": 0.5231481481481481,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar",
+          "features": [
+            "prior_logged_cycle_length"
+          ],
+          "validation_selected_threshold": 0.3920330692750061,
           "ovulation_day_mae": 5.984564498346196,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             5.622109375920102,
             6.400445329549242
           ],
-          "auroc": 0.5,
+          "sensitivity": 0.879646017699115,
+          "ppv": 0.7362962962962963,
+          "false_alerts_per_100_cycles": 16.48148148148148,
+          "alert_rate": 0.625,
+          "median_lead_days_vs_day_35": 25.0,
+          "auroc": 0.8477944840622047,
           "auroc_cluster_bootstrap_95ci": [
-            0.5,
-            0.5
+            0.8196319362064162,
+            0.8745021846453487
           ],
-          "auprc": 0.5098691704637138,
+          "auprc": 0.8543539837667923,
           "auprc_cluster_bootstrap_95ci": [
-            0.43930896053406887,
-            0.6139257574707494
+            0.812572557267315,
+            0.890439908366426
           ],
-          "brier": 0.254435226317626,
+          "brier": 0.15654117583313507,
           "brier_cluster_bootstrap_95ci": [
-            0.24873477228188376,
-            0.25996028176765307
+            0.1412781675890641,
+            0.1710403374313542
           ]
         },
         "day_10_tier_1": {
           "n_cycles": 1080,
           "event_rate": 0.5231481481481481,
-          "sensitivity_alert_cutoff_0_50": 0.0035398230088495575,
-          "false_alerts_per_100_cycles": 0.3703703703703704,
-          "median_lead_days_vs_day_35": 25.0,
+          "tier_name": "calendar + wearables",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours"
+          ],
+          "validation_selected_threshold": 0.47698536170103784,
           "ovulation_day_mae": 5.984564498346196,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             5.596537367527641,
             6.433132103537963
           ],
-          "auroc": 0.5019709597044419,
+          "sensitivity": 0.815929203539823,
+          "ppv": 0.7545008183306056,
+          "false_alerts_per_100_cycles": 13.88888888888889,
+          "alert_rate": 0.5657407407407408,
+          "median_lead_days_vs_day_35": 25.0,
+          "auroc": 0.8466225620757797,
           "auroc_cluster_bootstrap_95ci": [
-            0.46686263778307624,
-            0.5368215934146754
+            0.8205575696459793,
+            0.8710105770073633
           ],
-          "auprc": 0.5348154065113957,
+          "auprc": 0.854893806443559,
           "auprc_cluster_bootstrap_95ci": [
-            0.46829562540459835,
-            0.5996879537740398
+            0.8126213672695901,
+            0.8896257356086745
           ],
-          "brier": 0.2532362608205386,
+          "brier": 0.15728208160102092,
           "brier_cluster_bootstrap_95ci": [
-            0.24894406028113228,
-            0.25771464631600666
+            0.1432936261556962,
+            0.17101922356596821
           ]
         },
         "day_10_tier_2": {
           "n_cycles": 1080,
           "event_rate": 0.5231481481481481,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar + wearables + temperature",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours",
+            "temperature_change",
+            "temperature_observation_fraction"
+          ],
+          "validation_selected_threshold": 0.4044344372638694,
           "ovulation_day_mae": 5.984564498346196,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             5.606640653969949,
             6.377341376521758
           ],
-          "auroc": 0.5261070538706074,
+          "sensitivity": 0.8743362831858407,
+          "ppv": 0.7406296851574213,
+          "false_alerts_per_100_cycles": 16.01851851851852,
+          "alert_rate": 0.6175925925925926,
+          "median_lead_days_vs_day_35": 25.0,
+          "auroc": 0.8461757882979637,
           "auroc_cluster_bootstrap_95ci": [
-            0.4951340041283015,
-            0.5602828764795399
+            0.8182072886037448,
+            0.8720517694541313
           ],
-          "auprc": 0.5468816941734739,
+          "auprc": 0.8541964375441192,
           "auprc_cluster_bootstrap_95ci": [
-            0.47847775085206473,
-            0.6117539398814811
+            0.810323390567454,
+            0.8886411028196944
           ],
-          "brier": 0.3184536720073213,
+          "brier": 0.1577355032205254,
           "brier_cluster_bootstrap_95ci": [
-            0.2897482752210532,
-            0.3458907735181727
+            0.14289509645738763,
+            0.1719820884579928
           ]
         },
         "day_14_tier_0": {
           "n_cycles": 1080,
           "event_rate": 0.5231481481481481,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar",
+          "features": [
+            "prior_logged_cycle_length"
+          ],
+          "validation_selected_threshold": 0.3920330692750061,
           "ovulation_day_mae": 6.725468577728776,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             6.320806237749337,
             7.076102218827166
           ],
-          "auroc": 0.5,
+          "sensitivity": 0.879646017699115,
+          "ppv": 0.7362962962962963,
+          "false_alerts_per_100_cycles": 16.48148148148148,
+          "alert_rate": 0.625,
+          "median_lead_days_vs_day_35": 21.0,
+          "auroc": 0.8477944840622047,
           "auroc_cluster_bootstrap_95ci": [
-            0.5,
-            0.5
+            0.8201625920755479,
+            0.8729838274224395
           ],
-          "auprc": 0.5098691704637138,
+          "auprc": 0.8543539837667923,
           "auprc_cluster_bootstrap_95ci": [
-            0.4404516624777066,
-            0.6135959474103875
+            0.8095543304454781,
+            0.8901824697503438
           ],
-          "brier": 0.254435226317626,
+          "brier": 0.15654117583313507,
           "brier_cluster_bootstrap_95ci": [
-            0.24785558687098658,
-            0.26022776461086866
+            0.14147589792052412,
+            0.1706642130853806
           ]
         },
         "day_14_tier_1": {
           "n_cycles": 1080,
           "event_rate": 0.5231481481481481,
-          "sensitivity_alert_cutoff_0_50": 0.005309734513274336,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": 21.0,
+          "tier_name": "calendar + wearables",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours"
+          ],
+          "validation_selected_threshold": 0.3752870035610149,
           "ovulation_day_mae": 6.725468577728776,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             6.357619364375462,
             7.0739619928493696
           ],
-          "auroc": 0.48736145716985996,
+          "sensitivity": 0.8902654867256637,
+          "ppv": 0.7343065693430657,
+          "false_alerts_per_100_cycles": 16.85185185185185,
+          "alert_rate": 0.6342592592592593,
+          "median_lead_days_vs_day_35": 21.0,
+          "auroc": 0.8484990119426068,
           "auroc_cluster_bootstrap_95ci": [
-            0.4541162541388793,
-            0.5208950019408223
+            0.8185600203884429,
+            0.8729965800474623
           ],
-          "auprc": 0.5297451500896337,
+          "auprc": 0.8562432745659542,
           "auprc_cluster_bootstrap_95ci": [
-            0.46288719291192043,
-            0.593740720128836
+            0.8155453121422387,
+            0.8894058757342661
           ],
-          "brier": 0.2534391098534288,
+          "brier": 0.1570929701912016,
           "brier_cluster_bootstrap_95ci": [
-            0.24888562767309322,
-            0.2580435751261926
+            0.14291673848110648,
+            0.1721647179845678
           ]
         },
         "day_14_tier_2": {
           "n_cycles": 1080,
           "event_rate": 0.5231481481481481,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar + wearables + temperature",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours",
+            "temperature_change",
+            "temperature_observation_fraction"
+          ],
+          "validation_selected_threshold": 0.3964246533636233,
           "ovulation_day_mae": 6.725468577728776,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             6.3505094378603015,
             7.095291309566503
           ],
-          "auroc": 0.6383675573502878,
+          "sensitivity": 0.8690265486725663,
+          "ppv": 0.758887171561051,
+          "false_alerts_per_100_cycles": 14.444444444444445,
+          "alert_rate": 0.5990740740740741,
+          "median_lead_days_vs_day_35": 21.0,
+          "auroc": 0.865204914511556,
           "auroc_cluster_bootstrap_95ci": [
-            0.6061113342086616,
-            0.6675627951799471
+            0.8363340726242704,
+            0.888193119209359
           ],
-          "auprc": 0.6040360419523209,
+          "auprc": 0.8703241415778804,
           "auprc_cluster_bootstrap_95ci": [
-            0.537068335520005,
-            0.6715553909433627
+            0.829587127840739,
+            0.9011683180922413
           ],
-          "brier": 0.31562876728875805,
+          "brier": 0.1485144869747947,
           "brier_cluster_bootstrap_95ci": [
-            0.28517875406606086,
-            0.34517894744238287
+            0.1344803587840878,
+            0.16396236210130138
           ]
         },
         "day_18_tier_0": {
           "n_cycles": 1080,
           "event_rate": 0.5231481481481481,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar",
+          "features": [
+            "prior_logged_cycle_length"
+          ],
+          "validation_selected_threshold": 0.3920330692750061,
           "ovulation_day_mae": 8.707828004410143,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             8.134594481605351,
             9.255895999905379
           ],
-          "auroc": 0.5,
+          "sensitivity": 0.879646017699115,
+          "ppv": 0.7362962962962963,
+          "false_alerts_per_100_cycles": 16.48148148148148,
+          "alert_rate": 0.625,
+          "median_lead_days_vs_day_35": 17.0,
+          "auroc": 0.8477944840622047,
           "auroc_cluster_bootstrap_95ci": [
-            0.5,
-            0.5
+            0.820160230772966,
+            0.8710167438380624
           ],
-          "auprc": 0.5098691704637138,
+          "auprc": 0.8543539837667923,
           "auprc_cluster_bootstrap_95ci": [
-            0.4412134038569205,
-            0.6137596716814377
+            0.8129827424942281,
+            0.8908144565317806
           ],
-          "brier": 0.254435226317626,
+          "brier": 0.15654117583313507,
           "brier_cluster_bootstrap_95ci": [
-            0.24846948192098964,
-            0.26031327142140476
+            0.14292551393815994,
+            0.1708789970795149
           ]
         },
         "day_18_tier_1": {
           "n_cycles": 1080,
           "event_rate": 0.5231481481481481,
-          "sensitivity_alert_cutoff_0_50": 0.0017699115044247787,
-          "false_alerts_per_100_cycles": 0.0925925925925926,
-          "median_lead_days_vs_day_35": 17.0,
+          "tier_name": "calendar + wearables",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours"
+          ],
+          "validation_selected_threshold": 0.4104406019934544,
           "ovulation_day_mae": 8.707828004410143,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             8.087244527227618,
             9.310532082126837
           ],
-          "auroc": 0.4306418077154395,
+          "sensitivity": 0.8584070796460177,
+          "ppv": 0.7601880877742947,
+          "false_alerts_per_100_cycles": 14.166666666666666,
+          "alert_rate": 0.5907407407407408,
+          "median_lead_days_vs_day_35": 17.0,
+          "auroc": 0.8561629005928344,
           "auroc_cluster_bootstrap_95ci": [
-            0.3959158993259886,
-            0.46491277355172356
+            0.8278816466270322,
+            0.8812067751965978
           ],
-          "auprc": 0.47716480553569807,
+          "auprc": 0.8614599929290611,
           "auprc_cluster_bootstrap_95ci": [
-            0.41872478992358986,
-            0.5406827215743104
+            0.8176755837701262,
+            0.8953303973568347
           ],
-          "brier": 0.25451267954073536,
+          "brier": 0.1537651495680275,
           "brier_cluster_bootstrap_95ci": [
-            0.2502642852955277,
-            0.2587565949964859
+            0.13927962546138556,
+            0.16901692296389187
           ]
         },
         "day_18_tier_2": {
           "n_cycles": 1080,
           "event_rate": 0.5231481481481481,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar + wearables + temperature",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours",
+            "temperature_change",
+            "temperature_observation_fraction"
+          ],
+          "validation_selected_threshold": 0.4244171140275754,
           "ovulation_day_mae": 5.413450937155457,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             5.07908929075567,
             5.736323871568171
           ],
-          "auroc": 0.8304321677120028,
+          "sensitivity": 0.9185840707964602,
+          "ppv": 0.8173228346456692,
+          "false_alerts_per_100_cycles": 10.74074074074074,
+          "alert_rate": 0.5879629629629629,
+          "median_lead_days_vs_day_35": 17.0,
+          "auroc": 0.9228559154566544,
           "auroc_cluster_bootstrap_95ci": [
-            0.8022295752723031,
-            0.8574564377126712
+            0.9015411516833393,
+            0.9421009268719907
           ],
-          "auprc": 0.7693383611374842,
+          "auprc": 0.9148112013531967,
           "auprc_cluster_bootstrap_95ci": [
-            0.7152573606520765,
-            0.8166617898492853
+            0.8797757560847557,
+            0.9422899618971394
           ],
-          "brier": 0.30462223014989875,
+          "brier": 0.10760320537424385,
           "brier_cluster_bootstrap_95ci": [
-            0.2731237809903163,
-            0.33514502352080805
+            0.09422203182993791,
+            0.1210932262786494
           ]
         }
       }
@@ -516,244 +703,337 @@
         "day_10_tier_0": {
           "n_cycles": 1080,
           "event_rate": 0.5111111111111111,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar",
+          "features": [
+            "prior_logged_cycle_length"
+          ],
+          "validation_selected_threshold": 0.44359901172685734,
           "ovulation_day_mae": 6.116926503340757,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             5.6927694718423805,
             6.541485783158166
           ],
-          "auroc": 0.5,
+          "sensitivity": 0.8913043478260869,
+          "ppv": 0.7343283582089553,
+          "false_alerts_per_100_cycles": 16.48148148148148,
+          "alert_rate": 0.6203703703703703,
+          "median_lead_days_vs_day_35": 25.0,
+          "auroc": 0.8529675148221344,
           "auroc_cluster_bootstrap_95ci": [
-            0.5,
-            0.5
+            0.8214018239507284,
+            0.8802127388719805
           ],
-          "auprc": 0.48940466293599894,
+          "auprc": 0.842565773975665,
           "auprc_cluster_bootstrap_95ci": [
-            0.43431323922852916,
-            0.6099627752355827
+            0.8005022959521386,
+            0.8805117853602529
           ],
-          "brier": 0.2532951355104776,
+          "brier": 0.15512462273243635,
           "brier_cluster_bootstrap_95ci": [
-            0.24724388430330507,
-            0.2588201909605046
+            0.13943596544801315,
+            0.1710647780056304
           ]
         },
         "day_10_tier_1": {
           "n_cycles": 1080,
           "event_rate": 0.5111111111111111,
-          "sensitivity_alert_cutoff_0_50": 0.007246376811594203,
-          "false_alerts_per_100_cycles": 0.6481481481481481,
-          "median_lead_days_vs_day_35": 25.0,
+          "tier_name": "calendar + wearables",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours"
+          ],
+          "validation_selected_threshold": 0.42614545577614266,
           "ovulation_day_mae": 6.116926503340757,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             5.697871526283063,
             6.526706483124983
           ],
-          "auroc": 0.462272178304787,
+          "sensitivity": 0.8985507246376812,
+          "ppv": 0.7326440177252584,
+          "false_alerts_per_100_cycles": 16.75925925925926,
+          "alert_rate": 0.6268518518518519,
+          "median_lead_days_vs_day_35": 25.0,
+          "auroc": 0.8517958113746157,
           "auroc_cluster_bootstrap_95ci": [
-            0.4277097478118895,
-            0.4928363236812774
+            0.8195893241093214,
+            0.8771438845399685
           ],
-          "auprc": 0.486276798457509,
+          "auprc": 0.8415209563859659,
           "auprc_cluster_bootstrap_95ci": [
-            0.420142014601365,
-            0.5534011883841407
+            0.7945432237117128,
+            0.8798399889759281
           ],
-          "brier": 0.2535661515472731,
+          "brier": 0.1550946225846619,
           "brier_cluster_bootstrap_95ci": [
-            0.2484014791651763,
-            0.25823668400347427
+            0.14106177557894425,
+            0.17086148007424126
           ]
         },
         "day_10_tier_2": {
           "n_cycles": 1080,
           "event_rate": 0.5111111111111111,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar + wearables + temperature",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours",
+            "temperature_change",
+            "temperature_observation_fraction"
+          ],
+          "validation_selected_threshold": 0.501285081048467,
           "ovulation_day_mae": 6.116926503340757,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             5.7353108566248405,
             6.53105781708327
           ],
-          "auroc": 0.4907121486605182,
+          "sensitivity": 0.8170289855072463,
+          "ppv": 0.768313458262351,
+          "false_alerts_per_100_cycles": 12.592592592592593,
+          "alert_rate": 0.5435185185185185,
+          "median_lead_days_vs_day_35": 25.0,
+          "auroc": 0.8537720959595959,
           "auroc_cluster_bootstrap_95ci": [
-            0.45345637380329795,
-            0.5266334794564427
+            0.8224011639906188,
+            0.8799329987556086
           ],
-          "auprc": 0.5043253027412975,
+          "auprc": 0.8438176814455333,
           "auprc_cluster_bootstrap_95ci": [
-            0.4251200956577992,
-            0.5808823235260152
+            0.7942338931059004,
+            0.8795862264080507
           ],
-          "brier": 0.3139250118550151,
+          "brier": 0.15496494768331984,
           "brier_cluster_bootstrap_95ci": [
-            0.28057905945323913,
-            0.3436185117841009
+            0.14042722515350475,
+            0.17088944677032944
           ]
         },
         "day_14_tier_0": {
           "n_cycles": 1080,
           "event_rate": 0.5111111111111111,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar",
+          "features": [
+            "prior_logged_cycle_length"
+          ],
+          "validation_selected_threshold": 0.44359901172685734,
           "ovulation_day_mae": 6.985523385300668,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             6.622239713120046,
             7.368176650462599
           ],
-          "auroc": 0.5,
+          "sensitivity": 0.8913043478260869,
+          "ppv": 0.7343283582089553,
+          "false_alerts_per_100_cycles": 16.48148148148148,
+          "alert_rate": 0.6203703703703703,
+          "median_lead_days_vs_day_35": 21.0,
+          "auroc": 0.8529675148221344,
           "auroc_cluster_bootstrap_95ci": [
-            0.5,
-            0.5
+            0.8242375290194904,
+            0.8811450407465589
           ],
-          "auprc": 0.48940466293599894,
+          "auprc": 0.842565773975665,
           "auprc_cluster_bootstrap_95ci": [
-            0.4282732795976639,
-            0.6058945405015977
+            0.7963143543320084,
+            0.8823090111729175
           ],
-          "brier": 0.2532951355104776,
+          "brier": 0.15512462273243635,
           "brier_cluster_bootstrap_95ci": [
-            0.24706629323526838,
-            0.25926087990711394
+            0.13973998965492196,
+            0.16959804238749038
           ]
         },
         "day_14_tier_1": {
           "n_cycles": 1080,
           "event_rate": 0.5111111111111111,
-          "sensitivity_alert_cutoff_0_50": 0.005434782608695652,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": 21.0,
+          "tier_name": "calendar + wearables",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours"
+          ],
+          "validation_selected_threshold": 0.3891186953678119,
           "ovulation_day_mae": 6.985523385300668,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             6.613271234159474,
             7.386691382834967
           ],
-          "auroc": 0.44785833882301274,
+          "sensitivity": 0.9184782608695652,
+          "ppv": 0.7232524964336662,
+          "false_alerts_per_100_cycles": 17.962962962962962,
+          "alert_rate": 0.649074074074074,
+          "median_lead_days_vs_day_35": 21.0,
+          "auroc": 0.8538098375054897,
           "auroc_cluster_bootstrap_95ci": [
-            0.4143569329569073,
-            0.4822559133242924
+            0.8222321634932894,
+            0.8832534328436532
           ],
-          "auprc": 0.4876607074260203,
+          "auprc": 0.8433547141093016,
           "auprc_cluster_bootstrap_95ci": [
-            0.42219027191671576,
-            0.5541539158193934
+            0.7980897396544901,
+            0.8817967631986091
           ],
-          "brier": 0.2534364786287278,
+          "brier": 0.15484651795055762,
           "brier_cluster_bootstrap_95ci": [
-            0.24850157676970974,
-            0.2580772268500505
+            0.1379017236094896,
+            0.1709685392668672
           ]
         },
         "day_14_tier_2": {
           "n_cycles": 1080,
           "event_rate": 0.5111111111111111,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar + wearables + temperature",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours",
+            "temperature_change",
+            "temperature_observation_fraction"
+          ],
+          "validation_selected_threshold": 0.4113713050225785,
           "ovulation_day_mae": 6.985523385300668,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             6.616613733543917,
             7.335753956903127
           ],
-          "auroc": 0.6633076690821256,
+          "sensitivity": 0.9003623188405797,
+          "ppv": 0.756468797564688,
+          "false_alerts_per_100_cycles": 14.814814814814815,
+          "alert_rate": 0.6083333333333333,
+          "median_lead_days_vs_day_35": 21.0,
+          "auroc": 0.8688069554238033,
           "auroc_cluster_bootstrap_95ci": [
-            0.6330800497167275,
-            0.69656439623903
+            0.8373273701698026,
+            0.8986013175748412
           ],
-          "auprc": 0.6146758387816883,
+          "auprc": 0.8551024599298362,
           "auprc_cluster_bootstrap_95ci": [
-            0.5450278991106479,
-            0.6794911910019895
+            0.8140628394129246,
+            0.8932221821062015
           ],
-          "brier": 0.3085979946046728,
+          "brier": 0.14617461940393042,
           "brier_cluster_bootstrap_95ci": [
-            0.2760406610784774,
-            0.3394644147940572
+            0.12927602777890548,
+            0.16260488950176552
           ]
         },
         "day_18_tier_0": {
           "n_cycles": 1080,
           "event_rate": 0.5111111111111111,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar",
+          "features": [
+            "prior_logged_cycle_length"
+          ],
+          "validation_selected_threshold": 0.44359901172685734,
           "ovulation_day_mae": 8.905345211581292,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             8.292391011938278,
             9.471591973586547
           ],
-          "auroc": 0.5,
+          "sensitivity": 0.8913043478260869,
+          "ppv": 0.7343283582089553,
+          "false_alerts_per_100_cycles": 16.48148148148148,
+          "alert_rate": 0.6203703703703703,
+          "median_lead_days_vs_day_35": 17.0,
+          "auroc": 0.8529675148221344,
           "auroc_cluster_bootstrap_95ci": [
-            0.5,
-            0.5
+            0.8233842903782708,
+            0.8810650670340932
           ],
-          "auprc": 0.48940466293599894,
+          "auprc": 0.842565773975665,
           "auprc_cluster_bootstrap_95ci": [
-            0.4358823644082342,
-            0.6059335792668586
+            0.796721948400498,
+            0.8842296600908427
           ],
-          "brier": 0.2532951355104776,
+          "brier": 0.15512462273243635,
           "brier_cluster_bootstrap_95ci": [
-            0.24724388430330507,
-            0.2589100827356836
+            0.13946936588837225,
+            0.16969673048565645
           ]
         },
         "day_18_tier_1": {
           "n_cycles": 1080,
           "event_rate": 0.5111111111111111,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0925925925925926,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar + wearables",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours"
+          ],
+          "validation_selected_threshold": 0.35155071696563023,
           "ovulation_day_mae": 8.905345211581292,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             8.324567125297829,
             9.510622031421265
           ],
-          "auroc": 0.4052961682037769,
+          "sensitivity": 0.9239130434782609,
+          "ppv": 0.7122905027932961,
+          "false_alerts_per_100_cycles": 19.074074074074073,
+          "alert_rate": 0.662962962962963,
+          "median_lead_days_vs_day_35": 17.0,
+          "auroc": 0.8557552426438296,
           "auroc_cluster_bootstrap_95ci": [
-            0.372498195347669,
-            0.43785935799145215
+            0.8256993014398212,
+            0.8816559954030514
           ],
-          "auprc": 0.45909318025736223,
+          "auprc": 0.8448969403456748,
           "auprc_cluster_bootstrap_95ci": [
-            0.39077147752679353,
-            0.529571635801665
+            0.7992137438937531,
+            0.8797830706177902
           ],
-          "brier": 0.2540292940285799,
+          "brier": 0.15383695576032702,
           "brier_cluster_bootstrap_95ci": [
-            0.24927786555970527,
-            0.2587774562771175
+            0.13898308821359978,
+            0.1689393851642916
           ]
         },
         "day_18_tier_2": {
           "n_cycles": 1080,
           "event_rate": 0.5111111111111111,
-          "sensitivity_alert_cutoff_0_50": 0.0,
-          "false_alerts_per_100_cycles": 0.0,
-          "median_lead_days_vs_day_35": null,
+          "tier_name": "calendar + wearables + temperature",
+          "features": [
+            "prior_logged_cycle_length",
+            "mean_rhr_offset",
+            "mean_hrv_offset",
+            "mean_steps",
+            "mean_sleep_hours",
+            "temperature_change",
+            "temperature_observation_fraction"
+          ],
+          "validation_selected_threshold": 0.33032907037647424,
           "ovulation_day_mae": 5.37305122494432,
           "ovulation_day_mae_cluster_bootstrap_95ci": [
             5.037751817833907,
             5.705696338585827
           ],
-          "auroc": 0.8404150197628458,
+          "sensitivity": 0.9619565217391305,
+          "ppv": 0.7695652173913043,
+          "false_alerts_per_100_cycles": 14.722222222222221,
+          "alert_rate": 0.6388888888888888,
+          "median_lead_days_vs_day_35": 17.0,
+          "auroc": 0.919620800395257,
           "auroc_cluster_bootstrap_95ci": [
-            0.8135130441848131,
-            0.864337627606725
+            0.8982355256283877,
+            0.9397497030099293
           ],
-          "auprc": 0.7891598784680706,
+          "auprc": 0.8969607675368526,
           "auprc_cluster_bootstrap_95ci": [
-            0.7379495790241263,
-            0.8361536398993223
+            0.8627138183834842,
+            0.9286142989967751
           ],
-          "brier": 0.2982356372875333,
+          "brier": 0.10924642051736147,
           "brier_cluster_bootstrap_95ci": [
-            0.2657115544481494,
-            0.32981747442091036
+            0.09600536416516285,
+            0.12218197160893693
           ]
         }
       }

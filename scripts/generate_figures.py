@@ -51,7 +51,7 @@ def render_auc():
 def render_false_alerts():
     vals=[s["metrics"][f"day_{day}_tier_{tier}"]["false_alerts_per_100_cycles"] for s in seeds.values() for day in days for tier in tiers]
     ymax=max(5.0,((max(vals)//5)+1)*5)
-    parts,box=svg_start("Synthetic false alerts by tier","Mean false alerts per 100 patient-cycles at the fixed demo cutoff; three generator seeds",0,ymax,"False alerts per 100 cycles")
+    parts,box=svg_start("Synthetic false alerts by tier","Mean false alerts per 100 patient-cycles at validation-selected thresholds; three generator seeds",0,ymax,"False alerts per 100 cycles")
     x0,y0,x1,y1=box
     for tier in tiers:
         xs=[]; ys=[]
