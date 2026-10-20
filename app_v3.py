@@ -6,6 +6,7 @@ from pathlib import Path
 import streamlit as st
 
 from src.claims import load_claims
+from ui3.about_safety import render_about_safety
 from ui3.evidence import render_evidence
 from ui3.home import render_home
 from ui3.kushi import render_kushi
@@ -36,6 +37,8 @@ elif page == "Evidence":
     render_evidence(claims=claims, language=language)
 elif page == "Meet Kushi":
     render_kushi(claims=claims, language=language)
+elif page == "About and safety":
+    render_about_safety(claims=claims, language=language)
 else:
     st.markdown(f"# {page}")
     st.markdown(
@@ -43,5 +46,13 @@ else:
     )
     st.markdown(
         '<aside class="ct-callout"><b>Synthetic research prototype.</b> Not for diagnosis, contraception, conception planning, or treatment decisions.</aside>',
+        unsafe_allow_html=True,
+    )
+
+if page != "Home":
+    st.markdown(
+        '<footer class="ct-footer">Synthetic research prototype. Not for diagnosis, contraception, conception planning, or treatment decisions. '
+        '<a href="https://github.com/kushagragupta2005/CycleTwin_VIT" target="_blank" rel="noopener noreferrer">Source code</a> · '
+        '<a href="https://github.com/kushagragupta2005/CycleTwin_VIT/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a> · Team CycleTwin</footer>',
         unsafe_allow_html=True,
     )

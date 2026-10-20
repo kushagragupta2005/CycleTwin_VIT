@@ -33,6 +33,12 @@
 - Kept static simulator internals inside an advanced disclosure, labelled oracle-adjacent and separate from hormone measurements or real EHR data.
 - Added live fictional guardrails that reuse the existing fail-closed safety path; a hormonal-contraception check was verified to withhold the score.
 
+## Stage 6 — About and safety
+
+- Added the final v3 page: scope boundaries, explicit fail-closed score-withholding rules, session-level mock-consent status, and judge-facing glossary.
+- Moved the unchanged synthetic Apple Health-shaped XML loader and upload parser into Advanced tools. The bundled synthetic export was generated and parsed locally: 36 dates and one cycle start; it remains outside the scored cohort.
+- Added the shared not-for-diagnosis footer to every non-Home v3 view.
+
 ## Run and rollback
 
 ```sh
