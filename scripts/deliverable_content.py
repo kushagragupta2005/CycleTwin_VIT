@@ -65,6 +65,13 @@ def compose(c):
            f"{last['Held-out cycles']:,} synthetic test cycles across {len((c['frozen'] or c['development'])['seeds'])} "+('frozen seeds' if c['frozen'] else 'development seeds'),
            'Old seeds informed development. A frozen evaluation is pending.' if c['frozen'] is None else 'A separate frozen evaluation artifact is available.',
            'Standard average precision and calibration diagnostics are available from stored predictions.' if c.get('reporting') else 'Current AUPRC is custom and tie-sensitive. Standard average precision is a reporting follow-up.'])
+    if c.get('alert_policy_summary'):
+        policy=c['alert_policy_summary']['2']
+        slide('Frozen sequential alert-policy evidence','Earliest safe threshold crossing only; all values are synthetic',
+              [f"Tier 2: {policy['alerts']:,} alerts across {policy['n_cycles']:,} generated cycles; alert precision {metric(policy['alert_precision'])}",
+               f"Missed generated events: {policy['missed_events']:,}/{policy['event_cycles']:,} ({metric(policy['missed_event_rate'])}); false alerts: {metric(policy['false_alerts_per_synthetic_patient_year'])} per synthetic patient-year",
+               f"Median generated-event lead time: {metric(policy['lead_time_days_median'])} days among {policy['lead_time_n']:,} true-positive cycles with a generated ovulation day",
+               'Safety is evaluated at every snapshot; no later score can change an earlier alert.'])
     slide('What the clinician view shows','Decision-support research display',
           ['Fitted probability beside its own validation threshold and held-out model evidence',
            'Exact additive feature contributions and explicit imputation',
@@ -89,7 +96,7 @@ def compose(c):
           ['Labels and sensor changes share generator assumptions',
            'EHR-lite includes a label-generating internal latent',
            'Old test seeds were reused during development',
-           'The current benchmark does not evaluate the complete sequential alert policy'])
+           'The frozen synthetic sequential alert policy is evaluated; robustness and clinical safety effectiveness remain separate work'])
     slide('Reproducible demonstration','Public source, inspectable artifacts and explicit next work',
           ['README, model cards and the audit link every claim to evidence',
            'Persisted inference reproduces the benchmark and exposes exact feature calculations',
@@ -197,6 +204,10 @@ Code uses the [MIT License](LICENSE). All project datasets are synthetic. Publis
                     m=subsets[subset];ci=m['intervals']['recall']['95ci']
                     report_rows.append(f"| {seed} | {max(days)} | {int(key.rsplit('_',1)[1])} | {subset} | {m['n']} | {m['auroc']:.6f} | {m['average_precision']:.6f} | {m['ece']:.6f} | {m['recall']:.6f} [{ci[0]:.6f}, {ci[1]:.6f}] |")
         readme=readme.replace('## Evidence and limitations','## Calibration and subgroup reporting\n\n'+ '\n'.join(report_rows)+'\n\nFull per-day/tier/archetype AUROC and recall intervals, reliability bins, ECE, diagnostic calibration slope/intercept and decision curves are in results_reporting.json. Diagnostic calibration regressions never feed predictions. Synthetic decision curves assume threshold odds and do not establish clinical utility.\n\n![Synthetic reliability](docs/figures/reliability.svg)\n\n![Synthetic decision curves](docs/figures/decision_curve.svg)\n\n## Evidence and limitations')
+    if c.get('alert_policy_summary'):
+        policy=c['alert_policy_summary']['2']
+        sequential='## Frozen sequential alert policy\n\nThe frozen policy evaluates the first safe threshold crossing at days 10, 14 and 18, with at most one alert per cycle; it uses saved frozen scores without retraining or retuning. Tier 2 produced {alerts:,} alerts across {cycles:,} generated cycles: precision {precision:.6f}; missed generated events {missed:,}/{events:,} ({missed_rate:.6f}); false alerts {false_rate:.6f} per synthetic patient-year. Median generated-event lead time was {lead:.6f} days among {lead_n:,} true-positive cycles with a generated ovulation day. These are simulator outcomes, not clinical alert rates. Full rows are in results/alert_policy_frozen_rows.csv.\n\n'.format(alerts=policy['alerts'],cycles=policy['n_cycles'],precision=policy['alert_precision'],missed=policy['missed_events'],events=policy['event_cycles'],missed_rate=policy['missed_event_rate'],false_rate=policy['false_alerts_per_synthetic_patient_year'],lead=policy['lead_time_days_median'],lead_n=policy['lead_time_n'])
+        readme=readme.replace('## Evidence and limitations',sequential+'## Evidence and limitations')
     videos={}
     for duration in (team['minimum_video_minutes'], cfg['short_video_minutes']):
         short_titles=('CycleTwin','Meet Kushi','Evidence at the latest sensor snapshot','Validity limits')

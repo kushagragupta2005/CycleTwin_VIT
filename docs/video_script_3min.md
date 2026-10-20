@@ -29,6 +29,6 @@ Synthetic recovery is not prospective evidence in women
 Labels and sensor changes share generator assumptions
 EHR-lite includes a label-generating internal latent
 Old test seeds were reused during development
-The current benchmark does not evaluate the complete sequential alert policy
+The frozen synthetic sequential alert policy is evaluated; robustness and clinical safety effectiveness remain separate work
 
 End on limitations. This is a synthetic engineering experiment, not evidence of reliable forecasting in people.

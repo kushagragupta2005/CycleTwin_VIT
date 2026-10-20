@@ -156,6 +156,10 @@ Full per-day/tier/archetype AUROC and recall intervals, reliability bins, ECE, d
 
 ![Synthetic decision curves](docs/figures/decision_curve.svg)
 
+## Frozen sequential alert policy
+
+The frozen policy evaluates the first safe threshold crossing at days 10, 14 and 18, with at most one alert per cycle; it uses saved frozen scores without retraining or retuning. Tier 2 produced 1,634 alerts across 3,240 generated cycles: precision 0.730110; missed generated events 484/1,677 (0.288611); false alerts 1.483785 per synthetic patient-year. Median generated-event lead time was 17.000000 days among 790 true-positive cycles with a generated ovulation day. These are simulator outcomes, not clinical alert rates. Full rows are in results/alert_policy_frozen_rows.csv.
+
 ## Evidence and limitations
 
 - [Complete implementation audit](docs/audit_2026-10-20/CycleTwin_full_audit.md), a historical snapshot before the corrections.

@@ -12,14 +12,14 @@ import streamlit as st
 from src.generator import generate
 from src.claims import load_claims
 from src.kushi_ui import render_kushi
-from src.reporting_ui import render_reporting
+from src.reporting_ui import render_reporting, render_alert_policy
 from src.model import estimate_ovulation_day
 from src.inference import predict, safe_predict
 from src.features import attach_prior_cycle_lengths
 from src.uncertainty import uncertainty
 from src.safety import abstention_reasons, synthetic_safety_record
 from src.conformal import calibrate_binary, calibrate_ovulation_interval, classification_set, ovulation_interval
-from src.alerts import apply_alert_budget
+from src.alerts import apply_alert_budget, apply_sequential_alert_policy
 from src.metabolic import excursion_event
 from src.twin import simulate_reproductive_axis, simulate_metabolic_axis, coupling_sweep, TwinParameters
 from src.adapters.apple_health import parse_export, parse_upload_bytes
@@ -354,6 +354,7 @@ if page == "Method":
     st.caption("Synthetic held-out data only. Patient-cluster bootstrap confidence intervals; not clinical performance or a confidence guarantee for this record.")
     st.markdown("**Method:** synthetic generator → tiered fitted benchmark → held-out evaluation. The dashboard uses the fitted classifier; the simplified twin remains a separate illustration; the twin state is not used in the benchmark score.")
     render_reporting(claims,display_tier)
+    render_alert_policy(claims)
     st.subheader("Honest limitations")
     plain_words("The software learns patterns created by its own simulator. It has not established reliable forecasting for people with PMOS without measured hormone levels.")
     st.markdown("- Synthetic data only; no clinical or external validation.\n- Patient panels use persisted fitted models; the generated display cohort is separate from training.\n- EHR-lite is oracle-adjacent because internal variables also influence generated labels.\n- Conformal and abstention coverage, and CGM forecasts, are not evaluated benchmark endpoints.\n- Twin dynamics are illustrative and unused by the fitted score; the input-editing sandbox is not an intervention model.\n- The displayed timeline includes later generated nights; prospective benchmark features are truncated at the forecast day.")
@@ -514,7 +515,7 @@ with st.container(border=True):
     st.subheader("Synthetic alert log")
     plain_words("Add an eligible generated alert and inspect the per-cycle budget. Repeated additions do not create duplicate entries.")
     with st.popover("ⓘ Alert-log caveat"):
-        st.caption("At most one alert per synthetic patient-cycle. Explanations are templated from state and feature contributions; no LLM is used in the loop.")
+        st.caption("The first eligible day 10/14/18 threshold crossing is retained; later scores cannot replace it. At most one alert per synthetic patient-cycle. Explanations are templated from state and feature contributions; no LLM is used in the loop.")
     predictions=[]
     for r in rows:
         if r["abstain"]:
@@ -523,7 +524,7 @@ with st.container(border=True):
             predictions.append({"patient":r["patient"],"cycle":r["cycle"],"day":day,
                                 "risk":predict(r["record"],day,display_tier)["prob"],
                                 "threshold":predict(r["record"],day,display_tier)["threshold"],"abstain":bool(abstention_reasons(synthetic_safety_record(r["record"],day)))})
-    budgeted=apply_alert_budget(predictions,threshold=alert_threshold,max_per_cycle=alert_limit)
+    budgeted=apply_sequential_alert_policy(predictions,max_per_cycle=alert_limit)
     if st.button("Add selected synthetic alert to log"):
         chosen=next((r for r in budgeted if r["patient"]==item["patient"] and r["cycle"]==item["cycle"] and r["alert"]),None)
         existing=st.session_state.setdefault("alert_log",[])

@@ -13,3 +13,27 @@ def apply_alert_budget(predictions, threshold: float = 0.50, max_per_cycle: int 
         for row in rows:
             out=dict(row); out["alert"]=id(row) in selected_ids; output.append(out)
     return output
+
+
+def apply_sequential_alert_policy(predictions, max_per_cycle: int = 1):
+    """Commit the earliest eligible snapshot decision for each patient-cycle.
+
+    Rows must contain a day, score, threshold and explicit abstention result.
+    Later rows are never allowed to replace an earlier selected alert.
+    """
+    grouped = {}
+    for row in predictions:
+        grouped.setdefault((row["patient"], row["cycle"]), []).append(row)
+    output = []
+    for rows in grouped.values():
+        ordered = sorted(rows, key=lambda r: r["day"])
+        selected = []
+        for row in ordered:
+            eligible = row.get("abstain") is False and row["risk"] >= row["threshold"]
+            if eligible and len(selected) < max_per_cycle:
+                selected.append(id(row))
+        for row in ordered:
+            out = dict(row)
+            out["alert"] = id(row) in selected
+            output.append(out)
+    return output

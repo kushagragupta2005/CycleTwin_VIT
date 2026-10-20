@@ -82,6 +82,24 @@ def build(write=True):
             meta['metrics']['auprc_definition']='Standard sklearn average precision; raw legacy value retained separately'
             meta['metrics']['ece']=point['ece']
             meta['metrics']['calibration_diagnostic']=point['calibration_diagnostic']
+    alert_policy=ROOT/'results_alert_policy_frozen.json'
+    claims['alert_policy']=json.loads(alert_policy.read_text()) if alert_policy.exists() else None
+    if alert_policy.exists():
+        claims['source_sha256']['results_alert_policy_frozen.json']=hashlib.sha256(alert_policy.read_bytes()).hexdigest()
+        claims['alert_policy_summary']={}
+        for tier,seed_rows in claims['alert_policy']['tiers'].items():
+            values=list(seed_rows.values()); leads=[x for row in values for x in row['lead_time_days_values']]
+            alerts=sum(row['alerts'] for row in values); events=sum(row['event_cycles'] for row in values)
+            claims['alert_policy_summary'][tier]={
+                'n_cycles':sum(row['n_cycles'] for row in values),'alerts':alerts,
+                'true_positive_alerts':sum(row['true_positive_alerts'] for row in values),
+                'false_alerts':sum(row['false_alerts'] for row in values),'event_cycles':events,
+                'missed_events':sum(row['missed_events'] for row in values),
+                'alert_precision':sum(row['true_positive_alerts'] for row in values)/alerts if alerts else None,
+                'missed_event_rate':sum(row['missed_events'] for row in values)/events if events else None,
+                'false_alerts_per_synthetic_patient_year':sum(row['false_alerts'] for row in values)/sum(row['synthetic_exposure_patient_years'] for row in values),
+                'lead_time_days_median':float(np.median(leads)) if leads else None,
+                'lead_time_n':len(leads)}
     submission=ROOT/'docs/submission_status.json'
     claims['submission']=json.loads(submission.read_text()) if submission.exists() else None
     claims['deliverables']=compose(claims)

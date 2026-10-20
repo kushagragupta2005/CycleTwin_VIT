@@ -71,6 +71,13 @@ Synthetic day 18, Tier 2: AUROC 0.907, Brier 0.117
 A separate frozen evaluation artifact is available.
 Standard average precision and calibration diagnostics are available from stored predictions.
 
+## Frozen sequential alert-policy evidence
+Earliest safe threshold crossing only; all values are synthetic
+Tier 2: 1,634 alerts across 3,240 generated cycles; alert precision 0.730
+Missed generated events: 484/1,677 (0.289); false alerts: 1.484 per synthetic patient-year
+Median generated-event lead time: 17.000 days among 790 true-positive cycles with a generated ovulation day
+Safety is evaluated at every snapshot; no later score can change an earlier alert.
+
 ## What the clinician view shows
 Decision-support research display
 Fitted probability beside its own validation threshold and held-out model evidence
@@ -104,7 +111,7 @@ Synthetic recovery is not prospective evidence in women
 Labels and sensor changes share generator assumptions
 EHR-lite includes a label-generating internal latent
 Old test seeds were reused during development
-The current benchmark does not evaluate the complete sequential alert policy
+The frozen synthetic sequential alert policy is evaluated; robustness and clinical safety effectiveness remain separate work
 
 ## Reproducible demonstration
 Public source, inspectable artifacts and explicit next work

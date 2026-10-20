@@ -33,3 +33,19 @@ def render_reporting(claims, default_tier=2):
                          ('decision_curve.svg','Frozen synthetic day-18 decision curves. Threshold odds are assumptions; this does not establish clinical utility.')]:
         path=Path('docs/figures')/name
         if path.exists(): st.image(str(path),caption=caption)
+
+
+def render_alert_policy(claims):
+    summary=claims.get('alert_policy_summary')
+    if not summary: return
+    st.subheader('Frozen synthetic sequential alert policy')
+    st.caption('In plain words: each cycle can alert once, at the first safe threshold crossing on day 10, 14 or 18. These are simulator outcomes, not clinical alert rates.')
+    rows=[]
+    for tier,metrics in summary.items():
+        rows.append({'Tier':int(tier),'Synthetic cycles':metrics['n_cycles'],'Alerts':metrics['alerts'],
+                     'Alert precision':metrics['alert_precision'],'Missed generated events':metrics['missed_events'],
+                     'Missed-event rate':metrics['missed_event_rate'],
+                     'False alerts / synthetic patient-year':metrics['false_alerts_per_synthetic_patient_year'],
+                     'Median lead time (days)':metrics['lead_time_days_median'],'Lead-time n':metrics['lead_time_n']})
+    st.dataframe(pd.DataFrame(rows),hide_index=True,use_container_width=True)
+    st.caption('Lead time is generated ovulation day minus alert day for true-positive cycles with a generated ovulation day. Absent ovulation has no numerical lead time. Safety is evaluated at each snapshot; later information cannot change an earlier alert.')

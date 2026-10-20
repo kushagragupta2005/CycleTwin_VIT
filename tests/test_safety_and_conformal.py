@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 from src.safety import abstain, abstention_reasons
 from src.conformal import calibrate_binary, classification_set, ovulation_interval
-from src.alerts import apply_alert_budget
+from src.alerts import apply_alert_budget, apply_sequential_alert_policy
 from src.metabolic import simulate_cgm, excursion_event
 
 class SafetyTests(unittest.TestCase):
@@ -27,6 +27,12 @@ class SafetyTests(unittest.TestCase):
         out=apply_alert_budget(rows)
         self.assertEqual(sum(r['alert'] for r in out if r['patient']=='p1'),1)
         self.assertFalse(any(r['alert'] for r in out if r['patient']=='p2'))
+    def test_sequential_policy_keeps_earliest_eligible_alert(self):
+        rows=[{"patient":"p1","cycle":0,"day":10,"risk":.8,"threshold":.7,"abstain":False},
+              {"patient":"p1","cycle":0,"day":14,"risk":.99,"threshold":.7,"abstain":False},
+              {"patient":"p2","cycle":0,"day":10,"risk":.99,"threshold":.7,"abstain":True}]
+        out=apply_sequential_alert_policy(rows)
+        self.assertEqual([r['day'] for r in out if r['alert']], [10])
     def test_cgm_is_deterministic_and_uses_postmeal_window(self):
         _,a,meals=simulate_cgm(3,.5)
         _,b,_=simulate_cgm(3,.5)
