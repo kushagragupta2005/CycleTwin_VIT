@@ -94,7 +94,7 @@ All three fresh generator seeds are shown. Models are fitted on train patients, 
 
 ![Synthetic alert log](docs/screenshots/alert-log.png)
 
-Demo video: omitted as requested; the brief asks for a 20-minute video, so this submission deliverable remains outstanding.
+Demo video: [20-minute recording script](docs/video_script_20min.md) and [three-minute recording script](docs/video_script_3min.md) are prepared. The actual recording remains outstanding and must be made by the human presenter; the brief asks for a minimum 20-minute video.
 
 These figures aggregate the three fresh synthetic seeds; error bars span the lowest to highest seed-specific patient-cluster 95% interval. They are internal simulator checks, not clinical performance estimates.
 
