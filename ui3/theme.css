@@ -69,6 +69,7 @@ p { max-width: 70ch; }
 .ct-card-number { color:var(--ct-teal-dark); font-family:ui-serif, Georgia, serif; font-size:clamp(2.1rem, 4.4vw, 3.45rem); font-weight:600; line-height:1; margin:.25rem 0 .7rem; }
 .ct-card-danger { background:var(--ct-danger-soft); border-color:#d87872; }
 .ct-card-danger .ct-card-number { color:var(--ct-danger); }
+.ct-failed-label { background:#fff; border:1px solid #d87872; border-radius:999px; color:var(--ct-danger); display:inline-flex; font-size:.78rem; font-weight:800; margin-bottom:.65rem; padding:.18rem .5rem; }
 .ct-step { position:relative; padding-top:1.1rem; }
 .ct-step-index { align-items:center; background:var(--ct-teal); border-radius:999px; color:#fff; display:inline-flex; font-size:.9rem; font-weight:700; height:2rem; justify-content:center; margin-bottom:1rem; width:2rem; }
 .ct-callout { border:1px solid #cb9a48; background:var(--ct-amber-soft); border-radius:var(--ct-radius); padding:1.2rem 1.35rem; color:var(--ct-ink); }

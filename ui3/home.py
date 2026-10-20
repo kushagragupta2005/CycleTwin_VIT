@@ -6,11 +6,12 @@ from html import escape
 import streamlit as st
 
 
-def _card(title: str, value: str, text: str, caption: str, *, danger: bool = False, help_text: str | None = None) -> str:
+def _card(title: str, value: str, text: str, caption: str, *, danger: bool = False, label: str | None = None, help_text: str | None = None) -> str:
     cls = "ct-card ct-card-danger" if danger else "ct-card"
     hint = f' title="{escape(help_text)}"' if help_text else ""
+    label_html = f'<span class="ct-failed-label">⚠ {escape(label)}</span>' if label else ""
     return (
-        f'<article class="{cls}"{hint}><h3>{escape(title)}</h3>'
+        f'<article class="{cls}"{hint}>{label_html}<h3>{escape(title)}</h3>'
         f'<div class="ct-card-number">{escape(value)}</div><p>{escape(text)}</p>'
         f'<p class="ct-caption ct-muted">{escape(caption)}</p></article>'
     )
@@ -31,7 +32,10 @@ def render_home(*, claims: dict, frozen_summary: list[dict], go_to, language: st
     seed_count = len(frozen["seeds"])
     conformal = claims["conformal"]
     target = 1 - float(conformal["protocol"]["alpha"])
-    conformal_rows = [row for key, row in conformal["results"].items() if "day_18_tier_2" in key]
+    conformal_rows = [
+        row for key, row in conformal["results"].items()
+        if f"day_{main_day}_tier_{main_tier}" in key
+    ]
     safety_coverage = sum(row["overall"]["classification_coverage"] for row in conformal_rows) / len(conformal_rows)
     day_band_coverage = sum(row["overall"]["ovulation_day_band_coverage"] for row in conformal_rows) / len(conformal_rows)
     context = claims["context"]["india_prevalence"]
@@ -79,27 +83,43 @@ def render_home(*, claims: dict, frozen_summary: list[dict], go_to, language: st
     detail = language == "Detailed"
     cards = [
         _card(
-            f"Day-{main_result['Forecast day']} forecast quality", f"{main_result['Mean AUROC']:.3f}",
-            f"How well Tier {main_result['Tier']} separates generated late-or-missing cycles on day {main_result['Forecast day']}.",
-            f"Tier {main_result['Tier']} · forecast day {main_result['Forecast day']} · generated data only · {main_result['Held-out cycles']:,} held-out cycles across {seed_count} frozen seeds.",
+            "How well it spots higher-risk cycles", f"{main_result['Mean AUROC']:.3f}",
+            f"Score from 0.5 (coin flip) to 1.0 (perfect). Tier {main_result['Tier']}, day {main_result['Forecast day']}, generated cycles only.",
+            _plain_or_detailed(
+                "",
+                f"AUROC · Tier {main_result['Tier']} · forecast day {main_result['Forecast day']} · generated cycles only · {main_result['Held-out cycles']:,} held-out cycles across {seed_count} frozen seeds.",
+                language,
+            ),
             help_text=f"AUROC: higher is better. Brier: {main_result['Mean Brier']:.3f}, lower is better." if not detail else None,
         ),
         _card(
-            "Early snapshot", f"Day {early_result['Forecast day']}",
-            "Added simulated sensors did not improve the result yet.",
-            f"Tier {early_result['Tier']} · forecast day {early_result['Forecast day']} · generated data only.",
-            help_text=f"AUROC: {early_result['Mean AUROC']:.3f}; Brier: {early_result['Mean Brier']:.3f}." if not detail else None,
+            "Early on, sensors don't help", f"Day {early_result['Forecast day']}",
+            f"By day {early_result['Forecast day']} the wearable signals don't improve the forecast yet, so it relies on cycle history alone.",
+            _plain_or_detailed(
+                "",
+                f"Validation-selected feature tier · Tier {early_result['Tier']} · forecast day {early_result['Forecast day']} · generated cycles only.",
+                language,
+            ),
         ),
         _card(
-            "Classification safety range", f"{safety_coverage:.1%}",
-            "Coverage of the classification safety range in the generated evaluation.",
-            f"Tier {main_result['Tier']} · forecast day {main_result['Forecast day']} · generated data only · target: {target:.0%}.",
+            "Is the ‘late or not late’ safety range reliable?", f"{safety_coverage:.1%}",
+            f"The safety range contained the true answer {safety_coverage:.1%} of the time. Target {target:.0%}. Generated data only.",
+            _plain_or_detailed(
+                "",
+                f"Conformal classification coverage · Tier {main_result['Tier']} · forecast day {main_result['Forecast day']} · generated cycles only.",
+                language,
+            ),
         ),
         _card(
-            "Do not rely on this", f"{day_band_coverage:.1%} / {target:.0%}",
-            "The ovulation-day band failed its coverage check.",
-            f"Tier {main_result['Tier']} · forecast day {main_result['Forecast day']} · generated data only · observed coverage / target.",
+            "Ovulation-day range: don't use it", f"{day_band_coverage:.1%}",
+            f"The true ovulation day fell inside the range only {day_band_coverage:.1%} of the time. It should be about {target:.0%}.",
+            _plain_or_detailed(
+                "",
+                f"Conformal ovulation-day coverage · Tier {main_result['Tier']} · forecast day {main_result['Forecast day']} · generated cycles only.",
+                language,
+            ),
             danger=True,
+            label="Failed",
         ),
     ]
     st.markdown(f'<div class="ct-grid ct-grid-4">{"".join(cards)}</div>', unsafe_allow_html=True)
