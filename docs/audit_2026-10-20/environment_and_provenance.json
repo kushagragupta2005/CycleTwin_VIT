@@ -1,0 +1,37 @@
+{
+  "python": "3.9.6",
+  "platform": "macOS-15.8-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.0.2",
+    "scikit-learn": "1.6.1",
+    "pandas": "2.3.3",
+    "streamlit": "1.50.0",
+    "altair": "5.5.0",
+    "scipy": "1.13.1",
+    "joblib": "1.5.3",
+    "threadpoolctl": "3.7.0"
+  },
+  "audited_commit": "76b4a8f8a69fa526e9825669fb600810af2b08f8",
+  "source_sha256": {
+    "app.py": "30db740b0804cc29df60b3c75bfa2c2c75896db3909eeb85b0d7a52fdab2c157",
+    "results.json": "e3213f044f5f2b2a022f1471bdca2ac4a6ed1b851e2262123c8e999f6931ec09",
+    "data/ehr.csv": "dddecc69527dc467196524a12472b6c60daabddcebef7c2e6a780a24544e8f48",
+    "src/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "src/adapters/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "src/adapters/apple_health.py": "ccaec29126939a790b7a56dfa5bc8e877f6c01bee6ebf6314715ad38da5c2728",
+    "src/alerts.py": "de19146a59715d255684aeb5208162f3faed6a521d7a81d52ae2c3ebd926bad0",
+    "src/conformal.py": "4949d42ba0e59c0eababb3749d52500b52d4646e4641b119fde45852f9803e49",
+    "src/explanations.py": "bf26c5d5e3537465af53ab563254a7ea92e11d2d950c95d309b592c0fc816ce0",
+    "src/features.py": "c6a6c635da7e8f28715bf14251602c56f1ab841ccf3706ac0fd171cb49add8fe",
+    "src/fitted.py": "33f71aa1de55092b75587fe23fcb527d4380f375c189bed7f1eae7805d046b02",
+    "src/generator.py": "bc7a63e785eb453a148b4150f309500c1d1f15145af59cd093a2ad5d9b3b0623",
+    "src/metabolic.py": "7dd266f6efbe588e8666b2b3a5f0d64696d3ab30309e1c20f965f706c4659dec",
+    "src/model.py": "cb64e0b30a1442a8057c843c4d1321d13c086cc60a01dd92b9f230f5b6ed5d85",
+    "src/safety.py": "159fb71655ea773bd450087ea06cf78792378cb70037ced7176960c99a886ea3",
+    "src/splits.py": "56922a1b751bdd43ffe7db713942ed9d9c571fde0cbf6ec8f20d2b5d691c748e",
+    "src/twin.py": "5cd99a25011f85a33f54dca3933f09e12f0a3b089b801b1137cfb3a42b0098ae"
+  },
+  "saved_model_files": [],
+  "latency_benchmark": "not present; not measured by this audit",
+  "memory_benchmark": "not present; not measured by this audit"
+}

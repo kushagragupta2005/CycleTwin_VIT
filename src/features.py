@@ -49,3 +49,16 @@ def build_feature_matrix(rows, day: int, tier: int) -> np.ndarray:
                        float(row["bmi"]), float(row["family_history"])]
         records.append(values)
     return np.asarray(records, dtype=float)
+
+
+def record_features(record, day: int, tier: int) -> np.ndarray:
+    """Inference uses only explicitly supplied completed-cycle history, never the target."""
+    row = dict(record)
+    row.setdefault("patient", "inference")
+    row.setdefault("cycle", 0)
+    row["cycle_length"] = 0.0  # Never require or consume the unknown current-cycle length.
+    history = np.asarray(row.get("prior_cycle_lengths", []), dtype=float)
+    # Reuse the benchmark's sensor transformations exactly; replace its batch history.
+    matrix = build_feature_matrix([row], day, tier)
+    matrix[0, 0] = float(np.mean(history[-3:])) if history.size else np.nan
+    return matrix

@@ -1,0 +1,110 @@
+{
+  "temperature": {
+    "total": 1188000,
+    "missing": 142749,
+    "observed": 1045251,
+    "min": -0.1954542504592965,
+    "max": 0.43193269303569515,
+    "mean": 0.10433527310108658,
+    "population_std": 0.10793464121753181
+  },
+  "rhr": {
+    "total": 1188000,
+    "missing": 0,
+    "observed": 1188000,
+    "min": -4.906883251709055,
+    "max": 4.717195951940833,
+    "mean": 0.18265927427422407,
+    "population_std": 1.014581033152973
+  },
+  "hrv": {
+    "total": 1188000,
+    "missing": 0,
+    "observed": 1188000,
+    "min": -5.131530910098629,
+    "max": 4.749302367833341,
+    "mean": -0.12938730141372073,
+    "population_std": 1.0066972079072791
+  },
+  "steps": {
+    "total": 1188000,
+    "missing": 0,
+    "observed": 1188000,
+    "min": 1550.0419770025492,
+    "max": 16219.371744409678,
+    "mean": 5070.051613208433,
+    "population_std": 1288.6778044047844
+  },
+  "sleep": {
+    "total": 1188000,
+    "missing": 0,
+    "observed": 1188000,
+    "min": 3.4120313301735505,
+    "max": 10.736776119601158,
+    "mean": 6.999767907020404,
+    "population_std": 0.7494498139405467
+  },
+  "cycle_length": {
+    "total": 21600,
+    "missing": 0,
+    "observed": 21600,
+    "min": 22.0,
+    "max": 55.0,
+    "mean": 33.45902777777778,
+    "population_std": 7.144843192118993
+  },
+  "ovulation_day": {
+    "total": 21600,
+    "missing": 0,
+    "observed": 21600,
+    "min": -1.0,
+    "max": 45.0,
+    "mean": 17.761111111111113,
+    "population_std": 10.390476705755107
+  },
+  "ir": {
+    "total": 21600,
+    "missing": 0,
+    "observed": 21600,
+    "min": -2.5,
+    "max": 2.5,
+    "mean": -0.002140778695050577,
+    "population_std": 1.000192506580722
+  },
+  "androgen": {
+    "total": 21600,
+    "missing": 0,
+    "observed": 21600,
+    "min": -2.343515565726666,
+    "max": 3.0671437895104643,
+    "mean": 0.29148087209686174,
+    "population_std": 0.7693224482639771
+  },
+  "age": {
+    "total": 21600,
+    "missing": 0,
+    "observed": 21600,
+    "min": 18.0,
+    "max": 42.0,
+    "mean": 29.82138888888889,
+    "population_std": 7.185791401856003
+  },
+  "bmi": {
+    "total": 21600,
+    "missing": 0,
+    "observed": 21600,
+    "min": 17.0,
+    "max": 42.0,
+    "mean": 26.268553498596184,
+    "population_std": 4.262852423358255
+  },
+  "family_history": {
+    "total": 21600,
+    "missing": 0,
+    "observed": 21600,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.22083333333333333,
+    "population_std": 0.4148083560178389
+  }
+}

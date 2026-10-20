@@ -6,3 +6,4 @@ apple_health_export/
 .ppt_build/
 *.csv
 !data/ehr.csv
+!results/predictions_heldout.csv

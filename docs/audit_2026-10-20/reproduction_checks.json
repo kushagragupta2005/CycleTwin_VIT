@@ -1,0 +1,614 @@
+[
+  {
+    "seed": 97,
+    "day": 10,
+    "tier": 0,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 97,
+    "day": 10,
+    "tier": 1,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 97,
+    "day": 10,
+    "tier": 2,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 97,
+    "day": 10,
+    "tier": 3,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 97,
+    "day": 14,
+    "tier": 0,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 97,
+    "day": 14,
+    "tier": 1,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 97,
+    "day": 14,
+    "tier": 2,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 97,
+    "day": 14,
+    "tier": 3,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 97,
+    "day": 18,
+    "tier": 0,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 97,
+    "day": 18,
+    "tier": 1,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 97,
+    "day": 18,
+    "tier": 2,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 97,
+    "day": 18,
+    "tier": 3,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 101,
+    "day": 10,
+    "tier": 0,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 101,
+    "day": 10,
+    "tier": 1,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 101,
+    "day": 10,
+    "tier": 2,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 101,
+    "day": 10,
+    "tier": 3,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 101,
+    "day": 14,
+    "tier": 0,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 101,
+    "day": 14,
+    "tier": 1,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 101,
+    "day": 14,
+    "tier": 2,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 101,
+    "day": 14,
+    "tier": 3,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 101,
+    "day": 18,
+    "tier": 0,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 101,
+    "day": 18,
+    "tier": 1,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 101,
+    "day": 18,
+    "tier": 2,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 101,
+    "day": 18,
+    "tier": 3,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 103,
+    "day": 10,
+    "tier": 0,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 103,
+    "day": 10,
+    "tier": 1,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 103,
+    "day": 10,
+    "tier": 2,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 103,
+    "day": 10,
+    "tier": 3,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 103,
+    "day": 14,
+    "tier": 0,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 103,
+    "day": 14,
+    "tier": 1,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 103,
+    "day": 14,
+    "tier": 2,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 103,
+    "day": 14,
+    "tier": 3,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 103,
+    "day": 18,
+    "tier": 0,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 103,
+    "day": 18,
+    "tier": 1,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 103,
+    "day": 18,
+    "tier": 2,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  },
+  {
+    "seed": 103,
+    "day": 18,
+    "tier": 3,
+    "matching_saved_fields": [
+      "auroc",
+      "auprc",
+      "brier",
+      "ovulation_day_mae",
+      "validation_selected_threshold",
+      "sensitivity",
+      "ppv",
+      "false_alerts_per_100_cycles",
+      "alert_rate"
+    ],
+    "absolute_tolerance": 1e-12
+  }
+]

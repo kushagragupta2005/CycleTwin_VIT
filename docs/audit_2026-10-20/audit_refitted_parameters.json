@@ -1,0 +1,1652 @@
+[
+  {
+    "seed": 97,
+    "day": 10,
+    "tier": 0,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.888466663606537
+      ]
+    ],
+    "base_intercept": [
+      0.2562810412464086
+    ],
+    "platt_coefficient": [
+      [
+        0.9799379312705792
+      ]
+    ],
+    "platt_intercept": [
+      -0.046028507628140966
+    ],
+    "imputer_training_medians": [
+      33.0
+    ],
+    "scaler_training_means": [
+      33.54530423280423
+    ],
+    "scaler_training_scales": [
+      5.684385036288071
+    ]
+  },
+  {
+    "seed": 97,
+    "day": 10,
+    "tier": 1,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.888466663606537
+      ]
+    ],
+    "base_intercept": [
+      0.2562810412464086
+    ],
+    "platt_coefficient": [
+      [
+        0.9799379312705792
+      ]
+    ],
+    "platt_intercept": [
+      -0.046028507628140966
+    ],
+    "imputer_training_medians": [
+      33.0
+    ],
+    "scaler_training_means": [
+      33.54530423280423
+    ],
+    "scaler_training_scales": [
+      5.684385036288071
+    ]
+  },
+  {
+    "seed": 97,
+    "day": 10,
+    "tier": 2,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.888466663606537
+      ]
+    ],
+    "base_intercept": [
+      0.2562810412464086
+    ],
+    "platt_coefficient": [
+      [
+        0.9799379312705792
+      ]
+    ],
+    "platt_intercept": [
+      -0.046028507628140966
+    ],
+    "imputer_training_medians": [
+      33.0
+    ],
+    "scaler_training_means": [
+      33.54530423280423
+    ],
+    "scaler_training_scales": [
+      5.684385036288071
+    ]
+  },
+  {
+    "seed": 97,
+    "day": 10,
+    "tier": 3,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.888466663606537
+      ]
+    ],
+    "base_intercept": [
+      0.2562810412464086
+    ],
+    "platt_coefficient": [
+      [
+        0.9799379312705792
+      ]
+    ],
+    "platt_intercept": [
+      -0.046028507628140966
+    ],
+    "imputer_training_medians": [
+      33.0
+    ],
+    "scaler_training_means": [
+      33.54530423280423
+    ],
+    "scaler_training_scales": [
+      5.684385036288071
+    ]
+  },
+  {
+    "seed": 97,
+    "day": 14,
+    "tier": 0,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.888466663606537
+      ]
+    ],
+    "base_intercept": [
+      0.2562810412464086
+    ],
+    "platt_coefficient": [
+      [
+        0.9799379312705792
+      ]
+    ],
+    "platt_intercept": [
+      -0.046028507628140966
+    ],
+    "imputer_training_medians": [
+      33.0
+    ],
+    "scaler_training_means": [
+      33.54530423280423
+    ],
+    "scaler_training_scales": [
+      5.684385036288071
+    ]
+  },
+  {
+    "seed": 97,
+    "day": 14,
+    "tier": 1,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.888466663606537
+      ]
+    ],
+    "base_intercept": [
+      0.2562810412464086
+    ],
+    "platt_coefficient": [
+      [
+        0.9799379312705792
+      ]
+    ],
+    "platt_intercept": [
+      -0.046028507628140966
+    ],
+    "imputer_training_medians": [
+      33.0
+    ],
+    "scaler_training_means": [
+      33.54530423280423
+    ],
+    "scaler_training_scales": [
+      5.684385036288071
+    ]
+  },
+  {
+    "seed": 97,
+    "day": 14,
+    "tier": 2,
+    "selected_feature_tier": 2,
+    "features": [
+      "prior_logged_cycle_length",
+      "mean_rhr_offset",
+      "mean_hrv_offset",
+      "mean_steps",
+      "mean_sleep_hours",
+      "temperature_change",
+      "temperature_observation_fraction"
+    ],
+    "trainable_coefficient_count": 10,
+    "base_coefficients": [
+      [
+        1.8344590852688878,
+        -0.04116341695630887,
+        0.02368767205763022,
+        -0.012312236484995662,
+        0.026309600684214833,
+        -0.6383984483703228,
+        0.0921208194404385
+      ]
+    ],
+    "base_intercept": [
+      0.22406049094927646
+    ],
+    "platt_coefficient": [
+      [
+        0.965974023880197
+      ]
+    ],
+    "platt_intercept": [
+      -0.0491203890288529
+    ],
+    "imputer_training_medians": [
+      33.0,
+      1.1520953636067911e-05,
+      -0.006324683420464994,
+      5061.221791354668,
+      7.005137397879627,
+      0.004375314624072124,
+      0.8571428571428571
+    ],
+    "scaler_training_means": [
+      33.545304232804234,
+      0.003203414277968873,
+      -0.005954880918036529,
+      5069.718885335993,
+      6.999681776107049,
+      0.009972967325116223,
+      0.8791383219954636
+    ],
+    "scaler_training_scales": [
+      5.684385036288115,
+      0.26858375152919917,
+      0.2649638363231564,
+      340.52733680877157,
+      0.20093671945540434,
+      0.038739382869850646,
+      0.08801293809038284
+    ]
+  },
+  {
+    "seed": 97,
+    "day": 14,
+    "tier": 3,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.888466663606537
+      ]
+    ],
+    "base_intercept": [
+      0.2562810412464086
+    ],
+    "platt_coefficient": [
+      [
+        0.9799379312705792
+      ]
+    ],
+    "platt_intercept": [
+      -0.046028507628140966
+    ],
+    "imputer_training_medians": [
+      33.0
+    ],
+    "scaler_training_means": [
+      33.54530423280423
+    ],
+    "scaler_training_scales": [
+      5.684385036288071
+    ]
+  },
+  {
+    "seed": 97,
+    "day": 18,
+    "tier": 0,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.888466663606537
+      ]
+    ],
+    "base_intercept": [
+      0.2562810412464086
+    ],
+    "platt_coefficient": [
+      [
+        0.9799379312705792
+      ]
+    ],
+    "platt_intercept": [
+      -0.046028507628140966
+    ],
+    "imputer_training_medians": [
+      33.0
+    ],
+    "scaler_training_means": [
+      33.54530423280423
+    ],
+    "scaler_training_scales": [
+      5.684385036288071
+    ]
+  },
+  {
+    "seed": 97,
+    "day": 18,
+    "tier": 1,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.888466663606537
+      ]
+    ],
+    "base_intercept": [
+      0.2562810412464086
+    ],
+    "platt_coefficient": [
+      [
+        0.9799379312705792
+      ]
+    ],
+    "platt_intercept": [
+      -0.046028507628140966
+    ],
+    "imputer_training_medians": [
+      33.0
+    ],
+    "scaler_training_means": [
+      33.54530423280423
+    ],
+    "scaler_training_scales": [
+      5.684385036288071
+    ]
+  },
+  {
+    "seed": 97,
+    "day": 18,
+    "tier": 2,
+    "selected_feature_tier": 2,
+    "features": [
+      "prior_logged_cycle_length",
+      "mean_rhr_offset",
+      "mean_hrv_offset",
+      "mean_steps",
+      "mean_sleep_hours",
+      "temperature_change",
+      "temperature_observation_fraction"
+    ],
+    "trainable_coefficient_count": 10,
+    "base_coefficients": [
+      [
+        1.528654479251924,
+        -0.044646415530314475,
+        0.02971547930645542,
+        -0.01565995257619766,
+        -0.009588151722765344,
+        -1.9861503725070255,
+        0.17847325009079243
+      ]
+    ],
+    "base_intercept": [
+      -0.19478341691531142
+    ],
+    "platt_coefficient": [
+      [
+        1.021045418695241
+      ]
+    ],
+    "platt_intercept": [
+      -0.11261321112411242
+    ],
+    "imputer_training_medians": [
+      33.0,
+      0.021047421182562275,
+      -0.019349970269550425,
+      5064.434540761067,
+      6.998684987278553,
+      0.014984521298268008,
+      0.8888888888888888
+    ],
+    "scaler_training_means": [
+      33.545304232804234,
+      0.023232300854471023,
+      -0.01920595198540806,
+      5070.300309601696,
+      6.99908636471742,
+      0.0470441285294668,
+      0.8800595238094843
+    ],
+    "scaler_training_scales": [
+      5.684385036288115,
+      0.23972277971488684,
+      0.23607388277421407,
+      301.37109274115187,
+      0.17573595100854528,
+      0.0827790401389411,
+      0.07691994423307538
+    ]
+  },
+  {
+    "seed": 97,
+    "day": 18,
+    "tier": 3,
+    "selected_feature_tier": 3,
+    "features": [
+      "prior_logged_cycle_length",
+      "mean_rhr_offset",
+      "mean_hrv_offset",
+      "mean_steps",
+      "mean_sleep_hours",
+      "temperature_change",
+      "temperature_observation_fraction",
+      "simulator_ir_latent",
+      "simulator_androgen_load",
+      "synthetic_age",
+      "synthetic_bmi",
+      "synthetic_family_history"
+    ],
+    "trainable_coefficient_count": 15,
+    "base_coefficients": [
+      [
+        1.50817485008991,
+        -0.049797269976839136,
+        0.023788476744662675,
+        -0.011877315819387398,
+        -0.007865862197608126,
+        -1.9992419568271333,
+        0.18578570478773565,
+        0.21437357736122217,
+        0.23529283566132242,
+        0.03298159494929654,
+        -0.01052193175309699,
+        -0.033252374763493096
+      ]
+    ],
+    "base_intercept": [
+      -0.18687908282368765
+    ],
+    "platt_coefficient": [
+      [
+        1.002453193960709
+      ]
+    ],
+    "platt_intercept": [
+      -0.11311703746349701
+    ],
+    "imputer_training_medians": [
+      33.0,
+      0.021047421182562275,
+      -0.019349970269550425,
+      5064.434540761067,
+      6.998684987278553,
+      0.014984521298268008,
+      0.8888888888888888,
+      -0.04984551504374581,
+      0.2844320492230872,
+      29.0,
+      26.18766557120261,
+      0.0
+    ],
+    "scaler_training_means": [
+      33.545304232804234,
+      0.023232300854471023,
+      -0.01920595198540806,
+      5070.300309601696,
+      6.99908636471742,
+      0.0470441285294668,
+      0.8800595238094843,
+      -0.009260935922130903,
+      0.31885197278460164,
+      29.55,
+      26.36375305402937,
+      0.2130952380952381
+    ],
+    "scaler_training_scales": [
+      5.684385036288115,
+      0.23972277971488684,
+      0.23607388277421407,
+      301.37109274115187,
+      0.17573595100854528,
+      0.0827790401389411,
+      0.07691994423307538,
+      1.0246969899639027,
+      0.7850209870459289,
+      7.099119663733036,
+      4.301989849816937,
+      0.40949439263115217
+    ]
+  },
+  {
+    "seed": 101,
+    "day": 10,
+    "tier": 0,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.8896217407623015
+      ]
+    ],
+    "base_intercept": [
+      0.1471477135608324
+    ],
+    "platt_coefficient": [
+      [
+        0.8851541760664816
+      ]
+    ],
+    "platt_intercept": [
+      -0.037331358341931506
+    ],
+    "imputer_training_medians": [
+      32.666666666666664
+    ],
+    "scaler_training_means": [
+      33.353802910052906
+    ],
+    "scaler_training_scales": [
+      5.61767403397389
+    ]
+  },
+  {
+    "seed": 101,
+    "day": 10,
+    "tier": 1,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.8896217407623015
+      ]
+    ],
+    "base_intercept": [
+      0.1471477135608324
+    ],
+    "platt_coefficient": [
+      [
+        0.8851541760664816
+      ]
+    ],
+    "platt_intercept": [
+      -0.037331358341931506
+    ],
+    "imputer_training_medians": [
+      32.666666666666664
+    ],
+    "scaler_training_means": [
+      33.353802910052906
+    ],
+    "scaler_training_scales": [
+      5.61767403397389
+    ]
+  },
+  {
+    "seed": 101,
+    "day": 10,
+    "tier": 2,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.8896217407623015
+      ]
+    ],
+    "base_intercept": [
+      0.1471477135608324
+    ],
+    "platt_coefficient": [
+      [
+        0.8851541760664816
+      ]
+    ],
+    "platt_intercept": [
+      -0.037331358341931506
+    ],
+    "imputer_training_medians": [
+      32.666666666666664
+    ],
+    "scaler_training_means": [
+      33.353802910052906
+    ],
+    "scaler_training_scales": [
+      5.61767403397389
+    ]
+  },
+  {
+    "seed": 101,
+    "day": 10,
+    "tier": 3,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.8896217407623015
+      ]
+    ],
+    "base_intercept": [
+      0.1471477135608324
+    ],
+    "platt_coefficient": [
+      [
+        0.8851541760664816
+      ]
+    ],
+    "platt_intercept": [
+      -0.037331358341931506
+    ],
+    "imputer_training_medians": [
+      32.666666666666664
+    ],
+    "scaler_training_means": [
+      33.353802910052906
+    ],
+    "scaler_training_scales": [
+      5.61767403397389
+    ]
+  },
+  {
+    "seed": 101,
+    "day": 14,
+    "tier": 0,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.8896217407623015
+      ]
+    ],
+    "base_intercept": [
+      0.1471477135608324
+    ],
+    "platt_coefficient": [
+      [
+        0.8851541760664816
+      ]
+    ],
+    "platt_intercept": [
+      -0.037331358341931506
+    ],
+    "imputer_training_medians": [
+      32.666666666666664
+    ],
+    "scaler_training_means": [
+      33.353802910052906
+    ],
+    "scaler_training_scales": [
+      5.61767403397389
+    ]
+  },
+  {
+    "seed": 101,
+    "day": 14,
+    "tier": 1,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.8896217407623015
+      ]
+    ],
+    "base_intercept": [
+      0.1471477135608324
+    ],
+    "platt_coefficient": [
+      [
+        0.8851541760664816
+      ]
+    ],
+    "platt_intercept": [
+      -0.037331358341931506
+    ],
+    "imputer_training_medians": [
+      32.666666666666664
+    ],
+    "scaler_training_means": [
+      33.353802910052906
+    ],
+    "scaler_training_scales": [
+      5.61767403397389
+    ]
+  },
+  {
+    "seed": 101,
+    "day": 14,
+    "tier": 2,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.8896217407623015
+      ]
+    ],
+    "base_intercept": [
+      0.1471477135608324
+    ],
+    "platt_coefficient": [
+      [
+        0.8851541760664816
+      ]
+    ],
+    "platt_intercept": [
+      -0.037331358341931506
+    ],
+    "imputer_training_medians": [
+      32.666666666666664
+    ],
+    "scaler_training_means": [
+      33.353802910052906
+    ],
+    "scaler_training_scales": [
+      5.61767403397389
+    ]
+  },
+  {
+    "seed": 101,
+    "day": 14,
+    "tier": 3,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.8896217407623015
+      ]
+    ],
+    "base_intercept": [
+      0.1471477135608324
+    ],
+    "platt_coefficient": [
+      [
+        0.8851541760664816
+      ]
+    ],
+    "platt_intercept": [
+      -0.037331358341931506
+    ],
+    "imputer_training_medians": [
+      32.666666666666664
+    ],
+    "scaler_training_means": [
+      33.353802910052906
+    ],
+    "scaler_training_scales": [
+      5.61767403397389
+    ]
+  },
+  {
+    "seed": 101,
+    "day": 18,
+    "tier": 0,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.8896217407623015
+      ]
+    ],
+    "base_intercept": [
+      0.1471477135608324
+    ],
+    "platt_coefficient": [
+      [
+        0.8851541760664816
+      ]
+    ],
+    "platt_intercept": [
+      -0.037331358341931506
+    ],
+    "imputer_training_medians": [
+      32.666666666666664
+    ],
+    "scaler_training_means": [
+      33.353802910052906
+    ],
+    "scaler_training_scales": [
+      5.61767403397389
+    ]
+  },
+  {
+    "seed": 101,
+    "day": 18,
+    "tier": 1,
+    "selected_feature_tier": 1,
+    "features": [
+      "prior_logged_cycle_length",
+      "mean_rhr_offset",
+      "mean_hrv_offset",
+      "mean_steps",
+      "mean_sleep_hours"
+    ],
+    "trainable_coefficient_count": 8,
+    "base_coefficients": [
+      [
+        1.8830545523916686,
+        -0.14403041831368898,
+        0.06523674760006772,
+        0.01296856272644312,
+        0.02859789099145868
+      ]
+    ],
+    "base_intercept": [
+      0.14420727165861316
+    ],
+    "platt_coefficient": [
+      [
+        0.8927817107549758
+      ]
+    ],
+    "platt_intercept": [
+      -0.03431540734266521
+    ],
+    "imputer_training_medians": [
+      32.666666666666664,
+      0.026587546631100245,
+      -0.021392165536485767,
+      5054.341533250494,
+      7.000456049991634
+    ],
+    "scaler_training_means": [
+      33.35380291005285,
+      0.029870856209719337,
+      -0.02217637462382079,
+      5065.321439914758,
+      7.002120805915008
+    ],
+    "scaler_training_scales": [
+      5.617674033973863,
+      0.23832657833540863,
+      0.23349990209463192,
+      304.6888761975585,
+      0.17635922060074777
+    ]
+  },
+  {
+    "seed": 101,
+    "day": 18,
+    "tier": 2,
+    "selected_feature_tier": 2,
+    "features": [
+      "prior_logged_cycle_length",
+      "mean_rhr_offset",
+      "mean_hrv_offset",
+      "mean_steps",
+      "mean_sleep_hours",
+      "temperature_change",
+      "temperature_observation_fraction"
+    ],
+    "trainable_coefficient_count": 10,
+    "base_coefficients": [
+      [
+        1.5139801220760016,
+        -0.029077130871652326,
+        -0.03612559388200766,
+        0.01096200938778065,
+        -0.02024013946266429,
+        -1.8141263479340914,
+        0.11229259015539188
+      ]
+    ],
+    "base_intercept": [
+      -0.28630294524619065
+    ],
+    "platt_coefficient": [
+      [
+        0.9276428016600184
+      ]
+    ],
+    "platt_intercept": [
+      -0.005861450479292455
+    ],
+    "imputer_training_medians": [
+      32.666666666666664,
+      0.026587546631100245,
+      -0.021392165536485767,
+      5054.341533250494,
+      7.000456049991634,
+      0.017137632723964447,
+      0.8888888888888888
+    ],
+    "scaler_training_means": [
+      33.35380291005285,
+      0.029870856209719337,
+      -0.02217637462382079,
+      5065.321439914758,
+      7.002120805915008,
+      0.048626145387020356,
+      0.8813381834214808
+    ],
+    "scaler_training_scales": [
+      5.617674033973863,
+      0.23832657833540863,
+      0.23349990209463192,
+      304.6888761975585,
+      0.17635922060074777,
+      0.08186086130678735,
+      0.07666556357353996
+    ]
+  },
+  {
+    "seed": 101,
+    "day": 18,
+    "tier": 3,
+    "selected_feature_tier": 3,
+    "features": [
+      "prior_logged_cycle_length",
+      "mean_rhr_offset",
+      "mean_hrv_offset",
+      "mean_steps",
+      "mean_sleep_hours",
+      "temperature_change",
+      "temperature_observation_fraction",
+      "simulator_ir_latent",
+      "simulator_androgen_load",
+      "synthetic_age",
+      "synthetic_bmi",
+      "synthetic_family_history"
+    ],
+    "trainable_coefficient_count": 15,
+    "base_coefficients": [
+      [
+        1.4968184650136585,
+        -0.029656957299212347,
+        -0.044447664612797734,
+        0.012745598918347258,
+        -0.0197082245702402,
+        -1.8098726560576923,
+        0.10499709423361907,
+        0.2007755339432264,
+        0.19985192627347784,
+        -0.04078667378903054,
+        -0.02325071321756218,
+        0.04645261561058444
+      ]
+    ],
+    "base_intercept": [
+      -0.2712203643804022
+    ],
+    "platt_coefficient": [
+      [
+        0.9164768524994926
+      ]
+    ],
+    "platt_intercept": [
+      -0.0008673409286160301
+    ],
+    "imputer_training_medians": [
+      32.666666666666664,
+      0.026587546631100245,
+      -0.021392165536485767,
+      5054.341533250494,
+      7.000456049991634,
+      0.017137632723964447,
+      0.8888888888888888,
+      0.011770441311159945,
+      0.2498877279319802,
+      30.0,
+      26.323803821043473,
+      0.0
+    ],
+    "scaler_training_means": [
+      33.35380291005285,
+      0.029870856209719337,
+      -0.02217637462382079,
+      5065.321439914758,
+      7.002120805915008,
+      0.048626145387020356,
+      0.8813381834214808,
+      0.01550932415013442,
+      0.25009965419327196,
+      30.2,
+      26.121866302064667,
+      0.23095238095238096
+    ],
+    "scaler_training_scales": [
+      5.617674033973863,
+      0.23832657833540863,
+      0.23349990209463192,
+      304.6888761975585,
+      0.17635922060074777,
+      0.08186086130678735,
+      0.07666556357353996,
+      0.9631300497601747,
+      0.7516324908683174,
+      7.179534405914842,
+      4.200740842691508,
+      0.42144202292224325
+    ]
+  },
+  {
+    "seed": 103,
+    "day": 10,
+    "tier": 0,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.7011737079955211
+      ]
+    ],
+    "base_intercept": [
+      0.14109613761729245
+    ],
+    "platt_coefficient": [
+      [
+        1.048117354391
+      ]
+    ],
+    "platt_intercept": [
+      -0.02468521386153425
+    ],
+    "imputer_training_medians": [
+      32.5
+    ],
+    "scaler_training_means": [
+      33.122453703703705
+    ],
+    "scaler_training_scales": [
+      5.393270761647209
+    ]
+  },
+  {
+    "seed": 103,
+    "day": 10,
+    "tier": 1,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.7011737079955211
+      ]
+    ],
+    "base_intercept": [
+      0.14109613761729245
+    ],
+    "platt_coefficient": [
+      [
+        1.048117354391
+      ]
+    ],
+    "platt_intercept": [
+      -0.02468521386153425
+    ],
+    "imputer_training_medians": [
+      32.5
+    ],
+    "scaler_training_means": [
+      33.122453703703705
+    ],
+    "scaler_training_scales": [
+      5.393270761647209
+    ]
+  },
+  {
+    "seed": 103,
+    "day": 10,
+    "tier": 2,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.7011737079955211
+      ]
+    ],
+    "base_intercept": [
+      0.14109613761729245
+    ],
+    "platt_coefficient": [
+      [
+        1.048117354391
+      ]
+    ],
+    "platt_intercept": [
+      -0.02468521386153425
+    ],
+    "imputer_training_medians": [
+      32.5
+    ],
+    "scaler_training_means": [
+      33.122453703703705
+    ],
+    "scaler_training_scales": [
+      5.393270761647209
+    ]
+  },
+  {
+    "seed": 103,
+    "day": 10,
+    "tier": 3,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.7011737079955211
+      ]
+    ],
+    "base_intercept": [
+      0.14109613761729245
+    ],
+    "platt_coefficient": [
+      [
+        1.048117354391
+      ]
+    ],
+    "platt_intercept": [
+      -0.02468521386153425
+    ],
+    "imputer_training_medians": [
+      32.5
+    ],
+    "scaler_training_means": [
+      33.122453703703705
+    ],
+    "scaler_training_scales": [
+      5.393270761647209
+    ]
+  },
+  {
+    "seed": 103,
+    "day": 14,
+    "tier": 0,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.7011737079955211
+      ]
+    ],
+    "base_intercept": [
+      0.14109613761729245
+    ],
+    "platt_coefficient": [
+      [
+        1.048117354391
+      ]
+    ],
+    "platt_intercept": [
+      -0.02468521386153425
+    ],
+    "imputer_training_medians": [
+      32.5
+    ],
+    "scaler_training_means": [
+      33.122453703703705
+    ],
+    "scaler_training_scales": [
+      5.393270761647209
+    ]
+  },
+  {
+    "seed": 103,
+    "day": 14,
+    "tier": 1,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.7011737079955211
+      ]
+    ],
+    "base_intercept": [
+      0.14109613761729245
+    ],
+    "platt_coefficient": [
+      [
+        1.048117354391
+      ]
+    ],
+    "platt_intercept": [
+      -0.02468521386153425
+    ],
+    "imputer_training_medians": [
+      32.5
+    ],
+    "scaler_training_means": [
+      33.122453703703705
+    ],
+    "scaler_training_scales": [
+      5.393270761647209
+    ]
+  },
+  {
+    "seed": 103,
+    "day": 14,
+    "tier": 2,
+    "selected_feature_tier": 2,
+    "features": [
+      "prior_logged_cycle_length",
+      "mean_rhr_offset",
+      "mean_hrv_offset",
+      "mean_steps",
+      "mean_sleep_hours",
+      "temperature_change",
+      "temperature_observation_fraction"
+    ],
+    "trainable_coefficient_count": 10,
+    "base_coefficients": [
+      [
+        1.6508501413673118,
+        0.004078123333860104,
+        0.02253321820922294,
+        0.001556684302195922,
+        0.034984540287747036,
+        -0.5302248624459677,
+        0.012576078397781104
+      ]
+    ],
+    "base_intercept": [
+      0.11279001242857904
+    ],
+    "platt_coefficient": [
+      [
+        1.0597103832580457
+      ]
+    ],
+    "platt_intercept": [
+      -0.053260424746526584
+    ],
+    "imputer_training_medians": [
+      32.5,
+      0.0014549072570070607,
+      -0.004537641442167345,
+      5064.161010670968,
+      7.000339655959163,
+      0.004689468738470667,
+      0.8571428571428571
+    ],
+    "scaler_training_means": [
+      33.12245370370373,
+      0.0031270673802467406,
+      -0.005118457371307291,
+      5071.836949867353,
+      7.002190350779919,
+      0.010395835185718374,
+      0.8792233560090676
+    ],
+    "scaler_training_scales": [
+      5.393270761647185,
+      0.2678899387623467,
+      0.26930699698637056,
+      342.531543568071,
+      0.19803465094484668,
+      0.03816887495072438,
+      0.08599008537787677
+    ]
+  },
+  {
+    "seed": 103,
+    "day": 14,
+    "tier": 3,
+    "selected_feature_tier": 3,
+    "features": [
+      "prior_logged_cycle_length",
+      "mean_rhr_offset",
+      "mean_hrv_offset",
+      "mean_steps",
+      "mean_sleep_hours",
+      "temperature_change",
+      "temperature_observation_fraction",
+      "simulator_ir_latent",
+      "simulator_androgen_load",
+      "synthetic_age",
+      "synthetic_bmi",
+      "synthetic_family_history"
+    ],
+    "trainable_coefficient_count": 15,
+    "base_coefficients": [
+      [
+        1.6240426120025335,
+        -0.0035999461827690995,
+        0.023995242786922364,
+        0.004273814539561728,
+        0.032671189652048134,
+        -0.5318324972636668,
+        0.014851084386255984,
+        0.07752087998934558,
+        0.23129597494857176,
+        -0.026845766273979388,
+        -0.10800125070398149,
+        0.0519579413436861
+      ]
+    ],
+    "base_intercept": [
+      0.11473792638655
+    ],
+    "platt_coefficient": [
+      [
+        1.0540527662727528
+      ]
+    ],
+    "platt_intercept": [
+      -0.08837455133771871
+    ],
+    "imputer_training_medians": [
+      32.5,
+      0.0014549072570070607,
+      -0.004537641442167345,
+      5064.161010670968,
+      7.000339655959163,
+      0.004689468738470667,
+      0.8571428571428571,
+      -0.03370278937014562,
+      0.23205839322026112,
+      30.0,
+      26.58005849594454,
+      0.0
+    ],
+    "scaler_training_means": [
+      33.12245370370373,
+      0.0031270673802467406,
+      -0.005118457371307291,
+      5071.836949867353,
+      7.002190350779919,
+      0.010395835185718374,
+      0.8792233560090676,
+      -0.0019505746444610729,
+      0.2690522876323281,
+      29.948809523809523,
+      26.43762696186397,
+      0.23809523809523808
+    ],
+    "scaler_training_scales": [
+      5.393270761647185,
+      0.2678899387623467,
+      0.26930699698637056,
+      342.531543568071,
+      0.19803465094484668,
+      0.03816887495072438,
+      0.08599008537787677,
+      0.9942672756594425,
+      0.775555336969209,
+      7.13148608782638,
+      4.297778967590813,
+      0.4259177099999469
+    ]
+  },
+  {
+    "seed": 103,
+    "day": 18,
+    "tier": 0,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.7011737079955211
+      ]
+    ],
+    "base_intercept": [
+      0.14109613761729245
+    ],
+    "platt_coefficient": [
+      [
+        1.048117354391
+      ]
+    ],
+    "platt_intercept": [
+      -0.02468521386153425
+    ],
+    "imputer_training_medians": [
+      32.5
+    ],
+    "scaler_training_means": [
+      33.122453703703705
+    ],
+    "scaler_training_scales": [
+      5.393270761647209
+    ]
+  },
+  {
+    "seed": 103,
+    "day": 18,
+    "tier": 1,
+    "selected_feature_tier": 0,
+    "features": [
+      "prior_logged_cycle_length"
+    ],
+    "trainable_coefficient_count": 4,
+    "base_coefficients": [
+      [
+        1.7011737079955211
+      ]
+    ],
+    "base_intercept": [
+      0.14109613761729245
+    ],
+    "platt_coefficient": [
+      [
+        1.048117354391
+      ]
+    ],
+    "platt_intercept": [
+      -0.02468521386153425
+    ],
+    "imputer_training_medians": [
+      32.5
+    ],
+    "scaler_training_means": [
+      33.122453703703705
+    ],
+    "scaler_training_scales": [
+      5.393270761647209
+    ]
+  },
+  {
+    "seed": 103,
+    "day": 18,
+    "tier": 2,
+    "selected_feature_tier": 2,
+    "features": [
+      "prior_logged_cycle_length",
+      "mean_rhr_offset",
+      "mean_hrv_offset",
+      "mean_steps",
+      "mean_sleep_hours",
+      "temperature_change",
+      "temperature_observation_fraction"
+    ],
+    "trainable_coefficient_count": 10,
+    "base_coefficients": [
+      [
+        1.4342524268133188,
+        0.004959388963241877,
+        0.07991556764124456,
+        -0.00232039377948867,
+        0.06860206548194006,
+        -1.9623846524250759,
+        0.07213768765184238
+      ]
+    ],
+    "base_intercept": [
+      -0.30468640028279703
+    ],
+    "platt_coefficient": [
+      [
+        1.091951198836244
+      ]
+    ],
+    "platt_intercept": [
+      -0.05583027432680994
+    ],
+    "imputer_training_medians": [
+      32.5,
+      0.0202089356168769,
+      -0.017456054446733642,
+      5068.126574546708,
+      7.001576868453611,
+      0.016302631676879044,
+      0.8888888888888888
+    ],
+    "scaler_training_means": [
+      33.12245370370373,
+      0.021692920813095946,
+      -0.018852547556742413,
+      5072.99269346925,
+      7.001123883896011,
+      0.04760647502184955,
+      0.8790454144620429
+    ],
+    "scaler_training_scales": [
+      5.393270761647185,
+      0.23885125842563928,
+      0.24123710560814993,
+      305.12911995469716,
+      0.17559752717630123,
+      0.08172858817824473,
+      0.07618831287831175
+    ]
+  },
+  {
+    "seed": 103,
+    "day": 18,
+    "tier": 3,
+    "selected_feature_tier": 3,
+    "features": [
+      "prior_logged_cycle_length",
+      "mean_rhr_offset",
+      "mean_hrv_offset",
+      "mean_steps",
+      "mean_sleep_hours",
+      "temperature_change",
+      "temperature_observation_fraction",
+      "simulator_ir_latent",
+      "simulator_androgen_load",
+      "synthetic_age",
+      "synthetic_bmi",
+      "synthetic_family_history"
+    ],
+    "trainable_coefficient_count": 15,
+    "base_coefficients": [
+      [
+        1.4116413449105614,
+        -0.005624475239436195,
+        0.07769497095870204,
+        -0.0003964808802981275,
+        0.06575415304303939,
+        -1.9584300260648844,
+        0.0722198137475527,
+        0.12806607903380746,
+        0.20997880748355646,
+        -0.0337230358814906,
+        -0.0943478651359786,
+        0.03744377243099272
+      ]
+    ],
+    "base_intercept": [
+      -0.2960286914260137
+    ],
+    "platt_coefficient": [
+      [
+        1.1002603065515337
+      ]
+    ],
+    "platt_intercept": [
+      -0.09410341806460287
+    ],
+    "imputer_training_medians": [
+      32.5,
+      0.0202089356168769,
+      -0.017456054446733642,
+      5068.126574546708,
+      7.001576868453611,
+      0.016302631676879044,
+      0.8888888888888888,
+      -0.03370278937014562,
+      0.23205839322026112,
+      30.0,
+      26.58005849594454,
+      0.0
+    ],
+    "scaler_training_means": [
+      33.12245370370373,
+      0.021692920813095946,
+      -0.018852547556742413,
+      5072.99269346925,
+      7.001123883896011,
+      0.04760647502184955,
+      0.8790454144620429,
+      -0.0019505746444610729,
+      0.2690522876323281,
+      29.948809523809523,
+      26.43762696186397,
+      0.23809523809523808
+    ],
+    "scaler_training_scales": [
+      5.393270761647185,
+      0.23885125842563928,
+      0.24123710560814993,
+      305.12911995469716,
+      0.17559752717630123,
+      0.08172858817824473,
+      0.07618831287831175,
+      0.9942672756594425,
+      0.775555336969209,
+      7.13148608782638,
+      4.297778967590813,
+      0.4259177099999469
+    ]
+  }
+]

@@ -1,0 +1,1461 @@
+{
+  "97": {
+    "all": {
+      "patients": 1200,
+      "cycles": 7200,
+      "PMOS_patients": 533,
+      "PMOS_cycles": 3198,
+      "positive": 3745,
+      "negative": 3455,
+      "absent": 1104,
+      "late_ovulation": 2641,
+      "observed_ovulation": 6096,
+      "temperature": {
+        "total": 396000,
+        "missing": 47706,
+        "observed": 348294,
+        "min": -0.1906346300530131,
+        "max": 0.40289605912690907,
+        "mean": 0.10381862414053532,
+        "population_std": 0.10820238880841598
+      },
+      "archetypes": {
+        "healthy_regular": {
+          "patients": 134,
+          "cycles": 804,
+          "positive": 60
+        },
+        "healthy_variable": {
+          "patients": 134,
+          "cycles": 804,
+          "positive": 627
+        },
+        "PMOS_A": {
+          "patients": 134,
+          "cycles": 804,
+          "positive": 725
+        },
+        "PMOS_B": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 710
+        },
+        "PMOS_C": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 54
+        },
+        "PMOS_D": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 721
+        },
+        "thyroid_mimic": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 728
+        },
+        "contraception": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 54
+        },
+        "early_menarche": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 66
+        }
+      }
+    },
+    "train": {
+      "patients": 840,
+      "cycles": 5040,
+      "PMOS_patients": 371,
+      "PMOS_cycles": 2226,
+      "positive": 2624,
+      "negative": 2416,
+      "absent": 794,
+      "late_ovulation": 1830,
+      "observed_ovulation": 4246,
+      "temperature": {
+        "total": 277200,
+        "missing": 33493,
+        "observed": 243707,
+        "min": -0.18435284866463292,
+        "max": 0.40289605912690907,
+        "mean": 0.10307413613499813,
+        "population_std": 0.10818655436762684
+      },
+      "archetypes": {
+        "healthy_regular": {
+          "patients": 94,
+          "cycles": 564,
+          "positive": 48
+        },
+        "healthy_variable": {
+          "patients": 94,
+          "cycles": 564,
+          "positive": 450
+        },
+        "PMOS_A": {
+          "patients": 93,
+          "cycles": 558,
+          "positive": 505
+        },
+        "PMOS_B": {
+          "patients": 93,
+          "cycles": 558,
+          "positive": 500
+        },
+        "PMOS_C": {
+          "patients": 92,
+          "cycles": 552,
+          "positive": 38
+        },
+        "PMOS_D": {
+          "patients": 93,
+          "cycles": 558,
+          "positive": 502
+        },
+        "thyroid_mimic": {
+          "patients": 93,
+          "cycles": 558,
+          "positive": 509
+        },
+        "contraception": {
+          "patients": 94,
+          "cycles": 564,
+          "positive": 31
+        },
+        "early_menarche": {
+          "patients": 94,
+          "cycles": 564,
+          "positive": 41
+        }
+      }
+    },
+    "validation": {
+      "patients": 180,
+      "cycles": 1080,
+      "PMOS_patients": 82,
+      "PMOS_cycles": 492,
+      "positive": 553,
+      "negative": 527,
+      "absent": 149,
+      "late_ovulation": 404,
+      "observed_ovulation": 931,
+      "temperature": {
+        "total": 59400,
+        "missing": 7196,
+        "observed": 52204,
+        "min": -0.1906346300530131,
+        "max": 0.38711222724718075,
+        "mean": 0.10627514661786186,
+        "population_std": 0.10850322060630203
+      },
+      "archetypes": {
+        "healthy_regular": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 6
+        },
+        "healthy_variable": {
+          "patients": 19,
+          "cycles": 114,
+          "positive": 87
+        },
+        "PMOS_A": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 105
+        },
+        "PMOS_B": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 102
+        },
+        "PMOS_C": {
+          "patients": 21,
+          "cycles": 126,
+          "positive": 6
+        },
+        "PMOS_D": {
+          "patients": 21,
+          "cycles": 126,
+          "positive": 114
+        },
+        "thyroid_mimic": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 108
+        },
+        "contraception": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 12
+        },
+        "early_menarche": {
+          "patients": 19,
+          "cycles": 114,
+          "positive": 13
+        }
+      }
+    },
+    "test": {
+      "patients": 180,
+      "cycles": 1080,
+      "PMOS_patients": 80,
+      "PMOS_cycles": 480,
+      "positive": 568,
+      "negative": 512,
+      "absent": 161,
+      "late_ovulation": 407,
+      "observed_ovulation": 919,
+      "temperature": {
+        "total": 59400,
+        "missing": 7017,
+        "observed": 52383,
+        "min": -0.15800961290501098,
+        "max": 0.3704153672759366,
+        "mean": 0.10483415664075678,
+        "population_std": 0.10793101930814118
+      },
+      "archetypes": {
+        "healthy_regular": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 6
+        },
+        "healthy_variable": {
+          "patients": 21,
+          "cycles": 126,
+          "positive": 90
+        },
+        "PMOS_A": {
+          "patients": 21,
+          "cycles": 126,
+          "positive": 115
+        },
+        "PMOS_B": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 108
+        },
+        "PMOS_C": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 10
+        },
+        "PMOS_D": {
+          "patients": 19,
+          "cycles": 114,
+          "positive": 105
+        },
+        "thyroid_mimic": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 111
+        },
+        "contraception": {
+          "patients": 19,
+          "cycles": 114,
+          "positive": 11
+        },
+        "early_menarche": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 12
+        }
+      }
+    }
+  },
+  "101": {
+    "all": {
+      "patients": 1200,
+      "cycles": 7200,
+      "PMOS_patients": 533,
+      "PMOS_cycles": 3198,
+      "positive": 3634,
+      "negative": 3566,
+      "absent": 1085,
+      "late_ovulation": 2549,
+      "observed_ovulation": 6115,
+      "temperature": {
+        "total": 396000,
+        "missing": 47320,
+        "observed": 348680,
+        "min": -0.164104570786373,
+        "max": 0.3921831519237972,
+        "mean": 0.10431889168687336,
+        "population_std": 0.10773553517235596
+      },
+      "archetypes": {
+        "healthy_regular": {
+          "patients": 134,
+          "cycles": 804,
+          "positive": 45
+        },
+        "healthy_variable": {
+          "patients": 134,
+          "cycles": 804,
+          "positive": 572
+        },
+        "PMOS_A": {
+          "patients": 134,
+          "cycles": 804,
+          "positive": 729
+        },
+        "PMOS_B": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 720
+        },
+        "PMOS_C": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 55
+        },
+        "PMOS_D": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 716
+        },
+        "thyroid_mimic": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 706
+        },
+        "contraception": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 55
+        },
+        "early_menarche": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 36
+        }
+      }
+    },
+    "train": {
+      "patients": 840,
+      "cycles": 5040,
+      "PMOS_patients": 371,
+      "PMOS_cycles": 2226,
+      "positive": 2536,
+      "negative": 2504,
+      "absent": 771,
+      "late_ovulation": 1765,
+      "observed_ovulation": 4269,
+      "temperature": {
+        "total": 277200,
+        "missing": 33212,
+        "observed": 243988,
+        "min": -0.164104570786373,
+        "max": 0.3921831519237972,
+        "mean": 0.10414050252230124,
+        "population_std": 0.10760124977018186
+      },
+      "archetypes": {
+        "healthy_regular": {
+          "patients": 94,
+          "cycles": 564,
+          "positive": 28
+        },
+        "healthy_variable": {
+          "patients": 94,
+          "cycles": 564,
+          "positive": 410
+        },
+        "PMOS_A": {
+          "patients": 93,
+          "cycles": 558,
+          "positive": 505
+        },
+        "PMOS_B": {
+          "patients": 93,
+          "cycles": 558,
+          "positive": 504
+        },
+        "PMOS_C": {
+          "patients": 92,
+          "cycles": 552,
+          "positive": 36
+        },
+        "PMOS_D": {
+          "patients": 93,
+          "cycles": 558,
+          "positive": 497
+        },
+        "thyroid_mimic": {
+          "patients": 93,
+          "cycles": 558,
+          "positive": 496
+        },
+        "contraception": {
+          "patients": 94,
+          "cycles": 564,
+          "positive": 38
+        },
+        "early_menarche": {
+          "patients": 94,
+          "cycles": 564,
+          "positive": 22
+        }
+      }
+    },
+    "validation": {
+      "patients": 180,
+      "cycles": 1080,
+      "PMOS_patients": 82,
+      "PMOS_cycles": 492,
+      "positive": 550,
+      "negative": 530,
+      "absent": 151,
+      "late_ovulation": 399,
+      "observed_ovulation": 929,
+      "temperature": {
+        "total": 59400,
+        "missing": 7039,
+        "observed": 52361,
+        "min": -0.16057694705502118,
+        "max": 0.3718840157620835,
+        "mean": 0.10541135098639781,
+        "population_std": 0.10811882807440293
+      },
+      "archetypes": {
+        "healthy_regular": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 9
+        },
+        "healthy_variable": {
+          "patients": 19,
+          "cycles": 114,
+          "positive": 75
+        },
+        "PMOS_A": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 109
+        },
+        "PMOS_B": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 108
+        },
+        "PMOS_C": {
+          "patients": 21,
+          "cycles": 126,
+          "positive": 13
+        },
+        "PMOS_D": {
+          "patients": 21,
+          "cycles": 126,
+          "positive": 117
+        },
+        "thyroid_mimic": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 105
+        },
+        "contraception": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 9
+        },
+        "early_menarche": {
+          "patients": 19,
+          "cycles": 114,
+          "positive": 5
+        }
+      }
+    },
+    "test": {
+      "patients": 180,
+      "cycles": 1080,
+      "PMOS_patients": 80,
+      "PMOS_cycles": 480,
+      "positive": 548,
+      "negative": 532,
+      "absent": 163,
+      "late_ovulation": 385,
+      "observed_ovulation": 917,
+      "temperature": {
+        "total": 59400,
+        "missing": 7069,
+        "observed": 52331,
+        "min": -0.14682758380762756,
+        "max": 0.3607973644625266,
+        "mean": 0.10405752756433073,
+        "population_std": 0.10797023893080433
+      },
+      "archetypes": {
+        "healthy_regular": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 8
+        },
+        "healthy_variable": {
+          "patients": 21,
+          "cycles": 126,
+          "positive": 87
+        },
+        "PMOS_A": {
+          "patients": 21,
+          "cycles": 126,
+          "positive": 115
+        },
+        "PMOS_B": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 108
+        },
+        "PMOS_C": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 6
+        },
+        "PMOS_D": {
+          "patients": 19,
+          "cycles": 114,
+          "positive": 102
+        },
+        "thyroid_mimic": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 105
+        },
+        "contraception": {
+          "patients": 19,
+          "cycles": 114,
+          "positive": 8
+        },
+        "early_menarche": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 9
+        }
+      }
+    }
+  },
+  "103": {
+    "all": {
+      "patients": 1200,
+      "cycles": 7200,
+      "PMOS_patients": 533,
+      "PMOS_cycles": 3198,
+      "positive": 3643,
+      "negative": 3557,
+      "absent": 1091,
+      "late_ovulation": 2552,
+      "observed_ovulation": 6109,
+      "temperature": {
+        "total": 396000,
+        "missing": 47723,
+        "observed": 348277,
+        "min": -0.1954542504592965,
+        "max": 0.43193269303569515,
+        "mean": 0.10486834764971924,
+        "population_std": 0.10786312311846552
+      },
+      "archetypes": {
+        "healthy_regular": {
+          "patients": 134,
+          "cycles": 804,
+          "positive": 41
+        },
+        "healthy_variable": {
+          "patients": 134,
+          "cycles": 804,
+          "positive": 587
+        },
+        "PMOS_A": {
+          "patients": 134,
+          "cycles": 804,
+          "positive": 714
+        },
+        "PMOS_B": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 707
+        },
+        "PMOS_C": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 61
+        },
+        "PMOS_D": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 702
+        },
+        "thyroid_mimic": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 715
+        },
+        "contraception": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 57
+        },
+        "early_menarche": {
+          "patients": 133,
+          "cycles": 798,
+          "positive": 59
+        }
+      }
+    },
+    "train": {
+      "patients": 840,
+      "cycles": 5040,
+      "PMOS_patients": 371,
+      "PMOS_cycles": 2226,
+      "positive": 2544,
+      "negative": 2496,
+      "absent": 782,
+      "late_ovulation": 1762,
+      "observed_ovulation": 4258,
+      "temperature": {
+        "total": 277200,
+        "missing": 33379,
+        "observed": 243821,
+        "min": -0.1954542504592965,
+        "max": 0.38532612001931965,
+        "mean": 0.10452272030458784,
+        "population_std": 0.10788345843899949
+      },
+      "archetypes": {
+        "healthy_regular": {
+          "patients": 94,
+          "cycles": 564,
+          "positive": 33
+        },
+        "healthy_variable": {
+          "patients": 94,
+          "cycles": 564,
+          "positive": 411
+        },
+        "PMOS_A": {
+          "patients": 93,
+          "cycles": 558,
+          "positive": 495
+        },
+        "PMOS_B": {
+          "patients": 93,
+          "cycles": 558,
+          "positive": 491
+        },
+        "PMOS_C": {
+          "patients": 92,
+          "cycles": 552,
+          "positive": 44
+        },
+        "PMOS_D": {
+          "patients": 93,
+          "cycles": 558,
+          "positive": 484
+        },
+        "thyroid_mimic": {
+          "patients": 93,
+          "cycles": 558,
+          "positive": 501
+        },
+        "contraception": {
+          "patients": 94,
+          "cycles": 564,
+          "positive": 40
+        },
+        "early_menarche": {
+          "patients": 94,
+          "cycles": 564,
+          "positive": 45
+        }
+      }
+    },
+    "validation": {
+      "patients": 180,
+      "cycles": 1080,
+      "PMOS_patients": 82,
+      "PMOS_cycles": 492,
+      "positive": 552,
+      "negative": 528,
+      "absent": 165,
+      "late_ovulation": 387,
+      "observed_ovulation": 915,
+      "temperature": {
+        "total": 59400,
+        "missing": 7230,
+        "observed": 52170,
+        "min": -0.1620388138404155,
+        "max": 0.43193269303569515,
+        "mean": 0.10299694896444385,
+        "population_std": 0.1074807035503218
+      },
+      "archetypes": {
+        "healthy_regular": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 5
+        },
+        "healthy_variable": {
+          "patients": 19,
+          "cycles": 114,
+          "positive": 82
+        },
+        "PMOS_A": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 107
+        },
+        "PMOS_B": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 111
+        },
+        "PMOS_C": {
+          "patients": 21,
+          "cycles": 126,
+          "positive": 10
+        },
+        "PMOS_D": {
+          "patients": 21,
+          "cycles": 126,
+          "positive": 117
+        },
+        "thyroid_mimic": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 111
+        },
+        "contraception": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 4
+        },
+        "early_menarche": {
+          "patients": 19,
+          "cycles": 114,
+          "positive": 5
+        }
+      }
+    },
+    "test": {
+      "patients": 180,
+      "cycles": 1080,
+      "PMOS_patients": 80,
+      "PMOS_cycles": 480,
+      "positive": 547,
+      "negative": 533,
+      "absent": 144,
+      "late_ovulation": 403,
+      "observed_ovulation": 936,
+      "temperature": {
+        "total": 59400,
+        "missing": 7114,
+        "observed": 52286,
+        "min": -0.14524824580120949,
+        "max": 0.3669135280569132,
+        "mean": 0.10834733006046195,
+        "population_std": 0.1080740891933086
+      },
+      "archetypes": {
+        "healthy_regular": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 3
+        },
+        "healthy_variable": {
+          "patients": 21,
+          "cycles": 126,
+          "positive": 94
+        },
+        "PMOS_A": {
+          "patients": 21,
+          "cycles": 126,
+          "positive": 112
+        },
+        "PMOS_B": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 105
+        },
+        "PMOS_C": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 7
+        },
+        "PMOS_D": {
+          "patients": 19,
+          "cycles": 114,
+          "positive": 101
+        },
+        "thyroid_mimic": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 103
+        },
+        "contraception": {
+          "patients": 19,
+          "cycles": 114,
+          "positive": 13
+        },
+        "early_menarche": {
+          "patients": 20,
+          "cycles": 120,
+          "positive": 9
+        }
+      }
+    }
+  },
+  "combined_benchmark": {
+    "patients": 3600,
+    "cycles": 21600,
+    "PMOS_patients": 1599,
+    "PMOS_cycles": 9594,
+    "positive": 11022,
+    "negative": 10578,
+    "absent": 3280,
+    "late_ovulation": 7742,
+    "observed_ovulation": 18320,
+    "temperature": {
+      "total": 1188000,
+      "missing": 142749,
+      "observed": 1045251,
+      "min": -0.1954542504592965,
+      "max": 0.43193269303569515,
+      "mean": 0.10433527310108658,
+      "population_std": 0.10793464121753181
+    },
+    "archetypes": {
+      "healthy_regular": {
+        "patients": 402,
+        "cycles": 2412,
+        "positive": 146
+      },
+      "healthy_variable": {
+        "patients": 402,
+        "cycles": 2412,
+        "positive": 1786
+      },
+      "PMOS_A": {
+        "patients": 402,
+        "cycles": 2412,
+        "positive": 2168
+      },
+      "PMOS_B": {
+        "patients": 399,
+        "cycles": 2394,
+        "positive": 2137
+      },
+      "PMOS_C": {
+        "patients": 399,
+        "cycles": 2394,
+        "positive": 170
+      },
+      "PMOS_D": {
+        "patients": 399,
+        "cycles": 2394,
+        "positive": 2139
+      },
+      "thyroid_mimic": {
+        "patients": 399,
+        "cycles": 2394,
+        "positive": 2149
+      },
+      "contraception": {
+        "patients": 399,
+        "cycles": 2394,
+        "positive": 166
+      },
+      "early_menarche": {
+        "patients": 399,
+        "cycles": 2394,
+        "positive": 161
+      }
+    }
+  },
+  "ehr_csv": {
+    "rows": 3600,
+    "unique_patients": 3600,
+    "missing_cells": 0,
+    "matches_generator": true
+  },
+  "display_generated": {
+    "patients": 36,
+    "cycles": 72,
+    "PMOS_patients": 16,
+    "PMOS_cycles": 32,
+    "positive": 37,
+    "negative": 35,
+    "absent": 13,
+    "late_ovulation": 24,
+    "observed_ovulation": 59,
+    "temperature": {
+      "total": 3960,
+      "missing": 473,
+      "observed": 3487,
+      "min": -0.12976719553045044,
+      "max": 0.3435612395090713,
+      "mean": 0.09894279531748584,
+      "population_std": 0.10614892169835391
+    },
+    "archetypes": {
+      "healthy_regular": {
+        "patients": 4,
+        "cycles": 8,
+        "positive": 0
+      },
+      "healthy_variable": {
+        "patients": 4,
+        "cycles": 8,
+        "positive": 5
+      },
+      "PMOS_A": {
+        "patients": 4,
+        "cycles": 8,
+        "positive": 7
+      },
+      "PMOS_B": {
+        "patients": 4,
+        "cycles": 8,
+        "positive": 8
+      },
+      "PMOS_C": {
+        "patients": 4,
+        "cycles": 8,
+        "positive": 0
+      },
+      "PMOS_D": {
+        "patients": 4,
+        "cycles": 8,
+        "positive": 6
+      },
+      "thyroid_mimic": {
+        "patients": 4,
+        "cycles": 8,
+        "positive": 8
+      },
+      "contraception": {
+        "patients": 4,
+        "cycles": 8,
+        "positive": 3
+      },
+      "early_menarche": {
+        "patients": 4,
+        "cycles": 8,
+        "positive": 0
+      }
+    }
+  },
+  "display_visible": {
+    "patients": 36,
+    "cycles": 36,
+    "PMOS_patients": 16,
+    "PMOS_cycles": 16,
+    "positive": 22,
+    "negative": 14,
+    "absent": 6,
+    "late_ovulation": 16,
+    "observed_ovulation": 30,
+    "temperature": {
+      "total": 1980,
+      "missing": 228,
+      "observed": 1752,
+      "min": -0.12976719553045044,
+      "max": 0.3435612395090713,
+      "mean": 0.0985328065377573,
+      "population_std": 0.10543248999553605
+    },
+    "archetypes": {
+      "healthy_regular": {
+        "patients": 4,
+        "cycles": 4,
+        "positive": 0
+      },
+      "healthy_variable": {
+        "patients": 4,
+        "cycles": 4,
+        "positive": 4
+      },
+      "PMOS_A": {
+        "patients": 4,
+        "cycles": 4,
+        "positive": 4
+      },
+      "PMOS_B": {
+        "patients": 4,
+        "cycles": 4,
+        "positive": 4
+      },
+      "PMOS_C": {
+        "patients": 4,
+        "cycles": 4,
+        "positive": 0
+      },
+      "PMOS_D": {
+        "patients": 4,
+        "cycles": 4,
+        "positive": 4
+      },
+      "thyroid_mimic": {
+        "patients": 4,
+        "cycles": 4,
+        "positive": 4
+      },
+      "contraception": {
+        "patients": 4,
+        "cycles": 4,
+        "positive": 2
+      },
+      "early_menarche": {
+        "patients": 4,
+        "cycles": 4,
+        "positive": 0
+      }
+    }
+  },
+  "calibration": {
+    "patients": 240,
+    "cycles": 240,
+    "PMOS_patients": 108,
+    "PMOS_cycles": 108,
+    "positive": 118,
+    "negative": 122,
+    "absent": 37,
+    "late_ovulation": 81,
+    "observed_ovulation": 203,
+    "temperature": {
+      "total": 13200,
+      "missing": 1626,
+      "observed": 11574,
+      "min": -0.15306445164631072,
+      "max": 0.3450370272132451,
+      "mean": 0.10359903086729468,
+      "population_std": 0.10736754553966427
+    },
+    "archetypes": {
+      "healthy_regular": {
+        "patients": 27,
+        "cycles": 27,
+        "positive": 2
+      },
+      "healthy_variable": {
+        "patients": 27,
+        "cycles": 27,
+        "positive": 19
+      },
+      "PMOS_A": {
+        "patients": 27,
+        "cycles": 27,
+        "positive": 25
+      },
+      "PMOS_B": {
+        "patients": 27,
+        "cycles": 27,
+        "positive": 23
+      },
+      "PMOS_C": {
+        "patients": 27,
+        "cycles": 27,
+        "positive": 2
+      },
+      "PMOS_D": {
+        "patients": 27,
+        "cycles": 27,
+        "positive": 23
+      },
+      "thyroid_mimic": {
+        "patients": 26,
+        "cycles": 26,
+        "positive": 23
+      },
+      "contraception": {
+        "patients": 26,
+        "cycles": 26,
+        "positive": 1
+      },
+      "early_menarche": {
+        "patients": 26,
+        "cycles": 26,
+        "positive": 0
+      }
+    }
+  },
+  "apple_fixture": {
+    "records": 281,
+    "record_types": {
+      "HKQuantityTypeIdentifierAppleSleepingWristTemperature": 35,
+      "HKQuantityTypeIdentifierRestingHeartRate": 35,
+      "HKQuantityTypeIdentifierHeartRateVariabilitySDNN": 35,
+      "HKQuantityTypeIdentifierStepCount": 35,
+      "HKCategoryTypeIdentifierSleepAnalysis": 140,
+      "HKCategoryTypeIdentifierMenstrualFlow": 1
+    },
+    "parsed_dates": 36,
+    "cycle_starts": [
+      "2025-01-01"
+    ],
+    "missing_quantity_values": 5,
+    "parsed_daily": {
+      "daily": {
+        "2025-01-01": {
+          "temperature": 36.393,
+          "rhr": 62.969,
+          "hrv": 49.202,
+          "steps": 3482.478,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-02": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.4,
+          "rhr": 62.42,
+          "hrv": 39.643,
+          "steps": 5841.38,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-03": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.323,
+          "rhr": 61.669,
+          "hrv": 46.409,
+          "steps": 4946.321,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-04": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.434,
+          "rhr": 61.443,
+          "hrv": 49.225,
+          "steps": 4817.336,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-05": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.327,
+          "rhr": 61.114,
+          "hrv": 46.941,
+          "steps": 4559.529,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-06": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.46,
+          "rhr": 60.237,
+          "hrv": 48.255,
+          "steps": 4613.65,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-07": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.42,
+          "rhr": 60.823,
+          "hrv": 46.222,
+          "steps": 5908.751,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-08": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": null,
+          "rhr": 61.93,
+          "hrv": 46.526,
+          "steps": 4069.701,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-09": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.447,
+          "rhr": 63.609,
+          "hrv": 47.837,
+          "steps": 4611.204,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-10": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.395,
+          "rhr": 62.453,
+          "hrv": 48.606,
+          "steps": 4452.816,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-11": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.43,
+          "rhr": 63.605,
+          "hrv": 43.619,
+          "steps": 3265.53,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-12": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": null,
+          "rhr": 60.99,
+          "hrv": 49.115,
+          "steps": 5031.034,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-13": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": null,
+          "rhr": 63.607,
+          "hrv": 48.189,
+          "steps": 4867.201,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-14": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.639,
+          "rhr": 61.934,
+          "hrv": 44.525,
+          "steps": 4357.826,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-15": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.57,
+          "rhr": 63.816,
+          "hrv": 44.708,
+          "steps": 3491.218,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-16": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.58,
+          "rhr": 63.578,
+          "hrv": 47.467,
+          "steps": 4503.604,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-17": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.611,
+          "rhr": 62.385,
+          "hrv": 51.651,
+          "steps": 4718.365,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-18": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.6,
+          "rhr": 62.484,
+          "hrv": 51.35,
+          "steps": 4902.25,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-19": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.528,
+          "rhr": 63.567,
+          "hrv": 43.671,
+          "steps": 4978.395,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-20": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.673,
+          "rhr": 61.554,
+          "hrv": 44.832,
+          "steps": 3641.187,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-21": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.529,
+          "rhr": 60.187,
+          "hrv": 44.75,
+          "steps": 6345.403,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-22": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": null,
+          "rhr": 63.167,
+          "hrv": 48.522,
+          "steps": 5992.885,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-23": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.559,
+          "rhr": 64.529,
+          "hrv": 46.354,
+          "steps": 5987.529,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-24": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.625,
+          "rhr": 60.454,
+          "hrv": 48.268,
+          "steps": 5523.831,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-25": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.669,
+          "rhr": 62.56,
+          "hrv": 51.972,
+          "steps": 6831.858,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-26": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.601,
+          "rhr": 61.168,
+          "hrv": 47.838,
+          "steps": 5902.031,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-27": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.598,
+          "rhr": 62.06,
+          "hrv": 48.57,
+          "steps": 6516.822,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-28": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.618,
+          "rhr": 61.35,
+          "hrv": 48.328,
+          "steps": 5333.766,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-29": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.597,
+          "rhr": 63.225,
+          "hrv": 43.868,
+          "steps": 5097.476,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-30": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.617,
+          "rhr": 61.805,
+          "hrv": 46.292,
+          "steps": 5759.253,
+          "sleep_core_hours": 3.4
+        },
+        "2025-01-31": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.575,
+          "rhr": 62.157,
+          "hrv": 45.959,
+          "steps": 4123.289,
+          "sleep_core_hours": 3.4
+        },
+        "2025-02-01": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.625,
+          "rhr": 61.266,
+          "hrv": 44.841,
+          "steps": 4644.804,
+          "sleep_core_hours": 3.4
+        },
+        "2025-02-02": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": null,
+          "rhr": 63.083,
+          "hrv": 52.917,
+          "steps": 5176.576,
+          "sleep_core_hours": 3.4
+        },
+        "2025-02-03": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.52,
+          "rhr": 61.84,
+          "hrv": 49.112,
+          "steps": 4242.836,
+          "sleep_core_hours": 3.4
+        },
+        "2025-02-04": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4,
+          "temperature": 36.6,
+          "rhr": 61.972,
+          "hrv": 36.106,
+          "steps": 2667.15,
+          "sleep_core_hours": 3.4
+        },
+        "2025-02-05": {
+          "sleep_deep_hours": 1.1,
+          "sleep_rem_hours": 1.5,
+          "sleep_awake_hours": 0.4
+        }
+      },
+      "cycle_starts": [
+        "2025-01-01"
+      ]
+    }
+  }
+}

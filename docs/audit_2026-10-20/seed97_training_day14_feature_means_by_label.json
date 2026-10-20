@@ -1,0 +1,110 @@
+[
+  {
+    "feature": "prior_logged_cycle_length",
+    "label_0_rows": 2416,
+    "label_0_finite": 2006,
+    "label_0_mean": 29.57934529744101,
+    "label_1_rows": 2624,
+    "label_1_finite": 2194,
+    "label_1_mean": 37.380203585536314
+  },
+  {
+    "feature": "mean_rhr_offset",
+    "label_0_rows": 2416,
+    "label_0_finite": 2416,
+    "label_0_mean": 0.007965709602955184,
+    "label_1_rows": 2624,
+    "label_1_finite": 2624,
+    "label_1_mean": -0.001181382027353906
+  },
+  {
+    "feature": "mean_hrv_offset",
+    "label_0_rows": 2416,
+    "label_0_finite": 2416,
+    "label_0_mean": -0.011195061826652739,
+    "label_1_rows": 2624,
+    "label_1_finite": 2624,
+    "label_1_mean": -0.0011300802033959976
+  },
+  {
+    "feature": "mean_steps",
+    "label_0_rows": 2416,
+    "label_0_finite": 2416,
+    "label_0_mean": 5069.0029656443585,
+    "label_1_rows": 2624,
+    "label_1_finite": 2624,
+    "label_1_mean": 5070.37805529596
+  },
+  {
+    "feature": "mean_sleep_hours",
+    "label_0_rows": 2416,
+    "label_0_finite": 2416,
+    "label_0_mean": 6.999483750077519,
+    "label_1_rows": 2624,
+    "label_1_finite": 2624,
+    "label_1_mean": 6.999864104951324
+  },
+  {
+    "feature": "temperature_change",
+    "label_0_rows": 2416,
+    "label_0_finite": 2416,
+    "label_0_mean": 0.022416125301396857,
+    "label_1_rows": 2624,
+    "label_1_finite": 2624,
+    "label_1_mean": -0.0014838427628007637
+  },
+  {
+    "feature": "temperature_observation_fraction",
+    "label_0_rows": 2416,
+    "label_0_finite": 2416,
+    "label_0_mean": 0.8779269157994323,
+    "label_1_rows": 2624,
+    "label_1_finite": 2624,
+    "label_1_mean": 0.8802537020905922
+  },
+  {
+    "feature": "simulator_ir_latent",
+    "label_0_rows": 2416,
+    "label_0_finite": 2416,
+    "label_0_mean": -0.1402429376726488,
+    "label_1_rows": 2624,
+    "label_1_finite": 2624,
+    "label_1_mean": 0.11133834617743142
+  },
+  {
+    "feature": "simulator_androgen_load",
+    "label_0_rows": 2416,
+    "label_0_finite": 2416,
+    "label_0_mean": 0.17289080372487867,
+    "label_1_rows": 2624,
+    "label_1_finite": 2624,
+    "label_1_mean": 0.4532430491749512
+  },
+  {
+    "feature": "synthetic_age",
+    "label_0_rows": 2416,
+    "label_0_finite": 2416,
+    "label_0_mean": 29.51862582781457,
+    "label_1_rows": 2624,
+    "label_1_finite": 2624,
+    "label_1_mean": 29.57888719512195
+  },
+  {
+    "feature": "synthetic_bmi",
+    "label_0_rows": 2416,
+    "label_0_finite": 2416,
+    "label_0_mean": 26.123143091983508,
+    "label_1_rows": 2624,
+    "label_1_finite": 2624,
+    "label_1_mean": 26.58529027518115
+  },
+  {
+    "feature": "synthetic_family_history",
+    "label_0_rows": 2416,
+    "label_0_finite": 2416,
+    "label_0_mean": 0.20240066225165562,
+    "label_1_rows": 2624,
+    "label_1_finite": 2624,
+    "label_1_mean": 0.2229420731707317
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "archetype": "PMOS_A",
+    "people": 63,
+    "cycles": 378,
+    "false_positive_cycles": 27,
+    "negative_cycles": 36,
+    "rate": 0.75
+  },
+  {
+    "archetype": "PMOS_B",
+    "people": 60,
+    "cycles": 360,
+    "false_positive_cycles": 29,
+    "negative_cycles": 39,
+    "rate": 0.7435897435897436
+  },
+  {
+    "archetype": "PMOS_C",
+    "people": 60,
+    "cycles": 360,
+    "false_positive_cycles": 73,
+    "negative_cycles": 337,
+    "rate": 0.2166172106824926
+  },
+  {
+    "archetype": "PMOS_D",
+    "people": 57,
+    "cycles": 342,
+    "false_positive_cycles": 30,
+    "negative_cycles": 34,
+    "rate": 0.8823529411764706
+  },
+  {
+    "archetype": "contraception",
+    "people": 57,
+    "cycles": 342,
+    "false_positive_cycles": 51,
+    "negative_cycles": 310,
+    "rate": 0.16451612903225807
+  },
+  {
+    "archetype": "early_menarche",
+    "people": 60,
+    "cycles": 360,
+    "false_positive_cycles": 54,
+    "negative_cycles": 330,
+    "rate": 0.16363636363636364
+  },
+  {
+    "archetype": "healthy_regular",
+    "people": 60,
+    "cycles": 360,
+    "false_positive_cycles": 45,
+    "negative_cycles": 343,
+    "rate": 0.13119533527696792
+  },
+  {
+    "archetype": "healthy_variable",
+    "people": 63,
+    "cycles": 378,
+    "false_positive_cycles": 59,
+    "negative_cycles": 107,
+    "rate": 0.5514018691588785
+  },
+  {
+    "archetype": "thyroid_mimic",
+    "people": 60,
+    "cycles": 360,
+    "false_positive_cycles": 35,
+    "negative_cycles": 41,
+    "rate": 0.8536585365853658
+  }
+]

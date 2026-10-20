@@ -1,5 +1,10 @@
 """Train/validation/test synthetic evaluation with fitted, calibrated classifiers."""
+import csv
+import hashlib
 import json
+import subprocess
+import joblib
+import sklearn
 from pathlib import Path
 import sys
 
@@ -90,57 +95,99 @@ def cluster_ci(records, metric, reps=1000, seed=808):
 def y_values(rows): return np.asarray([row["event"] for row in rows], dtype=int)
 
 
-results = {"scope": "synthetic internal held-out simulation only; not clinical performance", "plan": "docs/eval_plan.md",
-           "model": "sklearn LogisticRegression fitted on train; tier fallback selected by validation Brier, Platt calibration and F1 threshold selection on validation only", "seeds": {}}
-for seed in SEEDS:
-    partitions = {"train": [], "validation": [], "test": []}
-    for row in generate(seed): partitions[patient_partition(row["patient"])].append(row)
-    seed_result = {"patients": {name: len({r["patient"] for r in rows}) for name, rows in partitions.items()}, "metrics": {}}
-    for day in DAYS:
-        for tier in TIERS:
-            x_train = build_feature_matrix(partitions["train"], day, tier)
-            x_val = build_feature_matrix(partitions["validation"], day, tier)
-            x_test = build_feature_matrix(partitions["test"], day, tier)
-            fitted = PlattModel().fit(x_train, y_values(partitions["train"]), x_val, y_values(partitions["validation"]))
-            selected_tier = tier
-            if tier > 0:
-                baseline = PlattModel().fit(
-                    build_feature_matrix(partitions["train"], day, 0), y_values(partitions["train"]),
-                    build_feature_matrix(partitions["validation"], day, 0), y_values(partitions["validation"]))
-                y_val = y_values(partitions["validation"])
-                candidate_val_probability = fitted.predict_proba(x_val)
-                baseline_x_val = build_feature_matrix(partitions["validation"], day, 0)
-                baseline_val_probability = baseline.predict_proba(baseline_x_val)
-                gain_ci = brier_gain_ci(y_val, candidate_val_probability, baseline_val_probability,
-                                        [r["patient"] for r in partitions["validation"]], seed + day + tier)
-                if gain_ci[0] <= 0:
-                    fitted = baseline
-                    x_val = baseline_x_val
-                    x_test = build_feature_matrix(partitions["test"], day, 0)
-                    selected_tier = 0
-            threshold = choose_f1_threshold(y_values(partitions["validation"]), fitted.predict_proba(x_val))
-            records = [{"patient": row["patient"], "cycle": row["cycle"], "day": day, "phenotype": row["phenotype"],
-                        "y": row["event"], "score": float(score), "ov": row["ovulation_day"],
-                        "ov_est": estimate_ovulation_day(row, day, tier)}
-                       for row, score in zip(partitions["test"], fitted.predict_proba(x_test))]
-            methods = {"auroc": lambda z: auc([r["y"] for r in z], [r["score"] for r in z]),
-                       "auprc": lambda z: auprc([r["y"] for r in z], [r["score"] for r in z]),
-                       "brier": lambda z: brier([r["y"] for r in z], [r["score"] for r in z])}
-            ovulation = [r for r in records if r["ov"] > 0]
-            output = {"n_cycles": len(records), "event_rate": float(np.mean([r["y"] for r in records])),
-                      "tier_name": TIER_NAMES[tier], "features": feature_names(selected_tier),
-                      "validation_selected_feature_tier": selected_tier, "validation_brier_gain_ci": gain_ci if tier else None,
-                      "validation_selected_threshold": threshold,
-                      "ovulation_day_mae": float(np.mean([abs(r["ov"] - r["ov_est"]) for r in ovulation])),
-                      "ovulation_day_mae_cluster_bootstrap_95ci": cluster_ci(ovulation, lambda z: float(np.mean([abs(r["ov"] - r["ov_est"]) for r in z])), seed=seed + day + tier + 1),
-                      **threshold_metrics(records, threshold)}
-            output["per_archetype_false_alarm_rate"] = per_archetype_false_alarm_rates(records, threshold)
-            output["alert_tradeoff_curve"] = alert_tradeoff_curve(records)
-            for name, method in methods.items():
-                output[name] = method(records)
-                output[f"{name}_cluster_bootstrap_95ci"] = cluster_ci(records, method, seed=seed + day + tier)
-            seed_result["metrics"][f"day_{day}_tier_{tier}"] = output
-    results["seeds"][str(seed)] = seed_result
+def persist_selected(fitted, seed, day, tier, selected_tier, threshold, metrics, cards):
+    path = Path("models") / f"seed_{seed}_day_{day}_tier_{tier}.joblib"
+    path.parent.mkdir(exist_ok=True)
+    joblib.dump(fitted, path, compress=3)
+    lr = fitted.base.named_steps["lr"]
+    cards[f"seed_{seed}_day_{day}_tier_{tier}"] = {
+        "artifact": str(path), "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        "scope": "synthetic-only", "seed": seed, "day": day, "requested_tier": tier,
+        "selected_tier": selected_tier, "features": feature_names(selected_tier), "threshold": threshold,
+        "imputer_medians": fitted.base.named_steps["impute"].statistics_.tolist(),
+        "scaler_means": fitted.base.named_steps["scale"].mean_.tolist(),
+        "scaler_scales": fitted.base.named_steps["scale"].scale_.tolist(),
+        "coefficients": lr.coef_[0].tolist(), "intercept": float(lr.intercept_[0]),
+        "platt_coefficient": float(fitted.calibrator.coef_[0, 0]),
+        "platt_intercept": float(fitted.calibrator.intercept_[0]), "metrics": metrics,
+    }
 
-Path("results.json").write_text(json.dumps(results, indent=2) + "\n")
-print("Wrote results.json: fitted on train, calibrated and threshold-selected on validation, evaluated once on held-out patients.")
+
+def main():
+    cards, heldout = {}, []
+    results = {"scope": "synthetic internal held-out simulation only; not clinical performance", "plan": "docs/eval_plan.md",
+               "model": "sklearn LogisticRegression fitted on train; tier fallback selected by validation Brier, Platt calibration and F1 threshold selection on validation only", "seeds": {}}
+    for seed in SEEDS:
+        partitions = {"train": [], "validation": [], "test": []}
+        for row in generate(seed): partitions[patient_partition(row["patient"])].append(row)
+        seed_result = {"patients": {name: len({r["patient"] for r in rows}) for name, rows in partitions.items()}, "metrics": {}}
+        for day in DAYS:
+            for tier in TIERS:
+                x_train = build_feature_matrix(partitions["train"], day, tier)
+                x_val = build_feature_matrix(partitions["validation"], day, tier)
+                x_test = build_feature_matrix(partitions["test"], day, tier)
+                fitted = PlattModel().fit(x_train, y_values(partitions["train"]), x_val, y_values(partitions["validation"]))
+                selected_tier = tier
+                if tier > 0:
+                    baseline = PlattModel().fit(
+                        build_feature_matrix(partitions["train"], day, 0), y_values(partitions["train"]),
+                        build_feature_matrix(partitions["validation"], day, 0), y_values(partitions["validation"]))
+                    y_val = y_values(partitions["validation"])
+                    candidate_val_probability = fitted.predict_proba(x_val)
+                    baseline_x_val = build_feature_matrix(partitions["validation"], day, 0)
+                    baseline_val_probability = baseline.predict_proba(baseline_x_val)
+                    gain_ci = brier_gain_ci(y_val, candidate_val_probability, baseline_val_probability,
+                                            [r["patient"] for r in partitions["validation"]], seed + day + tier)
+                    if gain_ci[0] <= 0:
+                        fitted = baseline
+                        x_val = baseline_x_val
+                        x_test = build_feature_matrix(partitions["test"], day, 0)
+                        selected_tier = 0
+                threshold = choose_f1_threshold(y_values(partitions["validation"]), fitted.predict_proba(x_val))
+                records = [{"patient": row["patient"], "cycle": row["cycle"], "day": day, "phenotype": row["phenotype"],
+                            "y": row["event"], "score": float(score), "ov": row["ovulation_day"],
+                            "ov_est": estimate_ovulation_day(row, day, tier)}
+                           for row, score in zip(partitions["test"], fitted.predict_proba(x_test))]
+                methods = {"auroc": lambda z: auc([r["y"] for r in z], [r["score"] for r in z]),
+                           "auprc": lambda z: auprc([r["y"] for r in z], [r["score"] for r in z]),
+                           "brier": lambda z: brier([r["y"] for r in z], [r["score"] for r in z])}
+                ovulation = [r for r in records if r["ov"] > 0]
+                output = {"n_cycles": len(records), "event_rate": float(np.mean([r["y"] for r in records])),
+                          "tier_name": TIER_NAMES[tier], "features": feature_names(selected_tier),
+                          "validation_selected_feature_tier": selected_tier, "validation_brier_gain_ci": gain_ci if tier else None,
+                          "validation_selected_threshold": threshold,
+                          "ovulation_day_mae": float(np.mean([abs(r["ov"] - r["ov_est"]) for r in ovulation])),
+                          "ovulation_day_mae_cluster_bootstrap_95ci": cluster_ci(ovulation, lambda z: float(np.mean([abs(r["ov"] - r["ov_est"]) for r in z])), seed=seed + day + tier + 1),
+                          **threshold_metrics(records, threshold)}
+                output["per_archetype_false_alarm_rate"] = per_archetype_false_alarm_rates(records, threshold)
+                output["alert_tradeoff_curve"] = alert_tradeoff_curve(records)
+                for name, method in methods.items():
+                    output[name] = method(records)
+                    output[f"{name}_cluster_bootstrap_95ci"] = cluster_ci(records, method, seed=seed + day + tier)
+                seed_result["metrics"][f"day_{day}_tier_{tier}"] = output
+                persist_selected(fitted, seed, day, tier, selected_tier, threshold, output, cards)
+                heldout.extend({"seed": seed, "day": day, "tier": tier, "selected_tier": selected_tier,
+                                "patient": r["patient"], "cycle": r["cycle"], "archetype": r["phenotype"],
+                                "event": r["y"], "probability": r["score"], "threshold": threshold,
+                                "flag": r["score"] >= threshold, "ovulation_day": r["ov"],
+                                "ovulation_estimate": r["ov_est"], "scope": "synthetic-only"} for r in records)
+                print(f"Saved synthetic seed={seed}, day={day}, tier={tier}, selected={selected_tier}", flush=True)
+        results["seeds"][str(seed)] = seed_result
+
+    Path("results.json").write_text(json.dumps(results, indent=2) + "\n")
+    sources = [Path("scripts/run_eval.py"), *Path("src").glob("*.py")]
+    card = {"scope": "synthetic-only; not clinical performance", "sklearn_version": sklearn.__version__,
+            "git_hash": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
+            "source_sha256": {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},
+            "training_partitions": "train fit; validation calibration/fallback/threshold; test reporting only",
+            "models": cards}
+    Path("models/model_card.json").write_text(json.dumps(card, indent=2) + "\n")
+    Path("results").mkdir(exist_ok=True)
+    with Path("results/predictions_heldout.csv").open("w", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(heldout[0]))
+        writer.writeheader(); writer.writerows(heldout)
+    print("Wrote results.json: fitted on train, calibrated and threshold-selected on validation, evaluated once on held-out patients.")
+
+
+if __name__ == "__main__":
+    main()

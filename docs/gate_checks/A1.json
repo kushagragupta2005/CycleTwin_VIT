@@ -1,0 +1,8 @@
+{
+  "item": "A1",
+  "unit_and_AppTest_tests_passed": 18,
+  "classification_results_change": "none; results.json byte-identical",
+  "persisted_models": 36,
+  "heldout_predictions": 38880,
+  "scope": "synthetic-only"
+}

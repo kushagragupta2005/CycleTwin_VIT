@@ -1,0 +1,54 @@
+test_apple_roundtrip_shape (test_core.CoreTests) ... ok
+test_forecast_bounded (test_core.CoreTests) ... ok
+test_generator_determinism (test_core.CoreTests) ... ok
+test_patient_cycles_stay_in_one_partition (test_core.CoreTests) ... ok
+test_views_and_guided_steps_render (test_dashboard.DashboardTests) ... 2026-10-20 13:30:25.584 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-20 13:30:25.998 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 13:30:26.097 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 13:30:26.098 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 13:30:26.162 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 13:30:26.263 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-10-20 13:30:26.340 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+ok
+test_calendar_feature_has_no_current_or_future_cycle_value (test_fitted_pipeline.FittedPipelineTests) ... ok
+test_platt_model_outputs_probabilities_and_validation_threshold (test_fitted_pipeline.FittedPipelineTests) ... ok
+test_all_saved_models_and_heldout_predictions_exist (test_persisted_inference.PersistedInferenceTests) ... ok
+test_classification_regression_to_audited_results (test_persisted_inference.PersistedInferenceTests) ... ok
+test_inference_does_not_require_current_cycle_truth (test_persisted_inference.PersistedInferenceTests) ... ok
+test_persisted_pipeline_matches_independent_benchmark_refit (test_persisted_inference.PersistedInferenceTests) ... ok
+test_alert_budget_and_abstention (test_safety_and_conformal.SafetyTests) ... ok
+test_all_abstention_rules_are_explicit (test_safety_and_conformal.SafetyTests) ... ok
+test_cgm_is_deterministic_and_uses_postmeal_window (test_safety_and_conformal.SafetyTests) ... ok
+test_conformal_helpers_are_bounded (test_safety_and_conformal.SafetyTests) ... ok
+test_metabolic_units_sanity_and_reverse_coupling (test_twin.TwinTests) ... ok
+test_reproductive_state_units_and_positivity (test_twin.TwinTests) ... ok
+test_shared_latent_monotonic_growth_and_sweep (test_twin.TwinTests) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 2.541s
+
+OK

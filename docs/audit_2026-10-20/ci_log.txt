@@ -1,0 +1,314 @@
+unit	Set up job	﻿2026-10-20T07:14:47.5699792Z Current runner version: '2.337.0'
+unit	Set up job	2026-10-20T07:14:47.5719575Z ##[group]Runner Image Provisioner
+unit	Set up job	2026-10-20T07:14:47.5720151Z Hosted Compute Agent
+unit	Set up job	2026-10-20T07:14:47.5720603Z Version: 20261012.601
+unit	Set up job	2026-10-20T07:14:47.5721076Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+unit	Set up job	2026-10-20T07:14:47.5721503Z Build Date: 2026-10-12T17:48:21Z
+unit	Set up job	2026-10-20T07:14:47.5721986Z Worker ID: {65dba962-c34e-415d-81bb-377a6b814503}
+unit	Set up job	2026-10-20T07:14:47.5722407Z Region: westus3
+unit	Set up job	2026-10-20T07:14:47.5722883Z Cloud: Azure
+unit	Set up job	2026-10-20T07:14:47.5723216Z ##[endgroup]
+unit	Set up job	2026-10-20T07:14:47.5724045Z ##[group]Operating System
+unit	Set up job	2026-10-20T07:14:47.5724461Z Ubuntu
+unit	Set up job	2026-10-20T07:14:47.5724779Z 24.04.5
+unit	Set up job	2026-10-20T07:14:47.5725138Z LTS
+unit	Set up job	2026-10-20T07:14:47.5725465Z ##[endgroup]
+unit	Set up job	2026-10-20T07:14:47.5725796Z ##[group]Runner Image
+unit	Set up job	2026-10-20T07:14:47.5726555Z Image: ubuntu-24.04
+unit	Set up job	2026-10-20T07:14:47.5726900Z Version: 20261012.334.1
+unit	Set up job	2026-10-20T07:14:47.5727592Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+unit	Set up job	2026-10-20T07:14:47.5728663Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+unit	Set up job	2026-10-20T07:14:47.5729292Z ##[endgroup]
+unit	Set up job	2026-10-20T07:14:47.5730009Z ##[group]GITHUB_TOKEN Permissions
+unit	Set up job	2026-10-20T07:14:47.5731455Z Contents: read
+unit	Set up job	2026-10-20T07:14:47.5731806Z Metadata: read
+unit	Set up job	2026-10-20T07:14:47.5732436Z Packages: read
+unit	Set up job	2026-10-20T07:14:47.5732782Z ##[endgroup]
+unit	Set up job	2026-10-20T07:14:47.5734159Z Secret source: Actions
+unit	Set up job	2026-10-20T07:14:47.5734761Z Cache mode: write
+unit	Set up job	2026-10-20T07:14:47.5735172Z Prepare workflow directory
+unit	Set up job	2026-10-20T07:14:47.5972423Z Prepare all required actions
+unit	Set up job	2026-10-20T07:14:47.6008109Z Getting action download info
+unit	Set up job	2026-10-20T07:14:47.9182574Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+unit	Set up job	2026-10-20T07:14:48.2797732Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+unit	Set up job	2026-10-20T07:14:48.7932326Z Complete job name: unit
+unit	Run actions/checkout@v4	﻿2026-10-20T07:14:48.8811954Z ##[group]Run actions/checkout@v4
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8812461Z with:
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8812746Z   repository: kushagragupta2005/CycleTwin_VIT
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8815159Z   token: ***
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8815413Z   ssh-strict: true
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8815677Z   ssh-user: git
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8816071Z   persist-credentials: true
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8816362Z   clean: true
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8816628Z   sparse-checkout-cone-mode: true
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8816939Z   fetch-depth: 1
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8817202Z   fetch-tags: false
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8817470Z   show-progress: true
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8817739Z   lfs: false
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8817985Z   submodules: false
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8818277Z   set-safe-directory: true
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8818583Z   allow-unsafe-pr-checkout: false
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.8818967Z ##[endgroup]
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.9511071Z Syncing repository: kushagragupta2005/CycleTwin_VIT
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.9512913Z ##[group]Getting Git version info
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.9513699Z Working directory is '/home/runner/work/CycleTwin_VIT/CycleTwin_VIT'
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.9514833Z [command]/usr/bin/git version
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.9628299Z git version 2.55.0
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.9641731Z ##[endgroup]
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.9653166Z Temporarily overriding HOME='/home/runner/work/_temp/b8ac59d8-8500-4e4b-b2d0-6c50ab504122' before making global git config changes
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.9654563Z Adding repository directory to the temporary git global config as a safe directory
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.9656817Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CycleTwin_VIT/CycleTwin_VIT
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.9968940Z Deleting the contents of '/home/runner/work/CycleTwin_VIT/CycleTwin_VIT'
+unit	Run actions/checkout@v4	2026-10-20T07:14:48.9989574Z ##[group]Initializing the repository
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0007487Z [command]/usr/bin/git init /home/runner/work/CycleTwin_VIT/CycleTwin_VIT
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0768724Z hint: Using 'master' as the name for the initial branch. This default branch name
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0769932Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0770728Z hint: to use in all of your new repositories, which will suppress this warning,
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0771401Z hint: call:
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0772160Z hint:
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0772665Z hint: 	git config --global init.defaultBranch <name>
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0773223Z hint:
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0773801Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0774539Z hint: 'development'. The just-created branch can be renamed via this command:
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0774967Z hint:
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0775218Z hint: 	git branch -m <name>
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0775629Z hint:
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0776317Z hint: Disable this message with "git config set advice.defaultBranchName false"
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0777317Z Initialized empty Git repository in /home/runner/work/CycleTwin_VIT/CycleTwin_VIT/.git/
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.0780222Z [command]/usr/bin/git remote add origin https://github.com/kushagragupta2005/CycleTwin_VIT
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.1198529Z ##[endgroup]
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.1199056Z ##[group]Disabling automatic garbage collection
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.1201094Z [command]/usr/bin/git config --local gc.auto 0
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.1759170Z ##[endgroup]
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.1759920Z ##[group]Setting up auth
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.1763915Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.1791479Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.2123751Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.2150862Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.2319089Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.2346896Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.2529601Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.3057875Z ##[endgroup]
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.3058548Z ##[group]Fetching the repository
+unit	Run actions/checkout@v4	2026-10-20T07:14:49.3066205Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +76b4a8f8a69fa526e9825669fb600810af2b08f8:refs/remotes/origin/main
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3145700Z From https://github.com/kushagragupta2005/CycleTwin_VIT
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3148261Z  * [new ref]         76b4a8f8a69fa526e9825669fb600810af2b08f8 -> origin/main
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3152107Z ##[endgroup]
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3153136Z ##[group]Determining the checkout info
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3154328Z ##[endgroup]
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3156302Z [command]/usr/bin/git sparse-checkout disable
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3203989Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3230832Z ##[group]Checking out the ref
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3267856Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3494175Z Switched to a new branch 'main'
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3498900Z branch 'main' set up to track 'origin/main'.
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3504602Z ##[endgroup]
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3540153Z [command]/usr/bin/git log -1 --format=%H
+unit	Run actions/checkout@v4	2026-10-20T07:14:50.3561674Z 76b4a8f8a69fa526e9825669fb600810af2b08f8
+unit	Run actions/setup-python@v5	﻿2026-10-20T07:14:50.3828157Z ##[group]Run actions/setup-python@v5
+unit	Run actions/setup-python@v5	2026-10-20T07:14:50.3828946Z with:
+unit	Run actions/setup-python@v5	2026-10-20T07:14:50.3829507Z   python-version: 3.11
+unit	Run actions/setup-python@v5	2026-10-20T07:14:50.3830135Z   check-latest: false
+unit	Run actions/setup-python@v5	2026-10-20T07:14:50.3836225Z   token: ***
+unit	Run actions/setup-python@v5	2026-10-20T07:14:50.3836796Z   update-environment: true
+unit	Run actions/setup-python@v5	2026-10-20T07:14:50.3837644Z   allow-prereleases: false
+unit	Run actions/setup-python@v5	2026-10-20T07:14:50.3838287Z   freethreaded: false
+unit	Run actions/setup-python@v5	2026-10-20T07:14:50.3838885Z ##[endgroup]
+unit	Run actions/setup-python@v5	2026-10-20T07:14:50.4679435Z ##[group]Installed versions
+unit	Run actions/setup-python@v5	2026-10-20T07:14:50.4744058Z (node:2092) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+unit	Run actions/setup-python@v5	2026-10-20T07:14:50.4746348Z (Use `node --trace-deprecation ...` to show where the warning was created)
+unit	Run actions/setup-python@v5	2026-10-20T07:14:50.4747863Z Successfully set up CPython (3.11.17)
+unit	Run actions/setup-python@v5	2026-10-20T07:14:50.4749406Z ##[endgroup]
+unit	Run python -m pip install --upgrade pip	﻿2026-10-20T07:14:50.4914561Z ##[group]Run python -m pip install --upgrade pip
+unit	Run python -m pip install --upgrade pip	2026-10-20T07:14:50.4915614Z ^[[36;1mpython -m pip install --upgrade pip^[[0m
+unit	Run python -m pip install --upgrade pip	2026-10-20T07:14:50.5170274Z shell: /usr/bin/bash -e {0}
+unit	Run python -m pip install --upgrade pip	2026-10-20T07:14:50.5171091Z env:
+unit	Run python -m pip install --upgrade pip	2026-10-20T07:14:50.5171808Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+unit	Run python -m pip install --upgrade pip	2026-10-20T07:14:50.5230604Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+unit	Run python -m pip install --upgrade pip	2026-10-20T07:14:50.5231915Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+unit	Run python -m pip install --upgrade pip	2026-10-20T07:14:50.5232945Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+unit	Run python -m pip install --upgrade pip	2026-10-20T07:14:50.5233974Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+unit	Run python -m pip install --upgrade pip	2026-10-20T07:14:50.5235007Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+unit	Run python -m pip install --upgrade pip	2026-10-20T07:14:50.5235961Z ##[endgroup]
+unit	Run python -m pip install --upgrade pip	2026-10-20T07:14:51.0704769Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages (26.2.1)
+unit	Run python -m pip install -r requirements.txt	﻿2026-10-20T07:14:51.2401682Z ##[group]Run python -m pip install -r requirements.txt
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.2401998Z ^[[36;1mpython -m pip install -r requirements.txt^[[0m
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.2457987Z shell: /usr/bin/bash -e {0}
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.2458154Z env:
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.2458333Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.2458602Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.2458867Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.2459115Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.2459351Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.2459595Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.2459801Z ##[endgroup]
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.6493089Z Collecting numpy==2.0.2 (from -r requirements.txt (line 2))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.7079715Z   Downloading numpy-2.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.8055158Z Collecting pandas==2.3.3 (from -r requirements.txt (line 3))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.8158142Z   Downloading pandas-2.3.3-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (91 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.8630077Z Collecting streamlit==1.50.0 (from -r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.8737588Z   Downloading streamlit-1.50.0-py3-none-any.whl.metadata (9.5 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.8964697Z Collecting altair==5.5.0 (from -r requirements.txt (line 5))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.9073111Z   Downloading altair-5.5.0-py3-none-any.whl.metadata (11 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.9714208Z Collecting scikit-learn==1.6.1 (from -r requirements.txt (line 6))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:51.9827728Z   Downloading scikit_learn-1.6.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (18 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.0783815Z Collecting scipy==1.13.1 (from -r requirements.txt (line 7))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.0888263Z   Downloading scipy-1.13.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.1135697Z Collecting joblib==1.5.3 (from -r requirements.txt (line 8))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.1236267Z   Downloading joblib-1.5.3-py3-none-any.whl.metadata (5.5 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.1379046Z Collecting threadpoolctl==3.7.0 (from -r requirements.txt (line 9))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.1477169Z   Downloading threadpoolctl-3.7.0-py3-none-any.whl.metadata (24 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.1640230Z Collecting python-dateutil>=2.8.2 (from pandas==2.3.3->-r requirements.txt (line 3))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.1741830Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.2030047Z Collecting pytz>=2020.1 (from pandas==2.3.3->-r requirements.txt (line 3))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.2128348Z   Downloading pytz-2026.5-py2.py3-none-any.whl.metadata (22 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.2313051Z Collecting tzdata>=2022.7 (from pandas==2.3.3->-r requirements.txt (line 3))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.2410399Z   Downloading tzdata-2026.5-py2.py3-none-any.whl.metadata (1.4 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.2563225Z Collecting blinker<2,>=1.5.0 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.2661960Z   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.2838427Z Collecting cachetools<7,>=4.0 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.2943141Z   Downloading cachetools-6.2.6-py3-none-any.whl.metadata (5.6 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.3112887Z Collecting click<9,>=7.0 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.3211629Z   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.3411583Z Collecting packaging<26,>=20 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.3514953Z   Downloading packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.4589297Z Collecting pillow<12,>=7.1.0 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.4693915Z   Downloading pillow-11.3.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.5778901Z Collecting protobuf<7,>=3.20 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.5880289Z   Downloading protobuf-6.33.6-cp39-abi3-manylinux2014_x86_64.whl.metadata (593 bytes)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.6414453Z Collecting pyarrow>=7.0 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.6514365Z   Downloading pyarrow-26.0.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.6709146Z Collecting requests<3,>=2.27 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.6806298Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.6974261Z Collecting tenacity<10,>=8.1.0 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.7072904Z   Downloading tenacity-9.2.1-py3-none-any.whl.metadata (1.4 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.7214312Z Collecting toml<2,>=0.10.1 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.7311321Z   Downloading toml-0.10.2-py2.py3-none-any.whl.metadata (7.1 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.7476323Z Collecting typing-extensions<5,>=4.4.0 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.7573736Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.7876102Z Collecting watchdog<7,>=2.1.5 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.7974943Z   Downloading watchdog-6.0.0-py3-none-manylinux2014_x86_64.whl.metadata (44 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.8185156Z Collecting gitpython!=3.1.19,<4,>=3.0.7 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.8282774Z   Downloading gitpython-3.2.1-py3-none-any.whl.metadata (13 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.8554398Z Collecting pydeck<1,>=0.8.0b4 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.8654434Z   Downloading pydeck-0.9.3-py2.py3-none-any.whl.metadata (4.2 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.9026055Z Collecting tornado!=6.5.0,<7,>=6.0.3 (from streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.9134079Z   Downloading tornado-6.5.10-cp39-abi3-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (2.8 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.9382612Z Collecting jinja2 (from altair==5.5.0->-r requirements.txt (line 5))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.9484322Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.9691101Z Collecting jsonschema>=3.0 (from altair==5.5.0->-r requirements.txt (line 5))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:52.9789805Z   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.0119154Z Collecting narwhals>=1.14.2 (from altair==5.5.0->-r requirements.txt (line 5))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.0218526Z   Downloading narwhals-2.27.1-py3-none-any.whl.metadata (15 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.0510970Z Collecting gitdb<5,>=4.0.1 (from gitpython!=3.1.19,<4,>=3.0.7->streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.0609577Z   Downloading gitdb-4.0.12-py3-none-any.whl.metadata (1.2 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.0757434Z Collecting smmap<6,>=3.0.1 (from gitdb<5,>=4.0.1->gitpython!=3.1.19,<4,>=3.0.7->streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.0855329Z   Downloading smmap-5.0.3-py3-none-any.whl.metadata (4.6 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.1658424Z Collecting charset_normalizer<4,>=2 (from requests<3,>=2.27->streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.1760672Z   Downloading charset_normalizer-3.5.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.1941851Z Collecting idna<4,>=2.5 (from requests<3,>=2.27->streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.2045207Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.2544780Z Collecting urllib3<3,>=1.26 (from requests<3,>=2.27->streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.2647180Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.2845671Z Collecting certifi>=2023.5.7 (from requests<3,>=2.27->streamlit==1.50.0->-r requirements.txt (line 4))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.2946139Z   Downloading certifi-2026.10.19-py3-none-any.whl.metadata (2.5 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.3361929Z Collecting MarkupSafe>=2.0 (from jinja2->altair==5.5.0->-r requirements.txt (line 5))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.3467248Z   Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.3634620Z Collecting attrs>=22.2.0 (from jsonschema>=3.0->altair==5.5.0->-r requirements.txt (line 5))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.3734644Z   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.3893446Z Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=3.0->altair==5.5.0->-r requirements.txt (line 5))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.3993387Z   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.4184434Z Collecting referencing>=0.28.4 (from jsonschema>=3.0->altair==5.5.0->-r requirements.txt (line 5))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.4283638Z   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.5980180Z Collecting rpds-py>=0.25.0 (from jsonschema>=3.0->altair==5.5.0->-r requirements.txt (line 5))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.6086733Z   Downloading rpds_py-2026.9.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.6287412Z Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas==2.3.3->-r requirements.txt (line 3))
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.6388696Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.6544242Z Downloading numpy-2.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (19.5 MB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.8562367Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 19.5/19.5 MB 101.4 MB/s  0:00:00
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.8674001Z Downloading pandas-2.3.3-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.8 MB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.9656816Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 129.2 MB/s  0:00:00
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:53.9766638Z Downloading streamlit-1.50.0-py3-none-any.whl (10.1 MB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.0451906Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.1/10.1 MB 147.2 MB/s  0:00:00
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.0554399Z Downloading altair-5.5.0-py3-none-any.whl (731 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.0594498Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 731.2/731.2 kB 183.4 MB/s  0:00:00
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.0704335Z Downloading scikit_learn-1.6.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.5 MB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.1861041Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.5/13.5 MB 116.0 MB/s  0:00:00
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.1967528Z Downloading scipy-1.13.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (38.6 MB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.4578030Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 38.6/38.6 MB 147.9 MB/s  0:00:00
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.4681024Z Downloading joblib-1.5.3-py3-none-any.whl (309 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.4802549Z Downloading threadpoolctl-3.7.0-py3-none-any.whl (26 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.4915096Z Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.5025777Z Downloading cachetools-6.2.6-py3-none-any.whl (11 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.5141240Z Downloading click-8.5.0-py3-none-any.whl (125 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.5255514Z Downloading gitpython-3.2.1-py3-none-any.whl (231 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.5373342Z Downloading gitdb-4.0.12-py3-none-any.whl (62 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.5486091Z Downloading packaging-25.0-py3-none-any.whl (66 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.5601557Z Downloading pillow-11.3.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.6 MB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.5964412Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.6/6.6 MB 184.9 MB/s  0:00:00
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.6065421Z Downloading protobuf-6.33.6-cp39-abi3-manylinux2014_x86_64.whl (323 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.6188217Z Downloading pydeck-0.9.3-py2.py3-none-any.whl (11.4 MB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.7079613Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.4/11.4 MB 128.7 MB/s  0:00:00
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.7182389Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.7299284Z Downloading charset_normalizer-3.5.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (269 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.7416750Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.7530270Z Downloading smmap-5.0.3-py3-none-any.whl (24 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.7641902Z Downloading tenacity-9.2.1-py3-none-any.whl (32 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.7752707Z Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.7869762Z Downloading tornado-6.5.10-cp39-abi3-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (467 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.7993123Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.8872179Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.8993620Z Downloading watchdog-6.0.0-py3-none-manylinux2014_x86_64.whl (79 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.9111192Z Downloading certifi-2026.10.19-py3-none-any.whl (136 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.9332112Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.9454103Z Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.9566576Z Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.9680861Z Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.9794358Z Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:54.9909279Z Downloading narwhals-2.27.1-py3-none-any.whl (483 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:55.0045720Z Downloading pyarrow-26.0.0-cp311-cp311-manylinux_2_28_x86_64.whl (53.9 MB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:55.3735689Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 53.9/53.9 MB 147.0 MB/s  0:00:00
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:55.3842067Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:55.3964650Z Downloading pytz-2026.5-py2.py3-none-any.whl (506 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:55.4088439Z Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:55.4204176Z Downloading rpds_py-2026.9.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (375 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:55.4326158Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:55.4440466Z Downloading tzdata-2026.5-py2.py3-none-any.whl (347 kB)
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:14:55.7120229Z Installing collected packages: pytz, watchdog, urllib3, tzdata, typing-extensions, tornado, toml, threadpoolctl, tenacity, smmap, six, rpds-py, pyarrow, protobuf, pillow, packaging, numpy, narwhals, MarkupSafe, joblib, idna, click, charset_normalizer, certifi, cachetools, blinker, attrs, scipy, requests, referencing, python-dateutil, jinja2, gitdb, scikit-learn, pydeck, pandas, jsonschema-specifications, gitpython, jsonschema, altair, streamlit
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:15:05.6451678Z 
+unit	Run python -m pip install -r requirements.txt	2026-10-20T07:15:05.6465261Z Successfully installed MarkupSafe-3.0.4 altair-5.5.0 attrs-26.1.0 blinker-1.9.0 cachetools-6.2.6 certifi-2026.10.19 charset_normalizer-3.5.2 click-8.5.0 gitdb-4.0.12 gitpython-3.2.1 idna-3.20 jinja2-3.1.6 joblib-1.5.3 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 narwhals-2.27.1 numpy-2.0.2 packaging-25.0 pandas-2.3.3 pillow-11.3.0 protobuf-6.33.6 pyarrow-26.0.0 pydeck-0.9.3 python-dateutil-2.9.0.post0 pytz-2026.5 referencing-0.37.0 requests-2.34.2 rpds-py-2026.9.1 scikit-learn-1.6.1 scipy-1.13.1 six-1.17.0 smmap-5.0.3 streamlit-1.50.0 tenacity-9.2.1 threadpoolctl-3.7.0 toml-0.10.2 tornado-6.5.10 typing-extensions-4.16.0 tzdata-2026.5 urllib3-2.8.0 watchdog-6.0.0
+unit	Run python -m unittest discover -s tests	﻿2026-10-20T07:15:05.8504270Z ##[group]Run python -m unittest discover -s tests
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:05.8504551Z ^[[36;1mpython -m unittest discover -s tests^[[0m
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:05.8557209Z shell: /usr/bin/bash -e {0}
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:05.8557350Z env:
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:05.8557497Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:05.8557733Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:05.8557966Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:05.8558177Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:05.8558382Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:05.8558591Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:05.8558770Z ##[endgroup]
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:07.7212246Z .............
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:07.7213031Z ----------------------------------------------------------------------
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:07.7213438Z Ran 13 tests in 0.119s
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:07.7213628Z 
+unit	Run python -m unittest discover -s tests	2026-10-20T07:15:07.7213705Z OK
+unit	Post Run actions/setup-python@v5	﻿2026-10-20T07:15:07.8971978Z Post job cleanup.
+unit	Post Run actions/setup-python@v5	2026-10-20T07:15:07.9730101Z (node:2183) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+unit	Post Run actions/setup-python@v5	2026-10-20T07:15:07.9730800Z (Use `node --trace-deprecation ...` to show where the warning was created)
+unit	Post Run actions/checkout@v4	﻿2026-10-20T07:15:08.0204079Z Post job cleanup.
+unit	Post Run actions/checkout@v4	2026-10-20T07:15:08.0758221Z [command]/usr/bin/git version
+unit	Post Run actions/checkout@v4	2026-10-20T07:15:08.0795652Z git version 2.55.0
+unit	Post Run actions/checkout@v4	2026-10-20T07:15:08.0822094Z Temporarily overriding HOME='/home/runner/work/_temp/18ba13a1-db2d-44d6-b805-ca352e466c06' before making global git config changes
+unit	Post Run actions/checkout@v4	2026-10-20T07:15:08.0822915Z Adding repository directory to the temporary git global config as a safe directory
+unit	Post Run actions/checkout@v4	2026-10-20T07:15:08.0826177Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CycleTwin_VIT/CycleTwin_VIT
+unit	Post Run actions/checkout@v4	2026-10-20T07:15:08.1405429Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+unit	Post Run actions/checkout@v4	2026-10-20T07:15:08.1442429Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+unit	Post Run actions/checkout@v4	2026-10-20T07:15:08.1629607Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+unit	Post Run actions/checkout@v4	2026-10-20T07:15:08.1654009Z http.https://github.com/.extraheader
+unit	Post Run actions/checkout@v4	2026-10-20T07:15:08.1663353Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+unit	Post Run actions/checkout@v4	2026-10-20T07:15:08.2612970Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+unit	Post Run actions/checkout@v4	2026-10-20T07:15:08.2832933Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+unit	Post Run actions/checkout@v4	2026-10-20T07:15:08.2876842Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+unit	Complete job	﻿2026-10-20T07:15:08.3172872Z Cleaning up orphan processes
+unit	Complete job	2026-10-20T07:15:08.3428142Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

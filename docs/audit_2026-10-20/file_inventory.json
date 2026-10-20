@@ -1,0 +1,622 @@
+[
+  {
+    "path": "LICENSE",
+    "bytes": 812
+  },
+  {
+    "path": "requirements.txt",
+    "bytes": 202
+  },
+  {
+    "path": "Makefile",
+    "bytes": 305
+  },
+  {
+    "path": "results.json",
+    "bytes": 176601
+  },
+  {
+    "path": "README.md",
+    "bytes": 11740
+  },
+  {
+    "path": ".gitignore",
+    "bytes": 95
+  },
+  {
+    "path": "app.py",
+    "bytes": 40409
+  },
+  {
+    "path": ".streamlit/config.toml",
+    "bytes": 155
+  },
+  {
+    "path": "tests/test_twin.py",
+    "bytes": 1601
+  },
+  {
+    "path": "tests/test_core.py",
+    "bytes": 1533
+  },
+  {
+    "path": "tests/test_fitted_pipeline.py",
+    "bytes": 1224
+  },
+  {
+    "path": "tests/test_safety_and_conformal.py",
+    "bytes": 1977
+  },
+  {
+    "path": "docs/architecture.md",
+    "bytes": 612
+  },
+  {
+    "path": "docs/assumptions.md",
+    "bytes": 5576
+  },
+  {
+    "path": "docs/related_work.md",
+    "bytes": 4179
+  },
+  {
+    "path": "docs/privacy.md",
+    "bytes": 411
+  },
+  {
+    "path": "docs/video_script_3min.md",
+    "bytes": 3647
+  },
+  {
+    "path": "docs/eval_plan.md",
+    "bytes": 3847
+  },
+  {
+    "path": "docs/video_script_20min.md",
+    "bytes": 20331
+  },
+  {
+    "path": "docs/jury_qa.md",
+    "bytes": 5990
+  },
+  {
+    "path": "docs/tripod_ai.md",
+    "bytes": 1225
+  },
+  {
+    "path": "docs/screenshots/alert-log.png",
+    "bytes": 1185124
+  },
+  {
+    "path": "docs/screenshots/what-if-panel.png",
+    "bytes": 1299513
+  },
+  {
+    "path": "docs/screenshots/patient-list.png",
+    "bytes": 571057
+  },
+  {
+    "path": "docs/screenshots/patient-timeline.png",
+    "bytes": 522219
+  },
+  {
+    "path": "docs/screenshots/README.md",
+    "bytes": 2965
+  },
+  {
+    "path": "docs/screenshots/abstain-banner.png",
+    "bytes": 530243
+  },
+  {
+    "path": "docs/audit_2026-10-20/threshold_tradeoff_points.csv",
+    "bytes": 41387
+  },
+  {
+    "path": "docs/audit_2026-10-20/dashboard_records.csv",
+    "bytes": 14214
+  },
+  {
+    "path": "docs/audit_2026-10-20/historical_e43ea93_results.json",
+    "bytes": 24890
+  },
+  {
+    "path": "docs/audit_2026-10-20/evaluation_history.json",
+    "bytes": 12617
+  },
+  {
+    "path": "docs/audit_2026-10-20/apptest_log.txt",
+    "bytes": 2467
+  },
+  {
+    "path": "docs/audit_2026-10-20/historical_d6314fb_results.json",
+    "bytes": 176601
+  },
+  {
+    "path": "docs/audit_2026-10-20/environment_and_provenance.json",
+    "bytes": 2081
+  },
+  {
+    "path": "docs/audit_2026-10-20/audit_refitted_heldout_predictions.csv",
+    "bytes": 3217835
+  },
+  {
+    "path": "docs/audit_2026-10-20/all_metrics.csv",
+    "bytes": 25073
+  },
+  {
+    "path": "docs/audit_2026-10-20/historical_dd37506_results.json",
+    "bytes": 49981
+  },
+  {
+    "path": "docs/audit_2026-10-20/reproduction_checks.json",
+    "bytes": 11763
+  },
+  {
+    "path": "docs/audit_2026-10-20/aggregate_metrics.json",
+    "bytes": 6207
+  },
+  {
+    "path": "docs/audit_2026-10-20/pdf_text.json",
+    "bytes": 6876
+  },
+  {
+    "path": "docs/audit_2026-10-20/raw_input_ranges.json",
+    "bytes": 2448
+  },
+  {
+    "path": "docs/audit_2026-10-20/ci_log.txt",
+    "bytes": 42441
+  },
+  {
+    "path": "docs/audit_2026-10-20/illustrative_examples.json",
+    "bytes": 26254
+  },
+  {
+    "path": "docs/audit_2026-10-20/dashboard_statistics.json",
+    "bytes": 3301
+  },
+  {
+    "path": "docs/audit_2026-10-20/historical_f282e75_results.json",
+    "bytes": 174373
+  },
+  {
+    "path": "docs/audit_2026-10-20/historical_3d0c852_results.json",
+    "bytes": 35538
+  },
+  {
+    "path": "docs/audit_2026-10-20/unit_test_log.txt",
+    "bytes": 1129
+  },
+  {
+    "path": "docs/audit_2026-10-20/ui_audit_checks.json",
+    "bytes": 1825
+  },
+  {
+    "path": "docs/audit_2026-10-20/CycleTwin_full_audit.md",
+    "bytes": 89727
+  },
+  {
+    "path": "docs/audit_2026-10-20/feature_ranges_and_missingness.csv",
+    "bytes": 35871
+  },
+  {
+    "path": "docs/audit_2026-10-20/audit_refitted_parameters.json",
+    "bytes": 33391
+  },
+  {
+    "path": "docs/audit_2026-10-20/verify_dashboard.py",
+    "bytes": 2806
+  },
+  {
+    "path": "docs/audit_2026-10-20/dataset_statistics.json",
+    "bytes": 35082
+  },
+  {
+    "path": "docs/audit_2026-10-20/reproduce_audit.py",
+    "bytes": 21163
+  },
+  {
+    "path": "docs/audit_2026-10-20/build_report_tables.py",
+    "bytes": 11020
+  },
+  {
+    "path": "docs/audit_2026-10-20/presentation_text.json",
+    "bytes": 7276
+  },
+  {
+    "path": "docs/audit_2026-10-20/subgroup_false_alarm_rates.csv",
+    "bytes": 18679
+  },
+  {
+    "path": ".ppt_build/page-01.png",
+    "bytes": 19761
+  },
+  {
+    "path": ".ppt_build/v2-page-05.png",
+    "bytes": 22458
+  },
+  {
+    "path": ".ppt_build/v2-page-11.png",
+    "bytes": 24409
+  },
+  {
+    "path": ".ppt_build/v2-page-10.png",
+    "bytes": 28784
+  },
+  {
+    "path": ".ppt_build/v2-page-04.png",
+    "bytes": 27232
+  },
+  {
+    "path": ".ppt_build/page-02.png",
+    "bytes": 29459
+  },
+  {
+    "path": ".ppt_build/v2-page-12.png",
+    "bytes": 26670
+  },
+  {
+    "path": ".ppt_build/v2-page-06.png",
+    "bytes": 25344
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v3-candidate.pptx",
+    "bytes": 67667
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_architecture_v4-validation.json",
+    "bytes": 3417
+  },
+  {
+    "path": ".ppt_build/v2-page-07.png",
+    "bytes": 22694
+  },
+  {
+    "path": ".ppt_build/v2-page-13.png",
+    "bytes": 22132
+  },
+  {
+    "path": ".ppt_build/page-03.png",
+    "bytes": 29569
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v2-candidate.pptx",
+    "bytes": 67683
+  },
+  {
+    "path": ".ppt_build/page-07.png",
+    "bytes": 24650
+  },
+  {
+    "path": ".ppt_build/page-13.png",
+    "bytes": 29762
+  },
+  {
+    "path": ".ppt_build/v2-page-03.png",
+    "bytes": 26810
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_architecture_v3-validation.json",
+    "bytes": 3614
+  },
+  {
+    "path": ".ppt_build/finalpage-09.png",
+    "bytes": 70072
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v7-candidate.pptx.inspect.ndjson",
+    "bytes": 55081
+  },
+  {
+    "path": ".ppt_build/v2-page-02.png",
+    "bytes": 25609
+  },
+  {
+    "path": ".ppt_build/page-12.png",
+    "bytes": 25700
+  },
+  {
+    "path": ".ppt_build/final-arch-1.png",
+    "bytes": 56412
+  },
+  {
+    "path": ".ppt_build/page-06.png",
+    "bytes": 27806
+  },
+  {
+    "path": ".ppt_build/page-10.png",
+    "bytes": 26502
+  },
+  {
+    "path": ".ppt_build/page-04.png",
+    "bytes": 29942
+  },
+  {
+    "path": ".ppt_build/v2-page-14.png",
+    "bytes": 27589
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v5-candidate.pptx",
+    "bytes": 67720
+  },
+  {
+    "path": ".ppt_build/g2-slide-08.png",
+    "bytes": 60964
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v3-validation.json",
+    "bytes": 3627
+  },
+  {
+    "path": ".ppt_build/architecture-1.png",
+    "bytes": 52097
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v8-candidate.pptx.inspect.ndjson",
+    "bytes": 55081
+  },
+  {
+    "path": ".ppt_build/v2-page-01.png",
+    "bytes": 17734
+  },
+  {
+    "path": ".ppt_build/page-05.png",
+    "bytes": 23227
+  },
+  {
+    "path": ".ppt_build/page-11.png",
+    "bytes": 30406
+  },
+  {
+    "path": ".ppt_build/build_decks.mjs",
+    "bytes": 15310
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_architecture_v2-validation.json",
+    "bytes": 3614
+  },
+  {
+    "path": ".ppt_build/v2-contact.png",
+    "bytes": 251204
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v7-candidate.pptx",
+    "bytes": 68239
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_architecture_v4-candidate.pptx",
+    "bytes": 21607
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_architecture-candidate.pptx.inspect.ndjson",
+    "bytes": 6636
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v2-validation.json",
+    "bytes": 3627
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v8-candidate.pptx",
+    "bytes": 68247
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_architecture_v3-candidate.pptx",
+    "bytes": 21580
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_architecture_v2-candidate.pptx",
+    "bytes": 21576
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v5-validation.json",
+    "bytes": 3627
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v6-candidate.pptx.inspect.ndjson",
+    "bytes": 55104
+  },
+  {
+    "path": ".ppt_build/contact.png",
+    "bytes": 234732
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v6-candidate.pptx",
+    "bytes": 68257
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_architecture_v3-candidate.pptx.inspect.ndjson",
+    "bytes": 6676
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_architecture-candidate.pptx",
+    "bytes": 21544
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_architecture-validation.json",
+    "bytes": 3614
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v5-candidate.pptx.inspect.ndjson",
+    "bytes": 53929
+  },
+  {
+    "path": ".ppt_build/final-related-13.png",
+    "bytes": 62528
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_architecture_v4-candidate.pptx.inspect.ndjson",
+    "bytes": 6718
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v7-validation.json",
+    "bytes": 3627
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v2-candidate.pptx.inspect.ndjson",
+    "bytes": 53854
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v8-validation.json",
+    "bytes": 3430
+  },
+  {
+    "path": ".ppt_build/page-08.png",
+    "bytes": 31871
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v6-validation.json",
+    "bytes": 3627
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck-validation.json",
+    "bytes": 3627
+  },
+  {
+    "path": ".ppt_build/page-09.png",
+    "bytes": 32655
+  },
+  {
+    "path": ".ppt_build/finalpage-10.png",
+    "bytes": 68880
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_architecture_v2-candidate.pptx.inspect.ndjson",
+    "bytes": 6664
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck-candidate.pptx.inspect.ndjson",
+    "bytes": 49061
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck-candidate.pptx",
+    "bytes": 63706
+  },
+  {
+    "path": ".ppt_build/CycleTwin_VIT_pitch_deck_v3-candidate.pptx.inspect.ndjson",
+    "bytes": 53856
+  },
+  {
+    "path": ".ppt_build/v2-page-09.png",
+    "bytes": 30041
+  },
+  {
+    "path": ".ppt_build/v2-page-08.png",
+    "bytes": 29406
+  },
+  {
+    "path": "deliverables/CycleTwin_VIT_architecture_v4.pptx",
+    "bytes": 21607
+  },
+  {
+    "path": "deliverables/CycleTwin_VIT_pitch_deck_v8.pptx",
+    "bytes": 68247
+  },
+  {
+    "path": "deliverables/CycleTwin_VIT_pitch_deck_v8.pdf",
+    "bytes": 236777
+  },
+  {
+    "path": "deliverables/CycleTwin_VIT_architecture_v4.pdf",
+    "bytes": 50465
+  },
+  {
+    "path": "scripts/run_eval.py",
+    "bytes": 8509
+  },
+  {
+    "path": "scripts/generate_figures.py",
+    "bytes": 6059
+  },
+  {
+    "path": "scripts/make_synthetic_apple_export.py",
+    "bytes": 2337
+  },
+  {
+    "path": "scripts/update_readme_results.py",
+    "bytes": 1687
+  },
+  {
+    "path": "scripts/write_ehr_lite.py",
+    "bytes": 1242
+  },
+  {
+    "path": ".github/workflows/ci.yml",
+    "bytes": 383
+  },
+  {
+    "path": "apple_health_export/export.xml",
+    "bytes": 47669
+  },
+  {
+    "path": "data/ehr.csv",
+    "bytes": 321492
+  },
+  {
+    "path": "assets/false_alerts_by_tier.svg",
+    "bytes": 3638
+  },
+  {
+    "path": "assets/auroc_by_tier.svg",
+    "bytes": 4633
+  },
+  {
+    "path": "assets/lead_time_false_alarm_tradeoff.svg",
+    "bytes": 3223
+  },
+  {
+    "path": "src/alerts.py",
+    "bytes": 690
+  },
+  {
+    "path": "src/conformal.py",
+    "bytes": 1245
+  },
+  {
+    "path": "src/twin.py",
+    "bytes": 3640
+  },
+  {
+    "path": "src/explanations.py",
+    "bytes": 900
+  },
+  {
+    "path": "src/__init__.py",
+    "bytes": 1
+  },
+  {
+    "path": "src/features.py",
+    "bytes": 2298
+  },
+  {
+    "path": "src/model.py",
+    "bytes": 1635
+  },
+  {
+    "path": "src/generator.py",
+    "bytes": 2844
+  },
+  {
+    "path": "src/fitted.py",
+    "bytes": 1458
+  },
+  {
+    "path": "src/splits.py",
+    "bytes": 270
+  },
+  {
+    "path": "src/safety.py",
+    "bytes": 1074
+  },
+  {
+    "path": "src/metabolic.py",
+    "bytes": 1072
+  },
+  {
+    "path": "src/adapters/apple_health.py",
+    "bytes": 2953
+  },
+  {
+    "path": "src/adapters/__init__.py",
+    "bytes": 1
+  }
+]

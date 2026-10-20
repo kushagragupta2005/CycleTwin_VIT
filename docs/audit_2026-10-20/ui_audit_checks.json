@@ -1,0 +1,47 @@
+{
+  "render_passes": [
+    "Overview",
+    "Cohort",
+    "Patient",
+    "Method",
+    "Guided p0000",
+    "Guided p0026",
+    "Guided p0002"
+  ],
+  "overview_metrics": {
+    "Held-out cycles \u00b7 synthetic": "3,240",
+    "Seeds \u00b7 synthetic": "3",
+    "Mean AUROC \u00b7 synthetic": "0.906",
+    "Mean Brier \u00b7 synthetic": "0.119"
+  },
+  "abstaining_patient": "s223-p0026",
+  "withheld_metric_labels": [
+    "Ovulation-delay axis"
+  ],
+  "what_if_remains_visible_during_abstention": [
+    "Assumption-only range for demo E1 score: 24%\u201329%. This is not a treatment recommendation."
+  ],
+  "tier0_patient": "s223-p0002",
+  "tier0_score_metrics": {
+    "Synthetic demo E1 score": "71%",
+    "Ovulation-delay axis": "71%",
+    "Glycaemic-excursion proxy": "Not sampled"
+  },
+  "tier0_displayed_day_estimate": [
+    "Synthetic ovulation-day estimate: day 24, marginal interval 12\u201336."
+  ],
+  "tier0_explanation": [
+    "The synthetic forecast reflects resting heart-rate pattern, nightly temperature pattern. The current ovulation-day estimate is 24. This is a model summary, not a clinical explanation."
+  ],
+  "alert_log": [
+    {
+      "patient": "s223-p0002",
+      "cycle": 1,
+      "day": 10,
+      "risk": 0.7109495026250039
+    }
+  ],
+  "abstaining_patient_cohort_row": "s223-p0026</td><td>early_menarche</td><td title=\"Fixed synthetic heuristic; not a diagnosis probability\">0.242</td><td>Tier 0</td><td><div style=\"display:flex;align-items:center;gap:8px\"><span style=\"width:92px;height:8px;background:#e5eeeb;border-radius:8px;overflow:hidden\"><span class=\"completeness-fill\" style=\"width:86%\"></span></span><span>86%</span></div></td><td><span class=\"status-pill status-review\">Clinician review</span></td><td>Not sampled</td>",
+  "cohort_display_tier": 0,
+  "source_unchanged": true
+}
