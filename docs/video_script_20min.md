@@ -78,6 +78,13 @@ Missed generated events: 484/1,677 (0.289); false alerts: 1.484 per synthetic pa
 Median generated-event lead time: 17.000 days among 790 true-positive cycles with a generated ovulation day
 Safety is evaluated at every snapshot; no later score can change an earlier alert.
 
+## Frozen synthetic robustness extension
+Fixed Tier-2 day-18 model and threshold under predeclared perturbations
+At 60% additional forced missing temperature readings: AUROC 0.884, Brier 0.140, safety withholding 1.000
+At +0.01°C/day drift: AUROC 0.906, Brier 0.300
+At a +4-day generated timing shift on independent synthetic cohorts: AUROC 0.863, Brier 0.145
+These are simulator sensitivity tests, not device robustness or clinical validation.
+
 ## What the clinician view shows
 Decision-support research display
 Fitted probability beside its own validation threshold and held-out model evidence

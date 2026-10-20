@@ -49,3 +49,13 @@ def render_alert_policy(claims):
                      'Median lead time (days)':metrics['lead_time_days_median'],'Lead-time n':metrics['lead_time_n']})
     st.dataframe(pd.DataFrame(rows),hide_index=True,use_container_width=True)
     st.caption('Lead time is generated ovulation day minus alert day for true-positive cycles with a generated ovulation day. Absent ovulation has no numerical lead time. Safety is evaluated at each snapshot; later information cannot change an earlier alert.')
+
+
+def render_robustness(claims):
+    report=claims.get('robustness')
+    if not report: return
+    st.subheader('Frozen synthetic robustness extension')
+    st.caption('In plain words: the saved day-18 Tier-2 models see perturbed synthetic inputs. Model weights and thresholds remain fixed.')
+    path=Path('docs/figures/robustness.svg')
+    if path.exists(): st.image(str(path),caption='AUROC and Brier across the predeclared synthetic sweeps. Safety-withhold rate is in the generated JSON and CSV.')
+    st.caption('Added missing readings, added noise, bias, drift and generated timing shifts are sensitivity tests. They do not validate any real device or clinical workflow.')

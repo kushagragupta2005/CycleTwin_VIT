@@ -72,6 +72,13 @@ def compose(c):
                f"Missed generated events: {policy['missed_events']:,}/{policy['event_cycles']:,} ({metric(policy['missed_event_rate'])}); false alerts: {metric(policy['false_alerts_per_synthetic_patient_year'])} per synthetic patient-year",
                f"Median generated-event lead time: {metric(policy['lead_time_days_median'])} days among {policy['lead_time_n']:,} true-positive cycles with a generated ovulation day",
                'Safety is evaluated at every snapshot; no later score can change an earlier alert.'])
+    if c.get('robustness'):
+        conditions=c['robustness']['conditions'];missing=conditions['additional_missing_fraction=0.6'];drift=conditions['device_drift_c_per_day=0.01'];shift=conditions['ovulation_base_shift_days=4']
+        slide('Frozen synthetic robustness extension','Fixed Tier-2 day-18 model and threshold under predeclared perturbations',
+              [f"At 60% additional forced missing temperature readings: AUROC {metric(missing['mean_auroc'])}, Brier {metric(missing['mean_brier'])}, safety withholding {metric(missing['mean_safety_withhold_rate'])}",
+               f"At +0.01°C/day drift: AUROC {metric(drift['mean_auroc'])}, Brier {metric(drift['mean_brier'])}",
+               f"At a +4-day generated timing shift on independent synthetic cohorts: AUROC {metric(shift['mean_auroc'])}, Brier {metric(shift['mean_brier'])}",
+               'These are simulator sensitivity tests, not device robustness or clinical validation.'])
     slide('What the clinician view shows','Decision-support research display',
           ['Fitted probability beside its own validation threshold and held-out model evidence',
            'Exact additive feature contributions and explicit imputation',
@@ -208,6 +215,10 @@ Code uses the [MIT License](LICENSE). All project datasets are synthetic. Publis
         policy=c['alert_policy_summary']['2']
         sequential='## Frozen sequential alert policy\n\nThe frozen policy evaluates the first safe threshold crossing at days 10, 14 and 18, with at most one alert per cycle; it uses saved frozen scores without retraining or retuning. Tier 2 produced {alerts:,} alerts across {cycles:,} generated cycles: precision {precision:.6f}; missed generated events {missed:,}/{events:,} ({missed_rate:.6f}); false alerts {false_rate:.6f} per synthetic patient-year. Median generated-event lead time was {lead:.6f} days among {lead_n:,} true-positive cycles with a generated ovulation day. These are simulator outcomes, not clinical alert rates. Full rows are in results/alert_policy_frozen_rows.csv.\n\n'.format(alerts=policy['alerts'],cycles=policy['n_cycles'],precision=policy['alert_precision'],missed=policy['missed_events'],events=policy['event_cycles'],missed_rate=policy['missed_event_rate'],false_rate=policy['false_alerts_per_synthetic_patient_year'],lead=policy['lead_time_days_median'],lead_n=policy['lead_time_n'])
         readme=readme.replace('## Evidence and limitations',sequential+'## Evidence and limitations')
+    if c.get('robustness'):
+        conditions=c['robustness']['conditions'];missing=conditions['additional_missing_fraction=0.6'];drift=conditions['device_drift_c_per_day=0.01'];shift=conditions['ovulation_base_shift_days=4']
+        robustness='## Frozen synthetic robustness extension\n\nThe fixed day-18 Tier-2 models and thresholds were tested under the predeclared synthetic sweeps. With 60% additional forced missing temperature readings, mean AUROC was {ma:.6f}, Brier {mb:.6f}, and safety withholding {mw:.6f}. At +0.01°C/day device drift, mean AUROC was {da:.6f} and Brier {db:.6f}. A +4-day generated timing shift on independent synthetic cohorts gave mean AUROC {sa:.6f} and Brier {sb:.6f}. These are simulator sensitivity analyses, not validation of a wearable device or clinical workflow. Full values: results_robustness_frozen.json and results/robustness_frozen.csv.\n\n![Frozen synthetic robustness](docs/figures/robustness.svg)\n\n'.format(ma=missing['mean_auroc'],mb=missing['mean_brier'],mw=missing['mean_safety_withhold_rate'],da=drift['mean_auroc'],db=drift['mean_brier'],sa=shift['mean_auroc'],sb=shift['mean_brier'])
+        readme=readme.replace('## Evidence and limitations',robustness+'## Evidence and limitations')
     videos={}
     for duration in (team['minimum_video_minutes'], cfg['short_video_minutes']):
         short_titles=('CycleTwin','Meet Kushi','Evidence at the latest sensor snapshot','Validity limits')

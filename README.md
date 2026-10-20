@@ -160,6 +160,12 @@ Full per-day/tier/archetype AUROC and recall intervals, reliability bins, ECE, d
 
 The frozen policy evaluates the first safe threshold crossing at days 10, 14 and 18, with at most one alert per cycle; it uses saved frozen scores without retraining or retuning. Tier 2 produced 1,634 alerts across 3,240 generated cycles: precision 0.730110; missed generated events 484/1,677 (0.288611); false alerts 1.483785 per synthetic patient-year. Median generated-event lead time was 17.000000 days among 790 true-positive cycles with a generated ovulation day. These are simulator outcomes, not clinical alert rates. Full rows are in results/alert_policy_frozen_rows.csv.
 
+## Frozen synthetic robustness extension
+
+The fixed day-18 Tier-2 models and thresholds were tested under the predeclared synthetic sweeps. With 60% additional forced missing temperature readings, mean AUROC was 0.883694, Brier 0.140207, and safety withholding 1.000000. At +0.01°C/day device drift, mean AUROC was 0.905727 and Brier 0.300007. A +4-day generated timing shift on independent synthetic cohorts gave mean AUROC 0.862897 and Brier 0.144600. These are simulator sensitivity analyses, not validation of a wearable device or clinical workflow. Full values: results_robustness_frozen.json and results/robustness_frozen.csv.
+
+![Frozen synthetic robustness](docs/figures/robustness.svg)
+
 ## Evidence and limitations
 
 - [Complete implementation audit](docs/audit_2026-10-20/CycleTwin_full_audit.md), a historical snapshot before the corrections.

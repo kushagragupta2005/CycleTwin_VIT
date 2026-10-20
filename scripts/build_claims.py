@@ -100,6 +100,10 @@ def build(write=True):
                 'false_alerts_per_synthetic_patient_year':sum(row['false_alerts'] for row in values)/sum(row['synthetic_exposure_patient_years'] for row in values),
                 'lead_time_days_median':float(np.median(leads)) if leads else None,
                 'lead_time_n':len(leads)}
+    robustness=ROOT/'results_robustness_frozen.json'
+    claims['robustness']=json.loads(robustness.read_text()) if robustness.exists() else None
+    if robustness.exists():
+        claims['source_sha256']['results_robustness_frozen.json']=hashlib.sha256(robustness.read_bytes()).hexdigest()
     submission=ROOT/'docs/submission_status.json'
     claims['submission']=json.loads(submission.read_text()) if submission.exists() else None
     claims['deliverables']=compose(claims)

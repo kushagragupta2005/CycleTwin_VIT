@@ -1,0 +1,737 @@
+{
+  "scope": "Synthetic, post-freeze robustness extension; frozen predictor artifacts and thresholds unchanged.",
+  "day": 18,
+  "tier": 2,
+  "protocol": {
+    "primary_day": 18,
+    "primary_tier": 2,
+    "missing_fraction": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6
+    ],
+    "noise_multiplier": [
+      1.0,
+      2.0,
+      3.0
+    ],
+    "temperature_shift_c": [
+      0.05,
+      0.1,
+      0.2,
+      0.3,
+      0.5
+    ],
+    "constant_device_bias_c": [
+      -0.2,
+      -0.1,
+      0.0,
+      0.1,
+      0.2
+    ],
+    "device_drift_c_per_day": [
+      -0.01,
+      0.01
+    ],
+    "generator_ovulation_base_shift_days": [
+      0,
+      4
+    ],
+    "generator_shift_cohort_seeds": [
+      9101,
+      9103,
+      9107
+    ],
+    "archetype_shift": "Train and calibrate without one archetype, then evaluate only that archetype. Report every archetype, without selecting a favorable exclusion."
+  },
+  "conditions": {
+    "additional_missing_fraction=0.0": {
+      "condition": "additional_missing_fraction",
+      "value": 0.0,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.9039307467696616,
+          "brier": 0.11768153721363649,
+          "safety_withhold_rate": 0.36666666666666664,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9109483740785989,
+          "brier": 0.11514195344661929,
+          "safety_withhold_rate": 0.35648148148148145,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9070465745151062,
+          "brier": 0.11777622284188599,
+          "safety_withhold_rate": 0.3675925925925926,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.9073085651211222,
+      "mean_brier": 0.11686657116738058,
+      "mean_safety_withhold_rate": 0.3635802469135802
+    },
+    "additional_missing_fraction=0.1": {
+      "condition": "additional_missing_fraction",
+      "value": 0.1,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.9024381016580743,
+          "brier": 0.12059517192590827,
+          "safety_withhold_rate": 0.5898148148148148,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9076025037405114,
+          "brier": 0.11815571635909118,
+          "safety_withhold_rate": 0.5564814814814815,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9037109991626746,
+          "brier": 0.12165531682271383,
+          "safety_withhold_rate": 0.6037037037037037,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.9045838681870868,
+      "mean_brier": 0.12013540170257109,
+      "mean_safety_withhold_rate": 0.5833333333333334
+    },
+    "additional_missing_fraction=0.2": {
+      "condition": "additional_missing_fraction",
+      "value": 0.2,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.8981355693202963,
+          "brier": 0.12299525388314686,
+          "safety_withhold_rate": 0.7472222222222222,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9092119531646786,
+          "brier": 0.1179260198973637,
+          "safety_withhold_rate": 0.7351851851851852,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9028530836913701,
+          "brier": 0.12312991245671782,
+          "safety_withhold_rate": 0.7759259259259259,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.9034002020587817,
+      "mean_brier": 0.12135039541240945,
+      "mean_safety_withhold_rate": 0.7527777777777778
+    },
+    "additional_missing_fraction=0.3": {
+      "condition": "additional_missing_fraction",
+      "value": 0.3,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.8945036955003972,
+          "brier": 0.12664885379978205,
+          "safety_withhold_rate": 1.0,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9011647060438429,
+          "brier": 0.12345637700677704,
+          "safety_withhold_rate": 1.0,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.8962780195192928,
+          "brier": 0.1285488352058724,
+          "safety_withhold_rate": 1.0,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.8973154736878444,
+      "mean_brier": 0.12621802200414384,
+      "mean_safety_withhold_rate": 1.0
+    },
+    "additional_missing_fraction=0.4": {
+      "condition": "additional_missing_fraction",
+      "value": 0.4,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.885595974673183,
+          "brier": 0.13337572105997733,
+          "safety_withhold_rate": 1.0,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.8973452663655956,
+          "brier": 0.12827076615159308,
+          "safety_withhold_rate": 1.0,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.8839411950419349,
+          "brier": 0.13679968760397465,
+          "safety_withhold_rate": 1.0,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.8889608120269045,
+      "mean_brier": 0.1328153916051817,
+      "mean_safety_withhold_rate": 1.0
+    },
+    "additional_missing_fraction=0.5": {
+      "condition": "additional_missing_fraction",
+      "value": 0.5,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.887893410006225,
+          "brier": 0.13253923577383586,
+          "safety_withhold_rate": 1.0,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.8960343715254424,
+          "brier": 0.12934435548600523,
+          "safety_withhold_rate": 1.0,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.8846240957570931,
+          "brier": 0.1378071611143317,
+          "safety_withhold_rate": 1.0,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.8895172924295869,
+      "mean_brier": 0.13323025079139092,
+      "mean_safety_withhold_rate": 1.0
+    },
+    "additional_missing_fraction=0.6": {
+      "condition": "additional_missing_fraction",
+      "value": 0.6,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.8841549186783556,
+          "brier": 0.1386472229762423,
+          "safety_withhold_rate": 1.0,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.8904647842857338,
+          "brier": 0.13699925763343085,
+          "safety_withhold_rate": 1.0,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.8764636037940454,
+          "brier": 0.14497413433405446,
+          "safety_withhold_rate": 1.0,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.8836944355860451,
+      "mean_brier": 0.1402068716479092,
+      "mean_safety_withhold_rate": 1.0
+    },
+    "noise_multiplier=1.0": {
+      "condition": "noise_multiplier",
+      "value": 1.0,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.9039307467696616,
+          "brier": 0.11768153721363649,
+          "safety_withhold_rate": 0.36666666666666664,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9109483740785989,
+          "brier": 0.11514195344661929,
+          "safety_withhold_rate": 0.35648148148148145,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9070465745151062,
+          "brier": 0.11777622284188599,
+          "safety_withhold_rate": 0.3675925925925926,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.9073085651211222,
+      "mean_brier": 0.11686657116738058,
+      "mean_safety_withhold_rate": 0.3635802469135802
+    },
+    "noise_multiplier=2.0": {
+      "condition": "noise_multiplier",
+      "value": 2.0,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.8959688264163792,
+          "brier": 0.12411997991995073,
+          "safety_withhold_rate": 0.36666666666666664,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9021633196524412,
+          "brier": 0.1211735400343898,
+          "safety_withhold_rate": 0.35648148148148145,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.8975854826975607,
+          "brier": 0.12503971393457133,
+          "safety_withhold_rate": 0.3675925925925926,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.8985725429221271,
+      "mean_brier": 0.12344441129630396,
+      "mean_safety_withhold_rate": 0.3635802469135802
+    },
+    "noise_multiplier=3.0": {
+      "condition": "noise_multiplier",
+      "value": 3.0,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.8849906623698665,
+          "brier": 0.13622366917818685,
+          "safety_withhold_rate": 0.36666666666666664,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.880018805507131,
+          "brier": 0.14000554036083254,
+          "safety_withhold_rate": 0.35648148148148145,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.8862712934619978,
+          "brier": 0.13370467124859678,
+          "safety_withhold_rate": 0.3675925925925926,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.883760253779665,
+      "mean_brier": 0.1366446269292054,
+      "mean_safety_withhold_rate": 0.3635802469135802
+    },
+    "constant_device_bias_c=-0.2": {
+      "condition": "constant_device_bias_c",
+      "value": -0.2,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.9039307467696616,
+          "brier": 0.11768153721363647,
+          "safety_withhold_rate": 0.36666666666666664,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9109483740785989,
+          "brier": 0.11514195344661926,
+          "safety_withhold_rate": 0.35648148148148145,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9070465745151062,
+          "brier": 0.11777622284188599,
+          "safety_withhold_rate": 0.3675925925925926,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.9073085651211222,
+      "mean_brier": 0.11686657116738057,
+      "mean_safety_withhold_rate": 0.3635802469135802
+    },
+    "constant_device_bias_c=-0.1": {
+      "condition": "constant_device_bias_c",
+      "value": -0.1,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.9039307467696616,
+          "brier": 0.11768153721363647,
+          "safety_withhold_rate": 0.36666666666666664,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9109483740785989,
+          "brier": 0.11514195344661929,
+          "safety_withhold_rate": 0.35648148148148145,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9070465745151062,
+          "brier": 0.11777622284188599,
+          "safety_withhold_rate": 0.3675925925925926,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.9073085651211222,
+      "mean_brier": 0.11686657116738058,
+      "mean_safety_withhold_rate": 0.3635802469135802
+    },
+    "constant_device_bias_c=0.0": {
+      "condition": "constant_device_bias_c",
+      "value": 0.0,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.9039307467696616,
+          "brier": 0.11768153721363649,
+          "safety_withhold_rate": 0.36666666666666664,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9109483740785989,
+          "brier": 0.11514195344661929,
+          "safety_withhold_rate": 0.35648148148148145,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9070465745151062,
+          "brier": 0.11777622284188599,
+          "safety_withhold_rate": 0.3675925925925926,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.9073085651211222,
+      "mean_brier": 0.11686657116738058,
+      "mean_safety_withhold_rate": 0.3635802469135802
+    },
+    "constant_device_bias_c=0.1": {
+      "condition": "constant_device_bias_c",
+      "value": 0.1,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.9039307467696616,
+          "brier": 0.11768153721363649,
+          "safety_withhold_rate": 0.36666666666666664,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9109483740785989,
+          "brier": 0.11514195344661926,
+          "safety_withhold_rate": 0.35648148148148145,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9070465745151062,
+          "brier": 0.11777622284188599,
+          "safety_withhold_rate": 0.3675925925925926,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.9073085651211222,
+      "mean_brier": 0.11686657116738058,
+      "mean_safety_withhold_rate": 0.3635802469135802
+    },
+    "constant_device_bias_c=0.2": {
+      "condition": "constant_device_bias_c",
+      "value": 0.2,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.9039307467696616,
+          "brier": 0.11768153721363647,
+          "safety_withhold_rate": 0.36666666666666664,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9109483740785989,
+          "brier": 0.11514195344661927,
+          "safety_withhold_rate": 0.35648148148148145,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9070465745151062,
+          "brier": 0.11777622284188599,
+          "safety_withhold_rate": 0.3675925925925926,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.9073085651211222,
+      "mean_brier": 0.11686657116738058,
+      "mean_safety_withhold_rate": 0.3635802469135802
+    },
+    "device_drift_c_per_day=-0.01": {
+      "condition": "device_drift_c_per_day",
+      "value": -0.01,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.903710633204819,
+          "brier": 0.21122704519703445,
+          "safety_withhold_rate": 0.36666666666666664,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9107356110417153,
+          "brier": 0.24360325516921658,
+          "safety_withhold_rate": 0.35648148148148145,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9062916089003583,
+          "brier": 0.21143877951279877,
+          "safety_withhold_rate": 0.3675925925925926,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.9069126177156308,
+      "mean_brier": 0.22208969329301662,
+      "mean_safety_withhold_rate": 0.3635802469135802
+    },
+    "device_drift_c_per_day=0.01": {
+      "condition": "device_drift_c_per_day",
+      "value": 0.01,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 569,
+          "auroc": 0.9025859904594526,
+          "brier": 0.2938438742566868,
+          "safety_withhold_rate": 0.36666666666666664,
+          "model_seed": 7001,
+          "source_seed": 7001
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9084672825355863,
+          "brier": 0.32144100627994776,
+          "safety_withhold_rate": 0.35648148148148145,
+          "model_seed": 7003,
+          "source_seed": 7003
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 554,
+          "auroc": 0.9061268891298677,
+          "brier": 0.2847367073720611,
+          "safety_withhold_rate": 0.3675925925925926,
+          "model_seed": 7007,
+          "source_seed": 7007
+        }
+      ],
+      "mean_auroc": 0.9057267207083021,
+      "mean_brier": 0.3000071959695652,
+      "mean_safety_withhold_rate": 0.3635802469135802
+    },
+    "ovulation_base_shift_days=0": {
+      "condition": "ovulation_base_shift_days",
+      "value": 0,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 543,
+          "auroc": 0.911125514847852,
+          "brier": 0.11624864240930387,
+          "safety_withhold_rate": 0.3638888888888889,
+          "model_seed": 7001,
+          "source_seed": 9101
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 562,
+          "auroc": 0.9347442256694927,
+          "brier": 0.09764550556504803,
+          "safety_withhold_rate": 0.3685185185185185,
+          "model_seed": 7003,
+          "source_seed": 9103
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 542,
+          "auroc": 0.912608540583547,
+          "brier": 0.11638693998021345,
+          "safety_withhold_rate": 0.3731481481481482,
+          "model_seed": 7007,
+          "source_seed": 9107
+        }
+      ],
+      "mean_auroc": 0.9194927603669639,
+      "mean_brier": 0.11009369598485512,
+      "mean_safety_withhold_rate": 0.3685185185185185
+    },
+    "ovulation_base_shift_days=4": {
+      "condition": "ovulation_base_shift_days",
+      "value": 4,
+      "per_seed": [
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 726,
+          "auroc": 0.8551345504350126,
+          "brier": 0.1493287280356105,
+          "safety_withhold_rate": 0.3638888888888889,
+          "model_seed": 7001,
+          "source_seed": 9101
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 710,
+          "auroc": 0.8864370003806624,
+          "brier": 0.1319834822020824,
+          "safety_withhold_rate": 0.3685185185185185,
+          "model_seed": 7003,
+          "source_seed": 9103
+        },
+        {
+          "n_cycles": 1080,
+          "positive_cycles": 715,
+          "auroc": 0.8471194558865791,
+          "brier": 0.15248901607352822,
+          "safety_withhold_rate": 0.3731481481481482,
+          "model_seed": 7007,
+          "source_seed": 9107
+        }
+      ],
+      "mean_auroc": 0.8628970022340847,
+      "mean_brier": 0.14460040877040706,
+      "mean_safety_withhold_rate": 0.3685185185185185
+    }
+  }
+}

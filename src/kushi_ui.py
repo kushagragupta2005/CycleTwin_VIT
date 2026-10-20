@@ -9,7 +9,7 @@ from src.inference import safe_predict
 from src.personas import make_kushi
 from src.safety import synthetic_safety_record
 from src.uncertainty import uncertainty
-from src.reporting_ui import render_reporting, render_alert_policy
+from src.reporting_ui import render_reporting, render_alert_policy, render_robustness
 
 CHAPTERS = ("Meet Kushi", "Her two data streams", "Her twin wakes up", "What her doctor sees",
             "Guardrails live", "Where it fails", "The evidence")
@@ -133,9 +133,7 @@ def render_kushi():
                              'Fitted probability':out['prob'],'Decision':status})
         st.dataframe(pd.DataFrame(outcomes),hide_index=True)
         st.caption("Every declared scenario is shown, including misses, false alarms and withholding. These examples are not an evaluation sample or performance estimate.")
-        robustness=Path('docs/figures/robustness.svg')
-        if robustness.exists(): st.image(str(robustness))
-        else: st.info("Robustness evaluation is pending. No robustness result is claimed.")
+        render_robustness(claims)
         st.write("Synthetic assumptions can fail in people. No clinical validation, hormone inference, causal treatment model or PMOS diagnosis is available.")
     else:
         if claims['frozen'] is None:
