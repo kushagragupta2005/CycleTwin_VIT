@@ -16,7 +16,7 @@ from src.conformal import calibrate_binary, calibrate_ovulation_interval, classi
 from src.alerts import apply_alert_budget
 from src.explanations import explain_state
 from src.metabolic import excursion_event
-from src.twin import simulate_reproductive_axis, simulate_metabolic_axis, coupling_sweep
+from src.twin import simulate_reproductive_axis, simulate_metabolic_axis, coupling_sweep, TwinParameters
 from src.adapters.apple_health import parse_export
 
 DISCLAIMER="Not for diagnosis, contraception or conception planning. Synthetic demonstration only."
@@ -239,12 +239,14 @@ with left:
     st.subheader("Simplified twin state · not used in G1 score")
     twin_day=twin_repro["ovulation_day"]
     st.write(f"Twin ovulation-day state: {twin_day if twin_day>0 else 'no surge in simulation window'}")
-    twin_days=pd.DataFrame({"cycle_day":np.arange(1,36),"temperature_c":twin_repro["temperature_c"][:35]})
-    twin_chart=alt.Chart(twin_days).mark_line(color="#0e766e",strokeWidth=2.5).encode(
+    twin_days=pd.DataFrame({"cycle_day":np.arange(1,36),"follicle_state":twin_repro["follicle"][:35]})
+    follicle_chart=alt.Chart(twin_days).mark_line(color="#0e766e",strokeWidth=2.5).encode(
         x=alt.X("cycle_day:Q",title="Cycle day",scale=alt.Scale(domain=[0,35],nice=False)),
-        y=alt.Y("temperature_c:Q",title="Temperature proxy (°C)"),
-        tooltip=[alt.Tooltip("cycle_day:Q",title="Cycle day"),alt.Tooltip("temperature_c:Q",title="°C",format=".2f")])
-    st.altair_chart(twin_chart.properties(title="Twin ovulation-day state · temperature proxy",height=220),use_container_width=True)
+        y=alt.Y("follicle_state:Q",title="Follicle state (simulated units)"),
+        tooltip=[alt.Tooltip("cycle_day:Q",title="Cycle day"),alt.Tooltip("follicle_state:Q",title="Follicle state",format=".3f")])
+    lh_threshold=alt.Chart(pd.DataFrame({"threshold":[TwinParameters().lh_threshold]})).mark_rule(color="#b7791f",strokeDash=[5,4]).encode(y="threshold:Q")
+    st.altair_chart((follicle_chart+lh_threshold).properties(title="Twin follicle growth trajectory",height=220),use_container_width=True)
+    st.caption("Day-by-day simulated follicle state; dashed amber rule marks the LH threshold. Ovulation day above is the resulting scalar event.")
     st.caption("Shared synthetic insulin-resistance latent drives both axes. Coupling sweep: "+str(coupling_sweep(record["ir"],record["androgen"])))
     temp_effect=float(np.nanmean(record['temperature'][8:14])-np.nanmean(record['temperature'][:5]))
     st.write(explain_state({"ovulation_estimate":est},{"temperature_shift":temp_effect,"rhr_offset":float(np.nanmean(record['rhr'][:14]))}))
