@@ -1,0 +1,18 @@
+{
+  "item": "A4",
+  "unit_and_AppTest_tests_passed": 26,
+  "classification_results_change": "none",
+  "persona_seeds": [
+    2107,
+    2108,
+    2109
+  ],
+  "selection": "generator truth and declared history criterion, no predictions",
+  "chapters_rendered": 7,
+  "guardrails_tested": [
+    "contraception",
+    "8/14 wear",
+    "thyroid"
+  ],
+  "scope": "synthetic-only"
+}

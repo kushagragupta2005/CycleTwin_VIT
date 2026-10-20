@@ -1,0 +1,29 @@
+{
+  "india_prevalence": {
+    "title": "Ganie et al., JAMA Network Open: prevalence, phenotypes and comorbidities among Indian women",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11581580/",
+    "year": 2024,
+    "recruited": 9824,
+    "enrolled": 8993,
+    "nih_percent": 7.2,
+    "nih_cluster_adjusted_95ci": [4.8, 10.8],
+    "rotterdam_percent": 19.6,
+    "rotterdam_cluster_adjusted_95ci": [12.7, 29.2],
+    "scope": "Published population context only; not CycleTwin data, model performance or simulator prevalence. Estimates depend on diagnostic criteria."
+  },
+  "ovulation_confirmation": {
+    "title": "ASRM fertility evaluation committee opinion",
+    "url": "https://www.asrm.org/practice-guidance/practice-committee-documents/fertility-evaluation-of-infertile-women-a-committee-opinion-2021/",
+    "scope": "Context for clinician discussion only; this app cannot select or interpret diagnostic tests for an individual."
+  },
+  "competition": {
+    "url": "https://api.unstop.com/hackathons/digital-twin-challenge-2026-happiest-health-1757873",
+    "submission_url": "https://unstop.com/hackathons/crp-digital-twin-challenge-2026-happiest-health-1757873",
+    "deadline_ist": "2026-10-20T19:00:00+05:30",
+    "minimum_video_minutes": 20,
+    "team": "CycleTwin",
+    "college": "VIT",
+    "video_url": null,
+    "video_status": "Human recording/upload deferred by user; not completed"
+  }
+}

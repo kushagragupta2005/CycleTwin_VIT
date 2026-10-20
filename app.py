@@ -10,6 +10,8 @@ import pandas as pd
 import streamlit as st
 
 from src.generator import generate
+from src.claims import load_claims
+from src.kushi_ui import render_kushi
 from src.model import estimate_ovulation_day
 from src.inference import predict, safe_predict
 from src.features import attach_prior_cycle_lengths
@@ -119,7 +121,7 @@ st.markdown(f'<div class="demo-footer"><a href="https://github.com/kushagragupta
 
 @st.cache_data
 def benchmark_metrics():
-    return json.loads(Path("results.json").read_text())
+    return load_claims()["development"]
 
 benchmark = benchmark_metrics()
 metric_keys=next(iter(benchmark["seeds"].values()))["metrics"]
@@ -166,7 +168,7 @@ def start_guided_demo():
 def leave_guided_demo():
     st.session_state["guided"]=False
 
-page=st.segmented_control("Navigate",["Overview","Cohort","Patient","Method"],default="Overview",
+page=st.segmented_control("Navigate",["Overview","Cohort","Patient","Method","Meet Kushi"],default="Overview",
                           key="view",on_change=leave_guided_demo) or "Overview"
 st.markdown('<span class="synthetic-badge">Synthetic data only</span>',unsafe_allow_html=True)
 st.sidebar.header("CycleTwin demo")
@@ -225,10 +227,14 @@ st.session_state["visible_prediction"]=safe_predict(record,14,display_tier,safet
 ix=int(item["patient"].split("p")[-1])
 twin_repro=simulate_reproductive_axis(record["ir"],record["androgen"],seed=4000+ix)
 page_title={"Overview":"CycleTwin", "Cohort":"Synthetic cohort", "Patient":f"Patient {selected_id}",
-            "Method":"Model & methodology"}[page]
+            "Method":"Model & methodology", "Meet Kushi":"Meet Kushi"}[page]
 st.title(page_title)
 if page!="Overview":
     st.caption(f"Tier {display_tier} · Synthetic demonstration")
+
+if page=="Meet Kushi":
+    render_kushi()
+    st.stop()
 
 if page=="Overview":
     st.markdown('<div class="hero-copy">Early warning of a missed or late-ovulation cycle for PMOS research, using synthetic wearable-style data.</div>',unsafe_allow_html=True)
