@@ -61,6 +61,14 @@ button:focus-visible, input:focus-visible, [role="combobox"]:focus-visible { out
 }
 </style>
 """, unsafe_allow_html=True)
+
+def render_chart_summary(summary):
+    st.markdown(
+        f'<div class="chart-summary">{escape(summary)}'
+        '<span class="chart-summary-label">Auto-generated from the data shown</span></div>',
+        unsafe_allow_html=True,
+    )
+
 st.markdown(f'<div class="demo-footer">{escape(DISCLAIMER)} · Decision-support research prototype. This screen does not validate a clinical forecast.</div>',unsafe_allow_html=True)
 
 @st.cache_data
@@ -196,6 +204,11 @@ if page == "Cohort list":
         cover.append(count/max(len(rows),1))
         selective_error.append(float(np.mean([(r["risk"]>=.5)!=bool(r["record"]["event"]) for r in chosen])))
     st.line_chart({"coverage of all records":cover,"selective error":selective_error})
+    if cover and selective_error:
+        render_chart_summary(
+            f"Across the displayed sweep, coverage ranges from {min(cover):.0%} to {max(cover):.0%}; "
+            f"selective error ranges from {min(selective_error):.0%} to {max(selective_error):.0%}."
+        )
     st.stop()
 
 if page == "Model & methodology":
@@ -260,6 +273,18 @@ with left:
     missing_marks=alt.Chart(missing).mark_point(shape="cross",color="#65757b",size=110).encode(x="day:Q",y=alt.Y("marker:Q",scale=scale))
     period_mark=alt.Chart(period).mark_rule(color="#b7791f",strokeDash=[4,3],strokeWidth=2).encode(x="day:Q")
     st.altair_chart((band+trace+dots+missing_marks+period_mark).properties(height=285),use_container_width=True)
+    early=temp.loc[temp["day"]<=5,"temperature_offset"].dropna()
+    late=temp.loc[temp["day"]>=21,"temperature_offset"].dropna()
+    missing_n=int(temp["temperature_offset"].isna().sum())
+    if not early.empty and not late.empty:
+        early_mean=float(early.mean()); late_mean=float(late.mean())
+        render_chart_summary(
+            f"Mean temperature offset changed by {late_mean-early_mean:+.2f}°C from days 1–5 "
+            f"({early_mean:+.2f}°C) to days 21–28 ({late_mean:+.2f}°C); "
+            f"{missing_n} of 28 nights are missing."
+        )
+    else:
+        render_chart_summary(f"{int(temp['temperature_offset'].notna().sum())} of 28 nightly values are observed; there are {missing_n} missing nights.")
     st.markdown('<div style="display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:#65757b"><span>🟩 Teal band · predicted ovulation interval</span><span>🟠 Amber dashed · logged period start</span><span>✕ Gray cross · missing temperature</span></div>',unsafe_allow_html=True)
     st.caption("Missing nightly temperatures are not interpolated.")
     st.subheader("Simplified twin state · not used in G1 score")
@@ -272,6 +297,13 @@ with left:
         tooltip=[alt.Tooltip("cycle_day:Q",title="Cycle day"),alt.Tooltip("follicle_state:Q",title="Follicle state",format=".3f")])
     lh_threshold=alt.Chart(pd.DataFrame({"threshold":[TwinParameters().lh_threshold]})).mark_rule(color="#b7791f",strokeDash=[5,4]).encode(y="threshold:Q")
     st.altair_chart((follicle_chart+lh_threshold).properties(title="Twin follicle growth trajectory",height=220),use_container_width=True)
+    peak_index=int(np.argmax(twin_days["follicle_state"].to_numpy()))
+    follicle_min=float(twin_days["follicle_state"].min())
+    follicle_max=float(twin_days["follicle_state"].max())
+    render_chart_summary(
+        f"Simulated follicle state ranged from {follicle_min:.2f} to {follicle_max:.2f} units, "
+        f"with its highest plotted value on cycle day {int(twin_days.iloc[peak_index]['cycle_day'])}."
+    )
     st.caption("Day-by-day simulated follicle state; dashed amber rule marks the LH threshold. Ovulation day above is the resulting scalar event.")
     st.caption("Shared synthetic insulin-resistance latent drives both axes. Coupling sweep: "+str(coupling_sweep(record["ir"],record["androgen"])))
     temp_effect=float(np.nanmean(record['temperature'][8:14])-np.nanmean(record['temperature'][:5]))
@@ -287,13 +319,18 @@ with right:
     if ix%4==0:
         metabolic=simulate_metabolic_axis(record["ir"],twin_day,seed=3000+ix)
         glucose=metabolic["glucose_mg_dl"]; meals=metabolic["meal_indices"]
-        g_risk=float(np.mean([excursion_event(glucose,m) for m in meals]))
+        meal_excursions=[excursion_event(glucose,m) for m in meals]
+        g_risk=float(np.mean(meal_excursions))
         st.metric("Simulated meals with >140 mg/dL in 120 min",f"{g_risk:.0%}")
         cgm=glucose[::8]
         cgm_df=pd.DataFrame({"minutes":np.arange(len(cgm))*metabolic["step_minutes"]*8,"glucose_mg_dl":cgm})
         cgm_line=alt.Chart(cgm_df).mark_line(color="#0e766e").encode(x=alt.X("minutes:Q",title="Elapsed time (minutes)"),y=alt.Y("glucose_mg_dl:Q",title="Glucose (mg/dL)"),tooltip=["minutes:Q","glucose_mg_dl:Q"])
         cgm_threshold=alt.Chart(pd.DataFrame({"threshold":[140]})).mark_rule(color="#b7791f",strokeDash=[5,4]).encode(y="threshold:Q")
         st.altair_chart((cgm_line+cgm_threshold).properties(title="Synthetic CGM · 15-minute samples",height=250),use_container_width=True)
+        render_chart_summary(
+            f"Simulated glucose exceeded 140 mg/dL within 120 minutes after "
+            f"{sum(meal_excursions)} of {len(meal_excursions)} meal windows."
+        )
         with st.popover("ⓘ CGM caveat"):
             st.caption("15-minute synthetic values · two adjacent 14-day windows · not clinically evaluated")
     else:
