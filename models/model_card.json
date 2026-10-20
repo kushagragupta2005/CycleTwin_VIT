@@ -1,21 +1,21 @@
 {
   "scope": "synthetic-only; not clinical performance",
   "sklearn_version": "1.6.1",
-  "git_hash": "76b4a8f8a69fa526e9825669fb600810af2b08f8",
+  "git_hash": "3a351c3514a51f06e3aaab1b880702d249466fd0",
   "source_sha256": {
-    "scripts/run_eval.py": "f91a46366d129b96e8a7d2bd0633d112da838d3c6bcd0d56622c90a0da215682",
-    "src/alerts.py": "de19146a59715d255684aeb5208162f3faed6a521d7a81d52ae2c3ebd926bad0",
+    "scripts/run_eval.py": "6eda1783e76ac244ef9c3674f8db65cc22e430da5e980eee54b579a72d590032",
+    "src/alerts.py": "89343c63931949b0b3fa8260d5488a738728fafef3fc87c43939bac9cc46d648",
     "src/conformal.py": "4949d42ba0e59c0eababb3749d52500b52d4646e4641b119fde45852f9803e49",
     "src/twin.py": "5cd99a25011f85a33f54dca3933f09e12f0a3b089b801b1137cfb3a42b0098ae",
     "src/explanations.py": "bf26c5d5e3537465af53ab563254a7ea92e11d2d950c95d309b592c0fc816ce0",
     "src/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "src/features.py": "8e1ca3b2d29702b4df2ecdea08b127540fb66142f2d166e297c7fa17cb34fd74",
+    "src/features.py": "53c667248b88c9c2aecc55261e1899f50e4285c82ea1d08b56b29f57bcd873e7",
     "src/model.py": "cb64e0b30a1442a8057c843c4d1321d13c086cc60a01dd92b9f230f5b6ed5d85",
     "src/generator.py": "bc7a63e785eb453a148b4150f309500c1d1f15145af59cd093a2ad5d9b3b0623",
     "src/fitted.py": "33f71aa1de55092b75587fe23fcb527d4380f375c189bed7f1eae7805d046b02",
     "src/inference.py": "7620621f1075b17e61b8301b0b77bcf45444f39cdb866c845fcef1fcd3aa201f",
     "src/splits.py": "56922a1b751bdd43ffe7db713942ed9d9c571fde0cbf6ec8f20d2b5d691c748e",
-    "src/safety.py": "159fb71655ea773bd450087ea06cf78792378cb70037ced7176960c99a886ea3",
+    "src/safety.py": "dde331a757ffbb50ed8f57112aba2a49b1bc0b9f530c9ee43c7661a76aa2783b",
     "src/metabolic.py": "7dd266f6efbe588e8666b2b3a5f0d64696d3ab30309e1c20f965f706c4659dec"
   },
   "training_partitions": "train fit; validation calibration/fallback/threshold; test reporting only",
@@ -57,10 +57,10 @@
         "validation_selected_feature_tier": 0,
         "validation_brier_gain_ci": null,
         "validation_selected_threshold": 0.47977756998218585,
-        "ovulation_day_mae": 6.169749727965179,
+        "ovulation_day_mae": 5.133841131664853,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.800431499460625,
-          6.588715538555406
+          4.848875674508205,
+          5.446365638766519
         ],
         "sensitivity": 0.8362676056338029,
         "ppv": 0.7433489827856025,
@@ -214,10 +214,10 @@
           0.000221117006547604
         ],
         "validation_selected_threshold": 0.47977756998218585,
-        "ovulation_day_mae": 6.169749727965179,
+        "ovulation_day_mae": 5.133841131664853,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.786141364612932,
-          6.5915970203488365
+          4.862014327842829,
+          5.436361530992251
         ],
         "sensitivity": 0.8362676056338029,
         "ppv": 0.7433489827856025,
@@ -371,10 +371,10 @@
           0.0003958651296858658
         ],
         "validation_selected_threshold": 0.47977756998218585,
-        "ovulation_day_mae": 6.169749727965179,
+        "ovulation_day_mae": 5.133841131664853,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.805962500126792,
-          6.588188325991189
+          4.8427803279299075,
+          5.460250792426166
         ],
         "sensitivity": 0.8362676056338029,
         "ppv": 0.7433489827856025,
@@ -528,10 +528,10 @@
           0.0025163712254691033
         ],
         "validation_selected_threshold": 0.47977756998218585,
-        "ovulation_day_mae": 6.169749727965179,
+        "ovulation_day_mae": 5.133841131664853,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.797776316955712,
-          6.559801838129562
+          4.84664549402823,
+          5.406853549866991
         ],
         "sensitivity": 0.8362676056338029,
         "ppv": 0.7433489827856025,
@@ -682,10 +682,10 @@
         "validation_selected_feature_tier": 0,
         "validation_brier_gain_ci": null,
         "validation_selected_threshold": 0.47977756998218585,
-        "ovulation_day_mae": 6.787812840043525,
+        "ovulation_day_mae": 5.275299238302503,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          6.430681818181818,
-          7.127485435249614
+          4.999918211559433,
+          5.571935055790272
         ],
         "sensitivity": 0.8362676056338029,
         "ppv": 0.7433489827856025,
@@ -839,10 +839,10 @@
           0.000844312689408382
         ],
         "validation_selected_threshold": 0.47977756998218585,
-        "ovulation_day_mae": 6.787812840043525,
+        "ovulation_day_mae": 5.275299238302503,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          6.399242025716598,
-          7.139673026084299
+          5.021104911101099,
+          5.5298712085178
         ],
         "sensitivity": 0.8362676056338029,
         "ppv": 0.7433489827856025,
@@ -1189,10 +1189,10 @@
           0.011309701417332667
         ],
         "validation_selected_threshold": 0.47977756998218585,
-        "ovulation_day_mae": 6.787812840043525,
+        "ovulation_day_mae": 5.275299238302503,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          6.414739458081476,
-          7.151882803060813
+          5.023466668643075,
+          5.564432960671648
         ],
         "sensitivity": 0.8362676056338029,
         "ppv": 0.7433489827856025,
@@ -1343,10 +1343,10 @@
         "validation_selected_feature_tier": 0,
         "validation_brier_gain_ci": null,
         "validation_selected_threshold": 0.47977756998218585,
-        "ovulation_day_mae": 8.576713819368878,
+        "ovulation_day_mae": 5.584330794341676,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          7.960406278139796,
-          9.126806981170553
+          5.340925113333074,
+          5.859087777190147
         ],
         "sensitivity": 0.8362676056338029,
         "ppv": 0.7433489827856025,
@@ -1500,10 +1500,10 @@
           0.003580133366928528
         ],
         "validation_selected_threshold": 0.47977756998218585,
-        "ovulation_day_mae": 8.576713819368878,
+        "ovulation_day_mae": 5.584330794341676,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          7.996643698830447,
-          9.163180718962819
+          5.311388280780644,
+          5.858719516529966
         ],
         "sensitivity": 0.8362676056338029,
         "ppv": 0.7433489827856025,
@@ -2070,10 +2070,10 @@
         "validation_selected_feature_tier": 0,
         "validation_brier_gain_ci": null,
         "validation_selected_threshold": 0.4721112439689477,
-        "ovulation_day_mae": 5.854961832061068,
+        "ovulation_day_mae": 4.945474372955289,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.494483048657313,
-          6.236228051939052
+          4.649768411462188,
+          5.261667345838077
         ],
         "sensitivity": 0.833941605839416,
         "ppv": 0.7288676236044657,
@@ -2227,10 +2227,10 @@
           0.00037600533708273553
         ],
         "validation_selected_threshold": 0.4721112439689477,
-        "ovulation_day_mae": 5.854961832061068,
+        "ovulation_day_mae": 4.945474372955289,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.464291741908599,
-          6.261497784045125
+          4.639063097362049,
+          5.251173274177792
         ],
         "sensitivity": 0.833941605839416,
         "ppv": 0.7288676236044657,
@@ -2384,10 +2384,10 @@
           0.0006675830396394471
         ],
         "validation_selected_threshold": 0.4721112439689477,
-        "ovulation_day_mae": 5.854961832061068,
+        "ovulation_day_mae": 4.945474372955289,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.476439699827022,
-          6.2747924498746865
+          4.62701729021598,
+          5.266827357435992
         ],
         "sensitivity": 0.833941605839416,
         "ppv": 0.7288676236044657,
@@ -2541,10 +2541,10 @@
           0.0038247631457041416
         ],
         "validation_selected_threshold": 0.4721112439689477,
-        "ovulation_day_mae": 5.854961832061068,
+        "ovulation_day_mae": 4.945474372955289,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.4696208164656355,
-          6.295343869134764
+          4.622279699989305,
+          5.272887976260738
         ],
         "sensitivity": 0.833941605839416,
         "ppv": 0.7288676236044657,
@@ -2695,10 +2695,10 @@
         "validation_selected_feature_tier": 0,
         "validation_brier_gain_ci": null,
         "validation_selected_threshold": 0.4721112439689477,
-        "ovulation_day_mae": 6.624863685932389,
+        "ovulation_day_mae": 5.087241003271537,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          6.255573233944498,
-          6.989113959712636
+          4.805021844895193,
+          5.409818012463359
         ],
         "sensitivity": 0.833941605839416,
         "ppv": 0.7288676236044657,
@@ -2852,10 +2852,10 @@
           0.0005225142885062326
         ],
         "validation_selected_threshold": 0.4721112439689477,
-        "ovulation_day_mae": 6.624863685932389,
+        "ovulation_day_mae": 5.087241003271537,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          6.262008645881102,
-          6.979466906882138
+          4.769910419292211,
+          5.36955850374902
         ],
         "sensitivity": 0.833941605839416,
         "ppv": 0.7288676236044657,
@@ -3009,10 +3009,10 @@
           0.006541307229380818
         ],
         "validation_selected_threshold": 0.4721112439689477,
-        "ovulation_day_mae": 6.624863685932389,
+        "ovulation_day_mae": 5.087241003271537,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          6.258172107015305,
-          6.967990202901007
+          4.793275192852261,
+          5.3833697502837685
         ],
         "sensitivity": 0.833941605839416,
         "ppv": 0.7288676236044657,
@@ -3166,10 +3166,10 @@
           0.007996454063382567
         ],
         "validation_selected_threshold": 0.4721112439689477,
-        "ovulation_day_mae": 6.624863685932389,
+        "ovulation_day_mae": 5.087241003271537,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          6.263853340516345,
-          6.973720656258704
+          4.787922926338355,
+          5.413082731571873
         ],
         "sensitivity": 0.833941605839416,
         "ppv": 0.7288676236044657,
@@ -3320,10 +3320,10 @@
         "validation_selected_feature_tier": 0,
         "validation_brier_gain_ci": null,
         "validation_selected_threshold": 0.4721112439689477,
-        "ovulation_day_mae": 8.642311886586695,
+        "ovulation_day_mae": 5.394765539803708,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          8.081629620280731,
-          9.154490982501489
+          5.105676132758042,
+          5.655186081930722
         ],
         "sensitivity": 0.833941605839416,
         "ppv": 0.7288676236044657,
@@ -3501,10 +3501,10 @@
           0.0028851559271768786
         ],
         "validation_selected_threshold": 0.44634905365633165,
-        "ovulation_day_mae": 8.642311886586695,
+        "ovulation_day_mae": 5.394765539803708,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          8.094942562383789,
-          9.237949807604076
+          5.126381149409619,
+          5.657556419397066
         ],
         "sensitivity": 0.8284671532846716,
         "ppv": 0.7467105263157895,
@@ -4071,10 +4071,10 @@
         "validation_selected_feature_tier": 0,
         "validation_brier_gain_ci": null,
         "validation_selected_threshold": 0.359280405455455,
-        "ovulation_day_mae": 5.586538461538462,
+        "ovulation_day_mae": 4.933760683760684,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.282095398417384,
-          5.924898728512084
+          4.650534833920899,
+          5.2376120248439015
         ],
         "sensitivity": 0.9049360146252285,
         "ppv": 0.6923076923076923,
@@ -4228,10 +4228,10 @@
           0.0009343967707392511
         ],
         "validation_selected_threshold": 0.359280405455455,
-        "ovulation_day_mae": 5.586538461538462,
+        "ovulation_day_mae": 4.933760683760684,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.264665331048567,
-          5.900060307017545
+          4.628052173095355,
+          5.248926659907573
         ],
         "sensitivity": 0.9049360146252285,
         "ppv": 0.6923076923076923,
@@ -4385,10 +4385,10 @@
           0.0009015622287481352
         ],
         "validation_selected_threshold": 0.359280405455455,
-        "ovulation_day_mae": 5.586538461538462,
+        "ovulation_day_mae": 4.933760683760684,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.28485262634758,
-          5.923290796168437
+          4.652289017360398,
+          5.23584546665495
         ],
         "sensitivity": 0.9049360146252285,
         "ppv": 0.6923076923076923,
@@ -4542,10 +4542,10 @@
           0.007805075372602627
         ],
         "validation_selected_threshold": 0.359280405455455,
-        "ovulation_day_mae": 5.586538461538462,
+        "ovulation_day_mae": 4.933760683760684,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.266461189539776,
-          5.904407653002975
+          4.640467513627572,
+          5.214977453992053
         ],
         "sensitivity": 0.9049360146252285,
         "ppv": 0.6923076923076923,
@@ -4696,10 +4696,10 @@
         "validation_selected_feature_tier": 0,
         "validation_brier_gain_ci": null,
         "validation_selected_threshold": 0.359280405455455,
-        "ovulation_day_mae": 6.332264957264957,
+        "ovulation_day_mae": 5.034188034188034,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.986971449084965,
-          6.69106221109399
+          4.782702723261829,
+          5.3135351177357615
         ],
         "sensitivity": 0.9049360146252285,
         "ppv": 0.6923076923076923,
@@ -4853,10 +4853,10 @@
           0.0005160435741943954
         ],
         "validation_selected_threshold": 0.359280405455455,
-        "ovulation_day_mae": 6.332264957264957,
+        "ovulation_day_mae": 5.034188034188034,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          5.95583780816519,
-          6.701505694508409
+          4.777285883270126,
+          5.3169646882721056
         ],
         "sensitivity": 0.9049360146252285,
         "ppv": 0.6923076923076923,
@@ -5423,10 +5423,10 @@
         "validation_selected_feature_tier": 0,
         "validation_brier_gain_ci": null,
         "validation_selected_threshold": 0.359280405455455,
-        "ovulation_day_mae": 8.503205128205128,
+        "ovulation_day_mae": 5.337606837606837,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          7.906005852269184,
-          9.131745224820522
+          5.094228368973391,
+          5.605945870019772
         ],
         "sensitivity": 0.9049360146252285,
         "ppv": 0.6923076923076923,
@@ -5580,10 +5580,10 @@
           0.0021796155788311603
         ],
         "validation_selected_threshold": 0.359280405455455,
-        "ovulation_day_mae": 8.503205128205128,
+        "ovulation_day_mae": 5.337606837606837,
         "ovulation_day_mae_cluster_bootstrap_95ci": [
-          7.874124414725297,
-          9.104342197035745
+          5.079582141043984,
+          5.597020479048094
         ],
         "sensitivity": 0.9049360146252285,
         "ppv": 0.6923076923076923,

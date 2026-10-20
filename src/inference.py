@@ -64,3 +64,13 @@ def predict(record, day, tier, *, seed=97):
             "base_intercept": float(lr.intercept_[0]),
             "calibrated_intercept": float(slope * lr.intercept_[0] + fitted.calibrator.intercept_[0]),
             "metrics": meta["metrics"], "scope": "synthetic-only; not clinical performance"}
+
+
+def safe_predict(record, day, tier, *, safety, seed=97):
+    """Presentation boundary: no probability, interval or attribution when a gate fires."""
+    from src.safety import abstention_reasons
+    reasons = abstention_reasons(safety)
+    if reasons:
+        return {"abstain": True, "reasons": reasons, "prob": None, "flag": False,
+                "contributions": [], "interval": None, "scope": "synthetic-only"}
+    return dict(predict(record, day, tier, seed=seed), abstain=False, reasons=[])

@@ -11,7 +11,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import numpy as np
 
-from src.features import TIER_NAMES, build_feature_matrix, feature_names
+from src.features import TIER_NAMES, build_feature_matrix, feature_names, attach_prior_cycle_lengths
 from src.fitted import PlattModel, choose_f1_threshold
 from src.generator import generate
 from src.model import estimate_ovulation_day
@@ -119,7 +119,7 @@ def main():
                "model": "sklearn LogisticRegression fitted on train; tier fallback selected by validation Brier, Platt calibration and F1 threshold selection on validation only", "seeds": {}}
     for seed in SEEDS:
         partitions = {"train": [], "validation": [], "test": []}
-        for row in generate(seed): partitions[patient_partition(row["patient"])].append(row)
+        for row in attach_prior_cycle_lengths(generate(seed)): partitions[patient_partition(row["patient"])].append(row)
         seed_result = {"patients": {name: len({r["patient"] for r in rows}) for name, rows in partitions.items()}, "metrics": {}}
         for day in DAYS:
             for tier in TIERS:
@@ -146,7 +146,7 @@ def main():
                 threshold = choose_f1_threshold(y_values(partitions["validation"]), fitted.predict_proba(x_val))
                 records = [{"patient": row["patient"], "cycle": row["cycle"], "day": day, "phenotype": row["phenotype"],
                             "y": row["event"], "score": float(score), "ov": row["ovulation_day"],
-                            "ov_est": estimate_ovulation_day(row, day, tier)}
+                            "ov_est": estimate_ovulation_day(row, day, selected_tier)}
                            for row, score in zip(partitions["test"], fitted.predict_proba(x_test))]
                 methods = {"auroc": lambda z: auc([r["y"] for r in z], [r["score"] for r in z]),
                            "auprc": lambda z: auprc([r["y"] for r in z], [r["score"] for r in z]),

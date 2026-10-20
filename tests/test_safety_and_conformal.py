@@ -21,8 +21,8 @@ class SafetyTests(unittest.TestCase):
         empirical=sum(label in classification_set(prob,q) for label,prob in zip(y,p))/len(y)
         self.assertGreaterEqual(empirical,.75)
     def test_alert_budget_and_abstention(self):
-        rows=[{"patient":"p1","cycle":0,"day":10,"risk":.8},
-              {"patient":"p1","cycle":0,"day":14,"risk":.9},
+        rows=[{"patient":"p1","cycle":0,"day":10,"risk":.8,"abstain":False},
+              {"patient":"p1","cycle":0,"day":14,"risk":.9,"abstain":False},
               {"patient":"p2","cycle":0,"day":14,"risk":.99,"abstain":True}]
         out=apply_alert_budget(rows)
         self.assertEqual(sum(r['alert'] for r in out if r['patient']=='p1'),1)

@@ -6,6 +6,30 @@ from src.inference import predict
 
 
 class DashboardTests(unittest.TestCase):
+    def test_abstention_hides_all_personal_prediction_outputs(self):
+        at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app.py"), default_timeout=45).run()
+        at.get("button_group")[0].set_value(["Patient"]).run()
+        at.get("button_group")[0].set_value([at.session_state["view"]])
+        at.selectbox(key="patient_choice").select("s223-p0026").run()
+        self.assertFalse(at.exception)
+        self.assertIsNone(at.session_state["visible_prediction"]["prob"])
+        self.assertFalse(any('Synthetic ovulation-day estimate:' in x.value for x in at.markdown))
+        self.assertFalse(any('sandbox' in b.label.lower() or 'alert to log' in b.label for b in at.button))
+        at.get("button_group")[0].set_value(["Cohort"]).run()
+        html = next(m.value for m in at.markdown if '<table' in m.value)
+        start = html.index('s223-p0026'); row = html[start:html.index('</tr>', start)]
+        self.assertIn('Withheld', row)
+
+    def test_tier0_day_estimate_uses_calendar_history(self):
+        at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app.py"), default_timeout=45).run()
+        at.get("button_group")[0].set_value(["Patient"]).run()
+        at.get("button_group")[0].set_value([at.session_state["view"]])
+        at.selectbox(key="display_tier").select(0).run()
+        at.get("button_group")[0].set_value([at.session_state["view"]])
+        at.selectbox(key="patient_choice").select('s223-p0002').run()
+        self.assertFalse(at.exception)
+        self.assertTrue(any('Synthetic ovulation-day estimate: day 28,' in m.value for m in at.markdown))
+
     def test_views_and_guided_steps_render(self):
         at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app.py"), default_timeout=45).run()
         self.assertFalse(at.exception)

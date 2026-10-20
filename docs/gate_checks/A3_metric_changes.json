@@ -1,0 +1,78 @@
+{
+  "scope": "synthetic-only",
+  "intentional_change": "completed-history calendar day estimator; use retained feature tier for day helper; classification unchanged",
+  "changes": [
+    {
+      "day": 10,
+      "tier": 0,
+      "before_mean_ovulation_day_mae": 5.870416673854902,
+      "after_mean_ovulation_day_mae": 5.004358729460275
+    },
+    {
+      "day": 10,
+      "tier": 1,
+      "before_mean_ovulation_day_mae": 5.870416673854902,
+      "after_mean_ovulation_day_mae": 5.004358729460275
+    },
+    {
+      "day": 10,
+      "tier": 2,
+      "before_mean_ovulation_day_mae": 5.870416673854902,
+      "after_mean_ovulation_day_mae": 5.004358729460275
+    },
+    {
+      "day": 10,
+      "tier": 3,
+      "before_mean_ovulation_day_mae": 5.870416673854902,
+      "after_mean_ovulation_day_mae": 5.004358729460275
+    },
+    {
+      "day": 14,
+      "tier": 0,
+      "before_mean_ovulation_day_mae": 6.581647161080291,
+      "after_mean_ovulation_day_mae": 5.132242758587358
+    },
+    {
+      "day": 14,
+      "tier": 1,
+      "before_mean_ovulation_day_mae": 6.581647161080291,
+      "after_mean_ovulation_day_mae": 5.132242758587358
+    },
+    {
+      "day": 14,
+      "tier": 2,
+      "before_mean_ovulation_day_mae": 6.581647161080291,
+      "after_mean_ovulation_day_mae": 6.069106266860007
+    },
+    {
+      "day": 14,
+      "tier": 3,
+      "before_mean_ovulation_day_mae": 6.581647161080291,
+      "after_mean_ovulation_day_mae": 5.564935066279666
+    },
+    {
+      "day": 18,
+      "tier": 0,
+      "before_mean_ovulation_day_mae": 8.574076944720234,
+      "after_mean_ovulation_day_mae": 5.43890105725074
+    },
+    {
+      "day": 18,
+      "tier": 1,
+      "before_mean_ovulation_day_mae": 8.574076944720234,
+      "after_mean_ovulation_day_mae": 5.43890105725074
+    },
+    {
+      "day": 18,
+      "tier": 2,
+      "before_mean_ovulation_day_mae": 5.267415709909418,
+      "after_mean_ovulation_day_mae": 5.267415709909418
+    },
+    {
+      "day": 18,
+      "tier": 3,
+      "before_mean_ovulation_day_mae": 5.267415709909418,
+      "after_mean_ovulation_day_mae": 5.267415709909418
+    }
+  ]
+}

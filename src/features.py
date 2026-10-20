@@ -8,6 +8,16 @@ TIER_NAMES = {0: "calendar", 1: "calendar + wearables", 2: "calendar + wearables
               3: "calendar + wearables + temperature + EHR-lite (oracle-adjacent)"}
 
 
+def attach_prior_cycle_lengths(rows):
+    """Copy records with completed history shared by classifier/day-estimator inference."""
+    histories, result = {}, []
+    for row in sorted(rows, key=lambda r: (r["patient"], r["cycle"])):
+        history = histories.setdefault(row["patient"], [])
+        result.append(dict(row, prior_cycle_lengths=list(history[-3:])))
+        history.append(float(row["cycle_length"]))
+    return result
+
+
 def _prior_cycle_lengths(rows):
     """Return each cycle's mean logged length from preceding cycles only."""
     history = {}

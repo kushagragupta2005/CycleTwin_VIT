@@ -2,6 +2,7 @@
 from datetime import datetime
 from xml.etree.ElementTree import iterparse
 import csv
+import tempfile
 
 QUANTITY = {
     "HKQuantityTypeIdentifierAppleSleepingWristTemperature": "temperature",
@@ -9,6 +10,14 @@ QUANTITY = {
     "HKQuantityTypeIdentifierHeartRateVariabilitySDNN": "hrv",
     "HKQuantityTypeIdentifierStepCount": "steps",
 }
+def parse_upload_bytes(payload):
+    """A unique temporary file is removed on both successful and failed parsing."""
+    with tempfile.NamedTemporaryFile(suffix=".xml") as handle:
+        handle.write(payload)
+        handle.flush()
+        return parse_export(handle.name)
+
+
 def parse_export(path):
     daily, starts = {}, []
     for _, el in iterparse(path, events=("end",)):

@@ -1,0 +1,7 @@
+{
+  "item": "A3",
+  "unit_and_AppTest_tests_passed": 24,
+  "classification_results_change": "none at 1e-12",
+  "intentional_metric_change": "ovulation-day MAE and its intervals only; see A3_metric_changes.json",
+  "scope": "synthetic-only"
+}

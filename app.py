@@ -11,13 +11,15 @@ import streamlit as st
 
 from src.generator import generate
 from src.model import estimate_ovulation_day
-from src.inference import predict
-from src.safety import abstention_reasons
+from src.inference import predict, safe_predict
+from src.features import attach_prior_cycle_lengths
+from src.uncertainty import uncertainty
+from src.safety import abstention_reasons, synthetic_safety_record
 from src.conformal import calibrate_binary, calibrate_ovulation_interval, classification_set, ovulation_interval
 from src.alerts import apply_alert_budget
 from src.metabolic import excursion_event
 from src.twin import simulate_reproductive_axis, simulate_metabolic_axis, coupling_sweep, TwinParameters
-from src.adapters.apple_health import parse_export
+from src.adapters.apple_health import parse_export, parse_upload_bytes
 
 DISCLAIMER="Not for diagnosis, contraception or conception planning. Synthetic demonstration only."
 st.set_page_config(page_title="CycleTwin synthetic demo", layout="wide", initial_sidebar_state="auto")
@@ -141,25 +143,10 @@ best_sensor=min((r for r in benchmark_summary if r["Forecast day"]==benchmark_da
 
 @st.cache_data
 def demo_cohort():
-    generated=generate(223,patients=36,cycles=2)
-    history={}
-    cohort=[]
-    for record in generated:
-        prior=history.setdefault(record["patient"],[])
-        if record["cycle"]>0:
-            record["prior_cycle_lengths"]=prior[-3:]
-            cohort.append(record)
-        prior.append(record["cycle_length"])
-    calibration=generate(211,patients=240,cycles=1)
-    probs={tier:[predict(r,14,tier)["prob"] for r in calibration] for tier in all_tiers}
-    labels=[r["event"] for r in calibration]
-    q_cls={tier:calibrate_binary(labels,values) for tier,values in probs.items()}
-    observed=[r for r in calibration if r["ovulation_day"]>0]
-    q_ov={tier:calibrate_ovulation_interval([r["ovulation_day"] for r in observed],
-          [estimate_ovulation_day(r,14,tier) for r in observed]) for tier in all_tiers}
-    return cohort,q_cls,q_ov
+    return [r for r in attach_prior_cycle_lengths(generate(223,patients=36,cycles=2)) if r["cycle"] == 1]
 
-cohort,q_classes,q_ovulations=demo_cohort()
+cohort=demo_cohort()
+
 guided_steps=(
     ("p0000",sensor_tiers[-1],"Notice the temperature trace, missing nights and the uncertainty band; the score uses the persisted fitted synthetic model."),
     ("p0026",sensor_tiers[-1],"Notice why this record is withheld: the abstain banner names the rule that fired."),
@@ -194,8 +181,7 @@ with st.sidebar.expander("Data source"):
         st.caption(f"Synthetic XML parsed: {len(parsed['daily'])} dates")
     uploaded=st.file_uploader("Or upload a synthetic export XML",type=["xml"])
     if uploaded:
-        p=Path("/tmp/cycletwin_synthetic_upload.xml"); p.write_bytes(uploaded.getvalue())
-        parsed=parse_export(p)
+        parsed=parse_upload_bytes(uploaded.getvalue())
         st.caption(f"Parsed {len(parsed['daily'])} dates · cycle starts: {len(parsed['cycle_starts'])}")
 
 display_controls=st.sidebar.expander("Display",expanded=page in ("Cohort","Patient"))
@@ -216,32 +202,26 @@ with st.sidebar.expander("Glossary"):
     st.markdown("**PMOS:** Polyendocrine metabolic ovarian syndrome; this generator includes synthetic PMOS archetypes.  \n**HOMA-IR:** A fasting-glucose-and-insulin-derived insulin-resistance estimate.  \n**Tier:** A feature set level used by the fitted benchmark.  \n**Abstain:** Withhold a score when a safety or data-quality rule fires.  \n**Conformal interval:** A data-calibrated range with marginal coverage on exchangeable data.")
 st.sidebar.caption("Consent receipt and glossary apply to this synthetic demo only.")
 
-q_cls,q_ov=q_classes[display_tier],q_ovulations[display_tier]
 rows=[]
 for r in cohort:
     completeness=float(np.isfinite(r["temperature"][:14]).mean())
-    age=17 if r["phenotype"]=="early_menarche" else 29
-    flags={"age":age,"early_post_menarche":r["phenotype"]=="early_menarche",
-           "tsh_abnormal":r["phenotype"]=="thyroid_mimic","prolactin_abnormal":False,
-           "hormonal_contraception":r["phenotype"]=="contraception","pregnant":False,
-           "postpartum":False,"breastfeeding":False,"perimenopausal":False,
-           "wear_completeness":completeness}
+    flags=synthetic_safety_record(r,14)
     reasons=abstention_reasons(flags)
     output=predict(r,14,display_tier)
-    risk=output["prob"]
+    risk=None if reasons else output["prob"]
     rows.append({"patient":r["patient"],"cycle":r["cycle"],"day":14,"phenotype":r["phenotype"],
                  "risk":risk,"abstain":bool(reasons),"reasons":reasons,"wear":completeness,
-                 "record":r,"flags":flags,"ov_est":estimate_ovulation_day(r,14,2),
-                 "prediction":output,"threshold":output["threshold"],"flag":output["flag"]})
+                 "record":r,"flags":flags,"ov_est":None if reasons else estimate_ovulation_day(r,14,output["selected_tier"]),
+                 "prediction":output,"threshold":output["threshold"],"flag":False if reasons else output["flag"]})
 
-sort_key={"Risk":lambda x:(-x["risk"],x["patient"]), "Archetype":lambda x:(x["phenotype"],x["patient"]),
+sort_key={"Risk":lambda x:(-x["risk"] if x["risk"] is not None else float("inf"),x["patient"]), "Archetype":lambda x:(x["phenotype"],x["patient"]),
           "Data completeness":lambda x:(-x["wear"],x["patient"]), "Tier":lambda x:(display_tier,x["patient"])}[sort_by]
 eligible=sorted(rows,key=sort_key)
 with display_controls:
     selected_id=st.selectbox("Selected synthetic patient",[r["patient"] for r in eligible],key="patient_choice",on_change=leave_guided_demo)
 item=next(r for r in eligible if r["patient"]==selected_id)
 record=item["record"]
-st.session_state["visible_prediction"]=item["prediction"]
+st.session_state["visible_prediction"]=safe_predict(record,14,display_tier,safety=item["flags"])
 ix=int(item["patient"].split("p")[-1])
 twin_repro=simulate_reproductive_axis(record["ir"],record["androgen"],seed=4000+ix)
 page_title={"Overview":"CycleTwin", "Cohort":"Synthetic cohort", "Patient":f"Patient {selected_id}",
@@ -291,7 +271,7 @@ if page == "Cohort":
     summary=[]
     for r in eligible:
         state="Clinician review" if r["abstain"] else ("Flagged by validation cutoff" if r["flag"] else "Not flagged")
-        summary.append({"Patient":r["patient"],"Synthetic archetype":r["phenotype"],"Fitted synthetic score":round(r["risk"],3),
+        summary.append({"Patient":r["patient"],"Synthetic archetype":r["phenotype"],"Fitted synthetic score":"Withheld" if r["abstain"] else round(r["risk"],3),
                         "Tier":f"Tier {display_tier}","Data completeness":round(r["wear"]*100),"Status":state,
                         "Metabolic axis":"CGM illustrative" if int(r["patient"].split("p")[-1])%4==0 else "Not sampled"})
     headers=["Patient","Synthetic archetype","Fitted synthetic score","Tier","Data completeness","Status","Metabolic axis"]
@@ -362,7 +342,7 @@ if page == "Method":
     st.markdown("**Method:** synthetic generator → tiered fitted benchmark → held-out evaluation. The dashboard uses the fitted classifier; the simplified twin remains a separate illustration; the twin state is not used in the benchmark score.")
     st.subheader("Honest limitations")
     plain_words("The software learns patterns created by its own simulator. It has not established reliable forecasting for people with PMOS without measured hormone levels.")
-    st.markdown("- Synthetic data only; no clinical or external validation.\n- Patient panels use persisted fitted models; the generated display cohort is separate from training.\n- EHR-lite is oracle-adjacent because internal variables also influence generated labels.\n- Conformal and abstention coverage, and CGM forecasts, are not evaluated benchmark endpoints.\n- Twin dynamics are illustrative and unused by the fitted score; what-if ranges are fixed assumptions.\n- The displayed timeline includes later generated nights; prospective benchmark features are truncated at the forecast day.")
+    st.markdown("- Synthetic data only; no clinical or external validation.\n- Patient panels use persisted fitted models; the generated display cohort is separate from training.\n- EHR-lite is oracle-adjacent because internal variables also influence generated labels.\n- Conformal and abstention coverage, and CGM forecasts, are not evaluated benchmark endpoints.\n- Twin dynamics are illustrative and unused by the fitted score; the input-editing sandbox is not an intervention model.\n- The displayed timeline includes later generated nights; prospective benchmark features are truncated at the forecast day.")
     st.stop()
 
 st.divider()
@@ -395,6 +375,14 @@ st.subheader("Cycle overview")
 plain_words("Inspect an individual generated cycle, its uncertainty and the rule behind any withheld score.")
 with st.popover("ⓘ Patient caveats"):
     st.caption("These synthetic benchmark figures describe fitted models. They do not establish clinical validity or confidence for an individual record. Synthetic held-out data only. Patient-cluster bootstrap confidence intervals; not clinical performance or a confidence guarantee for this record.")
+if item["abstain"]:
+    st.markdown('<div class="abstain-card">⏸ <b>Abstain · clinician review</b><br>Rule fired: '+"; ".join(item["reasons"])+"</div>",unsafe_allow_html=True)
+    st.metric("Ovulation-delay axis","Withheld",help="Safety gate: no personal score, interval, explanation, sandbox or alert is available.")
+    st.caption("No risk score shown because an abstention rule fired. Personal intervals, feature explanations and assumption-sandbox outputs are withheld; alerts are blocked.")
+    st.subheader("Observed synthetic data only")
+    st.line_chart(pd.DataFrame({"Temperature offset (°C)":record["temperature"][:14]}))
+    st.stop()
+
 left,right=st.columns([1.2,1])
 with left:
     st.subheader(f"Patient {item['patient']} · cycle {item['cycle']+1}")
@@ -407,12 +395,13 @@ with left:
             st.markdown('<div class="cycletwin-neutral">Not flagged by the validation-selected cutoff. This is a neutral state, not a clinical reassurance.</div>',unsafe_allow_html=True)
         else:
             st.info("Flagged by the validation-selected synthetic cutoff; clinician interpretation would be required.")
-    label_set=classification_set(item["risk"],q_cls)
-    est=item["ov_est"]
-    interval=ovulation_interval(est,q_ov)
+    bounds=uncertainty(record,14,display_tier,item["prediction"])
+    label_set=bounds["class_set"]
+    est=bounds["estimate"]
+    interval=bounds["interval"]
     st.write(f"Synthetic ovulation-day estimate: day {est}, marginal interval {interval[0]}–{interval[1]}.")
     plain_words("The band is an illustrative range around a heuristic day estimate; it does not guarantee an individual outcome.")
-    st.caption(f"Split-conformal illustration · calibration seed 211 · label set {label_set}; marginal coverage only, not conditional coverage.")
+    st.caption(f"Split-conformal synthetic illustration · calibration seed {bounds['calibration']['seed']} · label set {label_set}. Day band conditional on ovulatory cycles; empirical coverage has not been evaluated. No individual guarantee.")
     temp=pd.DataFrame({"day":np.arange(1,29),"temperature_offset":record["temperature"][:28]})
     plain_words("The temperature line shows generated nightly offsets; crosses mark missing nights and the band shows the estimated day range.")
     missing=temp[temp["temperature_offset"].isna()].assign(marker=-0.18)
@@ -420,7 +409,7 @@ with left:
     period=pd.DataFrame({"day":[1]})
     scale=alt.Scale(domain=[-0.25,0.35])
     band=alt.Chart(ovulation_band).mark_rect(color="#0e766e",opacity=.10).encode(x="start:Q",x2="end:Q",y=alt.value(0),y2=alt.value(270))
-    trace=alt.Chart(temp.dropna()).mark_line(color="#0e766e",strokeWidth=2.5).encode(x=alt.X("day:Q",title="Cycle day"),y=alt.Y("temperature_offset:Q",title="Temperature offset (°C)",scale=scale))
+    trace=alt.Chart(temp.assign(segment=temp["temperature_offset"].isna().cumsum()).dropna()).mark_line(color="#0e766e",strokeWidth=2.5).encode(x=alt.X("day:Q",title="Cycle day"),y=alt.Y("temperature_offset:Q",title="Temperature offset (°C)",scale=scale),detail="segment:N")
     dots=alt.Chart(temp.dropna()).mark_circle(color="#0e766e",size=28).encode(x="day:Q",y=alt.Y("temperature_offset:Q",scale=scale))
     missing_marks=alt.Chart(missing).mark_point(shape="cross",color="#65757b",size=110).encode(x="day:Q",y=alt.Y("marker:Q",scale=scale))
     period_mark=alt.Chart(period).mark_rule(color="#b7791f",strokeDash=[4,3],strokeWidth=2).encode(x="day:Q")
@@ -437,8 +426,8 @@ with left:
         )
     else:
         render_chart_summary(f"{int(temp['temperature_offset'].notna().sum())} of 28 nightly values are observed; there are {missing_n} missing nights.")
-    st.markdown('<div style="display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:#65757b"><span>🟩 Teal band · predicted ovulation interval</span><span>🟠 Amber dashed · logged period start</span><span>✕ Gray cross · missing temperature</span></div>',unsafe_allow_html=True)
-    st.caption("Missing nightly temperatures are not interpolated.")
+    st.markdown('<div style="display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:#65757b"><span>🟩 Teal band · predicted ovulation interval</span><span>🟠 Amber dashed · assumed cycle start</span><span>✕ Gray cross · missing temperature</span></div>',unsafe_allow_html=True)
+    st.caption("Missing nightly temperatures are not interpolated; lines break at missing nights. The period marker is assumed at plotted cycle day one, not read from an imported event.")
     st.subheader("Simplified twin state · not used in G1 score")
     plain_words("This changing simulator state illustrates assumed follicle growth. It is not used by the evaluated score.")
     twin_day=twin_repro["ovulation_day"]
@@ -482,7 +471,7 @@ with right:
         cgm_df=pd.DataFrame({"minutes":np.arange(len(cgm))*metabolic["step_minutes"]*8,"glucose_mg_dl":cgm})
         cgm_line=alt.Chart(cgm_df).mark_line(color="#0e766e").encode(x=alt.X("minutes:Q",title="Elapsed time (minutes)"),y=alt.Y("glucose_mg_dl:Q",title="Glucose (mg/dL)"),tooltip=["minutes:Q","glucose_mg_dl:Q"])
         cgm_threshold=alt.Chart(pd.DataFrame({"threshold":[140]})).mark_rule(color="#b7791f",strokeDash=[5,4]).encode(y="threshold:Q")
-        st.altair_chart((cgm_line+cgm_threshold).properties(title="Synthetic CGM · 15-minute samples",height=250),use_container_width=True)
+        st.altair_chart((cgm_line+cgm_threshold).properties(title=f"Synthetic CGM · plotted every {metabolic['step_minutes']*8} minutes",height=250),use_container_width=True)
         render_chart_summary(
             f"Simulated glucose exceeded 140 mg/dL within 120 minutes after "
             f"{sum(meal_excursions)} of {len(meal_excursions)} meal windows."
@@ -494,15 +483,18 @@ with right:
     st.progress(item["wear"],text=f"Nightly temperature completeness {item['wear']:.0%}")
 
 with st.container(border=True):
-    st.subheader("Illustrative what-if ranges")
-    plain_words("Choose a scenario to display an assumption-based range. It is not a measured treatment effect.")
+    st.subheader("Assumption sandbox · synthetic input editing")
+    plain_words("Edit an invented input and rerun the fitted classifier. This is not an intervention forecast or expected health benefit.")
     with st.popover("ⓘ What-if caveat"):
         st.caption("Illustrative assumptions, not a treatment recommendation. No intervention effect is clinically established.")
-    scenario=st.selectbox("Scenario",["Regular sleep","Daily walk","Lower-GI food swap","Lower evening stress","Illustrative weight change"])
-    factors={"Regular sleep":(.80,.98),"Daily walk":(.75,.98),"Lower-GI food swap":(.80,1.00),"Lower evening stress":(.80,1.00),"Illustrative weight change":(.75,.98)}
-    if st.button("Show illustrative range"):
-        low,high=factors[scenario]
-        st.write(f"Assumption-only range for demo E1 score: {item['risk']*low:.0%}–{item['risk']*high:.0%}. This is not a treatment recommendation.")
+    history=np.asarray(record["prior_cycle_lengths"],dtype=float)
+    edited=st.number_input("Invented prior-cycle mean (days)",min_value=float(np.min([r["cycle_length"] for r in cohort])),
+                           max_value=float(np.max([r["cycle_length"] for r in cohort])),value=float(np.mean(history)))
+    if st.button("Run synthetic assumption sandbox"):
+        altered=dict(record,prior_cycle_lengths=[edited]*len(history))
+        sandbox=predict(altered,14,display_tier)
+        st.write(f"Edited synthetic-input probability: {sandbox['prob']:.1%}; validation threshold {sandbox['threshold']:.6f}. This is not a treatment recommendation.")
+        st.caption("No lifestyle multiplier or causal intervention model is used. This edits assumed historical data only.")
 
 with st.container(border=True):
     st.subheader("Synthetic alert log")
@@ -511,10 +503,12 @@ with st.container(border=True):
         st.caption("At most one alert per synthetic patient-cycle. Explanations are templated from state and feature contributions; no LLM is used in the loop.")
     predictions=[]
     for r in rows:
+        if r["abstain"]:
+            continue
         for day in (10,14,18):
             predictions.append({"patient":r["patient"],"cycle":r["cycle"],"day":day,
                                 "risk":predict(r["record"],day,display_tier)["prob"],
-                                "threshold":predict(r["record"],day,display_tier)["threshold"],"abstain":r["abstain"]})
+                                "threshold":predict(r["record"],day,display_tier)["threshold"],"abstain":bool(abstention_reasons(synthetic_safety_record(r["record"],day)))})
     budgeted=apply_alert_budget(predictions,threshold=alert_threshold,max_per_cycle=alert_limit)
     if st.button("Add selected synthetic alert to log"):
         chosen=next((r for r in budgeted if r["patient"]==item["patient"] and r["cycle"]==item["cycle"] and r["alert"]),None)
