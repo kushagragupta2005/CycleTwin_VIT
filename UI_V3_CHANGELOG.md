@@ -39,6 +39,11 @@
 - Moved the unchanged synthetic Apple Health-shaped XML loader and upload parser into Advanced tools. The bundled synthetic export was generated and parsed locally: 36 dates and one cycle start; it remains outside the scored cohort.
 - Added the shared not-for-diagnosis footer to every non-Home v3 view.
 
+## Stage 7 — guided tour
+
+- Connected Home’s 60-second tour to the existing three generated walkthrough records: the normal Tier-2 view, the Tier-2 withheld-score view, and the Tier-0 alert-policy view.
+- Added Back, Next, and Finish controls that retain the selected record and tier through the established session state. All three steps were verified in the running preview.
+
 ## Run and rollback
 
 ```sh

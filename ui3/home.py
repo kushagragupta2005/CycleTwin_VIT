@@ -6,6 +6,21 @@ from html import escape
 import streamlit as st
 
 
+GUIDED_STEPS = (
+    ("s223-p0000", 2, "Notice the temperature trace, missing nights, and the clearly failed timing range."),
+    ("s223-p0026", 2, "Notice the explicit reason that withholds every personal forecast output."),
+    ("s223-p0002", 0, "Notice the one-alert policy using the calendar-only Tier 0 display."),
+)
+
+
+def _start_guided_demo() -> None:
+    patient, tier, _ = GUIDED_STEPS[0]
+    st.session_state.update(
+        guided_demo=True, guided_step=0, selected_patient=patient,
+        v3_patient_picker=patient, display_tier=tier, view="One patient",
+    )
+
+
 def _card(title: str, value: str, text: str, caption: str, *, danger: bool = False, label: str | None = None, help_text: str | None = None) -> str:
     cls = "ct-card ct-card-danger" if danger else "ct-card"
     hint = f' title="{escape(help_text)}"' if help_text else ""
@@ -51,7 +66,7 @@ def render_home(*, claims: dict, frozen_summary: list[dict], go_to, language: st
         "Everything shown here is computer-generated: there are no real people, no hormone tests, and no diagnosis."
     )
     tour, evidence, _ = st.columns([1, 1, 2])
-    tour.button("Start the 60-second tour", type="primary", on_click=go_to, args=("One patient",))
+    tour.button("Start the 60-second tour", type="primary", on_click=_start_guided_demo)
     evidence.button("Explore the evidence", on_click=go_to, args=("Evidence",))
 
     st.markdown("## What is it?")

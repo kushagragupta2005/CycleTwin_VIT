@@ -16,6 +16,21 @@ from ui3.patients import TIER_COPY, demo_cohort
 
 
 FORECAST_DAY = 14
+GUIDED_STEPS = (
+    ("s223-p0000", 2, "Notice the temperature trace, missing nights, and the clearly failed timing range."),
+    ("s223-p0026", 2, "Notice the explicit reason that withholds every personal forecast output."),
+    ("s223-p0002", 0, "Notice the one-alert policy using the calendar-only Tier 0 display."),
+)
+
+
+def _set_guided_step(index: int) -> None:
+    patient, tier, _ = GUIDED_STEPS[index]
+    st.session_state.update(guided_demo=True, guided_step=index, selected_patient=patient, v3_patient_picker=patient, display_tier=tier)
+
+
+def _end_guided_demo() -> None:
+    st.session_state["guided_demo"] = False
+    st.session_state["view"] = "Home"
 
 
 def _chart_note(text: str) -> None:
@@ -136,6 +151,21 @@ def render_patient(*, language: str, claims: dict) -> None:
     withheld = bool(reasons)
     index = int(selected.rsplit("p", 1)[-1])
     coverage_target = 1 - float(claims["conformal"]["protocol"]["alpha"])
+
+    if st.session_state.get("guided_demo", False):
+        step = int(st.session_state.get("guided_step", 0))
+        _, _, notice = GUIDED_STEPS[step]
+        st.markdown('<section class="ct-tour"><b>Guided tour</b><br>' + notice + "</section>", unsafe_allow_html=True)
+        back, progress, next_step = st.columns([1, 2, 1])
+        with back:
+            st.button("Back", disabled=step == 0, on_click=_set_guided_step, args=(step - 1,), key="v3_tour_back")
+        with progress:
+            st.progress((step + 1) / len(GUIDED_STEPS), text=f"Step {step + 1} of {len(GUIDED_STEPS)} · {selected}")
+        with next_step:
+            if step == len(GUIDED_STEPS) - 1:
+                st.button("Finish", on_click=_end_guided_demo, key="v3_tour_finish")
+            else:
+                st.button("Next", on_click=_set_guided_step, args=(step + 1,), key="v3_tour_next")
 
     st.markdown('<span class="ct-badge">◌ Synthetic data only · generated research record</span>', unsafe_allow_html=True)
     st.markdown(f"# {selected}")
