@@ -80,6 +80,20 @@ All three fresh generator seeds are shown. Models are fitted on train patients, 
 
 ![Day-14 lead-time versus false-alert trade-off by tier](assets/lead_time_false_alarm_tradeoff.svg)
 
+## Dashboard screenshots
+
+![Synthetic patient list](docs/screenshots/patient-list.png)
+
+![Patient timeline](docs/screenshots/patient-timeline.png)
+
+![Abstention banner](docs/screenshots/abstain-banner.png)
+
+![Illustrative what-if panel](docs/screenshots/what-if-panel.png)
+
+![Synthetic alert log](docs/screenshots/alert-log.png)
+
+Demo video: omitted as requested; the brief asks for a 20-minute video, so this submission deliverable remains outstanding.
+
 These figures aggregate the three fresh synthetic seeds; error bars span the lowest to highest seed-specific patient-cluster 95% interval. They are internal simulator checks, not clinical performance estimates.
 
 ## Data and privacy
