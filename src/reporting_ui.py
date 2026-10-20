@@ -93,3 +93,15 @@ def render_operations(claims):
     st.dataframe(pd.DataFrame([{'Cold subprocess (ms)':ops['cold_subprocess_ms'],'Warm mean (ms)':warm['mean'],'Warm p95 (ms)':warm['p95'],
                                 'Warm repeats':ops['warm_repeats'],'Process peak RSS (KiB)':ops['process_peak_rss_kib']}]),hide_index=True,use_container_width=True)
     st.caption(ops['rss_note'])
+
+
+def render_conformal(claims):
+    summary=claims.get('conformal_summary')
+    if not summary: return
+    st.subheader('Frozen synthetic conformal coverage')
+    st.caption('In plain words: the classification set covers the generated event label at about its 90% target. The separate heuristic day band does not achieve useful frozen coverage.')
+    st.dataframe(pd.DataFrame([{'Day-18 Tier-2 classification coverage':summary['classification_coverage_mean'],
+                                'Mean classification-set size':summary['mean_classification_set_size'],
+                                'Heuristic day-band coverage':summary['day_band_coverage_mean'],
+                                'Day-band mean width (days)':summary['day_band_mean_width']}]),hide_index=True,use_container_width=True)
+    st.caption('Coverage is marginal, synthetic and generator-specific. The day band remains an illustration and is not a reliable timing interval.')

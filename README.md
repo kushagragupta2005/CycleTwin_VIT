@@ -178,6 +178,10 @@ This post-freeze Tier-2-plus-proxy analysis transforms simulator IR and androgen
 
 On the build host, a cold new-process first prediction took 1193.724167 ms. Across 1,000 warm in-process calls, mean latency was 0.532991 ms and p95 0.564667 ms; process peak RSS was 193104 KiB. This is host-specific local evidence, not a production-service SLA. See results_ops.json and docs/operations_methods.md.
 
+## Frozen synthetic conformal coverage
+
+For the preregistered independent calibration sets, day-18 Tier-2 mean classification-set coverage was 0.900617 with mean set size 1.154938. The separate heuristic ovulation-day band had mean conditional coverage 0.055814 with mean width 24.000000 days. The classification set is marginal, synthetic and generator-specific. The timing band failed this frozen coverage check and remains an illustration, not a reliable interval. Full per-seed/day/tier/archetype output: results_conformal_frozen.json.
+
 ## Evidence and limitations
 
 - [Complete implementation audit](docs/audit_2026-10-20/CycleTwin_full_audit.md), a historical snapshot before the corrections.

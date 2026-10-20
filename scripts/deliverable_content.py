@@ -100,6 +100,13 @@ def compose(c):
                f"Warm inference: mean {warm['mean']:.3f} ms, p95 {warm['p95']:.3f} ms across {ops['warm_repeats']:,} calls",
                f"Local process peak RSS: {ops['process_peak_rss_kib']:.0f} KiB",
                'Host-specific engineering measurement, not a production-service SLA.'])
+    if c.get('conformal_summary'):
+        conformal=c['conformal_summary']
+        slide('Frozen synthetic conformal coverage','Marginal classification sets and separate heuristic timing bands',
+              [f"Day-18 Tier-2 classification-set coverage: {metric(conformal['classification_coverage_mean'])}; mean set size {metric(conformal['mean_classification_set_size'])}",
+               f"Heuristic ovulation-day band coverage: {metric(conformal['day_band_coverage_mean'])}; mean width {metric(conformal['day_band_mean_width'])} days",
+               'The classification-set result is near its synthetic 90% target.',
+               'The day-band result is poor; do not use it as a reliable timing interval.'])
     slide('What the clinician view shows','Decision-support research display',
           ['Fitted probability beside its own validation threshold and held-out model evidence',
            'Exact additive feature contributions and explicit imputation',
@@ -251,6 +258,10 @@ Code uses the [MIT License](LICENSE). All project datasets are synthetic. Publis
     if c.get('operations'):
         ops=c['operations'];warm=ops['warm_latency_ms']
         section='## Local operations measurement\n\nOn the build host, a cold new-process first prediction took {cold:.6f} ms. Across {n:,} warm in-process calls, mean latency was {mean:.6f} ms and p95 {p95:.6f} ms; process peak RSS was {rss:.0f} KiB. This is host-specific local evidence, not a production-service SLA. See results_ops.json and docs/operations_methods.md.\n\n'.format(cold=ops['cold_subprocess_ms'],n=ops['warm_repeats'],mean=warm['mean'],p95=warm['p95'],rss=ops['process_peak_rss_kib'])
+        readme=readme.replace('## Evidence and limitations',section+'## Evidence and limitations')
+    if c.get('conformal_summary'):
+        conformal=c['conformal_summary']
+        section='## Frozen synthetic conformal coverage\n\nFor the preregistered independent calibration sets, day-18 Tier-2 mean classification-set coverage was {cc:.6f} with mean set size {cs:.6f}. The separate heuristic ovulation-day band had mean conditional coverage {dc:.6f} with mean width {dw:.6f} days. The classification set is marginal, synthetic and generator-specific. The timing band failed this frozen coverage check and remains an illustration, not a reliable interval. Full per-seed/day/tier/archetype output: results_conformal_frozen.json.\n\n'.format(cc=conformal['classification_coverage_mean'],cs=conformal['mean_classification_set_size'],dc=conformal['day_band_coverage_mean'],dw=conformal['day_band_mean_width'])
         readme=readme.replace('## Evidence and limitations',section+'## Evidence and limitations')
     videos={}
     for duration in (team['minimum_video_minutes'], cfg['short_video_minutes']):

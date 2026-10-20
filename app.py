@@ -12,7 +12,7 @@ import streamlit as st
 from src.generator import generate
 from src.claims import load_claims
 from src.kushi_ui import render_kushi
-from src.reporting_ui import render_reporting, render_alert_policy, render_robustness, render_bayesian_twin, render_lab_proxy, render_operations
+from src.reporting_ui import render_reporting, render_alert_policy, render_robustness, render_bayesian_twin, render_lab_proxy, render_operations, render_conformal
 from src.model import estimate_ovulation_day
 from src.inference import predict, safe_predict
 from src.features import attach_prior_cycle_lengths
@@ -359,6 +359,7 @@ if page == "Method":
     render_bayesian_twin(claims)
     render_lab_proxy(claims)
     render_operations(claims)
+    render_conformal(claims)
     st.subheader("Honest limitations")
     plain_words("The software learns patterns created by its own simulator. It has not established reliable forecasting for people with PMOS without measured hormone levels.")
     st.markdown("- Synthetic data only; no clinical or external validation.\n- Patient panels use persisted fitted models; the generated display cohort is separate from training.\n- EHR-lite is oracle-adjacent because internal variables also influence generated labels.\n- Conformal and abstention coverage, and CGM forecasts, are not evaluated benchmark endpoints.\n- Twin dynamics are illustrative and unused by the fitted score; the input-editing sandbox is not an intervention model.\n- The displayed timeline includes later generated nights; prospective benchmark features are truncated at the forecast day.")
@@ -420,7 +421,7 @@ with left:
     interval=bounds["interval"]
     st.write(f"Synthetic ovulation-day estimate: day {est}, marginal interval {interval[0]}–{interval[1]}.")
     plain_words("The band is an illustrative range around a heuristic day estimate; it does not guarantee an individual outcome.")
-    st.caption(f"Split-conformal synthetic illustration · calibration seed {bounds['calibration']['seed']} · label set {label_set}. Day band conditional on ovulatory cycles; empirical coverage has not been evaluated. No individual guarantee.")
+    st.caption(f"Split-conformal synthetic illustration · calibration seed {bounds['calibration']['seed']} · label set {label_set}. Matched frozen synthetic coverage is reported on the Method page; the heuristic day band did not achieve useful frozen coverage. No individual guarantee.")
     temp=pd.DataFrame({"day":np.arange(1,29),"temperature_offset":record["temperature"][:28]})
     plain_words("The temperature line shows generated nightly offsets; crosses mark missing nights and the band shows the estimated day range.")
     missing=temp[temp["temperature_offset"].isna()].assign(marker=-0.18)

@@ -116,6 +116,15 @@ def build(write=True):
     claims['operations']=json.loads(ops.read_text()) if ops.exists() else None
     if ops.exists():
         claims['source_sha256']['results_ops.json']=hashlib.sha256(ops.read_bytes()).hexdigest()
+    conformal=ROOT/'results_conformal_frozen.json'
+    claims['conformal']=json.loads(conformal.read_text()) if conformal.exists() else None
+    if conformal.exists():
+        claims['source_sha256']['results_conformal_frozen.json']=hashlib.sha256(conformal.read_bytes()).hexdigest()
+        selected=[v['overall'] for k,v in claims['conformal']['results'].items() if k.endswith('day_18_tier_2')]
+        claims['conformal_summary']={'classification_coverage_mean':float(np.mean([x['classification_coverage'] for x in selected])),
+                                    'day_band_coverage_mean':float(np.mean([x['ovulation_day_band_coverage'] for x in selected])),
+                                    'mean_classification_set_size':float(np.mean([x['mean_classification_set_size'] for x in selected])),
+                                    'day_band_mean_width':float(np.mean([x['day_band_mean_width'] for x in selected]))}
     submission=ROOT/'docs/submission_status.json'
     claims['submission']=json.loads(submission.read_text()) if submission.exists() else None
     claims['deliverables']=compose(claims)

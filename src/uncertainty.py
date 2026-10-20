@@ -1,7 +1,7 @@
 """Independent synthetic calibration illustrations, matched to fitted tier and snapshot.
 
-Empirical frozen-set coverage is a separate evaluation deliverable. Day bands are
-conditional on ovulation being present; absence has no numerical ovulation day.
+Frozen synthetic coverage is reported separately. Day bands are conditional on
+ovulation being present; absence has no numerical ovulation day.
 """
 from functools import lru_cache
 from src.conformal import calibrate_binary, calibrate_ovulation_interval, classification_set, ovulation_interval
@@ -28,7 +28,7 @@ def calibration_for(day, tier, seed=97):
                [estimate_ovulation_day(r, day, o["selected_tier"]) for r, o in observed])
     return {"q_class": q_cls, "q_day": q_day, "n_class": len(rows), "n_day": len(observed),
             "seed": CALIBRATION_SEED, "alpha": 0.10,
-            "scope": "synthetic marginal illustration; coverage not yet evaluated"}
+            "scope": "synthetic marginal display illustration; matched frozen coverage is reported separately"}
 
 
 def uncertainty(record, day, tier, output):

@@ -106,6 +106,13 @@ Warm inference: mean 0.533 ms, p95 0.565 ms across 1,000 calls
 Local process peak RSS: 193104 KiB
 Host-specific engineering measurement, not a production-service SLA.
 
+## Frozen synthetic conformal coverage
+Marginal classification sets and separate heuristic timing bands
+Day-18 Tier-2 classification-set coverage: 0.901; mean set size 1.155
+Heuristic ovulation-day band coverage: 0.056; mean width 24.000 days
+The classification-set result is near its synthetic 90% target.
+The day-band result is poor; do not use it as a reliable timing interval.
+
 ## What the clinician view shows
 Decision-support research display
 Fitted probability beside its own validation threshold and held-out model evidence

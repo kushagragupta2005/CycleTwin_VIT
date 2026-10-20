@@ -1,0 +1,3 @@
+# Frozen synthetic conformal coverage
+
+For each frozen model seed, day and tier, the analysis generated 600 independent synthetic calibration patients with six cycles and selected one uniform random cycle per patient. It used the preregistered seed formula in `docs/frozen_protocol.json`, split-conformal score quantiles with alpha 0.10, and frozen test cycles only for coverage reporting. Classification coverage is marginal coverage of the prediction set; ovulation-day band coverage is conditional on generated ovulation being present. Results are generator-specific and provide no clinical or individual guarantee.

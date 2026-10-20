@@ -9,7 +9,7 @@ from src.inference import safe_predict
 from src.personas import make_kushi
 from src.safety import synthetic_safety_record
 from src.uncertainty import uncertainty
-from src.reporting_ui import render_reporting, render_alert_policy, render_robustness, render_bayesian_twin, render_lab_proxy, render_operations
+from src.reporting_ui import render_reporting, render_alert_policy, render_robustness, render_bayesian_twin, render_lab_proxy, render_operations, render_conformal
 
 CHAPTERS = ("Meet Kushi", "Her two data streams", "Her twin wakes up", "What her doctor sees",
             "Guardrails live", "Where it fails", "The evidence")
@@ -148,5 +148,6 @@ def render_kushi():
         render_bayesian_twin(claims)
         render_lab_proxy(claims)
         render_operations(claims)
+        render_conformal(claims)
         st.markdown('[Implementation audit](https://github.com/kushagragupta2005/CycleTwin_VIT/blob/main/docs/audit_2026-10-20/CycleTwin_full_audit.md) · [Generated claims](https://github.com/kushagragupta2005/CycleTwin_VIT/blob/main/docs/claims.json)')
         st.write("Sim-to-real statement: recovering labels from this generator is not evidence of reliable forecasts in women. Independent measurements and prospective validation remain necessary.")
