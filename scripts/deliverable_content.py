@@ -51,10 +51,18 @@ def compose(c):
         slide(f'Synthetic development evidence: day {day}',
               'Seed means describe the current generator, not clinical forecasting',
               table=comparison[:1]+[row for row in comparison[1:] if int(row[0])==day])
+    if c['frozen'] is not None:
+        for day in days:
+            values=[['Day','Tier','Mean AUROC','Mean Brier','Mean day MAE']]+[
+                [str(r['Forecast day']),str(r['Tier']),metric(r['Mean AUROC']),metric(r['Mean Brier']),metric(r['Mean day MAE'])]
+                for r in c['frozen_summary'] if r['Forecast day']==day]
+            slide(f'Frozen synthetic evidence: day {day}','Reserved seeds, unchanged train/validation choices, one guarded run',table=values)
     last=mean(max(days),max(t for t in tiers if t<max(tiers)))
+    if c['frozen'] is not None:
+        last=next(r for r in c['frozen_summary'] if r['Forecast day']==max(days) and r['Tier']==max(t for t in tiers if t<max(tiers)))
     slide('Evidence at the latest sensor snapshot','Predeclared temperature sensor tier, descriptive seed means',
           [f"Synthetic day {last['Forecast day']}, Tier {last['Tier']}: AUROC {metric(last['Mean AUROC'])}, Brier {metric(last['Mean Brier'])}",
-           f"{last['Held-out cycles']:,} synthetic test cycles across {len(c['development']['seeds'])} development seeds",
+           f"{last['Held-out cycles']:,} synthetic test cycles across {len((c['frozen'] or c['development'])['seeds'])} "+('frozen seeds' if c['frozen'] else 'development seeds'),
            'Old seeds informed development. A frozen evaluation is pending.' if c['frozen'] is None else 'A separate frozen evaluation artifact is available.',
            'Current AUPRC is custom and tie-sensitive. Standard average precision is a reporting follow-up.'])
     slide('What the clinician view shows','Decision-support research display',
@@ -170,9 +178,18 @@ Existing screenshots are historical UI captures and do not represent a new visua
 
 Code uses the [MIT License](LICENSE). All project datasets are synthetic. Published medical references provide context and are not training data. AI coding assistants helped build this project. No LLM runs in the prediction or explanation path.
 '''
+    if c['frozen'] is not None:
+        rows=['| Frozen synthetic seed | Day | Tier | AUROC | Brier | n |','|---|---|---|---|---|---|']
+        for seed,sr in c['frozen']['seeds'].items():
+            for key,m in sr['metrics'].items():
+                rows.append(f"| {seed} | {int(key.split('_')[1])} | {int(key.rsplit('_',1)[1])} | {m['auroc']:.6f} | {m['brier']:.6f} | {m['n_cycles']} |")
+        frozen_text='## Frozen synthetic evaluation\n\nThe frozen-v1 tag records the executable protocol before the reserved seeds were generated. The once-only runner saved model artifacts, held-out predictions and a result hash. Follow-up reporting does not retune its thresholds.\n\n'+'\n'.join(rows)+'\n\n'
+        readme=readme.replace('## Evidence and limitations',frozen_text+'## Evidence and limitations')
+        readme=readme.replace('Frozen evaluation, robustness, ops measurements and a fitted Bayesian state estimator are separate follow-up gates and must not be implied complete.','Frozen evaluation is complete. Robustness, ops measurements and a Bayesian state estimator remain separate follow-up gates until their evidence is generated.')
     videos={}
     for duration in (team['minimum_video_minutes'], cfg['short_video_minutes']):
-        chosen=deck if duration==team['minimum_video_minutes'] else [deck[i] for i in (0,2,7,12)]
+        short_titles=('CycleTwin','Meet Kushi','Evidence at the latest sensor snapshot','Validity limits')
+        chosen=deck if duration==team['minimum_video_minutes'] else [next(s for s in deck if s['title']==title) for title in short_titles]
         videos[str(duration)]=f"# CycleTwin {duration}-minute script\n\n"+FOOTER+'\n\nHuman recording deferred. All project numbers below come from docs/claims.json.\n\n'+'\n\n'.join('## '+s['title']+'\n'+s['subtitle']+'\n'+'\n'.join(s['body']) for s in chosen)+ '\n\nEnd on limitations. This is a synthetic engineering experiment, not evidence of reliable forecasting in people.\n'
     actions=[
         ('Purpose','Open Overview, read the synthetic badge and purpose, then enter Meet Kushi.'),

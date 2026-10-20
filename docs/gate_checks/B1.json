@@ -1,0 +1,19 @@
+{
+  "item": "B1",
+  "unit_and_AppTest_tests_passed": 34,
+  "tag": "frozen-v1",
+  "execution_receipt": "results/frozen_receipt.json",
+  "development_classification_results_change": "none",
+  "frozen_day18_tier2": {
+    "Forecast day": 18,
+    "Tier": 2,
+    "Inputs": "calendar + wearables + temperature",
+    "Mean AUROC": 0.9073085651211222,
+    "Mean Brier": 0.11686657116738058,
+    "Mean day MAE": 5.449195144332099,
+    "Held-out cycles": 3240,
+    "Seeds retaining candidate": 3,
+    "scope": "frozen-v1 synthetic; not clinical performance"
+  },
+  "scope": "synthetic-only"
+}

@@ -40,6 +40,17 @@ def build(write=True):
               "source_sha256": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs}}
     frozen = ROOT / "results_final_frozen.json"
     claims["frozen"] = json.loads(frozen.read_text()) if frozen.exists() else None
+    claims['frozen_summary']=[]
+    if claims['frozen'] is not None:
+        for key in keys:
+            values=[s['metrics'][key] for s in claims['frozen']['seeds'].values()]
+            claims['frozen_summary'].append({'Forecast day':int(key.split('_')[1]),'Tier':int(key.rsplit('_',1)[1]),
+                'Inputs':values[0]['tier_name'],'Mean AUROC':float(np.mean([v['auroc'] for v in values])),
+                'Mean Brier':float(np.mean([v['brier'] for v in values])),
+                'Mean day MAE':float(np.mean([v['ovulation_day_mae'] for v in values])),
+                'Held-out cycles':sum(v['n_cycles'] for v in values),
+                'Seeds retaining candidate':sum(v['validation_selected_feature_tier']==int(key.rsplit('_',1)[1]) for v in values),
+                'scope':'frozen-v1 synthetic; not clinical performance'})
     claims['configuration']={'days':sorted({int(k.split('_')[1]) for k in keys}),
                              'tiers':sorted({int(k.rsplit('_',1)[1]) for k in keys}),
                              'event_cutoff_day':21,'confidence_level':0.95,'short_video_minutes':3,
@@ -53,6 +64,11 @@ def build(write=True):
                        'per_seed_test_people':example['test']}
     claims['runtime_requirements']=[line.strip() for line in (ROOT/'requirements.txt').read_text().splitlines() if line.strip() and not line.startswith('#')]
     claims['models']=json.loads((ROOT/'models/model_card.json').read_text())['models']
+    frozen_card=ROOT/'models/frozen/model_card.json'
+    if frozen_card.exists():
+        claims['models'].update(json.loads(frozen_card.read_text())['models'])
+        claims['source_sha256']['models/frozen/model_card.json']=hashlib.sha256(frozen_card.read_bytes()).hexdigest()
+        claims['source_sha256']['results_final_frozen.json']=hashlib.sha256(frozen.read_bytes()).hexdigest()
     submission=ROOT/'docs/submission_status.json'
     claims['submission']=json.loads(submission.read_text()) if submission.exists() else None
     claims['deliverables']=compose(claims)

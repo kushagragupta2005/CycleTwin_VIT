@@ -53,3 +53,10 @@ All performance claims below refer to synthetic data. The immutable pre-change c
 - Predeclared seeds, existing logistic pipeline and follow-up reporting/robustness/state-estimator criteria in docs/frozen_protocol.json before generating any reserved-seed data. This includes the state-estimator non-inferiority margin and calibration/robustness settings, preventing their choice from reserved-test outcomes.
 - Added a separate once-only runner that requires the exact clean frozen-v1 tag and refuses an existing result or execution lock. Development artifacts are untouched.
 - All 32 unit/AppTest preflight tests passed. A preparation commit and tag precede the results commit so the executable code is truly frozen before execution.
+
+## B1 — once-only reserved-seed evaluation completed
+
+- Ran the tagged, clean frozen-v1 executable once on the predeclared reserved seeds. Raw results, held-out prediction rows, selected model artifacts, protocol lock and SHA-256 receipt are preserved separately from development artifacts. The raw result hash is tested and will not be overwritten by later reporting extensions.
+- Old seeds are labelled development evidence; README, presentation and dashboard add separate frozen synthetic tables. The live patient model remains the requested seed-97 model, with its own development metrics rather than borrowing the new frozen models' performance.
+- No threshold, calibration or feature fallback was changed against test outcomes. This is a new synthetic evaluation, not a claimed improvement measured on the same population. Exact frozen means are generated in docs/gate_checks/B1.json.
+- All 34 unit/AppTest tests passed, including frozen-result immutability and stored-prediction/inference agreement at 1e-12. New presentation pages were rendered and inspected; every PDF/PPTX page passes claim-text checks.

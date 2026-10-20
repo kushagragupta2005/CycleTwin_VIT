@@ -7,3 +7,4 @@ apple_health_export/
 *.csv
 !data/ehr.csv
 !results/predictions_heldout.csv
+!results/predictions_final_frozen.csv

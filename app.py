@@ -123,6 +123,7 @@ st.markdown(f'<div class="demo-footer"><a href="https://github.com/kushagragupta
 def benchmark_metrics(claims_mtime):
     return load_claims()["development"]
 
+claims=load_claims()
 benchmark = benchmark_metrics(Path("docs/claims.json").stat().st_mtime_ns)
 metric_keys=next(iter(benchmark["seeds"].values()))["metrics"]
 forecast_days=sorted({int(key.split("_")[1]) for key in metric_keys})
@@ -141,7 +142,8 @@ for day in forecast_days:
             "Held-out cycles":sum(m["n_cycles"] for m in seed_metrics),
             "Seeds retaining candidate":sum(m["validation_selected_feature_tier"]==tier for m in seed_metrics),
         })
-best_sensor=next(r for r in benchmark_summary if r["Forecast day"]==benchmark_day and r["Tier"]==sensor_tiers[-1])
+overview_summary=claims["frozen_summary"] or benchmark_summary
+best_sensor=next(r for r in overview_summary if r["Forecast day"]==benchmark_day and r["Tier"]==sensor_tiers[-1])
 
 @st.cache_data
 def demo_cohort():
@@ -244,13 +246,13 @@ if page=="Overview":
     stats=st.columns(4)
     stats[0].metric("Held-out cycles · synthetic",f"{best_sensor['Held-out cycles']:,}",
                     help="Test cycles summed once across seeds at the displayed forecast snapshot; repeated tiers and days are not counted again.")
-    stats[1].metric("Seeds · synthetic",str(len(benchmark["seeds"])),
+    stats[1].metric("Seeds · synthetic",str(len((claims["frozen"] or benchmark)["seeds"])),
                     help="Independent random seeds for the same synthetic generator; these are not external clinical cohorts.")
     stats[2].metric("Mean AUROC · synthetic",f"{best_sensor['Mean AUROC']:.3f}",
                     help="Mean ranking metric across seeds for the described sensor tier. Higher ranks synthetic labels more accurately.")
     stats[3].metric("Mean Brier · synthetic",f"{best_sensor['Mean Brier']:.3f}",
                     help="Mean squared probability error across seeds for the described sensor tier. Lower is better within this simulator.")
-    st.caption(f"Tier {best_sensor['Tier']} at forecast day {benchmark_day} · predeclared highest sensor tier. Descriptive development comparison only; calibration, feature fallback and thresholds were selected on validation, not test.")
+    st.caption(f"Tier {best_sensor['Tier']} at forecast day {benchmark_day} · predeclared highest sensor tier. Frozen synthetic summary when available; older seeds are development evidence; calibration, feature fallback and thresholds were selected on validation, not test.")
     plain_words("These figures describe the fitted synthetic benchmark. They describe synthetic model performance, not clinical performance or individual confidence.")
     st.subheader("What makes it different")
     plain_words("The demonstration makes its safety rules, uncertainty and input limits visible.")
@@ -325,7 +327,11 @@ if page == "Cohort":
 
 if page == "Method":
     render_workflow()
-    st.subheader("Evaluation results")
+    if claims["frozen"] is not None:
+        st.subheader("Frozen synthetic evaluation")
+        st.dataframe(pd.DataFrame(claims["frozen_summary"]),hide_index=True,use_container_width=True)
+        st.caption("The frozen-v1 tag predates the guarded reserved-seed run. No clinical or external validation is implied.")
+    st.subheader("Development evaluation results")
     plain_words("Read fitted-model performance by input tier and forecast day. All outcomes and inputs are generated.")
     with st.popover("ⓘ Benchmark caveat"):
         st.caption("Synthetic held-out data only. Patient-cluster bootstrap confidence intervals; not clinical performance or a confidence guarantee for this record.")

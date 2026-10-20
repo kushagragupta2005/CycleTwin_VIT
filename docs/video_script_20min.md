@@ -52,11 +52,23 @@ Seed means describe the current generator, not clinical forecasting
 Seed means describe the current generator, not clinical forecasting
 
 
+## Frozen synthetic evidence: day 10
+Reserved seeds, unchanged train/validation choices, one guarded run
+
+
+## Frozen synthetic evidence: day 14
+Reserved seeds, unchanged train/validation choices, one guarded run
+
+
+## Frozen synthetic evidence: day 18
+Reserved seeds, unchanged train/validation choices, one guarded run
+
+
 ## Evidence at the latest sensor snapshot
 Predeclared temperature sensor tier, descriptive seed means
-Synthetic day 18, Tier 2: AUROC 0.906, Brier 0.119
-3,240 synthetic test cycles across 3 development seeds
-Old seeds informed development. A frozen evaluation is pending.
+Synthetic day 18, Tier 2: AUROC 0.907, Brier 0.117
+3,240 synthetic test cycles across 3 frozen seeds
+A separate frozen evaluation artifact is available.
 Current AUPRC is custom and tie-sensitive. Standard average precision is a reporting follow-up.
 
 ## What the clinician view shows

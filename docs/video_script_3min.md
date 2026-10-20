@@ -17,15 +17,18 @@ Hostel life, exam-season sleep debt, mother with type 2 diabetes, smartwatch wea
 Actual generated past lengths: 41, 38, 41, 38, 44, 51 days
 Selection uses generator truth and a declared seed, never predicted risk
 
-## Synthetic development evidence: day 14
-Seed means describe the current generator, not clinical forecasting
+## Evidence at the latest sensor snapshot
+Predeclared temperature sensor tier, descriptive seed means
+Synthetic day 18, Tier 2: AUROC 0.907, Brier 0.117
+3,240 synthetic test cycles across 3 frozen seeds
+A separate frozen evaluation artifact is available.
+Current AUPRC is custom and tie-sensitive. Standard average precision is a reporting follow-up.
 
-
-## The twin and assumption sandbox
-Clear boundaries around simulated physiology
-Reproductive and metabolic equations generate an illustrative state trajectory
-The twin does not affect the logistic score or its reported performance
-The sandbox edits invented model inputs. It does not predict a treatment effect
-Glucose threshold crossings are simulated counts, not an evaluated glucose forecast
+## Validity limits
+Synthetic recovery is not prospective evidence in women
+Labels and sensor changes share generator assumptions
+EHR-lite includes a label-generating internal latent
+Old test seeds were reused during development
+The current benchmark does not evaluate the complete sequential alert policy
 
 End on limitations. This is a synthetic engineering experiment, not evidence of reliable forecasting in people.

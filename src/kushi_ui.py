@@ -141,6 +141,8 @@ def render_kushi():
             st.info("Frozen-seed evaluation is pending; current results are development evidence.")
         else:
             st.caption("Frozen synthetic results are available; these still do not establish clinical validity.")
-        st.dataframe(pd.DataFrame(claims['summary']),hide_index=True,use_container_width=True)
+            st.dataframe(pd.DataFrame(claims['frozen_summary']),hide_index=True,use_container_width=True)
+        with st.expander('Development results: older seeds'):
+            st.dataframe(pd.DataFrame(claims['summary']),hide_index=True,use_container_width=True)
         st.markdown('[Implementation audit](https://github.com/kushagragupta2005/CycleTwin_VIT/blob/main/docs/audit_2026-10-20/CycleTwin_full_audit.md) · [Generated claims](https://github.com/kushagragupta2005/CycleTwin_VIT/blob/main/docs/claims.json)')
         st.write("Sim-to-real statement: recovering labels from this generator is not evidence of reliable forecasts in women. Independent measurements and prospective validation remain necessary.")

@@ -1,3 +1,5 @@
+> Current evidence: old seeds are development data. Reserved frozen-v1 results are in results_final_frozen.json; see docs/claims.json for generated values.
+
 # Jury Q&A
 
 1. **Why synthetic data?** No verified, permissioned cohort is available for this prototype. Synthetic data makes the pipeline reproducible without exposing anyone's health information.
@@ -9,7 +11,7 @@
 7. **Is this a digital twin of a patient?** No. The dashboard has a simplified coupled reproductive/metabolic simulator with a shared latent, but it is not calibrated and does not model a real person. It is separate from the evaluated G1 score.
 8. **Why not use a language model in the clinical loop?** There is no LLM in the loop. State explanations and the temperature, twin, CGM and risk–coverage chart summaries are deterministic templates populated from computed values. AI coding assistance during development is disclosed separately in the README.
 9. **Why does the evaluator split by patient?** Cycles from one synthetic patient share latent characteristics; keeping them together limits patient leakage.
-10. **How should the metrics be read?** As patient-held-out results for three seeds of the same synthetic generator, with patient-cluster bootstrap intervals. At day 14, mean Tier 0/1/2 AUROC is 0.838/0.838/0.850 and mean Brier is 0.163/0.163/0.157. Day-18 Tier 2 has mean AUROC 0.906 and Brier 0.119. These are rounded seed means, not pooled estimates or clinical performance. Individual intervals, thresholds and sample sizes are in the README and results.json.
+10. **How should the metrics be read?** As patient-separated development results for three older seeds of the same synthetic generator, with patient-cluster bootstrap intervals. At day 14, mean Tier 0/1/2 AUROC is 0.838/0.838/0.850 and mean Brier is 0.163/0.163/0.157. Day-18 Tier 2 has mean AUROC 0.906 and Brier 0.119. These are rounded seed means, not pooled estimates or clinical performance. Individual intervals, thresholds and sample sizes are in the README and results.json.
 11. **Why can the event rate be near one half?** The simulator uses a fixed mix of phenotype archetypes and assumptions. That mix is not a prevalence estimate.
 12. **Is the temperature rule an ovulation confirmation?** No. It is a simple coverline heuristic over generated data and may be wrong even in the simulator.
 13. **Why does the project abstain?** The guard module supports thyroid/prolactin flags, contraception, age/early menarche, pregnancy-related states, perimenopause and incomplete wear. The generated dashboard currently activates thyroid-mimic, contraception, early-menarche/age and wear-completeness examples; the other flags are supported and tested. The banner reports which rule fired. These are demo rules, not clinically validated policy.

@@ -93,6 +93,49 @@ The predeclared temperature tier at day 18 has mean synthetic AUROC 0.905584 and
 
 Saved intervals use patient-cluster resampling. The custom AUPRC is tie-sensitive and differs from standard average precision. Day MAE excludes absent-ovulation cycles. Forecast-day distance to the reporting cutoff is not actual event lead time. The main benchmark does not evaluate sequential alert-policy effectiveness or safety-gate coverage. Full exact values remain in results.json and model cards.
 
+## Frozen synthetic evaluation
+
+The frozen-v1 tag records the executable protocol before the reserved seeds were generated. The once-only runner saved model artifacts, held-out predictions and a result hash. Follow-up reporting does not retune its thresholds.
+
+| Frozen synthetic seed | Day | Tier | AUROC | Brier | n |
+|---|---|---|---|---|---|
+| 7001 | 10 | 0 | 0.835360 | 0.166318 | 1080 |
+| 7001 | 10 | 1 | 0.835360 | 0.166318 | 1080 |
+| 7001 | 10 | 2 | 0.835360 | 0.166318 | 1080 |
+| 7001 | 10 | 3 | 0.835360 | 0.166318 | 1080 |
+| 7001 | 14 | 0 | 0.835360 | 0.166318 | 1080 |
+| 7001 | 14 | 1 | 0.835360 | 0.166318 | 1080 |
+| 7001 | 14 | 2 | 0.850268 | 0.158191 | 1080 |
+| 7001 | 14 | 3 | 0.835360 | 0.166318 | 1080 |
+| 7001 | 18 | 0 | 0.835360 | 0.166318 | 1080 |
+| 7001 | 18 | 1 | 0.835360 | 0.166318 | 1080 |
+| 7001 | 18 | 2 | 0.903931 | 0.117682 | 1080 |
+| 7001 | 18 | 3 | 0.903370 | 0.118611 | 1080 |
+| 7003 | 10 | 0 | 0.848835 | 0.157982 | 1080 |
+| 7003 | 10 | 1 | 0.848835 | 0.157982 | 1080 |
+| 7003 | 10 | 2 | 0.848835 | 0.157982 | 1080 |
+| 7003 | 10 | 3 | 0.848835 | 0.157982 | 1080 |
+| 7003 | 14 | 0 | 0.848835 | 0.157982 | 1080 |
+| 7003 | 14 | 1 | 0.848835 | 0.157982 | 1080 |
+| 7003 | 14 | 2 | 0.863090 | 0.150130 | 1080 |
+| 7003 | 14 | 3 | 0.861405 | 0.151141 | 1080 |
+| 7003 | 18 | 0 | 0.848835 | 0.157982 | 1080 |
+| 7003 | 18 | 1 | 0.848835 | 0.157982 | 1080 |
+| 7003 | 18 | 2 | 0.910948 | 0.115142 | 1080 |
+| 7003 | 18 | 3 | 0.909476 | 0.116652 | 1080 |
+| 7007 | 10 | 0 | 0.832518 | 0.166535 | 1080 |
+| 7007 | 10 | 1 | 0.832518 | 0.166535 | 1080 |
+| 7007 | 10 | 2 | 0.832518 | 0.166535 | 1080 |
+| 7007 | 10 | 3 | 0.832518 | 0.166535 | 1080 |
+| 7007 | 14 | 0 | 0.832518 | 0.166535 | 1080 |
+| 7007 | 14 | 1 | 0.832518 | 0.166535 | 1080 |
+| 7007 | 14 | 2 | 0.850331 | 0.158000 | 1080 |
+| 7007 | 14 | 3 | 0.853743 | 0.156655 | 1080 |
+| 7007 | 18 | 0 | 0.832518 | 0.166535 | 1080 |
+| 7007 | 18 | 1 | 0.832518 | 0.166535 | 1080 |
+| 7007 | 18 | 2 | 0.907047 | 0.117776 | 1080 |
+| 7007 | 18 | 3 | 0.909205 | 0.117042 | 1080 |
+
 ## Evidence and limitations
 
 - [Complete implementation audit](docs/audit_2026-10-20/CycleTwin_full_audit.md), a historical snapshot before the corrections.
@@ -101,7 +144,7 @@ Saved intervals use patient-cluster resampling. The custom AUPRC is tie-sensitiv
 - Synthetic labels and signals share assumptions. No clinical, external or prospective real-person validation exists.
 - Old generator start dates can overlap; logged-start error is not fully propagated through real-time feature alignment.
 - No validated treatment model, hormone inference, contraception guidance or conception-planning support exists.
-- Frozen evaluation, robustness, ops measurements and a fitted Bayesian state estimator are separate follow-up gates and must not be implied complete.
+- Frozen evaluation is complete. Robustness, ops measurements and a Bayesian state estimator remain separate follow-up gates until their evidence is generated.
 
 ## Deliverables
 

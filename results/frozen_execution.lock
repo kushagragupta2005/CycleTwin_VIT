@@ -1,0 +1,11 @@
+{
+  "tag": "frozen-v1",
+  "commit": "a05167d5bcecc21d6a67e494102e41ad86204a9a",
+  "protocol_sha256": "d44a5f1fb40bf7d3123731e00ef6ffac692c439e0782300d8287f029ac3a6e6a",
+  "seeds": [
+    7001,
+    7003,
+    7007
+  ],
+  "status": "started; lock deliberately survives failures"
+}

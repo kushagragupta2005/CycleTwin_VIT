@@ -1,3 +1,5 @@
+> Current evidence: old seeds are development data. Reserved frozen-v1 results are in results_final_frozen.json; see docs/claims.json for generated values.
+
 # Related work
 
 The cited work provides context for the design and reporting choices. It does not validate CycleTwin.
@@ -14,7 +16,7 @@ The cited work provides context for the design and reporting choices. It does no
 - Collins et al. published TRIPOD+AI reporting guidance: *BMJ* 2024;385:e078378. https://doi.org/10.1136/bmj-2023-078378
 - mcPHASES is listed as a restricted-access menstrual-health dataset on PhysioNet. It is a roadmap item only; no records are used or bundled: https://physionet.org/content/mcphases/1.0.0/
 
-CycleTwin's G1 benchmark uses sklearn logistic-regression models fitted on training patients, with Platt calibration, tier fallback and F1 alert-threshold selection on validation patients. Tier 0 uses preceding logged cycle lengths; Tier 1 adds resting heart rate, HRV, steps and sleep; Tier 2 adds temperature change and completeness. Held-out results use generator seeds 97, 101 and 103 with patient-cluster bootstrap intervals. At day 14, mean Tier 0/1/2 AUROC is 0.838/0.838/0.850 and mean Brier is 0.163/0.163/0.157. These means summarize internal synthetic experiments; the README and results.json contain individual seed results and intervals. Ovulation-day estimates use a separate calendar/temperature-coverline heuristic.
+CycleTwin's G1 benchmark uses sklearn logistic-regression models fitted on training patients, with Platt calibration, tier fallback and F1 alert-threshold selection on validation patients. Tier 0 uses preceding logged cycle lengths; Tier 1 adds resting heart rate, HRV, steps and sleep; Tier 2 adds temperature change and completeness. Development results use generator seeds 97, 101 and 103 with patient-cluster bootstrap intervals. At day 14, mean Tier 0/1/2 AUROC is 0.838/0.838/0.850 and mean Brier is 0.163/0.163/0.157. These means summarize internal synthetic experiments; the README and results.json contain individual seed results and intervals. Ovulation-day estimates use a separate calendar/temperature-coverline heuristic.
 
 Tier 3 adds static EHR-lite numerical fields. Its insulin-resistance latent and androgen load also influence the label-generating process, so its results are labelled **oracle-adjacent, simulator-internal checks**, not evidence of real EHR fusion. The CSV also exposes the simulated archetype; the fitted feature matrix uses the five numerical EHR-lite fields.
 
