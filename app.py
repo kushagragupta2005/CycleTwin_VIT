@@ -10,11 +10,11 @@ import pandas as pd
 import streamlit as st
 
 from src.generator import generate
-from src.model import forecast, estimate_ovulation_day
+from src.model import estimate_ovulation_day
+from src.inference import predict
 from src.safety import abstention_reasons
 from src.conformal import calibrate_binary, calibrate_ovulation_interval, classification_set, ovulation_interval
 from src.alerts import apply_alert_budget
-from src.explanations import explain_state
 from src.metabolic import excursion_event
 from src.twin import simulate_reproductive_axis, simulate_metabolic_axis, coupling_sweep, TwinParameters
 from src.adapters.apple_health import parse_export
@@ -110,7 +110,7 @@ def render_workflow():
         for title,text in cards)
     st.markdown(f'<div class="workflow-grid">{body}</div>',unsafe_allow_html=True)
     plain_words("Compare inputs, inspect uncertainty, and see when the demo withholds a score.")
-    st.caption("The fitted benchmark and the dashboard alert demonstration are separate paths. Dashboard patient scores use fixed synthetic heuristics.")
+    st.caption("The dashboard loads the persisted fitted synthetic pipeline, including its validation-selected fallback and threshold. The separate twin remains illustrative.")
 
 
 st.markdown(f'<div class="demo-footer"><a href="https://github.com/kushagragupta2005/CycleTwin_VIT" target="_blank" rel="noopener noreferrer">GitHub · CycleTwin_VIT</a>{escape(DISCLAIMER)} · Decision-support research prototype. This screen does not validate a clinical forecast.</div>',unsafe_allow_html=True)
@@ -151,17 +151,17 @@ def demo_cohort():
             cohort.append(record)
         prior.append(record["cycle_length"])
     calibration=generate(211,patients=240,cycles=1)
-    probs=[forecast(r,14,2) for r in calibration]
+    probs={tier:[predict(r,14,tier)["prob"] for r in calibration] for tier in all_tiers}
     labels=[r["event"] for r in calibration]
-    q_cls=calibrate_binary(labels,probs)
+    q_cls={tier:calibrate_binary(labels,values) for tier,values in probs.items()}
     observed=[r for r in calibration if r["ovulation_day"]>0]
-    estimates=[estimate_ovulation_day(r,14,2) for r in observed]
-    q_ov=calibrate_ovulation_interval([r["ovulation_day"] for r in observed],estimates)
+    q_ov={tier:calibrate_ovulation_interval([r["ovulation_day"] for r in observed],
+          [estimate_ovulation_day(r,14,tier) for r in observed]) for tier in all_tiers}
     return cohort,q_cls,q_ov
 
-cohort,q_cls,q_ov=demo_cohort()
+cohort,q_classes,q_ovulations=demo_cohort()
 guided_steps=(
-    ("p0000",sensor_tiers[-1],"Notice the temperature trace, missing nights and the uncertainty band; the score is a synthetic heuristic."),
+    ("p0000",sensor_tiers[-1],"Notice the temperature trace, missing nights and the uncertainty band; the score uses the persisted fitted synthetic model."),
     ("p0026",sensor_tiers[-1],"Notice why this record is withheld: the abstain banner names the rule that fired."),
     ("p0002",sensor_tiers[0],"Notice the alert budget: add this eligible synthetic record to the alert log, then try adding it again."),
 )
@@ -201,8 +201,8 @@ with st.sidebar.expander("Data source"):
 display_controls=st.sidebar.expander("Display",expanded=page in ("Cohort","Patient"))
 with display_controls:
     plain_words("Choose which synthetic record and sensor tier to inspect.")
-    display_tier=st.selectbox("Display synthetic tier",sensor_tiers,index=len(sensor_tiers)-1,
-                             format_func=lambda t:f"Tier {t}",key="display_tier",on_change=leave_guided_demo)
+    display_tier=st.selectbox("Display synthetic tier",all_tiers,index=all_tiers.index(sensor_tiers[-1]),
+                             format_func=lambda t:f"Tier {t}"+(" · oracle-adjacent EHR-lite" if t not in sensor_tiers else ""),key="display_tier",on_change=leave_guided_demo)
     sort_by=st.selectbox("Sort synthetic list",["Risk", "Archetype", "Data completeness", "Tier"])
 with st.sidebar.expander("About this demo"):
     plain_words("This receipt acknowledges a synthetic demonstration.")
@@ -216,6 +216,7 @@ with st.sidebar.expander("Glossary"):
     st.markdown("**PMOS:** Polyendocrine metabolic ovarian syndrome; this generator includes synthetic PMOS archetypes.  \n**HOMA-IR:** A fasting-glucose-and-insulin-derived insulin-resistance estimate.  \n**Tier:** A feature set level used by the fitted benchmark.  \n**Abstain:** Withhold a score when a safety or data-quality rule fires.  \n**Conformal interval:** A data-calibrated range with marginal coverage on exchangeable data.")
 st.sidebar.caption("Consent receipt and glossary apply to this synthetic demo only.")
 
+q_cls,q_ov=q_classes[display_tier],q_ovulations[display_tier]
 rows=[]
 for r in cohort:
     completeness=float(np.isfinite(r["temperature"][:14]).mean())
@@ -226,13 +227,13 @@ for r in cohort:
            "postpartum":False,"breastfeeding":False,"perimenopausal":False,
            "wear_completeness":completeness}
     reasons=abstention_reasons(flags)
-    risk=forecast(r,14,2)
+    output=predict(r,14,display_tier)
+    risk=output["prob"]
     rows.append({"patient":r["patient"],"cycle":r["cycle"],"day":14,"phenotype":r["phenotype"],
                  "risk":risk,"abstain":bool(reasons),"reasons":reasons,"wear":completeness,
-                 "record":r,"flags":flags,"ov_est":estimate_ovulation_day(r,14,2)})
+                 "record":r,"flags":flags,"ov_est":estimate_ovulation_day(r,14,2),
+                 "prediction":output,"threshold":output["threshold"],"flag":output["flag"]})
 
-for row in rows:
-    row["risk"]=forecast(row["record"],14,display_tier)
 sort_key={"Risk":lambda x:(-x["risk"],x["patient"]), "Archetype":lambda x:(x["phenotype"],x["patient"]),
           "Data completeness":lambda x:(-x["wear"],x["patient"]), "Tier":lambda x:(display_tier,x["patient"])}[sort_by]
 eligible=sorted(rows,key=sort_key)
@@ -240,6 +241,7 @@ with display_controls:
     selected_id=st.selectbox("Selected synthetic patient",[r["patient"] for r in eligible],key="patient_choice",on_change=leave_guided_demo)
 item=next(r for r in eligible if r["patient"]==selected_id)
 record=item["record"]
+st.session_state["visible_prediction"]=item["prediction"]
 ix=int(item["patient"].split("p")[-1])
 twin_repro=simulate_reproductive_axis(record["ir"],record["androgen"],seed=4000+ix)
 page_title={"Overview":"CycleTwin", "Cohort":"Synthetic cohort", "Patient":f"Patient {selected_id}",
@@ -263,7 +265,7 @@ if page=="Overview":
     stats[3].metric("Mean Brier · synthetic",f"{best_sensor['Mean Brier']:.3f}",
                     help="Mean squared probability error across seeds for the described sensor tier. Lower is better within this simulator.")
     st.caption(f"Tier {best_sensor['Tier']} at forecast day {benchmark_day} · lowest mean held-out Brier among the displayed sensor tiers. Descriptive comparison only; calibration, feature fallback and thresholds were selected on validation, not test.")
-    plain_words("These figures describe the fitted synthetic benchmark. They do not measure clinical performance or calibrate the dashboard's fixed demo score.")
+    plain_words("These figures describe the fitted synthetic benchmark. They describe synthetic model performance, not clinical performance or individual confidence.")
     st.subheader("What makes it different")
     plain_words("The demonstration makes its safety rules, uncertainty and input limits visible.")
     features=[
@@ -288,11 +290,11 @@ if page == "Cohort":
         st.caption("“Not flagged” is neutral: it does not mean low clinical risk. The list is sortable through the sidebar.")
     summary=[]
     for r in eligible:
-        state="Clinician review" if r["abstain"] else ("Flagged by demo cutoff" if r["risk"]>=.5 else "Not flagged")
-        summary.append({"Patient":r["patient"],"Synthetic archetype":r["phenotype"],"Fixed demo score":round(r["risk"],3),
+        state="Clinician review" if r["abstain"] else ("Flagged by validation cutoff" if r["flag"] else "Not flagged")
+        summary.append({"Patient":r["patient"],"Synthetic archetype":r["phenotype"],"Fitted synthetic score":round(r["risk"],3),
                         "Tier":f"Tier {display_tier}","Data completeness":round(r["wear"]*100),"Status":state,
                         "Metabolic axis":"CGM illustrative" if int(r["patient"].split("p")[-1])%4==0 else "Not sampled"})
-    headers=["Patient","Synthetic archetype","Fixed demo score","Tier","Data completeness","Status","Metabolic axis"]
+    headers=["Patient","Synthetic archetype","Fitted synthetic score","Tier","Data completeness","Status","Metabolic axis"]
     table_rows=[]
     for row in summary:
         pct=row["Data completeness"]
@@ -302,20 +304,20 @@ if page == "Cohort":
                 continue
             if key=="Status":
                 review=row[key]=="Clinician review"
-                cls="status-review" if review else ("status-flagged" if row[key]=="Flagged by demo cutoff" else "status-neutral")
+                cls="status-review" if review else ("status-flagged" if row[key]=="Flagged by validation cutoff" else "status-neutral")
                 cells.append(f'<td><span class="status-pill {cls}">{escape(str(row[key]))}</span></td>')
-            elif key=="Fixed demo score":
-                cells.append(f'<td title="Fixed synthetic heuristic; not a diagnosis probability">{escape(str(row[key]))}</td>')
+            elif key=="Fitted synthetic score":
+                cells.append(f'<td title="Fitted synthetic model; not a diagnosis probability">{escape(str(row[key]))}</td>')
             else:
                 cells.append(f'<td>{escape(str(row[key]))}</td>')
         cells.insert(4, f'<td><div style="display:flex;align-items:center;gap:8px"><span style="width:92px;height:8px;background:#e5eeeb;border-radius:8px;overflow:hidden"><span class="completeness-fill" style="width:{pct}%"></span></span><span>{pct}%</span></div></td>')
         table_rows.append("<tr>"+"".join(cells)+"</tr>")
     table_html='<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;background:#fff;color:#18313d;font-size:.88rem"><thead><tr>'+"".join(f'<th style="text-align:left;padding:10px;border-bottom:2px solid #d7e2e1">{escape(h)}</th>' for h in headers)+'</tr></thead><tbody>'+"".join(table_rows)+"</tbody></table></div>"
     st.markdown(table_html,unsafe_allow_html=True)
-    model_rows=[seed["metrics"][f"day_14_tier_{display_tier}"] for seed in benchmark["seeds"].values()]
+    model_rows=[item["prediction"]["metrics"]]
     mean_brier=float(np.mean([metric["brier"] for metric in model_rows]))
     mean_auroc=float(np.mean([metric["auroc"] for metric in model_rows]))
-    st.caption(f"Fixed synthetic demo score (not a diagnosis probability). Separate fitted benchmark Tier {display_tier}: AUROC {mean_auroc:.3f} · Brier {mean_brier:.3f}; see Model & methodology for intervals and seed-level results.")
+    st.caption(f"Fitted synthetic seed {item['prediction']['seed']} · requested Tier {display_tier}; selected Tier {item['prediction']['selected_tier']} · validation threshold {item['threshold']:.6f} · AUROC {mean_auroc:.3f} · Brier {mean_brier:.3f}. Not a diagnosis probability.")
     st.subheader("Interactive synthetic risk–coverage diagnostic")
     plain_words("As more non-abstaining records are included, compare the covered share and the share of incorrect demo labels.")
     with st.popover("ⓘ Diagnostic caveat"):
@@ -326,7 +328,7 @@ if page == "Cohort":
     for fraction in np.linspace(.1,1,10):
         count=max(1,int(len(available)*fraction)); chosen=available[:count]
         cover.append(count/max(len(rows),1))
-        selective_error.append(float(np.mean([(r["risk"]>=.5)!=bool(r["record"]["event"]) for r in chosen])))
+        selective_error.append(float(np.mean([r["flag"]!=bool(r["record"]["event"]) for r in chosen])))
     st.line_chart({"coverage of all records":cover,"selective error":selective_error},color=["#0e766e","#65757b"])
     if cover and selective_error:
         render_chart_summary(
@@ -341,7 +343,7 @@ if page == "Method":
     plain_words("Read fitted-model performance by input tier and forecast day. All outcomes and inputs are generated.")
     with st.popover("ⓘ Benchmark caveat"):
         st.caption("Synthetic held-out data only. Patient-cluster bootstrap confidence intervals; not clinical performance or a confidence guarantee for this record.")
-    st.markdown("The dashboard's fixed synthetic demo score is a heuristic. The separately fitted benchmark is evaluated on held-out synthetic cycles; it is not a clinical model.")
+    st.markdown("The dashboard uses persisted seed-97 fitted synthetic models and their validation-selected thresholds. The benchmark is not a clinical model.")
     model_rows=[seed["metrics"][f"day_{benchmark_day}_tier_{display_tier}"] for seed in benchmark["seeds"].values()]
     st.caption(f"Selected Tier {display_tier} · forecast day {benchmark_day} · synthetic held-out results")
     st.metric("Fitted benchmark AUROC",f"{np.mean([m['auroc'] for m in model_rows]):.3f}",help="Mean AUROC across synthetic held-out seeds for the selected tier and displayed forecast day; it is not a clinical accuracy estimate.")
@@ -355,12 +357,12 @@ if page == "Method":
                                 "AUROC 95% CI":f"{metric['auroc_cluster_bootstrap_95ci'][0]:.3f}–{metric['auroc_cluster_bootstrap_95ci'][1]:.3f}",
                                 "Brier":round(metric["brier"],3),"Held-out cycles":metric["n_cycles"]}
                                for seed,metric in zip(benchmark["seeds"].keys(),model_rows)]),hide_index=True,use_container_width=True)
-    st.caption("These figures belong to the separately fitted benchmark model, not the dashboard’s fixed synthetic demo score.")
+    st.caption("These synthetic benchmark figures describe fitted models. They do not establish clinical validity or confidence for an individual record.")
     st.caption("Synthetic held-out data only. Patient-cluster bootstrap confidence intervals; not clinical performance or a confidence guarantee for this record.")
-    st.markdown("**Method:** synthetic generator → tiered fitted benchmark → held-out evaluation. The dashboard heuristic and the simplified twin are separate demonstrations; the twin state is not used in the benchmark score.")
+    st.markdown("**Method:** synthetic generator → tiered fitted benchmark → held-out evaluation. The dashboard uses the fitted classifier; the simplified twin remains a separate illustration; the twin state is not used in the benchmark score.")
     st.subheader("Honest limitations")
     plain_words("The software learns patterns created by its own simulator. It has not established reliable forecasting for people with PMOS without measured hormone levels.")
-    st.markdown("- Synthetic data only; no clinical or external validation.\n- Patient panels use fixed heuristics; their scores are separate from the fitted benchmark.\n- EHR-lite is oracle-adjacent because internal variables also influence generated labels.\n- Conformal and abstention coverage, and CGM forecasts, are not evaluated benchmark endpoints.\n- Twin dynamics are illustrative and unused by the fitted score; what-if ranges are fixed assumptions.\n- The displayed timeline includes later generated nights; prospective benchmark features are truncated at the forecast day.")
+    st.markdown("- Synthetic data only; no clinical or external validation.\n- Patient panels use persisted fitted models; the generated display cohort is separate from training.\n- EHR-lite is oracle-adjacent because internal variables also influence generated labels.\n- Conformal and abstention coverage, and CGM forecasts, are not evaluated benchmark endpoints.\n- Twin dynamics are illustrative and unused by the fitted score; what-if ranges are fixed assumptions.\n- The displayed timeline includes later generated nights; prospective benchmark features are truncated at the forecast day.")
     st.stop()
 
 st.divider()
@@ -374,35 +376,37 @@ if st.session_state.get("guided",False):
     next_step.button("Next",on_click=select_guided_step,args=(step_index+1,),disabled=step_index==len(guided_steps)-1)
     st.progress((step_index+1)/len(guided_steps),text="Guided demo progress")
 
-model_rows=[seed["metrics"][f"day_14_tier_{display_tier}"] for seed in benchmark["seeds"].values()]
+model_rows=[item["prediction"]["metrics"]]
 mean_brier=float(np.mean([metric["brier"] for metric in model_rows]))
 mean_auroc=float(np.mean([metric["auroc"] for metric in model_rows]))
 auroc_low=min(metric["auroc_cluster_bootstrap_95ci"][0] for metric in model_rows)
 auroc_high=max(metric["auroc_cluster_bootstrap_95ci"][1] for metric in model_rows)
 with st.expander(f"Model card · fitted benchmark Tier {display_tier}"):
-    plain_words("These seed-level benchmark results provide context; they do not validate this record's fixed demo score.")
-    st.caption("These figures belong to the separately fitted benchmark model, not the dashboard’s fixed synthetic demo score.")
+    plain_words("These seed-level benchmark results provide context; they do not clinically validate this generated record.")
+    st.caption("These synthetic benchmark figures describe fitted models. They do not establish clinical validity or confidence for an individual record.")
     st.dataframe(pd.DataFrame([{"Seed":seed, "AUROC":round(metric["auroc"],3), "AUROC 95% CI":f"{metric['auroc_cluster_bootstrap_95ci'][0]:.3f}–{metric['auroc_cluster_bootstrap_95ci'][1]:.3f}",
                                 "Brier":round(metric["brier"],3), "Held-out cycles":metric["n_cycles"]}
-                       for seed,metric in zip(benchmark["seeds"].keys(),model_rows)]),hide_index=True,use_container_width=True)
+                       for seed,metric in zip([str(item["prediction"]["seed"])],model_rows)]),hide_index=True,use_container_width=True)
     st.caption("Synthetic held-out data only. Patient-cluster bootstrap confidence intervals; not clinical performance or a confidence guarantee for this record.")
 
+if item["prediction"]["fallback_used"]:
+    st.info("Calendar fallback selected · validation did not support retaining the richer feature set.")
 st.subheader("Cycle overview")
 plain_words("Inspect an individual generated cycle, its uncertainty and the rule behind any withheld score.")
 with st.popover("ⓘ Patient caveats"):
-    st.caption("These figures belong to the separately fitted benchmark model, not the dashboard’s fixed synthetic demo score. Synthetic held-out data only. Patient-cluster bootstrap confidence intervals; not clinical performance or a confidence guarantee for this record.")
+    st.caption("These synthetic benchmark figures describe fitted models. They do not establish clinical validity or confidence for an individual record. Synthetic held-out data only. Patient-cluster bootstrap confidence intervals; not clinical performance or a confidence guarantee for this record.")
 left,right=st.columns([1.2,1])
 with left:
     st.subheader(f"Patient {item['patient']} · cycle {item['cycle']+1}")
     if item["abstain"]:
         st.markdown('<div class="abstain-card">⏸ <b>Abstain · clinician review</b><br>Rule fired: '+"; ".join(item["reasons"])+"</div>",unsafe_allow_html=True)
     else:
-        st.metric("Synthetic demo E1 score",f"{item['risk']:.0%}",help="Fixed synthetic heuristic for a late or absent generated ovulation event; this is separate from the fitted benchmark and is not a diagnosis probability.")
-        st.caption(f"Separate fitted benchmark at day 14 · Brier {mean_brier:.3f}; AUROC {mean_auroc:.3f} (seed-level 95% CI span {auroc_low:.3f}–{auroc_high:.3f}). These do not calibrate this fixed demo score.")
-        if item["risk"] < .5:
-            st.markdown('<div class="cycletwin-neutral">Not flagged by the fixed demo cutoff. This is a neutral state, not a clinical reassurance.</div>',unsafe_allow_html=True)
+        st.metric("Fitted synthetic E1 probability",f"{item['risk']:.0%}",help="Persisted fitted-model probability of the generated late/absent label. Synthetic-only, not a diagnosis probability.")
+        st.caption(f"This synthetic model · Brier {mean_brier:.3f}; AUROC {mean_auroc:.3f} (patient-bootstrap 95% CI {auroc_low:.3f}–{auroc_high:.3f}); validation threshold {item['threshold']:.6f}. Not an individual confidence guarantee.")
+        if not item["flag"]:
+            st.markdown('<div class="cycletwin-neutral">Not flagged by the validation-selected cutoff. This is a neutral state, not a clinical reassurance.</div>',unsafe_allow_html=True)
         else:
-            st.info("Flagged by the fixed synthetic demo cutoff; clinician interpretation would be required.")
+            st.info("Flagged by the validation-selected synthetic cutoff; clinician interpretation would be required.")
     label_set=classification_set(item["risk"],q_cls)
     est=item["ov_est"]
     interval=ovulation_interval(est,q_ov)
@@ -455,8 +459,9 @@ with left:
     )
     st.caption("Day-by-day simulated follicle state; dashed amber rule marks the LH threshold. Ovulation day above is the resulting scalar event.")
     st.caption("Shared synthetic insulin-resistance latent drives both axes. Coupling sweep: "+str(coupling_sweep(record["ir"],record["androgen"])))
-    temp_effect=float(np.nanmean(record['temperature'][8:14])-np.nanmean(record['temperature'][:5]))
-    st.write(explain_state({"ovulation_estimate":est},{"temperature_shift":temp_effect,"rhr_offset":float(np.nanmean(record['rhr'][:14]))}))
+    st.subheader("Exact fitted feature evidence")
+    st.caption("Coefficient × standardized input, with imputation shown. Calibrated-logit contributions plus the calibrated intercept reproduce the fitted probability. Association, not causation.")
+    st.dataframe(pd.DataFrame(item["prediction"]["contributions"]),hide_index=True,use_container_width=True)
 with right:
     st.subheader("Two-axis risk view")
     plain_words("The cycle score and the glucose illustration describe separate synthetic signals.")
@@ -464,8 +469,8 @@ with right:
         st.metric("Ovulation-delay axis","Withheld",help="An explicit abstention rule fired for this generated record; the score is withheld.")
         st.caption("No risk score shown because an abstention rule fired.")
     else:
-        st.metric("Ovulation-delay axis",f"{item['risk']:.0%}",help="The same fixed synthetic demo heuristic shown in the cycle panel, separate from fitted benchmark probabilities.")
-        st.caption(f"Separate fitted benchmark at day 14 · Brier {mean_brier:.3f}; AUROC {mean_auroc:.3f} (seed-level 95% CI span {auroc_low:.3f}–{auroc_high:.3f}). These do not calibrate this fixed demo score.")
+        st.metric("Ovulation-delay axis",f"{item['risk']:.0%}",help="The same fitted synthetic probability shown in the cycle panel. Not a diagnosis probability.")
+        st.caption(f"This synthetic model · Brier {mean_brier:.3f}; AUROC {mean_auroc:.3f} (patient-bootstrap 95% CI {auroc_low:.3f}–{auroc_high:.3f}); validation threshold {item['threshold']:.6f}. Not an individual confidence guarantee.")
     if ix%4==0:
         plain_words("The glucose line is simulated. The meal-window count reports threshold crossings in the full generated stream.")
         metabolic=simulate_metabolic_axis(record["ir"],twin_day,seed=3000+ix)
@@ -508,7 +513,8 @@ with st.container(border=True):
     for r in rows:
         for day in (10,14,18):
             predictions.append({"patient":r["patient"],"cycle":r["cycle"],"day":day,
-                                "risk":forecast(r["record"],day,display_tier),"abstain":r["abstain"]})
+                                "risk":predict(r["record"],day,display_tier)["prob"],
+                                "threshold":predict(r["record"],day,display_tier)["threshold"],"abstain":r["abstain"]})
     budgeted=apply_alert_budget(predictions,threshold=alert_threshold,max_per_cycle=alert_limit)
     if st.button("Add selected synthetic alert to log"):
         chosen=next((r for r in budgeted if r["patient"]==item["patient"] and r["cycle"]==item["cycle"] and r["alert"]),None)

@@ -1,0 +1,8 @@
+{
+  "item": "A2",
+  "unit_and_AppTest_tests_passed": 19,
+  "classification_results_change": "none",
+  "dashboard_predictor": "persisted seed-97 fitted pipeline",
+  "threshold": "validation-selected per snapshot/tier",
+  "scope": "synthetic-only"
+}
