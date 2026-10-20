@@ -67,6 +67,7 @@ p { max-width: 70ch; }
 .ct-card { background:var(--ct-surface); border:1px solid var(--ct-line); border-radius:var(--ct-radius); box-shadow:var(--ct-shadow); padding:1.35rem; }
 .ct-action-gap { height:1rem; }
 .ct-card-number { color:var(--ct-teal-dark); font-family:ui-serif, Georgia, serif; font-size:clamp(2.1rem, 4.4vw, 3.45rem); font-weight:600; line-height:1; margin:.25rem 0 .7rem; }
+.ct-card-number-small { font-size:clamp(1.5rem, 3vw, 2.25rem); line-height:1.15; }
 .ct-card-danger { background:var(--ct-danger-soft); border-color:#d87872; }
 .ct-card-danger .ct-card-number { color:var(--ct-danger); }
 .ct-failed-label { background:#fff; border:1px solid #d87872; border-radius:999px; color:var(--ct-danger); display:inline-flex; font-size:.78rem; font-weight:800; margin-bottom:.65rem; padding:.18rem .5rem; }

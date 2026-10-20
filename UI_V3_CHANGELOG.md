@@ -21,6 +21,12 @@
 - Made the failed synthetic ovulation-day band visible beside the temperature trace, including its inability to meet its 90% coverage target.
 - Added data-derived chart summaries, an optional fitted-feature table, and narrow-screen layout verification. No model, data, score, threshold, safety-rule, or simulator logic changed.
 
+## Stage 4 — clearer findings and Evidence page
+
+- Rewrote the four Home findings in judge-facing language while continuing to read AUROC, coverage, target, tier, day, sample count, and seed count from `docs/claims.json`.
+- Made the timing-range failure explicit with a warning icon, `Failed` label, and red card. Detailed mode reveals the associated technical metric and tier/day under every finding.
+- Added `Evidence`: frozen tier results, synthetic uncertainty and one-alert-policy checks, optional diagnostics, local operations details, and visible research limitations.
+
 ## Run and rollback
 
 ```sh
