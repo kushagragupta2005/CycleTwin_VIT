@@ -84,6 +84,8 @@ All three fresh generator seeds are shown. Models are fitted on train patients, 
 
 ## Dashboard screenshots
 
+The five images below predate the latest UI changes. Recapture is pending because local browser automation is disabled; the [manual capture guide](docs/screenshots/README.md) specifies the exact views, patient IDs, tiers and filenames.
+
 ![Synthetic patient list](docs/screenshots/patient-list.png)
 
 ![Patient timeline](docs/screenshots/patient-timeline.png)
