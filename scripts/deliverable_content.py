@@ -93,6 +93,13 @@ def compose(c):
                f"Original Tier-3 oracle-adjacent internal reference: AUROC {metric(upper['auroc'])}, Brier {metric(upper['brier'])}",
                'The proxy uses positive exp(latent) values and independent 15% CV assay noise.',
                'It retains simulator-internal leakage risk and is not a clinical EHR-fusion claim.'])
+    if c.get('operations'):
+        ops=c['operations'];warm=ops['warm_latency_ms']
+        slide('Local operations measurement','One persisted frozen Tier-2 model on the build host',
+              [f"Cold new-process first prediction: {ops['cold_subprocess_ms']:.3f} ms",
+               f"Warm inference: mean {warm['mean']:.3f} ms, p95 {warm['p95']:.3f} ms across {ops['warm_repeats']:,} calls",
+               f"Local process peak RSS: {ops['process_peak_rss_kib']:.0f} KiB",
+               'Host-specific engineering measurement, not a production-service SLA.'])
     slide('What the clinician view shows','Decision-support research display',
           ['Fitted probability beside its own validation threshold and held-out model evidence',
            'Exact additive feature contributions and explicit imputation',
@@ -240,6 +247,10 @@ Code uses the [MIT License](LICENSE). All project datasets are synthetic. Publis
     if c.get('lab_proxy'):
         lab=c['lab_proxy'];means=lab['means'];upper=lab['original_tier3_upper_bound_means']
         section='## Simulated assay-like extension\n\nThis post-freeze Tier-2-plus-proxy analysis transforms simulator IR and androgen latents to positive `exp(latent)` values with independent 15% CV noise. It obtained mean synthetic AUROC {a:.6f}, standard AP {ap:.6f}, and Brier {b:.6f}; original Tier-3 oracle-adjacent internal-reference means were AUROC {ua:.6f} and Brier {ub:.6f}. These are not measured hormone values, do not have clinical units, and retain simulator-internal leakage risk. Full artifact: results_lab_proxy_extension.json.\n\n'.format(a=means['auroc'],ap=means['average_precision'],b=means['brier'],ua=upper['auroc'],ub=upper['brier'])
+        readme=readme.replace('## Evidence and limitations',section+'## Evidence and limitations')
+    if c.get('operations'):
+        ops=c['operations'];warm=ops['warm_latency_ms']
+        section='## Local operations measurement\n\nOn the build host, a cold new-process first prediction took {cold:.6f} ms. Across {n:,} warm in-process calls, mean latency was {mean:.6f} ms and p95 {p95:.6f} ms; process peak RSS was {rss:.0f} KiB. This is host-specific local evidence, not a production-service SLA. See results_ops.json and docs/operations_methods.md.\n\n'.format(cold=ops['cold_subprocess_ms'],n=ops['warm_repeats'],mean=warm['mean'],p95=warm['p95'],rss=ops['process_peak_rss_kib'])
         readme=readme.replace('## Evidence and limitations',section+'## Evidence and limitations')
     videos={}
     for duration in (team['minimum_video_minutes'], cfg['short_video_minutes']):

@@ -112,6 +112,10 @@ def build(write=True):
     claims['lab_proxy']=json.loads(lab_proxy.read_text()) if lab_proxy.exists() else None
     if lab_proxy.exists():
         claims['source_sha256']['results_lab_proxy_extension.json']=hashlib.sha256(lab_proxy.read_bytes()).hexdigest()
+    ops=ROOT/'results_ops.json'
+    claims['operations']=json.loads(ops.read_text()) if ops.exists() else None
+    if ops.exists():
+        claims['source_sha256']['results_ops.json']=hashlib.sha256(ops.read_bytes()).hexdigest()
     submission=ROOT/'docs/submission_status.json'
     claims['submission']=json.loads(submission.read_text()) if submission.exists() else None
     claims['deliverables']=compose(claims)

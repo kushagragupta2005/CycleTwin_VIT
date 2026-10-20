@@ -174,6 +174,10 @@ A train-only discrete Bayesian posterior used a calendar/static prior and pre/po
 
 This post-freeze Tier-2-plus-proxy analysis transforms simulator IR and androgen latents to positive `exp(latent)` values with independent 15% CV noise. It obtained mean synthetic AUROC 0.906678, standard AP 0.884546, and Brier 0.117684; original Tier-3 oracle-adjacent internal-reference means were AUROC 0.907350 and Brier 0.117435. These are not measured hormone values, do not have clinical units, and retain simulator-internal leakage risk. Full artifact: results_lab_proxy_extension.json.
 
+## Local operations measurement
+
+On the build host, a cold new-process first prediction took 1193.724167 ms. Across 1,000 warm in-process calls, mean latency was 0.532991 ms and p95 0.564667 ms; process peak RSS was 193104 KiB. This is host-specific local evidence, not a production-service SLA. See results_ops.json and docs/operations_methods.md.
+
 ## Evidence and limitations
 
 - [Complete implementation audit](docs/audit_2026-10-20/CycleTwin_full_audit.md), a historical snapshot before the corrections.

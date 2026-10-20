@@ -1,0 +1,22 @@
+{
+  "scope": "Local host operations evidence for synthetic persisted inference; not a production service SLA.",
+  "host": {
+    "platform": "macOS-15.8-arm64-arm-64bit",
+    "python": "3.9.6"
+  },
+  "model": {
+    "seed": 7001,
+    "day": 18,
+    "tier": 2
+  },
+  "cold_subprocess_ms": 1193.724167,
+  "warm_repeats": 1000,
+  "warm_latency_ms": {
+    "mean": 0.532991166,
+    "p50": 0.528458,
+    "p95": 0.564667,
+    "max": 0.863875
+  },
+  "process_peak_rss_kib": 193104.0,
+  "rss_note": "ru_maxrss for this local Python process; macOS reports bytes and the script converts to KiB."
+}

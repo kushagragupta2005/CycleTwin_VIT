@@ -82,3 +82,14 @@ def render_lab_proxy(claims):
     st.dataframe(pd.DataFrame([{'Post-freeze synthetic lab-like AUROC':means['auroc'],'Standard AP':means['average_precision'],'Brier':means['brier'],
                                 'Original Tier-3 internal-reference AUROC':upper['auroc'],'Original Tier-3 internal-reference Brier':upper['brier']}]),hide_index=True,use_container_width=True)
     st.caption('The indices derive from label-generating simulator latents, with 15% assay noise. They have no clinical units and retain simulator-internal leakage risk.')
+
+
+def render_operations(claims):
+    ops=claims.get('operations')
+    if not ops: return
+    st.subheader('Local operations measurement')
+    st.caption('In plain words: this is a local machine timing check for one persisted synthetic model, not a production service guarantee.')
+    warm=ops['warm_latency_ms']
+    st.dataframe(pd.DataFrame([{'Cold subprocess (ms)':ops['cold_subprocess_ms'],'Warm mean (ms)':warm['mean'],'Warm p95 (ms)':warm['p95'],
+                                'Warm repeats':ops['warm_repeats'],'Process peak RSS (KiB)':ops['process_peak_rss_kib']}]),hide_index=True,use_container_width=True)
+    st.caption(ops['rss_note'])
