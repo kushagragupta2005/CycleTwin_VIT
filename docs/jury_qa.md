@@ -1,26 +1,34 @@
-> Current evidence: old seeds are development data. Reserved frozen-v1 results are in results_final_frozen.json; see docs/claims.json for generated values.
-
 # Jury Q&A
 
-1. **Why synthetic data?** No verified, permissioned cohort is available for this prototype. Synthetic data makes the pipeline reproducible without exposing anyone's health information.
-2. **What if the generator is wrong?** Then the reported metrics may not transfer. The generator is an engineering fixture, not a physiological reference.
-3. **What does the model predict?** A synthetic cycle-level flag for no ovulation or ovulation after cycle day 21, evaluated at days 10, 14 and 18.
-4. **What is not claimed?** No clinical accuracy, diagnostic ability, treatment effect, or usefulness for contraception or conception planning.
-5. **Why include sensor tiers?** The fitted G1 benchmark compares calendar history (Tier 0), additional RHR/HRV/steps/sleep (Tier 1), additional temperature change/completeness (Tier 2), and additional static EHR-lite numerical fields (Tier 3). The EHR-lite IR latent affects label generation; androgen correlates with assigned archetype, so Tier 3 is an oracle-adjacent, simulator-internal check.
-6. **Does the project use CGM?** Patient view displays generated glucose for selected synthetic patients. The underlying stream has 15-minute samples, the plotted line is thinned to every eighth sample, and the meal-excursion count uses the full stream over 120-minute post-meal windows. There is no evaluated CGM forecast or E2 result.
-7. **Is this a digital twin of a patient?** No. The dashboard has a simplified coupled reproductive/metabolic simulator and a separately evaluated train-only timing posterior, but neither models a real person. The posterior does not replace the fitted logistic score, threshold, safety gate or alert policy.
-8. **Why not use a language model in the clinical loop?** There is no LLM in the loop. State explanations and the temperature, twin, CGM and risk–coverage chart summaries are deterministic templates populated from computed values. AI coding assistance during development is disclosed separately in the README.
-9. **Why does the evaluator split by patient?** Cycles from one synthetic patient share latent characteristics; keeping them together limits patient leakage.
-10. **How should the metrics be read?** As patient-separated development results for three older seeds of the same synthetic generator, with patient-cluster bootstrap intervals. At day 14, mean Tier 0/1/2 AUROC is 0.838/0.838/0.850 and mean Brier is 0.163/0.163/0.157. Day-18 Tier 2 has mean AUROC 0.906 and Brier 0.119. These are rounded seed means, not pooled estimates or clinical performance. Individual intervals, thresholds and sample sizes are in the README and results.json.
-11. **Why can the event rate be near one half?** The simulator uses a fixed mix of phenotype archetypes and assumptions. That mix is not a prevalence estimate.
-12. **Is the temperature rule an ovulation confirmation?** No. It is a simple coverline heuristic over generated data and may be wrong even in the simulator.
-13. **Why does the project abstain?** The guard module supports thyroid/prolactin flags, contraception, age/early menarche, pregnancy-related states, perimenopause and incomplete wear. The generated dashboard currently activates thyroid-mimic, contraception, early-menarche/age and wear-completeness examples; the other flags are supported and tested. The banner reports which rule fired. These are demo rules, not clinically validated policy.
-14. **What personal data is in the repo?** None. The Apple Health-shaped XML fixture is generated locally from synthetic data. Upload parsing does not replace the generated cohort with fitted predictions for the uploaded record.
-15. **What would be needed before clinical use?** Clinician co-design, a validated target definition, privacy and governance review, and prospective evaluation on appropriately consented data.
-16. **Are the models really fitted?** Yes. Logistic regression is fitted on training patients, then Platt-calibrated on validation patients. Validation also selects tier fallback and F1 alert thresholds. Test outcomes do not select the deployed threshold. The ovulation-day heuristic is a separate estimator.
-17. **Why do some tiers have identical results?** A richer candidate falls back to the calendar model when its patient-cluster validation Brier-gain interval is not wholly positive. Early wearable features are weak in this simulator; the selected feature tier is recorded for each result. Identical rows are not evidence that every sensor improves performance.
-18. **What does each dashboard page show?** Cohort list has sortable records, completeness bars, status badges and a display-cohort risk–coverage diagnostic. Patient view has the temperature timeline, abstain/conformal information, twin trajectory, selected-patient CGM, illustrative what-ifs and causal session alert log. Model & methodology shows fitted benchmark metrics plus frozen calibration, alert-policy, robustness, timing-posterior, assay-proxy and local-operations evidence.
-19. **Is the displayed patient score the fitted model output?** Yes. Patient, cohort, Kushi and alert paths call src/inference.py with the persisted model and its own validation threshold. Cards show that model's synthetic evidence. No diagnosis probability or clinical validity is established.
-20. **Is the sandbox a validated counterfactual?** No. It edits invented historical input and reruns the fitted classifier. It does not estimate a causal intervention effect.
-21. **Can the results be reproduced?** A clean virtual environment installed solely from the pinned requirements passed fitted-pipeline tests and the current 40-test suite. The one-time frozen artifact is guarded against overwrite; persisted inference reproduces its saved predictions. The pinned evaluation runtime includes scikit-learn 1.6.1 and NumPy 2.0.2.
-22. **Is the demo video recorded?** No. The 20-minute and three-minute scripts are in docs/video_script_20min.md and docs/video_script_3min.md. A human presenter must still record the required minimum 20-minute video.
+All numerical evidence is generated in [claims.json](claims.json). It describes synthetic data and is not clinical performance evidence.
+
+1. **What problem is CycleTwin solving?** It forecasts a generated cycle with late or absent ovulation from calendar and wearable-style inputs. It does not diagnose PMOS.
+2. **Why use synthetic data?** No permissioned real cohort is included. Synthetic data permits an inspectable pipeline without exposing health data.
+3. **What if the generator is wrong?** Its metrics may not transfer. The generator is an engineering fixture, not a physiology reference.
+4. **What is the label?** A generated event: ovulation after the configured cutoff or no generated ovulation. [assumptions.md](assumptions.md) records the rule.
+5. **Does PMOS status drive the prediction?** No diagnosis is output. The synthetic cohort includes PMOS and non-PMOS archetypes only as generator context.
+6. **How are patients separated?** Train, validation and held-out partitions are by generated patient, so a patient's cycles do not cross partitions.
+7. **Why are days 10 and 14 mainly calendar history?** Validation retained the calendar fallback for many early snapshots; temperature evidence has not yet supplied a validated gain. See [claims.json](claims.json).
+8. **When do sensors help in this simulation?** The frozen Tier-2 day-18 row reports the intended temperature-assisted comparison.
+9. **What is the fitted score?** A train-fitted logistic regression, Platt-calibrated and thresholded using validation data. [eval_plan.md](eval_plan.md) records the separation.
+10. **Does the twin drive that score?** No. The reproductive/metabolic illustration is separate from the persisted logistic path.
+11. **What is the Bayesian timing posterior?** A separate train-only calendar/static prior with temperature, RHR and HRV likelihoods. Its frozen comparison is in [claims.json](claims.json).
+12. **Why can the Bayesian posterior look favorable?** It is evaluated against labels made by the same simulator family. That construction limits its meaning outside the simulator.
+13. **What happened to the ovulation-day interval?** Its heuristic day band failed the frozen coverage check. It stays labelled illustrative in the app and README.
+14. **What happens under temperature drift?** Frozen synthetic ranking remains similar while calibration degrades materially; the robustness artifact reports both values.
+15. **Why are FSH, LH, estradiol and progesterone absent?** Their interpretation depends on cycle day and clinical context. Progesterone can also function as event confirmation, making it inappropriate as a prospective predictor here.
+16. **Why use nightly wrist temperature rather than manual morning BBT?** The input is a wearable-shaped nighttime stream with completeness checks; it is not claimed to be equivalent to clinical BBT.
+17. **Why are cervical mucus and urinary LH absent?** They are pre-ovulatory signals for a future, consented-data branch; they are not simulated as scored inputs now.
+18. **What is EHR-lite?** Generated age, BMI, family history and simulator internals. It is labelled oracle-adjacent because an internal latent contributes to label generation.
+19. **Are there real patients or hormone measurements?** No. All records, labels, display personas and assay-like proxies are synthetic.
+20. **What is the DPDP stance?** No personal data is bundled. Any future Indian deployment needs a purpose-specific DPDP assessment, consent and governance process; none is complete.
+21. **When does the app abstain?** Missing safety information, contraindication-style flags, age-related states and insufficient observed temperature can withhold personal outputs. [assumptions.md](assumptions.md) lists the rules.
+22. **What happens after abstention?** The app suppresses score, interval, explanation, sandbox and alert output, then shows the triggering rule.
+23. **How is alert fatigue limited?** The frozen policy retains the earliest safe threshold crossing and permits one synthetic alert per cycle.
+24. **Are alert rates clinical rates?** No. They are simulator outcomes, with exact frozen counts and denominators in [claims.json](claims.json).
+25. **What does the conformal class set mean?** It is a synthetic classification-set check. It does not rescue the failed day band or provide an individual guarantee.
+26. **What does the CGM panel show?** Generated glucose for a selected synthetic record. It is not an evaluated glucose forecast.
+27. **Is the what-if panel a treatment recommendation?** No. It shows assumption-only input edits and does not estimate causal effects.
+28. **What is tested automatically?** The suite covers persisted inference, patient splits, safety withholding, dashboard paths, claims consistency and frozen-artifact protection.
+29. **Can results be reproduced?** The pinned requirements support a clean-environment test run; [deploy_streamlit.md](deploy_streamlit.md) records the deployment path.
+30. **What is not claimed?** Clinical validity, PMOS diagnosis, hormone inference, contraception or conception guidance, treatment benefit, real-patient performance and a validated digital twin.
