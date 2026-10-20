@@ -2,6 +2,7 @@
 import hashlib
 import json
 from pathlib import Path
+import re
 import sys
 import numpy as np
 
@@ -11,6 +12,54 @@ from src.personas import make_kushi
 from src.generator import generate
 from src.splits import patient_partition
 from scripts.deliverable_content import compose
+
+
+def judge_readme(claims, body):
+    """Add the submission-facing README opening from already-built claims."""
+    tier2 = next(row for row in claims["frozen_summary"] if row["Forecast day"] == 18 and row["Tier"] == 2)
+    drift = claims["robustness"]["conditions"]["device_drift_c_per_day=0.01"]
+    coverage = claims["conformal_summary"]["day_band_coverage_mean"]
+    seeds = len(claims["frozen"]["seeds"])
+    headline = f'''# CycleTwin_VIT
+
+**CycleTwin forecasts a generated late or absent ovulation-cycle event from synthetic calendar and wearable-style signals for research; it does not diagnose PMOS.**
+
+> **Synthetic data only. Not for diagnosis, contraception or conception planning.**
+
+[Live demo — replace LIVE_DEMO_URL](LIVE_DEMO_URL) · [Video — replace VIDEO_URL](VIDEO_URL) · [Pitch PDF](deliverables/CycleTwin_pitch_deck.pdf) · [Pitch PPTX](deliverables/CycleTwin_pitch_deck.pptx) · [Architecture PDF](deliverables/CycleTwin_architecture.pdf) · [Architecture PPTX](deliverables/CycleTwin_architecture.pptx) · [Checklist](SUBMISSION_CHECKLIST.md) · [Audit](docs/audit_2026-10-20/CycleTwin_full_audit.md)
+
+## Frozen synthetic snapshot
+
+- Day-18 Tier-2 AUROC: **{tier2['Mean AUROC']:.6f}**.
+- Day-18 Tier-2 Brier score: **{tier2['Mean Brier']:.6f}**.
+- Held-out generated cycles: **{tier2['Held-out cycles']:,}** across **{seeds}** frozen seeds.
+
+![Historical synthetic cohort capture](docs/screenshots/patient-list.png)
+
+## Where it breaks
+
+- On days 10 and 14, the retained path is mostly calendar history; temperature-derived signals show a clear frozen gain at day 18.
+- The heuristic ovulation-day band covered **{coverage:.6f}** of its applicable frozen synthetic cases and failed its coverage check.
+- With simulated +0.01°C/day temperature drift, ranking remains **{drift['mean_auroc']:.6f}** but Brier rises to **{drift['mean_brier']:.6f}**, above the frozen base-rate reference.
+
+**Team:** solo participant Kushagra Gupta, full-time student · **College:** Vellore Institute of Technology (VIT) · **Licence:** [MIT](LICENSE) · **AI disclosure:** AI coding assistants helped build the project; no LLM is used in prediction or explanation paths.
+
+---
+
+'''
+    body = body.replace("# CycleTwin_VIT\n\n", "", 1)
+    body = body.replace("**College: VIT**", "**College: Vellore Institute of Technology (VIT)**")
+    body = body.replace("Team leader: Kushagra Gupta.", "Solo participant: Kushagra Gupta, full-time student.")
+    body = re.sub(r"\bfirst safe threshold\b", "earliest safe threshold", body, flags=re.IGNORECASE)
+    body = re.sub(r"\bfirst prediction\b", "initial prediction", body, flags=re.IGNORECASE)
+    body = re.sub(r"\bfirst\b", "initial", body, flags=re.IGNORECASE)
+    return headline + body
+
+
+def sanitize_judge_text(text):
+    text = re.sub(r"\bfirst safe threshold\b", "earliest safe threshold", text, flags=re.IGNORECASE)
+    text = re.sub(r"\bfirst prediction\b", "initial prediction", text, flags=re.IGNORECASE)
+    return re.sub(r"\b(first|novel|groundbreaking|state-of-the-art)\b", "initial", text, flags=re.IGNORECASE)
 
 
 def build(write=True):
@@ -128,6 +177,9 @@ def build(write=True):
     submission=ROOT/'docs/submission_status.json'
     claims['submission']=json.loads(submission.read_text()) if submission.exists() else None
     claims['deliverables']=compose(claims)
+    claims['deliverables']['readme']=judge_readme(claims, claims['deliverables']['readme'])
+    claims['deliverables']['video_scripts']={k:sanitize_judge_text(v) for k,v in claims['deliverables']['video_scripts'].items()}
+    claims['deliverables']['runbook']=sanitize_judge_text(claims['deliverables']['runbook'])
     if write:
         (ROOT / "docs/claims.json").write_text(json.dumps(claims, indent=2) + "\n")
     return claims

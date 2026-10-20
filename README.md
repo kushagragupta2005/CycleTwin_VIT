@@ -1,8 +1,32 @@
 # CycleTwin_VIT
 
+**CycleTwin forecasts a generated late or absent ovulation-cycle event from synthetic calendar and wearable-style signals for research; it does not diagnose PMOS.**
+
+> **Synthetic data only. Not for diagnosis, contraception or conception planning.**
+
+[Live demo — replace LIVE_DEMO_URL](LIVE_DEMO_URL) · [Video — replace VIDEO_URL](VIDEO_URL) · [Pitch PDF](deliverables/CycleTwin_pitch_deck.pdf) · [Pitch PPTX](deliverables/CycleTwin_pitch_deck.pptx) · [Architecture PDF](deliverables/CycleTwin_architecture.pdf) · [Architecture PPTX](deliverables/CycleTwin_architecture.pptx) · [Checklist](SUBMISSION_CHECKLIST.md) · [Audit](docs/audit_2026-10-20/CycleTwin_full_audit.md)
+
+## Frozen synthetic snapshot
+
+- Day-18 Tier-2 AUROC: **0.907309**.
+- Day-18 Tier-2 Brier score: **0.116867**.
+- Held-out generated cycles: **3,240** across **3** frozen seeds.
+
+![Historical synthetic cohort capture](docs/screenshots/patient-list.png)
+
+## Where it breaks
+
+- On days 10 and 14, the retained path is mostly calendar history; temperature-derived signals show a clear frozen gain at day 18.
+- The heuristic ovulation-day band covered **0.055814** of its applicable frozen synthetic cases and failed its coverage check.
+- With simulated +0.01°C/day temperature drift, ranking remains **0.905727** but Brier rises to **0.300007**, above the frozen base-rate reference.
+
+**Team:** solo participant Kushagra Gupta, full-time student · **College:** Vellore Institute of Technology (VIT) · **Licence:** [MIT](LICENSE) · **AI disclosure:** AI coding assistants helped build the project; no LLM is used in prediction or explanation paths.
+
+---
+
 **Team: CycleTwin**  
-**College: VIT**  
-Team leader: Kushagra Gupta. Registration and contact details are submitted by the human leader on Unstop.
+**College: Vellore Institute of Technology (VIT)**  
+Solo participant: Kushagra Gupta, full-time student. Registration and contact details are submitted by the human leader on Unstop.
 
 > Synthetic research prototype. Not for diagnosis, contraception or conception planning. No clinical validity, hormone inference or real-world accuracy is claimed.
 
@@ -159,7 +183,7 @@ Full per-day/tier/archetype AUROC and recall intervals, reliability bins, ECE, d
 
 ## Frozen sequential alert policy
 
-The frozen policy evaluates the first safe threshold crossing at days 10, 14 and 18, with at most one alert per cycle; it uses saved frozen scores without retraining or retuning. Tier 2 produced 1,634 alerts across 3,240 generated cycles: precision 0.730110; missed generated events 484/1,677 (0.288611); false alerts 1.483785 per synthetic patient-year. Median generated-event lead time was 17.000000 days among 790 true-positive cycles with a generated ovulation day. These are simulator outcomes, not clinical alert rates. Full rows are in results/alert_policy_frozen_rows.csv.
+The frozen policy evaluates the earliest safe threshold crossing at days 10, 14 and 18, with at most one alert per cycle; it uses saved frozen scores without retraining or retuning. Tier 2 produced 1,634 alerts across 3,240 generated cycles: precision 0.730110; missed generated events 484/1,677 (0.288611); false alerts 1.483785 per synthetic patient-year. Median generated-event lead time was 17.000000 days among 790 true-positive cycles with a generated ovulation day. These are simulator outcomes, not clinical alert rates. Full rows are in results/alert_policy_frozen_rows.csv.
 
 ## Frozen synthetic robustness extension
 
@@ -177,7 +201,7 @@ This post-freeze Tier-2-plus-proxy analysis transforms simulator IR and androgen
 
 ## Local operations measurement
 
-On the build host, a cold new-process first prediction took 1193.724167 ms. Across 1,000 warm in-process calls, mean latency was 0.532991 ms and p95 0.564667 ms; process peak RSS was 193104 KiB. This is host-specific local evidence, not a production-service SLA. See results_ops.json and docs/operations_methods.md.
+On the build host, a cold new-process initial prediction took 1193.724167 ms. Across 1,000 warm in-process calls, mean latency was 0.532991 ms and p95 0.564667 ms; process peak RSS was 193104 KiB. This is host-specific local evidence, not a production-service SLA. See results_ops.json and docs/operations_methods.md.
 
 ## Frozen synthetic conformal coverage
 

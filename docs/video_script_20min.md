@@ -101,7 +101,7 @@ It retains simulator-internal leakage risk and is not a clinical EHR-fusion clai
 
 ## Local operations measurement
 One persisted frozen Tier-2 model on the build host
-Cold new-process first prediction: 1193.724 ms
+Cold new-process initial prediction: 1193.724 ms
 Warm inference: mean 0.533 ms, p95 0.565 ms across 1,000 calls
 Local process peak RSS: 193104 KiB
 Host-specific engineering measurement, not a production-service SLA.
