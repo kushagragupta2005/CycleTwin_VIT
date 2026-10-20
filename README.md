@@ -24,6 +24,8 @@ make demo-apple
 
 `make all` generates synthetic patients, runs the prespecified patient-held-out evaluation, and writes `results.json`. `make demo-apple` writes a synthetic Apple Health-shaped XML export, parses it locally, and displays a small Streamlit dashboard.
 
+Dependency versions are pinned to the evaluation environment: Python 3.9.6, NumPy 2.0.2, scikit-learn 1.6.1 and SciPy 1.13.1, with explicit pandas, Streamlit, Altair, joblib and threadpoolctl requirements. On 20 October 2026, a fresh virtual environment installed only from `requirements.txt` passed both fitted-pipeline tests and all 13 unit tests without additional package installation. A complete benchmark rerun in that environment reproduced every field of the committed `results.json` exactly (36 seed/day/tier results). After activating the environment, run `python -m unittest discover -s tests -v`; `make all` regenerates the benchmark and figures.
+
 ## Model and scope
 
 A stochastic generator creates synthetic patients and noisy cycle observations. Fitted logistic-regression classifiers supply the evaluated prospective risk estimate, with Platt calibration and threshold selection on validation patients. A temperature coverline heuristic estimates ovulation day, with a fixed fallback when no rise is visible. The dashboard also runs a simplified reproductive/metabolic simulator coupled through a shared synthetic latent. This is not an EKF or a clinical hormone model and is not used in the benchmark metrics. The dashboard can display synthetic CGM and marginal split-conformal ranges calibrated on a separate synthetic cohort; these are illustrative and are not evaluated in the benchmark results. See [assumptions](docs/assumptions.md) and the [evaluation plan](docs/eval_plan.md).
