@@ -1,5 +1,26 @@
-# Architecture
+# Implemented architecture
 
-Synthetic generator -> patient-level split -> tiered feature extraction -> simple cycle forecast -> risk-ranked dashboard.
+Synthetic inputs and one persisted fitted prediction path
 
-The export adapter is a separate input path: synthetic Apple Health-shaped XML -> daily canonical table -> dashboard. Generator ground truth remains separate from adapter inputs. The dashboard also runs simplified reproductive and metabolic dynamics coupled through a shared synthetic latent, displays an illustrative CGM stream, and shows synthetic-calibration conformal ranges. This twin is not used by the held-out G1 score evaluation and is not clinically calibrated.
+Synthetic static EHR-lite
+Oracle-adjacent internals
+
+Synthetic nightly data
+Calendar and wearables
+
+Shared feature builder
+Training median and scaling
+
+Persisted logistic model
+Validation calibration and threshold
+
+Fail-closed safety gate
+Withhold personal outputs
+
+Doctor / Kushi dashboard
+Probability and exact contributions
+
+Separate illustrative twin
+No contribution to fitted score
+
+One fitted prediction path serves benchmark, cohort, patient and Kushi views. EHR-lite is implemented and oracle-adjacent. XML parsing is separate and does not score imports. The reproductive/metabolic illustration does not affect fitted predictions. All project data is synthetic.

@@ -2,11 +2,11 @@
 
 ## Scope and freeze
 
-This plan is committed before running evaluation on the held-out test patients. All results are synthetic-only and describe recovery within the generator, not clinical performance. Never compare these metrics with real-world published accuracy.
+This document describes the current development protocol. The audit established repeated use of the older seeds during development, so they must not be presented as an untouched final evaluation. All results are synthetic-only and describe recovery within the generator, not clinical performance. Never compare these metrics with real-world published accuracy.
 
 ## Data and splits
 
-Generate 1,200 synthetic patients with six cycles each from each of three fixed generator seeds: 97, 101, and 103. Split patients, never cycles: 70% train, 15% validation, 15% held-out test, using a deterministic patient index per seed. Keep every cycle for a patient in one partition. The test partition is evaluated once after development settings are frozen.
+Generate 1,200 synthetic patients with six cycles each from each of three fixed generator seeds: 97, 101, and 103. Split patients, never cycles: 70% train, 15% validation, 15% held-out test, using a deterministic patient index per seed. Keep every cycle for a patient in one partition. The patient-separated test partition was inspected across development revisions. A new frozen evaluation uses a separate predeclared protocol.
 
 ## Primary target and metrics
 
@@ -14,11 +14,11 @@ E1 is a synthetic current-cycle event: no ovulation or ovulation after cycle day
 
 ## Baselines and tiers
 
-Fit one sklearn logistic-regression model for every seed, forecast day and tier on train patients. Fit Platt calibration on validation patients only. Select the alert threshold by validation-set F1 only, then evaluate held-out patients once. Report each result by data tier: tier 0 calendar history from preceding logged cycle lengths; tier 1 adds resting heart rate, HRV, steps and sleep; tier 2 adds nightly temperature; tier 3 adds EHR-lite. Tier 3 contains simulator values that help set the label, so it is reported only as an oracle-adjacent, simulator-internal check. No CGM forecast is claimed.
+Fit one sklearn logistic-regression model for every seed, forecast day and tier on train patients. Fit Platt calibration on validation patients only. Select the alert threshold by validation-set F1 only, then report the patient-separated development partition. Report each result by data tier: tier 0 calendar history from preceding logged cycle lengths; tier 1 adds resting heart rate, HRV, steps and sleep; tier 2 adds nightly temperature; tier 3 adds EHR-lite. Tier 3 contains simulator values that help set the label, so it is reported only as an oracle-adjacent, simulator-internal check. No CGM forecast is claimed.
 
 ## Uncertainty and interpretation
 
-For each reported G1 metric, compute patient-cluster bootstrap 95% intervals with 1,000 resamples within each held-out seed. Bootstrap resampling unit is patient, retaining all sampled patient cycles. Abstention, conformal coverage, adaptive conformal coverage, and risk-coverage curves are not included in the G1 results and must be marked not evaluated. No threshold will be tuned against test outcomes.
+For each reported G1 metric, compute patient-cluster bootstrap 95% intervals with 1,000 resamples within each held-out seed. Bootstrap resampling unit is patient, retaining all sampled patient cycles. Abstention, conformal coverage, adaptive conformal coverage, and risk-coverage curves are not included in the G1 results and must be marked not evaluated. No threshold is selected against test outcomes in the explicit current pipeline; repeated development use of the older seeds still limits holdout claims.
 
 ## Thresholds and limitations
 
@@ -26,7 +26,7 @@ Each fitted tier/day gets a threshold selected on its validation set only. The o
 
 ## Protocol amendment before final evaluation
 
-An early evaluation run using seeds 17, 29, and 43 revealed that the original ovulation-day distribution made nearly all generated cycles positive for E1. That run informed a generator-unit correction, so those patients are development data and their scores are not reported as held-out results. Before the final evaluation, the generator and score settings were frozen and unused generator seeds 97, 101, and 103 were reserved. Only those fresh seeds are used for the reported test metrics. This amendment is committed before the fresh test run.
+An early evaluation run using seeds 17, 29, and 43 revealed that the original ovulation-day distribution made nearly all generated cycles positive for E1. That run informed a generator-unit correction, so those patients are development data and their scores are not reported as held-out results. Before the final evaluation, the generator and score settings were frozen and unused generator seeds 97, 101, and 103 were reserved. Those seeds were subsequently reused during further development, as documented by the audit. Their current results are development evidence.
 
 ## G1 reporting deviations
 

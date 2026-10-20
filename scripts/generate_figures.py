@@ -3,7 +3,7 @@ import html
 import json
 from pathlib import Path
 
-data=json.loads(Path("results.json").read_text())
+data=json.loads(Path("docs/claims.json").read_text())["development"]
 seeds=data["seeds"]
 days=(10,14,18); tiers=(0,1,2,3)
 colors={0:"#64748b",1:"#0f766e",2:"#d97706",3:"#9f5b86"}
@@ -29,7 +29,7 @@ def svg_start(title,subtitle,ymin,ymax,ylabel):
     return parts,(x0,y0,x1,y1)
 
 def render_auc():
-    parts,box=svg_start("Synthetic held-out AUROC by tier","Mean across seeds 97, 101, 103; bars span the lowest to highest patient-cluster 95% interval",.3,1.0,"AUROC")
+    parts,box=svg_start("Synthetic development AUROC by tier","Mean across seeds 97, 101, 103; bars span the lowest to highest patient-cluster 95% interval",.3,1.0,"AUROC")
     x0,y0,x1,y1=box
     for tier in tiers:
         xs=[]; ys=[]
@@ -51,7 +51,7 @@ def render_auc():
 def render_false_alerts():
     vals=[s["metrics"][f"day_{day}_tier_{tier}"]["false_alerts_per_100_cycles"] for s in seeds.values() for day in days for tier in tiers]
     ymax=max(5.0,((max(vals)//5)+1)*5)
-    parts,box=svg_start("Synthetic false alerts by tier","Mean false alerts per 100 patient-cycles at validation-selected thresholds; three generator seeds",0,ymax,"False alerts per 100 cycles")
+    parts,box=svg_start("Synthetic development false alerts by tier","Mean false alerts per 100 patient-cycles at validation-selected thresholds; three generator seeds",0,ymax,"False alerts per 100 cycles")
     x0,y0,x1,y1=box
     for tier in tiers:
         xs=[]; ys=[]
@@ -69,7 +69,7 @@ def render_false_alerts():
 render_auc(); render_false_alerts()
 
 def render_tradeoff():
-    parts,box=svg_start("Synthetic day-14 alert trade-off","Held-out mean across seeds; varying thresholds are descriptive only and were not used to choose the validation threshold",0,100,"False alerts per 100 cycles")
+    parts,box=svg_start("Synthetic day-14 alert trade-off","Development mean across seeds; varying thresholds are descriptive only and were not used to choose the validation threshold",0,100,"False alerts per 100 cycles")
     x0,y0,x1,y1=box
     for tier in tiers:
         by_index=[]

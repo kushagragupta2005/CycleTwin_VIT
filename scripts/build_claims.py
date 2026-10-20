@@ -8,9 +8,12 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src.personas import make_kushi
+from src.generator import generate
+from src.splits import patient_partition
+from scripts.deliverable_content import compose
 
 
-def build():
+def build(write=True):
     results = json.loads((ROOT / "results.json").read_text())
     summary = []
     keys = next(iter(results["seeds"].values()))["metrics"]
@@ -37,10 +40,27 @@ def build():
               "source_sha256": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs}}
     frozen = ROOT / "results_final_frozen.json"
     claims["frozen"] = json.loads(frozen.read_text()) if frozen.exists() else None
-    (ROOT / "docs/claims.json").write_text(json.dumps(claims, indent=2) + "\n")
+    claims['configuration']={'days':sorted({int(k.split('_')[1]) for k in keys}),
+                             'tiers':sorted({int(k.rsplit('_',1)[1]) for k in keys}),
+                             'event_cutoff_day':21,'confidence_level':0.95,'short_video_minutes':3,
+                             'inference_seed':97,'display_seed':223,'classification_tolerance':1e-12}
+    all_rows=[r for seed in results['seeds'] for r in generate(int(seed))]
+    example=next(iter(results['seeds'].values()))['patients']
+    claims['dataset']={'people':len({r['patient'] for r in all_rows}),'cycles':len(all_rows),
+                       'positive_cycles':sum(r['event'] for r in all_rows),
+                       'per_seed_train_people':example['train'],'per_seed_validation_people':example['validation'],
+                       'per_seed_test_people':example['test']}
+    claims['runtime_requirements']=[line.strip() for line in (ROOT/'requirements.txt').read_text().splitlines() if line.strip() and not line.startswith('#')]
+    claims['models']=json.loads((ROOT/'models/model_card.json').read_text())['models']
+    claims['deliverables']=compose(claims)
+    if write:
+        (ROOT / "docs/claims.json").write_text(json.dumps(claims, indent=2) + "\n")
     return claims
 
 
 if __name__ == "__main__":
-    x = build()
+    x = build(write='--check' not in sys.argv)
+    if '--check' in sys.argv:
+        if x != json.loads((ROOT/'docs/claims.json').read_text()):
+            raise SystemExit('Claims are stale: run python scripts/build_claims.py')
     print(f"Built synthetic claims from {len(x['development']['seeds'])} development seeds; frozen results present: {x['frozen'] is not None}")

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470">
 <rect width="900" height="470" fill="#ffffff"/>
-<text x="70" y="42" font-family="Arial" font-size="25" font-weight="700" fill="#172b3a">Synthetic false alerts by tier</text>
+<text x="70" y="42" font-family="Arial" font-size="25" font-weight="700" fill="#172b3a">Synthetic development false alerts by tier</text>
 <text x="70" y="68" font-family="Arial" font-size="14" fill="#596b76">Mean false alerts per 100 patient-cycles at validation-selected thresholds; three generator seeds</text>
 <line x1="90" y1="390.0" x2="830" y2="390.0" stroke="#e2e8f0"/>
 <text x="55" y="395.0" font-family="Arial" font-size="13" fill="#596b76">0.00</text>

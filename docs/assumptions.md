@@ -1,9 +1,13 @@
+# Current deployment note
+
+The live application now uses persisted fitted inference and validation-selected thresholds. Any fixed-score equations below document the historical baseline in src/model.py, not the live probability path. Actual generated age reaches safety checks. The input-editing sandbox replaces fixed score multipliers. See CHANGELOG_AFTER_AUDIT.md.
+
 # Assumptions
 
 Every physiological value and threshold below is a literature-informed assumption (verify with clinician). Values configure a synthetic engineering exercise and are not clinical parameters.
 
 - The cohort contains nine phenotype archetypes at equal generator frequency (one ninth each). This is a simulation mixture, not a prevalence estimate.
-- EHR-lite exposes each simulated patient's archetype, insulin-resistance latent and androgen load, plus synthetic age (18–42), BMI and family-history draw. The latent and androgen load influence the label-generating process. Therefore, tier 3 results are **oracle-adjacent, simulator-internal checks**, not real EHR-fusion results.
+- EHR-lite exposes each simulated patient's archetype, insulin-resistance latent and androgen load, plus synthetic age (18–42), BMI and family-history draw. IR directly influences label generation; androgen correlates with the assigned archetype and enters the separate twin, but not the main label equation. Therefore, tier 3 results are **oracle-adjacent, simulator-internal checks**, not real EHR-fusion results.
 - At forecast day 14, training-set means for RHR, HRV, steps and sleep were almost identical by label (e.g. seed 97: RHR −0.001 vs 0.008, HRV −0.001 vs −0.011, steps 5,070 vs 5,069, sleep 7.000 vs 6.999). Those early wearable signals are effectively uninformative in this generator. The fitted harness keeps richer tiers only when a patient-cluster validation bootstrap shows positive Brier gain; otherwise it records a calendar-model fallback. This avoids claiming improvement from simulator noise.
 - Insulin-resistance latent is sampled from a standard normal distribution and clipped to [−2.5, 2.5]. Androgen load is sampled with standard deviation 0.7 units and mean 0.65 in simulated PMOS archetypes or 0 in other archetypes. Stress is standard normal.
 - Simulated ovulation day has nominal means 16, 22 or 26 days by archetype, base standard deviation 4 days, an insulin-resistance adjustment of 6 days per positive latent unit, and a stress adjustment of 3 days per standardised unit for selected phenotypes.

@@ -18,7 +18,7 @@ CycleTwin's G1 benchmark uses sklearn logistic-regression models fitted on train
 
 Tier 3 adds static EHR-lite numerical fields. Its insulin-resistance latent and androgen load also influence the label-generating process, so its results are labelled **oracle-adjacent, simulator-internal checks**, not evidence of real EHR fusion. The CSV also exposes the simulated archetype; the fitted feature matrix uses the five numerical EHR-lite fields.
 
-The dashboard has Cohort list, Patient view, and Model & methodology pages. It displays a separate fixed heuristic, missing-night markers, illustrative conformal ranges, explicit abstention rules, a simplified coupled twin, synthetic CGM, assumption-based what-if ranges and a session alert log. The twin is not used by the fitted benchmark and is not clinically calibrated. Chart summaries and state explanations use deterministic templates; no LLM is in the runtime explanation path.
+The dashboard has Overview, Cohort, Patient, Method and Meet Kushi views. It displays persisted fitted inference, missing-night markers, illustrative conformal ranges, explicit abstention rules, a simplified coupled twin, synthetic CGM, assumption-based what-if ranges and a session alert log. The twin is not used by the fitted benchmark and is not clinically calibrated. Chart summaries and state explanations use deterministic templates; no LLM is in the runtime explanation path.
 
 The wearable studies above concern real cohort data or different prediction targets; the single-patient report is a case study; the vaginal-temperature work is a preprint. No cross-study performance comparison is made.
 

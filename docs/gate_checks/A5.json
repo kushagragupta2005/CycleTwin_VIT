@@ -1,0 +1,14 @@
+{
+  "item": "A5",
+  "unit_and_AppTest_tests_passed": 29,
+  "classification_results_change": "none",
+  "claim_validation": "README and both video scripts exact; every PPTX/PDF slide text and decimal metric token checked against generated claims",
+  "visual_review": "all native slides inspected; final architecture PDF and representative table/body PDF pages rendered and inspected",
+  "outputs": {
+    "deliverables/CycleTwin_architecture.pdf": "e5fe540c5e40ce26a84b816d95f67ed747b7af4ebe77c503124762b87d704960",
+    "deliverables/CycleTwin_architecture.pptx": "1af65d3eb6e1db7c08b60bc14435256b6519e4f436ff043cd6c69593b962799b",
+    "deliverables/CycleTwin_pitch_deck.pdf": "0047913d0127c18f7d40abc2db843424d2aa070236cc1744075baec09f0b364a",
+    "deliverables/CycleTwin_pitch_deck.pptx": "c13a4eafa24bb76282c21d2512e724a0f537c6fdf1ea0c96a4189e790c59ba43"
+  },
+  "scope": "synthetic-only"
+}

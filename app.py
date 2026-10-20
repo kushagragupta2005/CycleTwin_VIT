@@ -120,10 +120,10 @@ def render_workflow():
 st.markdown(f'<div class="demo-footer"><a href="https://github.com/kushagragupta2005/CycleTwin_VIT" target="_blank" rel="noopener noreferrer">GitHub · CycleTwin_VIT</a>{escape(DISCLAIMER)} · Decision-support research prototype. This screen does not validate a clinical forecast.</div>',unsafe_allow_html=True)
 
 @st.cache_data
-def benchmark_metrics():
+def benchmark_metrics(claims_mtime):
     return load_claims()["development"]
 
-benchmark = benchmark_metrics()
+benchmark = benchmark_metrics(Path("docs/claims.json").stat().st_mtime_ns)
 metric_keys=next(iter(benchmark["seeds"].values()))["metrics"]
 forecast_days=sorted({int(key.split("_")[1]) for key in metric_keys})
 all_tiers=sorted({int(key.rsplit("_",1)[1]) for key in metric_keys})
@@ -141,7 +141,7 @@ for day in forecast_days:
             "Held-out cycles":sum(m["n_cycles"] for m in seed_metrics),
             "Seeds retaining candidate":sum(m["validation_selected_feature_tier"]==tier for m in seed_metrics),
         })
-best_sensor=min((r for r in benchmark_summary if r["Forecast day"]==benchmark_day and r["Tier"] in sensor_tiers),key=lambda r:r["Mean Brier"])
+best_sensor=next(r for r in benchmark_summary if r["Forecast day"]==benchmark_day and r["Tier"]==sensor_tiers[-1])
 
 @st.cache_data
 def demo_cohort():
@@ -250,7 +250,7 @@ if page=="Overview":
                     help="Mean ranking metric across seeds for the described sensor tier. Higher ranks synthetic labels more accurately.")
     stats[3].metric("Mean Brier · synthetic",f"{best_sensor['Mean Brier']:.3f}",
                     help="Mean squared probability error across seeds for the described sensor tier. Lower is better within this simulator.")
-    st.caption(f"Tier {best_sensor['Tier']} at forecast day {benchmark_day} · lowest mean held-out Brier among the displayed sensor tiers. Descriptive comparison only; calibration, feature fallback and thresholds were selected on validation, not test.")
+    st.caption(f"Tier {best_sensor['Tier']} at forecast day {benchmark_day} · predeclared highest sensor tier. Descriptive development comparison only; calibration, feature fallback and thresholds were selected on validation, not test.")
     plain_words("These figures describe the fitted synthetic benchmark. They describe synthetic model performance, not clinical performance or individual confidence.")
     st.subheader("What makes it different")
     plain_words("The demonstration makes its safety rules, uncertainty and input limits visible.")

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470">
 <rect width="900" height="470" fill="#ffffff"/>
 <text x="70" y="42" font-family="Arial" font-size="25" font-weight="700" fill="#172b3a">Synthetic day-14 alert trade-off</text>
-<text x="70" y="68" font-family="Arial" font-size="14" fill="#596b76">Held-out mean across seeds; varying thresholds are descriptive only and were not used to choose the validation threshold</text>
+<text x="70" y="68" font-family="Arial" font-size="14" fill="#596b76">Development mean across seeds; varying thresholds are descriptive only and were not used to choose the validation threshold</text>
 <line x1="90" y1="390.0" x2="830" y2="390.0" stroke="#e2e8f0"/>
 <text x="55" y="395.0" font-family="Arial" font-size="13" fill="#596b76">0.00</text>
 <line x1="90" y1="333.0" x2="830" y2="333.0" stroke="#e2e8f0"/>

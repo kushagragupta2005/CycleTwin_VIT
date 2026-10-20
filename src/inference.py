@@ -8,6 +8,7 @@ import joblib
 import numpy as np
 
 from src.features import record_features
+from src.claims import load_claims
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -41,7 +42,7 @@ def predict(record, day, tier, *, seed=97):
     Contributions sum to the base decision score. Multiplying by the fitted Platt
     coefficient gives additive contributions to the final calibrated logit.
     """
-    meta = model_card()["models"][model_key(seed, day, tier)]
+    meta = load_claims()["models"][model_key(seed, day, tier)]
     path = ROOT / meta["artifact"]
     fitted = _load(str(path), path.stat().st_mtime_ns, meta["sha256"])
     x = record_features(record, int(day), meta["selected_tier"])
